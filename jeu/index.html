@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#0a1a0a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>FMTK - Jeu</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html, body {
+            width: 100%;
+            height: 100%;
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        body {
+            background: radial-gradient(ellipse at center, #0d1f0d 0%, #0a0a0a 100%);
+        }
+
+        /* ===== WIZARD PAYSAGE (Bloque l'accès) ===== */
+        #wizardLandscape {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.5s ease;
+        }
+        #wizardLandscape.hidden { opacity: 0; pointer-events: none; }
+        #wizardLandscape .icon {
+            font-size: 4.5rem;
+            color: #FFD700;
+            animation: rotate-phone 2s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes rotate-phone {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(90deg); }
+        }
+        #wizardLandscape h1 {
+            font-family: 'Orbitron', monospace;
+            color: #FFD700;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        #wizardLandscape p { color: #8aaa8a; font-size: 1.1rem; max-width: 400px; line-height: 1.6; }
+        #wizardLandscape .step {
+            margin-top: 20px;
+            color: #aaa;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #wizardLandscape .spinner {
+            margin-top: 30px;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255,215,0,0.1);
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .game-container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 { font-family: 'Orbitron', monospace; color: #FFD700; font-size: 2.5rem; }
+        .v1 { color: #2ecc71; font-size: 0.8rem; }
+        p { color: #8aaa8a; font-size: 1.1rem; margin: 20px 0; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #FFD700;
+            color: #0a1a0a;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover { background: #f5c400; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            p { font-size: 0.9rem; }
+        }
+        @media (orientation: portrait) {
+            #wizardLandscape { display: flex !important; }
+            #wizardLandscape.hidden { display: none !important; }
+            .game-container { display: none !important; }
+        }
+        @media (orientation: landscape) {
+            #wizardLandscape { display: none !important; }
+            .game-container { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== WIZARD PAYSAGE ===== -->
+<div id="wizardLandscape">
+    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+    <h1>📱 Mode Paysage</h1>
+    <p>Veuillez tourner votre téléphone à l'<strong>horizontal</strong> pour jouer</p>
+    <div class="step">
+        <span class="wait"><i class="fas fa-spinner fa-spin"></i></span>
+        <span id="statusText">En attente du mode paysage...</span>
+    </div>
+    <div class="spinner"></div>
+</div>
+
+<!-- ===== JEU ===== -->
+<div class="game-container" id="gameContent">
+    <h1>⚽ FMTK <span class="v1">V1</span></h1>
+    <p>🎮 Bienvenue dans le jeu !</p>
+    <p style="font-size: 0.8rem; color: #5a7a5a;">Mode paysage verrouillé - Comme une vraie APK</p>
+    <a href="/" class="btn">🏠 Retour à l'accueil</a>
+</div>
+
+<script>
+function checkOrientation() {
+    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+    const wizard = document.getElementById('wizardLandscape');
+    const game = document.getElementById('gameContent');
+    const statusText = document.getElementById('statusText');
+
+    if (!isMobile) {
+        wizard.classList.add('hidden');
+        game.style.display = 'block';
+        return;
+    }
+
+    const isLandscape = window.innerWidth > window.innerHeight;
+    if (isLandscape) {
+        wizard.classList.add('hidden');
+        game.style.display = 'block';
+        statusText.textContent = '✅ Mode paysage détecté !';
+    } else {
+        wizard.classList.remove('hidden');
+        game.style.display = 'none';
+        statusText.textContent = '⏳ En attente du mode paysage...';
+    }
+}
+
+window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', function() { setTimeout(checkOrientation, 300); });
+document.addEventListener('DOMContentLoaded', checkOrientation);
+</script>
+</body>
+</html>
