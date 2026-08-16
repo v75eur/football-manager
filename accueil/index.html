@@ -17,30 +17,275 @@
             color: #fff;
         }
 
-        /* ===== OVERLAY ROTATION (mobile) ===== */
-        #rotate-overlay {
-            display: none;
-            position: fixed;
+        /* ===== MOBILE FIRST ===== */
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: linear-gradient(180deg, #0a2a0a 0%, #0d1f0d 100%);
+        }
+        .main-card {
+            width: 100%;
+            max-width: 450px;
+            max-height: 95vh;
+            background: rgba(10,30,10,0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255,215,0,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* ===== EN-TÊTE AVEC IMAGE ===== */
+        .header {
+            padding: 25px 20px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(10,30,10,0.3);
+        }
+        .header .bg-image {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 99999;
+            object-fit: cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .header .content { position: relative; z-index: 1; }
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #FFD700;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(255,215,0,0.15);
+        }
+        .logo-sub {
+            font-size: 0.7rem;
+            color: #7aaa7a;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-top: 2px;
+        }
+        .tagline {
+            color: #8aaa8a;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+        .tagline i { color: #FFD700; margin-right: 6px; width: 18px; }
+
+        /* ===== FEATURES ===== */
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 4px;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.2);
+        }
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #7aaa7a;
+            font-size: 0.55rem;
+            padding: 6px 4px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.02);
+            text-align: center;
+        }
+        .feature-item i { color: #FFD700; font-size: 0.9rem; margin-bottom: 2px; }
+
+        /* ===== FORMULAIRES ===== */
+        .body {
+            padding: 15px 18px 20px;
+            flex: 1;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.15);
+        }
+        .body::-webkit-scrollbar { width: 3px; }
+        .body::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 10px; }
+
+        .form-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+        .form-title span { color: #FFD700; }
+        .form-subtitle {
+            color: #6a8a6a;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .tabs {
+            display: flex;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 12px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 8px 10px;
+            border: none;
+            background: rgba(255,255,255,0.02);
+            color: #7a9a7a;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active { color: #FFD700; background: rgba(255,215,0,0.06); border-bottom-color: #FFD700; }
+        .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.06); color: #b0d0b0; }
+
+        .form { display: none; flex-direction: column; gap: 8px; }
+        .form.active { display: flex; }
+
+        .form-group { position: relative; }
+        .form-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5a7a5a;
+            font-size: 0.8rem;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 12px 10px 35px;
+            background: rgba(255,255,255,0.05);
+            border: 1.5px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.85rem;
+            outline: none;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .form-group select { appearance: none; cursor: pointer; padding-right: 30px; }
+        .form-group select option { background: #1a2e1a; color: #fff; }
+        .form-group select optgroup { background: #0a1a0a; color: #FFD700; font-weight: 700; }
+        .form-group input:focus, .form-group select:focus {
+            border-color: rgba(255,215,0,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+        .form-group input::placeholder { color: #5a7a5a; font-weight: 300; }
+        .form-group .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #5a7a5a;
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 5px;
+            z-index: 2;
+        }
+        .form-group .toggle-password:hover { color: #b0d0b0; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+        .btn-submit {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            color: #0a0a1a;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: all 0.3s ease;
+            display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            color: white;
+            gap: 6px;
+        }
+        .btn-submit:hover { background: linear-gradient(135deg, #f5c400, #e09520); transform: scale(1.01); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-submit .spinner {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(10,10,26,0.2);
+            border-top-color: #0a0a1a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .btn-submit.loading .spinner { display: inline-block; }
+        .btn-submit.loading .btn-text { display: none; }
+
+        .form-footer {
             text-align: center;
-            padding: 20px;
+            color: #5a7a5a;
+            font-size: 0.7rem;
+            margin-top: 4px;
         }
-        #rotate-overlay i {
-            font-size: 4rem;
+        .form-footer a { color: #FFD700; text-decoration: none; font-weight: 600; cursor: pointer; }
+        .form-footer a:hover { text-decoration: underline; }
+
+        .session-link {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            padding: 10px;
+            background: rgba(255,215,0,0.05);
+            border: 1px solid rgba(255,215,0,0.08);
+            border-radius: 8px;
             color: #FFD700;
-            animation: spin 2s infinite;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
-        #rotate-overlay h2 { margin-top: 20px; font-family: 'Orbitron', monospace; }
-        #rotate-overlay p { color: #aaa; margin-top: 10px; }
+        .session-link:hover { background: rgba(255,215,0,0.1); }
+
+        .test-link {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(255,215,0,0.05);
+            border: 1px solid rgba(255,215,0,0.08);
+            border-radius: 8px;
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .test-link:hover { background: rgba(255,215,0,0.1); }
 
         /* ===== WIZARD ===== */
         #wizardOverlay {
@@ -51,19 +296,18 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.95);
-            z-index: 99998;
+            z-index: 99999;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            backdrop-filter: blur(10px);
         }
         #wizardOverlay.active { display: flex; }
         .wizard-container {
             background: #1a2e1a;
             border: 2px solid rgba(255,215,0,0.15);
-            border-radius: 25px;
-            padding: 35px;
-            max-width: 450px;
+            border-radius: 20px;
+            padding: 30px 25px;
+            max-width: 400px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
@@ -72,15 +316,15 @@
         .wizard-progress {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             position: relative;
         }
         .wizard-progress::before {
             content: '';
             position: absolute;
-            top: 18px;
-            left: 30px;
-            right: 30px;
+            top: 16px;
+            left: 25px;
+            right: 25px;
             height: 2px;
             background: rgba(255,255,255,0.1);
             z-index: 0;
@@ -93,15 +337,15 @@
             flex: 1;
         }
         .wizard-progress .step .circle {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: rgba(255,255,255,0.05);
             border: 2px solid rgba(255,255,255,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #666;
             transition: all 0.5s ease;
@@ -118,73 +362,67 @@
             color: #fff;
         }
         .wizard-progress .step .label {
-            font-size: 0.55rem;
+            font-size: 0.5rem;
             color: #666;
-            margin-top: 6px;
+            margin-top: 4px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             text-align: center;
         }
         .wizard-progress .step.active .label { color: #FFD700; }
         .wizard-progress .step.done .label { color: #2ecc71; }
         .wizard-step { display: none; }
         .wizard-step.active { display: block; }
-        .wizard-step .step-icon { font-size: 3rem; text-align: center; margin-bottom: 10px; }
+        .wizard-step .step-icon { font-size: 2.5rem; text-align: center; margin-bottom: 8px; }
         .wizard-step h2 {
             font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #FFD700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-align: center;
         }
         .wizard-step p {
             color: #aaa;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 12px;
             text-align: center;
         }
         .status-box {
             background: rgba(255,255,255,0.03);
-            border-radius: 12px;
-            padding: 12px 18px;
-            margin: 12px 0;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin: 10px 0;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             border: 1px solid rgba(255,255,255,0.05);
         }
-        .status-box .status-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .status-box .status-icon { font-size: 1.2rem; flex-shrink: 0; }
         .status-box .status-icon.pending { color: #f39c12; }
         .status-box .status-icon.success { color: #2ecc71; }
-        .status-box .status-text { color: #ddd; font-size: 0.85rem; }
+        .status-box .status-text { color: #ddd; font-size: 0.8rem; }
         .instruction-box {
             background: rgba(255,215,0,0.05);
             border-left: 3px solid #FFD700;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin: 10px 0;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin: 8px 0;
         }
-        .instruction-box p { font-size: 0.8rem; color: #ccc; margin: 4px 0; text-align: left; }
-        .instruction-box .lang-en {
-            color: #888;
-            font-size: 0.75rem;
-            margin-top: 6px;
-            padding-top: 6px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
+        .instruction-box p { font-size: 0.75rem; color: #ccc; margin: 3px 0; text-align: left; }
+        .instruction-box .lang-en { color: #888; font-size: 0.7rem; margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.05); }
         .wizard-actions {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 8px;
+            margin-top: 15px;
         }
         .wizard-actions button {
-            padding: 10px 25px;
+            padding: 8px 20px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-family: 'Orbitron', monospace;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -205,320 +443,61 @@
             color: #fff;
             flex: 1;
         }
-        .wizard-actions .btn-skip {
-            background: transparent;
-            color: #666;
-            font-size: 0.65rem;
-        }
 
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ===== PAGE PRINCIPALE ===== */
-        .container {
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: linear-gradient(180deg, #0a2a0a 0%, #0d1f0d 100%);
-        }
-        .main-card {
-            width: 90%;
-            max-width: 1100px;
-            max-height: 90vh;
-            background: rgba(10,30,10,0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            border: 1px solid rgba(255,215,0,0.1);
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-            display: flex;
-            overflow: hidden;
-            position: relative;
-        }
-        .left-panel {
-            flex: 1;
-            padding: 40px 45px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-width: 280px;
-            position: relative;
-            overflow: hidden;
-            background: rgba(10,30,10,0.5);
-        }
-        .left-panel .bg-image {
-            position: absolute;
+        /* ===== OVERLAY ROTATION ===== */
+        #rotate-overlay {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            opacity: 0.15;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .left-panel .content { position: relative; z-index: 1; }
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #FFD700;
-            letter-spacing: 4px;
-            margin-bottom: 2px;
-            text-shadow: 0 0 60px rgba(255,215,0,0.2);
-        }
-        .logo-sub {
-            font-size: 1rem;
-            color: #7aaa7a;
-            letter-spacing: 8px;
-            text-transform: uppercase;
-            font-weight: 300;
-            margin-bottom: 25px;
-        }
-        .tagline {
-            color: #8aaa8a;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            line-height: 2;
-            margin-bottom: 25px;
-        }
-        .tagline i { color: #FFD700; margin-right: 10px; width: 22px; }
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .feature-item {
-            display: flex;
+            background: rgba(0,0,0,0.95);
+            z-index: 99998;
             align-items: center;
-            gap: 10px;
-            color: #9aaa9a;
-            font-size: 0.8rem;
-            padding: 6px 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .feature-item i { color: #FFD700; font-size: 0.8rem; width: 16px; }
-        .right-panel {
-            flex: 1.2;
-            padding: 35px 40px;
-            display: flex;
+            justify-content: center;
             flex-direction: column;
-            justify-content: center;
-            min-width: 300px;
-            max-height: 90vh;
-            overflow-y: auto;
-            background: rgba(0,0,0,0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
         }
-        .right-panel::-webkit-scrollbar { width: 4px; }
-        .right-panel::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 10px; }
-        .form-title {
+        #rotate-overlay i {
+            font-size: 3.5rem;
+            color: #FFD700;
+            animation: spin 2s infinite;
+        }
+        #rotate-overlay h2 {
             font-family: 'Orbitron', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-        .form-title span { color: #FFD700; }
-        .form-subtitle {
-            color: #6a8a6a;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            margin-bottom: 18px;
-        }
-        .tabs {
-            display: flex;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 18px;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 10px 15px;
-            border: none;
-            background: rgba(255,255,255,0.02);
-            color: #7a9a7a;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .tab-btn.active { color: #FFD700; background: rgba(255,215,0,0.06); border-bottom-color: #FFD700; }
-        .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.06); color: #b0d0b0; }
-        .form { display: none; flex-direction: column; gap: 12px; }
-        .form.active { display: flex; }
-        .form-group { position: relative; }
-        .form-group i {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #5a7a5a;
-            font-size: 0.9rem;
-            z-index: 2;
-            transition: color 0.3s;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 18px 12px 42px;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255,255,255,0.06);
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.3s, background 0.3s;
-        }
-        .form-group select { appearance: none; cursor: pointer; padding-right: 35px; }
-        .form-group select option { background: #1a2e1a; color: #fff; }
-        .form-group select optgroup { background: #0a1a0a; color: #FFD700; font-weight: 700; }
-        .form-group input:focus, .form-group select:focus {
-            border-color: rgba(255,215,0,0.3);
-            background: rgba(255,255,255,0.08);
-        }
-        .form-group input::placeholder { color: #5a7a5a; font-weight: 300; }
-        .form-group .toggle-password {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #5a7a5a;
-            cursor: pointer;
-            font-size: 0.9rem;
-            padding: 5px;
-            z-index: 2;
-            transition: color 0.3s;
-        }
-        .form-group .toggle-password:hover { color: #b0d0b0; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .form-row .form-group input { padding: 12px 18px 12px 42px; }
-        .btn-submit {
-            padding: 14px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
-            color: #0a0a1a;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            margin-top: 4px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn-submit:hover { background: linear-gradient(135deg, #f5c400, #e09520); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
-        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
-        .btn-submit .spinner {
-            display: none;
-            width: 18px;
-            height: 18px;
-            border: 3px solid rgba(10,10,26,0.2);
-            border-top-color: #0a0a1a;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        .btn-submit.loading .spinner { display: inline-block; }
-        .btn-submit.loading .btn-text { display: none; }
-        .form-footer { text-align: center; color: #5a7a5a; font-size: 0.8rem; margin-top: 4px; }
-        .form-footer a { color: #FFD700; text-decoration: none; font-weight: 600; cursor: pointer; transition: color 0.3s; }
-        .form-footer a:hover { color: #f5c400; text-decoration: underline; }
-        .test-link {
-            display: inline-block;
+            font-size: 1.2rem;
             margin-top: 15px;
-            padding: 8px 20px;
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.15);
-            border-radius: 25px;
-            color: #FFD700;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.3s;
-            text-align: center;
         }
-        .test-link:hover { background: rgba(255,215,0,0.2); transform: translateY(-2px); }
-        .session-link {
-            display: block;
-            text-align: center;
-            margin-top: 12px;
-            padding: 12px;
-            background: rgba(255,215,0,0.05);
-            border: 1px solid rgba(255,215,0,0.1);
-            border-radius: 10px;
-            color: #FFD700;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .session-link:hover { background: rgba(255,215,0,0.1); transform: translateY(-2px); }
-        .session-link i { margin-right: 8px; }
+        #rotate-overlay p { color: #aaa; margin-top: 8px; font-size: 0.9rem; }
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 768px) {
-            .main-card { flex-direction: column; max-height: 95vh; margin: 10px; overflow-y: auto; border-radius: 20px; }
-            .left-panel { padding: 20px 15px; border-radius: 20px 20px 0 0; min-width: unset; }
-            .left-panel .bg-image { opacity: 0.12; }
-            .right-panel { padding: 20px 15px; min-width: unset; max-height: unset; }
-            .logo { font-size: 2rem; letter-spacing: 2px; }
-            .logo-sub { font-size: 0.6rem; letter-spacing: 4px; }
-            .tagline { font-size: 0.7rem; line-height: 1.6; }
-            .tagline i { width: 16px; margin-right: 6px; }
-            .features { grid-template-columns: 1fr 1fr; gap: 6px; }
-            .feature-item { font-size: 0.65rem; padding: 4px 8px; }
-            .form-title { font-size: 1rem; }
-            .form-subtitle { font-size: 0.7rem; margin-bottom: 12px; }
-            .tab-btn { font-size: 0.7rem; padding: 8px 10px; }
-            .form-group input, .form-group select { padding: 10px 12px 10px 35px; font-size: 0.8rem; }
-            .form-group i { left: 10px; font-size: 0.8rem; }
-            .form-row { grid-template-columns: 1fr; gap: 8px; }
-            .btn-submit { padding: 12px; font-size: 0.8rem; }
-            .wizard-container { padding: 25px 20px; }
-            .wizard-step h2 { font-size: 1.1rem; }
-        }
-        @media (max-width: 480px) and (orientation: landscape) {
-            .main-card { flex-direction: row; max-height: 92vh; margin: 5px; }
-            .left-panel { padding: 10px 12px; border-radius: 20px 0 0 20px; flex: 0.8; }
-            .left-panel .bg-image { opacity: 0.08; }
-            .right-panel { padding: 10px 12px; flex: 1.2; }
-            .logo { font-size: 1.4rem; }
-            .logo-sub { font-size: 0.5rem; letter-spacing: 3px; }
-            .tagline { font-size: 0.6rem; line-height: 1.4; margin-bottom: 10px; }
-            .features { grid-template-columns: 1fr 1fr; gap: 4px; }
-            .feature-item { font-size: 0.5rem; padding: 2px 6px; }
-            .form-title { font-size: 0.8rem; }
-            .tab-btn { font-size: 0.6rem; padding: 4px 8px; }
-            .form-group input, .form-group select { padding: 6px 8px 6px 28px; font-size: 0.7rem; }
-            .form-group i { left: 8px; font-size: 0.7rem; }
-            .btn-submit { padding: 8px; font-size: 0.7rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== PC ===== */
+        @media (min-width: 769px) {
+            .container { padding: 30px; }
+            .main-card { max-width: 600px; max-height: 90vh; border-radius: 30px; }
+            .header { min-height: 200px; padding: 30px; }
+            .logo { font-size: 3.2rem; }
+            .body { padding: 25px 30px 30px; }
+            .form-title { font-size: 1.3rem; }
+            .features { grid-template-columns: repeat(6, 1fr); padding: 10px 20px; }
+            .feature-item { font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== OVERLAY ROTATION (mobile) ===== -->
+<!-- ===== OVERLAY ROTATION ===== -->
 <div id="rotate-overlay">
     <i class="fas fa-rotate-90"></i>
     <h2>📱 Tournez votre téléphone</h2>
     <p>Mode paysage requis pour Football Manager</p>
 </div>
 
-<!-- ===== WIZARD (mobile uniquement) ===== -->
+<!-- ===== WIZARD (mobile) ===== -->
 <div id="wizardOverlay">
     <div class="wizard-container">
         <div class="wizard-progress">
@@ -526,8 +505,6 @@
             <div class="step"><div class="circle">2</div><div class="label">Desktop</div></div>
             <div class="step"><div class="circle">3</div><div class="label">Prêt</div></div>
         </div>
-
-        <!-- Étape 1 -->
         <div class="wizard-step active" data-step="0">
             <div class="step-icon">📱</div>
             <h2>Mode Paysage</h2>
@@ -536,92 +513,81 @@
                 <span class="status-icon pending"><i class="fas fa-sync-alt fa-spin"></i></span>
                 <div class="status-text">En attente...</div>
             </div>
-            <div style="text-align:center;padding:15px;background:rgba(255,215,0,0.05);border-radius:12px;">
-                <i class="fas fa-rotate-90" style="color:#FFD700;font-size:2.5rem;animation:spin 2s infinite;"></i>
+            <div style="text-align:center;padding:12px;background:rgba(255,215,0,0.05);border-radius:10px;">
+                <i class="fas fa-rotate-90" style="color:#FFD700;font-size:2rem;animation:spin 2s infinite;"></i>
             </div>
             <div class="wizard-actions">
                 <button class="btn-next" id="step1Next" disabled>Vérifier →</button>
             </div>
         </div>
-
-        <!-- Étape 2 -->
         <div class="wizard-step" data-step="1">
             <div class="step-icon">🖥️</div>
-            <h2>Activer "Version ordinateur"</h2>
+            <h2>Activer "Version PC"</h2>
             <div class="instruction-box">
-                <p>🇫🇷 Appuyez sur les <strong>trois points</strong> (⋮) → <strong>Cochez</strong> "Version ordinateur"</p>
-                <p class="lang-en">🇬🇧 Tap <strong>three dots</strong> (⋮) → <strong>Check</strong> "Desktop Site"</p>
+                <p>🇫🇷 Appuyez sur ⋮ → <strong>Cochez</strong> "Version ordinateur"</p>
+                <p class="lang-en">🇬🇧 Tap ⋮ → <strong>Check</strong> "Desktop Site"</p>
             </div>
             <div class="status-box">
                 <span class="status-icon pending"><i class="fas fa-sync-alt fa-spin"></i></span>
                 <div class="status-text">En attente...</div>
             </div>
             <div class="wizard-actions">
-                <button class="btn-prev" id="step2Prev">← Précédent</button>
+                <button class="btn-prev" id="step2Prev">←</button>
                 <button class="btn-next" id="step2Next" disabled>Vérifier →</button>
             </div>
         </div>
-
-        <!-- Étape 3 -->
         <div class="wizard-step" data-step="2">
             <div class="step-icon">✅</div>
-            <h2>Configuration terminée !</h2>
+            <h2>Prêt !</h2>
             <p>Votre téléphone est prêt</p>
-            <div style="background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);border-radius:12px;padding:20px;text-align:center;margin:15px 0;">
-                <i class="fas fa-check-circle" style="color:#2ecc71;font-size:3rem;"></i>
-                <p style="color:#2ecc71;font-size:1rem;margin-top:10px;">✅ Tout est prêt !</p>
+            <div style="background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);border-radius:10px;padding:15px;text-align:center;margin:10px 0;">
+                <i class="fas fa-check-circle" style="color:#2ecc71;font-size:2.5rem;"></i>
+                <p style="color:#2ecc71;font-size:0.9rem;margin-top:6px;">✅ Tout est prêt !</p>
             </div>
             <div class="wizard-actions">
-                <button class="btn-prev" id="step3Prev">← Précédent</button>
+                <button class="btn-prev" id="step3Prev">←</button>
                 <button class="btn-finish" id="step3Finish"><i class="fas fa-play"></i> Jouer</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- ===== PAGE PRINCIPALE ===== -->
+<!-- ===== PAGE ===== -->
 <div class="container">
     <div class="main-card">
-        <div class="left-panel">
-            <img src="/accueil/OIP-1393549177.jpg" alt="Football Manager" class="bg-image" loading="lazy">
+        <div class="header">
+            <img src="/accueil/OIP-1393549177.jpg" alt="FM" class="bg-image" loading="lazy">
             <div class="content">
                 <div class="logo">⚽ FM</div>
                 <div class="logo-sub">Football Manager</div>
                 <div class="tagline">
-                    <i class="fas fa-trophy"></i> 100 joueurs max<br>
-                    <i class="fas fa-users"></i> Sessions indépendantes<br>
-                    <i class="fas fa-cloud"></i> Sauvegardes cloud<br>
-                    <i class="fas fa-gamepad"></i> Moteur de match réaliste
+                    <i class="fas fa-trophy"></i> 100 joueurs max
+                    <i class="fas fa-users" style="margin-left:10px;"></i> Sessions indépendantes
                 </div>
-                <div class="features">
-                    <div class="feature-item"><i class="fas fa-futbol"></i> Matchs en direct</div>
-                    <div class="feature-item"><i class="fas fa-chart-line"></i> Statistiques</div>
-                    <div class="feature-item"><i class="fas fa-tasks"></i> Tactiques</div>
-                    <div class="feature-item"><i class="fas fa-users-cog"></i> Gestion d'équipe</div>
-                    <div class="feature-item"><i class="fas fa-euro-sign"></i> Transferts</div>
-                    <div class="feature-item"><i class="fas fa-medal"></i> Compétitions</div>
-                </div>
-                <a href="/test/terrain/terrain4.html" class="test-link">▶ Tester le terrain</a>
             </div>
         </div>
-        <div class="right-panel">
+        <div class="features">
+            <div class="feature-item"><i class="fas fa-futbol"></i>Matchs</div>
+            <div class="feature-item"><i class="fas fa-chart-line"></i>Stats</div>
+            <div class="feature-item"><i class="fas fa-tasks"></i>Tactiques</div>
+            <div class="feature-item"><i class="fas fa-users-cog"></i>Équipe</div>
+            <div class="feature-item"><i class="fas fa-euro-sign"></i>Transferts</div>
+            <div class="feature-item"><i class="fas fa-medal"></i>Compétitions</div>
+        </div>
+        <div class="body">
             <div class="form-title">Bienvenue <span>Manager</span></div>
             <div class="form-subtitle">Connectez-vous ou créez votre compte</div>
 
             <div class="tabs">
-                <button class="tab-btn active" data-tab="login" onclick="switchTab('login')">
-                    <i class="fas fa-sign-in-alt"></i> Connexion
-                </button>
-                <button class="tab-btn" data-tab="register" onclick="switchTab('register')">
-                    <i class="fas fa-user-plus"></i> Inscription
-                </button>
+                <button class="tab-btn active" data-tab="login" onclick="switchTab('login')"><i class="fas fa-sign-in-alt"></i> Connexion</button>
+                <button class="tab-btn" data-tab="register" onclick="switchTab('register')"><i class="fas fa-user-plus"></i> Inscription</button>
             </div>
 
             <!-- Connexion -->
             <form class="form active" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" id="loginPseudo" placeholder="Pseudo d'entraîneur" required>
+                    <input type="text" id="loginPseudo" placeholder="Pseudo" required>
                 </div>
                 <div class="form-group">
                     <i class="fas fa-lock"></i>
@@ -638,17 +604,227 @@
                 <a href="/session/charger" class="session-link">
                     <i class="fas fa-upload"></i> 📂 Charger ma session
                 </a>
+                <a href="/test/terrain/terrain4.html" class="test-link">▶ Tester le terrain</a>
             </form>
 
             <!-- Inscription -->
             <form class="form" id="registerForm" onsubmit="handleRegister(event)">
                 <div class="form-group">
                     <i class="fas fa-flag"></i>
+                    <select id="countrySelect" required>
+                        <option value="">🌍 Pays</option>
+                        <optgroup label="🌍 Afrique">
+                            <option value="BJ">🇧🇯 Bénin (+229)</option>
+                            <option value="CM">🇨🇲 Cameroun (+237)</option>
+                            <option value="CI">🇨🇮 Côte d'Ivoire (+225)</option>
+                            <option value="SN">🇸🇳 Sénégal (+221)</option>
+                            <option value="TG">🇹🇬 Togo (+228)</option>
+                            <option value="DZ">🇩🇿 Algérie (+213)</option>
+                            <option value="MA">🇲🇦 Maroc (+212)</option>
+                            <option value="TN">🇹🇳 Tunisie (+216)</option>
+                            <option value="NG">🇳🇬 Nigéria (+234)</option>
+                            <option value="GH">🇬🇭 Ghana (+233)</option>
+                            <option value="ZA">🇿🇦 Afrique du Sud (+27)</option>
+                            <option value="KE">🇰🇪 Kenya (+254)</option>
+                            <option value="EG">🇪🇬 Égypte (+20)</option>
+                            <option value="CD">🇨🇩 RDC (+243)</option>
+                            <option value="UG">🇺🇬 Ouganda (+256)</option>
+                            <option value="RW">🇷🇼 Rwanda (+250)</option>
+                            <option value="ZM">🇿🇲 Zambie (+260)</option>
+                            <option value="ZW">🇿🇼 Zimbabwe (+263)</option>
+                            <option value="MZ">🇲🇿 Mozambique (+258)</option>
+                            <option value="AO">🇦🇴 Angola (+244)</option>
+                            <option value="BW">🇧🇼 Botswana (+267)</option>
+                            <option value="MW">🇲🇼 Malawi (+265)</option>
+                            <option value="ML">🇲🇱 Mali (+223)</option>
+                            <option value="BF">🇧🇫 Burkina Faso (+226)</option>
+                            <option value="NE">🇳🇪 Niger (+227)</option>
+                            <option value="TD">🇹🇩 Tchad (+235)</option>
+                            <option value="CF">🇨🇫 Centrafrique (+236)</option>
+                            <option value="CG">🇨🇬 Congo (+242)</option>
+                            <option value="GA">🇬🇦 Gabon (+241)</option>
+                            <option value="GQ">🇬🇶 Guinée équatoriale (+240)</option>
+                            <option value="GN">🇬🇳 Guinée (+224)</option>
+                            <option value="GW">🇬🇼 Guinée-Bissau (+245)</option>
+                            <option value="GM">🇬🇲 Gambie (+220)</option>
+                            <option value="SL">🇸🇱 Sierra Leone (+232)</option>
+                            <option value="LR">🇱🇷 Liberia (+231)</option>
+                            <option value="CV">🇨🇻 Cap-Vert (+238)</option>
+                            <option value="ST">🇸🇹 Sao Tomé (+239)</option>
+                            <option value="SC">🇸🇨 Seychelles (+248)</option>
+                            <option value="MU">🇲🇺 Maurice (+230)</option>
+                            <option value="KM">🇰🇲 Comores (+269)</option>
+                            <option value="MG">🇲🇬 Madagascar (+261)</option>
+                            <option value="DJ">🇩🇯 Djibouti (+253)</option>
+                            <option value="ER">🇪🇷 Érythrée (+291)</option>
+                            <option value="ET">🇪🇹 Éthiopie (+251)</option>
+                            <option value="SO">🇸🇴 Somalie (+252)</option>
+                            <option value="SD">🇸🇩 Soudan (+249)</option>
+                            <option value="SS">🇸🇸 Soudan du Sud (+211)</option>
+                            <option value="LY">🇱🇾 Libye (+218)</option>
+                            <option value="LS">🇱🇸 Lesotho (+266)</option>
+                            <option value="SZ">🇸🇿 Eswatini (+268)</option>
+                            <option value="NA">🇳🇦 Namibie (+264)</option>
+                            <option value="TZ">🇹🇿 Tanzanie (+255)</option>
+                            <option value="BI">🇧🇮 Burundi (+257)</option>
+                            <option value="MR">🇲🇷 Mauritanie (+222)</option>
+                        </optgroup>
+                        <optgroup label="🌍 Europe">
+                            <option value="FR">🇫🇷 France (+33)</option>
+                            <option value="BE">🇧🇪 Belgique (+32)</option>
+                            <option value="CH">🇨🇭 Suisse (+41)</option>
+                            <option value="DE">🇩🇪 Allemagne (+49)</option>
+                            <option value="ES">🇪🇸 Espagne (+34)</option>
+                            <option value="IT">🇮🇹 Italie (+39)</option>
+                            <option value="GB">🇬🇧 Royaume-Uni (+44)</option>
+                            <option value="PT">🇵🇹 Portugal (+351)</option>
+                            <option value="NL">🇳🇱 Pays-Bas (+31)</option>
+                            <option value="SE">🇸🇪 Suède (+46)</option>
+                            <option value="NO">🇳🇴 Norvège (+47)</option>
+                            <option value="DK">🇩🇰 Danemark (+45)</option>
+                            <option value="FI">🇫🇮 Finlande (+358)</option>
+                            <option value="IE">🇮🇪 Irlande (+353)</option>
+                            <option value="AT">🇦🇹 Autriche (+43)</option>
+                            <option value="PL">🇵🇱 Pologne (+48)</option>
+                            <option value="CZ">🇨🇿 République tchèque (+420)</option>
+                            <option value="GR">🇬🇷 Grèce (+30)</option>
+                            <option value="HU">🇭🇺 Hongrie (+36)</option>
+                            <option value="RO">🇷🇴 Roumanie (+40)</option>
+                            <option value="BG">🇧🇬 Bulgarie (+359)</option>
+                            <option value="HR">🇭🇷 Croatie (+385)</option>
+                            <option value="RS">🇷🇸 Serbie (+381)</option>
+                            <option value="SI">🇸🇮 Slovénie (+386)</option>
+                            <option value="SK">🇸🇰 Slovaquie (+421)</option>
+                            <option value="LT">🇱🇹 Lituanie (+370)</option>
+                            <option value="LV">🇱🇻 Lettonie (+371)</option>
+                            <option value="EE">🇪🇪 Estonie (+372)</option>
+                            <option value="IS">🇮🇸 Islande (+354)</option>
+                            <option value="MT">🇲🇹 Malte (+356)</option>
+                            <option value="LU">🇱🇺 Luxembourg (+352)</option>
+                            <option value="MC">🇲🇨 Monaco (+377)</option>
+                            <option value="AD">🇦🇩 Andorre (+376)</option>
+                            <option value="LI">🇱🇮 Liechtenstein (+423)</option>
+                            <option value="SM">🇸🇲 Saint-Marin (+378)</option>
+                            <option value="VA">🇻🇦 Vatican (+379)</option>
+                            <option value="ME">🇲🇪 Monténégro (+382)</option>
+                            <option value="BA">🇧🇦 Bosnie (+387)</option>
+                            <option value="AL">🇦🇱 Albanie (+355)</option>
+                            <option value="MK">🇲🇰 Macédoine (+389)</option>
+                            <option value="UA">🇺🇦 Ukraine (+380)</option>
+                            <option value="BY">🇧🇾 Biélorussie (+375)</option>
+                            <option value="MD">🇲🇩 Moldavie (+373)</option>
+                            <option value="GE">🇬🇪 Géorgie (+995)</option>
+                            <option value="AM">🇦🇲 Arménie (+374)</option>
+                            <option value="CY">🇨🇾 Chypre (+357)</option>
+                        </optgroup>
+                        <optgroup label="🌍 Amérique">
+                            <option value="CA">🇨🇦 Canada (+1)</option>
+                            <option value="US">🇺🇸 États-Unis (+1)</option>
+                            <option value="MX">🇲🇽 Mexique (+52)</option>
+                            <option value="BR">🇧🇷 Brésil (+55)</option>
+                            <option value="AR">🇦🇷 Argentine (+54)</option>
+                            <option value="CO">🇨🇴 Colombie (+57)</option>
+                            <option value="CL">🇨🇱 Chili (+56)</option>
+                            <option value="PE">🇵🇪 Pérou (+51)</option>
+                            <option value="VE">🇻🇪 Venezuela (+58)</option>
+                            <option value="EC">🇪🇨 Équateur (+593)</option>
+                            <option value="BO">🇧🇴 Bolivie (+591)</option>
+                            <option value="PY">🇵🇾 Paraguay (+595)</option>
+                            <option value="UY">🇺🇾 Uruguay (+598)</option>
+                            <option value="SR">🇸🇷 Suriname (+597)</option>
+                            <option value="GY">🇬🇾 Guyana (+592)</option>
+                            <option value="CR">🇨🇷 Costa Rica (+506)</option>
+                            <option value="SV">🇸🇻 Salvador (+503)</option>
+                            <option value="GT">🇬🇹 Guatemala (+502)</option>
+                            <option value="HN">🇭🇳 Honduras (+504)</option>
+                            <option value="NI">🇳🇮 Nicaragua (+505)</option>
+                            <option value="PA">🇵🇦 Panama (+507)</option>
+                            <option value="CU">🇨🇺 Cuba (+53)</option>
+                            <option value="DO">🇩🇴 République dominicaine (+1)</option>
+                            <option value="PR">🇵🇷 Porto Rico (+1)</option>
+                            <option value="JM">🇯🇲 Jamaïque (+1)</option>
+                            <option value="TT">🇹🇹 Trinité-et-Tobago (+1)</option>
+                            <option value="BB">🇧🇧 Barbade (+1)</option>
+                            <option value="BS">🇧🇸 Bahamas (+1)</option>
+                            <option value="AG">🇦🇬 Antigua (+1)</option>
+                            <option value="DM">🇩🇲 Dominique (+1)</option>
+                            <option value="GD">🇬🇩 Grenade (+1)</option>
+                            <option value="KN">🇰🇳 Saint-Christophe (+1)</option>
+                            <option value="LC">🇱🇨 Sainte-Lucie (+1)</option>
+                            <option value="VC">🇻🇨 Saint-Vincent (+1)</option>
+                            <option value="BZ">🇧🇿 Belize (+501)</option>
+                            <option value="HT">🇭🇹 Haïti (+509)</option>
+                        </optgroup>
+                        <optgroup label="🌍 Asie">
+                            <option value="CN">🇨🇳 Chine (+86)</option>
+                            <option value="JP">🇯🇵 Japon (+81)</option>
+                            <option value="IN">🇮🇳 Inde (+91)</option>
+                            <option value="KR">🇰🇷 Corée du Sud (+82)</option>
+                            <option value="ID">🇮🇩 Indonésie (+62)</option>
+                            <option value="TR">🇹🇷 Turquie (+90)</option>
+                            <option value="SA">🇸🇦 Arabie saoudite (+966)</option>
+                            <option value="AE">🇦🇪 Émirats arabes unis (+971)</option>
+                            <option value="IL">🇮🇱 Israël (+972)</option>
+                            <option value="IR">🇮🇷 Iran (+98)</option>
+                            <option value="IQ">🇮🇶 Irak (+964)</option>
+                            <option value="JO">🇯🇴 Jordanie (+962)</option>
+                            <option value="LB">🇱🇧 Liban (+961)</option>
+                            <option value="SY">🇸🇾 Syrie (+963)</option>
+                            <option value="YE">🇾🇪 Yémen (+967)</option>
+                            <option value="QA">🇶🇦 Qatar (+974)</option>
+                            <option value="KW">🇰🇼 Koweït (+965)</option>
+                            <option value="BH">🇧🇭 Bahreïn (+973)</option>
+                            <option value="OM">🇴🇲 Oman (+968)</option>
+                            <option value="PK">🇵🇰 Pakistan (+92)</option>
+                            <option value="BD">🇧🇩 Bangladesh (+880)</option>
+                            <option value="LK">🇱🇰 Sri Lanka (+94)</option>
+                            <option value="NP">🇳🇵 Népal (+977)</option>
+                            <option value="AF">🇦🇫 Afghanistan (+93)</option>
+                            <option value="KZ">🇰🇿 Kazakhstan (+7)</option>
+                            <option value="UZ">🇺🇿 Ouzbékistan (+998)</option>
+                            <option value="TJ">🇹🇯 Tadjikistan (+992)</option>
+                            <option value="TM">🇹🇲 Turkménistan (+993)</option>
+                            <option value="KG">🇰🇬 Kirghizistan (+996)</option>
+                            <option value="MN">🇲🇳 Mongolie (+976)</option>
+                            <option value="KP">🇰🇵 Corée du Nord (+850)</option>
+                            <option value="TW">🇹🇼 Taïwan (+886)</option>
+                            <option value="PH">🇵🇭 Philippines (+63)</option>
+                            <option value="MY">🇲🇾 Malaisie (+60)</option>
+                            <option value="SG">🇸🇬 Singapour (+65)</option>
+                            <option value="TH">🇹🇭 Thaïlande (+66)</option>
+                            <option value="VN">🇻🇳 Viêt Nam (+84)</option>
+                            <option value="KH">🇰🇭 Cambodge (+855)</option>
+                            <option value="LA">🇱🇦 Laos (+856)</option>
+                            <option value="MM">🇲🇲 Birmanie (+95)</option>
+                            <option value="BN">🇧🇳 Brunei (+673)</option>
+                            <option value="TL">🇹🇱 Timor oriental (+670)</option>
+                            <option value="MV">🇲🇻 Maldives (+960)</option>
+                            <option value="BT">🇧🇹 Bhoutan (+975)</option>
+                            <option value="AZ">🇦🇿 Azerbaïdjan (+994)</option>
+                            <option value="PS">🇵🇸 Palestine (+970)</option>
+                        </optgroup>
+                        <optgroup label="🌍 Océanie">
+                            <option value="AU">🇦🇺 Australie (+61)</option>
+                            <option value="NZ">🇳🇿 Nouvelle-Zélande (+64)</option>
+                            <option value="FJ">🇫🇯 Fidji (+679)</option>
+                            <option value="PG">🇵🇬 Papouasie (+675)</option>
+                            <option value="SB">🇸🇧 Îles Salomon (+677)</option>
+                            <option value="VU">🇻🇺 Vanuatu (+678)</option>
+                            <option value="WS">🇼🇸 Samoa (+685)</option>
+                            <option value="TO">🇹🇴 Tonga (+676)</option>
+                            <option value="KI">🇰🇮 Kiribati (+686)</option>
+                            <option value="MH">🇲🇭 Îles Marshall (+692)</option>
+                            <option value="FM">🇫🇲 Micronésie (+691)</option>
+                            <option value="PW">🇵🇼 Palaos (+680)</option>
+                            <option value="NR">🇳🇷 Nauru (+674)</option>
+                            <option value="TV">🇹🇻 Tuvalu (+688)</option>
+                        </optgroup>
+                    </select>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <i class="fas fa-user"></i>
-                        <input type="text" id="registerPseudo" placeholder="Surnom du coach" required>
+                        <input type="text" id="registerPseudo" placeholder="Surnom" required>
                     </div>
                     <div class="form-group">
                         <i class="fas fa-envelope"></i>
@@ -657,14 +833,14 @@
                 </div>
                 <div class="form-group">
                     <i class="fas fa-phone"></i>
-                    <input type="tel" id="whatsappInput" placeholder="WhatsApp (ex: +229 97 00 00 00)">
+                    <input type="tel" id="whatsappInput" placeholder="WhatsApp (optionnel)">
                 </div>
-                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:10px;">
+                <div style="font-size:0.6rem;color:#5a7a5a;margin-top:-4px;margin-bottom:6px;">
                     📱 WhatsApp est optionnel mais recommandé
                 </div>
                 <div class="form-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="registerPassword" placeholder="Mot de passe (6 caractères min)" required minlength="6">
+                    <input type="password" id="registerPassword" placeholder="Mot de passe (6 min)" required minlength="6">
                     <button type="button" class="toggle-password" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
                 </div>
                 <button type="submit" class="btn-submit" id="registerBtn">
@@ -682,7 +858,7 @@
 <script>
 // ===== DÉTECTION MOBILE =====
 function isMobile() {
-    return /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+    return /Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 }
 
 // ===== OVERLAY ROTATION =====
@@ -690,10 +866,31 @@ function checkOrientation() {
     const overlay = document.getElementById('rotate-overlay');
     if (isMobile() && window.innerHeight > window.innerWidth) {
         overlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
     } else {
         overlay.style.display = 'none';
-        document.body.style.overflow = '';
+    }
+}
+
+// ===== TABS =====
+function switchTab(tab) {
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === tab);
+    });
+    document.querySelectorAll('.form').forEach(f => {
+        f.classList.toggle('active', f.id === (tab === 'login' ? 'loginForm' : 'registerForm'));
+    });
+}
+
+// ===== TOGGLE PASSWORD =====
+function togglePassword(btn) {
+    const input = btn.parentElement.querySelector('input');
+    const icon = btn.querySelector('i');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+    } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye';
     }
 }
 
@@ -767,30 +964,7 @@ function finishWizard() {
     localStorage.setItem('fm_config_done', 'true');
 }
 
-// ===== TABS =====
-function switchTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.tab === tab);
-    });
-    document.querySelectorAll('.form').forEach(f => {
-        f.classList.toggle('active', f.id === (tab === 'login' ? 'loginForm' : 'registerForm'));
-    });
-}
-
-// ===== TOGGLE PASSWORD =====
-function togglePassword(btn) {
-    const input = btn.parentElement.querySelector('input');
-    const icon = btn.querySelector('i');
-    if (input.type === 'password') {
-        input.type = 'text';
-        icon.className = 'fas fa-eye-slash';
-    } else {
-        input.type = 'password';
-        icon.className = 'fas fa-eye';
-    }
-}
-
-// ===== API CALL =====
+// ===== API =====
 async function callAPI(endpoint, data) {
     const response = await fetch(endpoint, {
         method: 'POST',
@@ -806,10 +980,8 @@ async function handleLogin(event) {
     const btn = document.getElementById('loginBtn');
     btn.classList.add('loading');
     btn.disabled = true;
-
     const pseudo = document.getElementById('loginPseudo').value.trim();
     const password = document.getElementById('loginPassword').value;
-
     try {
         const result = await callAPI('/api/login', { pseudo, password });
         if (result.success) {
@@ -821,7 +993,6 @@ async function handleLogin(event) {
     } catch(e) {
         alert('❌ Erreur de connexion');
     }
-
     btn.classList.remove('loading');
     btn.disabled = false;
 }
@@ -832,20 +1003,17 @@ async function handleRegister(event) {
     const btn = document.getElementById('registerBtn');
     btn.classList.add('loading');
     btn.disabled = true;
-
     const pseudo = document.getElementById('registerPseudo').value.trim();
     const email = document.getElementById('registerEmail').value.trim();
     const whatsapp = document.getElementById('whatsappInput').value.trim();
     const password = document.getElementById('registerPassword').value;
     const country = document.getElementById('countrySelect').value;
-
     if (password.length < 6) {
         alert('⚠️ Le mot de passe doit contenir au moins 6 caractères');
         btn.classList.remove('loading');
         btn.disabled = false;
         return;
     }
-
     try {
         const result = await callAPI('/api/register', { pseudo, email, whatsapp, password, country });
         if (result.success) {
@@ -857,33 +1025,28 @@ async function handleRegister(event) {
     } catch(e) {
         alert('❌ Erreur d\'inscription');
     }
-
     btn.classList.remove('loading');
     btn.disabled = false;
 }
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Orientation
     checkOrientation();
     window.addEventListener('resize', checkOrientation);
     window.addEventListener('orientationchange', function() {
         setTimeout(checkOrientation, 300);
     });
 
-    // Wizard (uniquement sur mobile)
     if (isMobile() && localStorage.getItem('fm_config_done') !== 'true') {
         document.getElementById('wizardOverlay').classList.add('active');
         setTimeout(checkLandscape, 500);
         setTimeout(checkDesktop, 500);
-
         window.addEventListener('resize', function() {
             if (document.getElementById('wizardOverlay').classList.contains('active')) {
                 checkLandscape();
                 checkDesktop();
             }
         });
-
         document.getElementById('step1Next').addEventListener('click', nextStep);
         document.getElementById('step2Prev').addEventListener('click', prevStep);
         document.getElementById('step2Next').addEventListener('click', nextStep);
@@ -891,7 +1054,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('step3Finish').addEventListener('click', finishWizard);
     }
 
-    // Liens footer
     document.querySelectorAll('.form-footer a').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
