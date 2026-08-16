@@ -275,19 +275,6 @@
         }
         .form-footer a { color:#FFD700; text-decoration:none; font-weight:600; cursor:pointer; }
         .form-footer a:hover { text-decoration:underline; }
-        .session-link {
-            display:block; text-align:center; margin-top:8px;
-            padding:10px;
-            background:rgba(255,215,0,0.05);
-            border:1px solid rgba(255,215,0,0.08);
-            border-radius:8px;
-            color:#FFD700;
-            text-decoration:none;
-            font-size:0.75rem;
-            font-weight:600;
-            transition:all 0.3s ease;
-        }
-        .session-link:hover { background:rgba(255,215,0,0.1); }
         @keyframes spin { to { transform:rotate(360deg); } }
 
         @media (min-width:769px) {
@@ -349,6 +336,7 @@
                 <button class="tab-btn" data-tab="register" onclick="switchTab('register')"><i class="fas fa-user-plus"></i> Inscription</button>
             </div>
 
+            <!-- Connexion -->
             <form class="form active" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
@@ -364,9 +352,9 @@
                     <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Se connecter</span>
                 </button>
                 <div class="form-footer">Pas encore de compte ? <a onclick="switchTab('register')">Inscrivez-vous</a></div>
-                <a href="/session/charger" class="session-link"><i class="fas fa-upload"></i> 📂 Charger ma session</a>
             </form>
 
+            <!-- Inscription -->
             <form class="form" id="registerForm" onsubmit="handleRegister(event)">
                 <div class="form-group">
                     <i class="fas fa-flag"></i>
@@ -695,7 +683,7 @@ async function handleRegister(event) {
         const result = await callAPI('/api/register', { pseudo, email, whatsapp, password, country });
         if (result.success) {
             alert('✅ ' + result.message + '\n\n📁 Téléchargez votre fichier .FM !');
-            window.location.href = '/session/charger';
+            window.location.href = '/';
         } else {
             alert('❌ ' + result.message);
         }
