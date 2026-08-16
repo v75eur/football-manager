@@ -7,7 +7,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>FMTK V1 - Football Manager</title>
-    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -31,7 +30,7 @@
             background: radial-gradient(ellipse at center, #0d1f0d 0%, #0a0a0a 100%);
         }
 
-        /* ===== WIZARD PAYSAGE (Bloque l'accès) ===== */
+        /* ===== WIZARD PAYSAGE ===== */
         #wizardLandscape {
             position: fixed;
             top: 0;
@@ -82,19 +81,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        #wizardLandscape .step .check {
-            color: #2ecc71;
-            font-size: 1.2rem;
-        }
-        #wizardLandscape .step .wait {
-            color: #f39c12;
-            font-size: 1.2rem;
-            animation: pulse 1s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
         }
         #wizardLandscape .spinner {
             margin-top: 30px;
