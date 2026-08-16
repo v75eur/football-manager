@@ -27,11 +27,6 @@
         body {
             padding: 10px;
             background: radial-gradient(ellipse at center, #0d1f0d 0%, #0a0a0a 100%);
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .container {
@@ -256,6 +251,88 @@
         }
         .zoom-controls .reset-btn { font-size: 0.8rem; }
 
+        /* ===== POPUP ===== */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+        .popup-overlay.active { display: flex; }
+        .popup {
+            background: #1a2e1a;
+            border: 2px solid rgba(255,215,0,0.15);
+            border-radius: 24px;
+            padding: 30px 25px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            animation: slideUp 0.4s ease;
+        }
+        .popup .icon {
+            font-size: 3.5rem;
+            color: #2ecc71;
+            margin-bottom: 10px;
+        }
+        .popup .icon.download { color: #FFD700; }
+        .popup h2 {
+            font-family: 'Orbitron', monospace;
+            color: #FFD700;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .popup p {
+            color: #8aaa8a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .popup .highlight {
+            color: #FFD700;
+            font-weight: 700;
+        }
+        .popup .btn-popup {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            color: #0a0a1a;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 5px;
+        }
+        .popup .btn-popup:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
+        .popup .btn-popup.secondary {
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-top: 8px;
+        }
+        .popup .btn-popup.secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         .toast {
             position: fixed;
             bottom: 16px;
@@ -284,7 +361,6 @@
             to { opacity: 0; transform: translateX(-50%) translateY(20px); }
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             body { padding: 6px; }
             .container { padding: 14px 12px 18px; border-radius: 18px; max-height: 96vh; }
@@ -297,6 +373,10 @@
             .feature-item i { font-size: 0.6rem; }
             .tab-btn { font-size: 0.55rem; padding: 6px 2px; }
             .whatsapp-required { font-size: 0.6rem; padding: 6px 10px; }
+            .popup { padding: 25px 20px; }
+            .popup h2 { font-size: 1.1rem; }
+            .popup p { font-size: 0.8rem; }
+            .popup .icon { font-size: 3rem; }
         }
 
         @media (min-width: 769px) {
@@ -389,7 +469,6 @@
         </div>
         <div class="form-group"><i class="fas fa-user"></i><input type="text" id="registerPseudo" placeholder="Pseudo" required></div>
         <div class="form-group"><i class="fas fa-envelope"></i><input type="email" id="registerEmail" placeholder="Email" required></div>
-
         <div class="form-row">
             <div class="form-group" style="flex:0.35;"><i class="fas fa-phone"></i>
                 <select id="prefixSelect" required><option value="">+??</option></select>
@@ -398,12 +477,10 @@
                 <input type="tel" id="whatsappInput" placeholder="WhatsApp" required>
             </div>
         </div>
-
         <div class="whatsapp-required">
             <i class="fas fa-exclamation-circle"></i>
             <span>⚠ WhatsApp OBLIGATOIRE - Sans WhatsApp, vous ne pourrez pas jouer !</span>
         </div>
-
         <div class="form-group"><i class="fas fa-lock"></i><input type="password" id="registerPassword" placeholder="Mot de passe (6 min)" required minlength="6"></div>
         <button type="submit" class="btn-submit" id="registerBtn"><span class="spinner"></span><span class="btn-text"><i class="fas fa-user-plus"></i> Créer mon compte</span></button>
         <div class="form-footer">Déjà inscrit ? <a onclick="switchTab('login')">Connectez-vous</a></div>
@@ -416,6 +493,24 @@
     <button id="zoomIn" title="Zoom avant (Ctrl + +)">+</button>
     <button id="zoomReset" class="reset-btn" title="Réinitialiser (Ctrl + 0)">⟲</button>
 </div>
+
+<!-- ===== POPUP SUCCÈS ===== -->
+<div class="popup-overlay" id="successPopup">
+    <div class="popup">
+        <div class="icon"><i class="fas fa-check-circle"></i></div>
+        <h2>✅ Inscription réussie !</h2>
+        <p>
+            Votre fichier <span class="highlight">.FMTK</span> a été généré et téléchargé.<br><br>
+            📁 Sauvegardez-le dans un dossier sûr.<br>
+            🔐 Puis connectez-vous avec votre <span class="highlight">pseudo</span> et <span class="highlight">mot de passe</span>.
+        </p>
+        <button class="btn-popup" onclick="closePopupAndGoToLogin()">🔐 Aller à la connexion</button>
+        <button class="btn-popup secondary" onclick="closePopup()">Continuer sur la page</button>
+    </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast" style="display:none;"></div>
 
 <script>
 // ===== TOUS LES PAYS =====
@@ -539,20 +634,47 @@ function switchTab(tab) {
 
 function showToast(msg, type = 'info') {
     const colors = { success: '#2ecc71', error: '#e74c3c', warning: '#f39c12', info: '#FFD700' };
-    const old = document.querySelector('.toast');
-    if (old) old.remove();
-    const t = document.createElement('div');
-    t.className = 'toast';
-    t.style.color = colors[type] || '#FFD700';
-    t.style.borderColor = (colors[type] || '#FFD700') + '40';
-    t.textContent = msg;
-    document.body.appendChild(t);
+    const toast = document.getElementById('toast');
+    toast.style.color = colors[type] || '#FFD700';
+    toast.style.borderColor = (colors[type] || '#FFD700') + '40';
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    toast.style.animation = 'toastIn 0.3s ease';
     setTimeout(() => {
-        t.style.animation = 'toastOut 0.3s ease forwards';
-        setTimeout(() => t.remove(), 350);
-    }, 2800);
+        toast.style.animation = 'toastOut 0.3s ease forwards';
+        setTimeout(() => { toast.style.display = 'none'; }, 400);
+    }, 3000);
 }
 
+// ===== POPUP =====
+function showPopup() {
+    document.getElementById('successPopup').classList.add('active');
+}
+
+function closePopup() {
+    document.getElementById('successPopup').classList.remove('active');
+}
+
+function closePopupAndGoToLogin() {
+    closePopup();
+    switchTab('login');
+    showToast('🔐 Connectez-vous avec votre pseudo et mot de passe', 'success');
+}
+
+// ===== TÉLÉCHARGEMENT FICHIER .FMTK =====
+function downloadFMTK(playerData) {
+    const blob = new Blob([JSON.stringify(playerData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${playerData.pseudo}.FMTK`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+// ===== API =====
 async function callAPI(endpoint, data) {
     const r = await fetch(endpoint, {
         method: 'POST',
@@ -562,6 +684,7 @@ async function callAPI(endpoint, data) {
     return r.json();
 }
 
+// ===== LOGIN =====
 async function handleLogin(e) {
     e.preventDefault();
     const btn = document.getElementById('loginBtn');
@@ -574,12 +697,15 @@ async function handleLogin(e) {
         if (res.success) {
             showToast('✅ ' + res.message, 'success');
             setTimeout(() => window.location.href = '/session/charger', 1200);
-        } else showToast('❌ ' + res.message, 'error');
+        } else {
+            showToast('❌ ' + res.message, 'error');
+        }
     } catch { showToast('❌ Erreur de connexion', 'error'); }
     btn.classList.remove('loading');
     btn.disabled = false;
 }
 
+// ===== REGISTER =====
 async function handleRegister(e) {
     e.preventDefault();
     const btn = document.getElementById('registerBtn');
@@ -610,9 +736,14 @@ async function handleRegister(e) {
             pseudo, email, whatsapp: prefix + whatsapp.replace(/\s/g, ''), password, country
         });
         if (res.success) {
-            showToast('✅ ' + res.message, 'success');
-            setTimeout(() => window.location.href = '/session/charger', 1200);
-        } else showToast('❌ ' + res.message, 'error');
+            // Télécharger le fichier .FMTK
+            downloadFMTK(res.player);
+            // Afficher le popup
+            setTimeout(() => showPopup(), 500);
+            showToast('📁 Fichier .FMTK téléchargé !', 'success');
+        } else {
+            showToast('❌ ' + res.message, 'error');
+        }
     } catch { showToast('❌ Erreur d\'inscription', 'error'); }
     btn.classList.remove('loading');
     btn.disabled = false;
