@@ -600,9 +600,11 @@
                 </div>
                 <div class="form-group">
                     <i class="fas fa-phone"></i>
-                    <input type="tel" id="whatsappInput" placeholder="WhatsApp (optionnel)">
+                    <input type="tel" id="whatsappInput" placeholder="WhatsApp (ex: +229 97 00 00 00)">
                 </div>
-                <div style="font-size:0.6rem;color:#5a7a5a;margin-top:-4px;margin-bottom:6px;">📱 WhatsApp est optionnel mais recommandé</div>
+                <div style="font-size:0.65rem;color:#5a7a5a;margin-top:-4px;margin-bottom:6px;">
+                    📱 Entrez votre numéro avec le <strong>préfixe du pays</strong> (ex: +229 97 00 00 00)
+                </div>
                 <div class="form-group">
                     <i class="fas fa-lock"></i>
                     <input type="password" id="registerPassword" placeholder="Mot de passe (6 min)" required minlength="6">
@@ -720,7 +722,6 @@ async function handleRegister(event) {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Sur mobile : afficher le message si jamais vu
     if (isMobile() && localStorage.getItem('fm_mobile_ok') !== 'true') {
         document.getElementById('mobileNotice').classList.add('show');
     }
