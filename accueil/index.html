@@ -157,7 +157,6 @@
 
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-        .whatsapp-required {
             font-size: 0.65rem;
             color: #ff6b6b;
             display: flex;
@@ -170,8 +169,6 @@
             font-weight: 600;
             margin: 2px 0;
         }
-        .whatsapp-required i { font-size: 0.8rem; color: #ff6b6b; }
-        .whatsapp-required .fa-exclamation-circle { animation: pulse-warning 1.5s infinite; }
         @keyframes pulse-warning {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.4; }
@@ -372,7 +369,6 @@
             .feature-item { font-size: 0.45rem; padding: 4px 2px; }
             .feature-item i { font-size: 0.6rem; }
             .tab-btn { font-size: 0.55rem; padding: 6px 2px; }
-            .whatsapp-required { font-size: 0.6rem; padding: 6px 10px; }
             .popup { padding: 25px 20px; }
             .popup h2 { font-size: 1.1rem; }
             .popup p { font-size: 0.8rem; }
@@ -391,7 +387,6 @@
             .form-group input, .form-group select { padding: 12px 14px 12px 42px; font-size: 0.9rem; min-height: 44px; }
             .form-group i { left: 12px; font-size: 0.8rem; }
             .btn-submit { padding: 14px; font-size: 0.75rem; min-height: 44px; }
-            .whatsapp-required { font-size: 0.7rem; padding: 8px 14px; }
             .zoom-controls { display: flex; padding: 8px 16px; gap: 12px; }
             .zoom-controls button { font-size: 1.1rem; padding: 4px 10px; }
             .zoom-controls .zoom-level { font-size: 0.8rem; min-width: 40px; }
@@ -409,7 +404,6 @@
             .form-group input, .form-group select { padding: 14px 18px 14px 48px; font-size: 1rem; min-height: 48px; }
             .form-group i { left: 14px; font-size: 0.9rem; }
             .btn-submit { padding: 16px; font-size: 0.85rem; min-height: 48px; }
-            .whatsapp-required { font-size: 0.75rem; padding: 10px 16px; }
             .zoom-controls { padding: 10px 20px; gap: 16px; }
             .zoom-controls button { font-size: 1.4rem; padding: 6px 14px; }
             .zoom-controls .zoom-level { font-size: 1rem; min-width: 50px; }
@@ -474,10 +468,11 @@
                 <select id="prefixSelect" required><option value="">+??</option></select>
             </div>
             <div class="form-group" style="flex:0.65;"><i class="fas fa-phone" style="opacity:0;"></i>
+                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:5px;">📱 Entrez votre numéro WhatsApp (optionnel mais recommandé)</div>
+                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:10px;">📱 WhatsApp est optionnel mais recommandé pour les notifications</div>
                 <input type="tel" id="whatsappInput" placeholder="WhatsApp" required>
             </div>
         </div>
-        <div class="whatsapp-required">
             <i class="fas fa-exclamation-circle"></i>
             <span>⚠ WhatsApp OBLIGATOIRE - Sans WhatsApp, vous ne pourrez pas jouer !</span>
         </div>
@@ -714,6 +709,7 @@ async function handleRegister(e) {
     const pseudo = document.getElementById('registerPseudo').value.trim();
     const email = document.getElementById('registerEmail').value.trim();
     const prefix = document.getElementById('prefixSelect').value;
+                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:10px;">📱 WhatsApp est optionnel mais recommandé pour les notifications</div>
     const whatsapp = document.getElementById('whatsappInput').value.trim();
     const password = document.getElementById('registerPassword').value;
     const country = document.getElementById('countrySelect').value;
