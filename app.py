@@ -258,3 +258,17 @@ def download_fmtk_direct(pseudo):
         download_name=f"{pseudo}.FMTK",
         mimetype='application/json'
     )
+
+# ===== ROUTE : TÉLÉCHARGER .FMTK =====
+@app.route('/download/<pseudo>')
+def download_fmtk(pseudo):
+    filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+    if not os.path.exists(filepath):
+        return jsonify({'error': 'Fichier non trouvé'}), 404
+    
+    return send_file(
+        filepath,
+        as_attachment=True,
+        download_name=f"{pseudo}.FMTK",
+        mimetype='application/json'
+    )
