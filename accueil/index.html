@@ -2,794 +2,933 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#0a1a0a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>FMTK V1 - Football Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Football Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body {
             width: 100%;
-            min-height: 100vh;
-            min-height: 100dvh;
-            font-family: 'Rajdhani', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
-            overflow-y: auto;
-            -webkit-tap-highlight-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        body {
-            padding: 10px;
-            background: radial-gradient(ellipse at center, #0d1f0d 0%, #0a0a0a 100%);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            background: rgba(10,20,10,0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(255,215,0,0.06);
-            padding: 20px 16px 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            position: relative;
-            overflow: hidden;
-            max-height: 98vh;
-            overflow-y: auto;
-        }
-        .container::-webkit-scrollbar { width: 4px; }
-        .container::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 10px; }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100%;
-            background: url('OIP-1393549177.jpg') center/cover no-repeat;
-            opacity: 0.1;
-            z-index: 0;
-            pointer-events: none;
-        }
-        .container > * { position: relative; z-index: 1; }
-
-        .header { text-align: center; padding-bottom: 12px; border-bottom: 1px solid rgba(255,215,0,0.05); margin-bottom: 14px; }
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            font-weight: 900;
-            color: #FFD700;
-            letter-spacing: 2px;
-            line-height: 1.1;
-        }
-        .logo span { color: #fff; font-weight: 300; }
-        .logo .v1 { font-size: 0.7rem; color: #2ecc71; font-weight: 700; margin-left: 3px; vertical-align: super; }
-        .logo-sub { font-size: 0.6rem; color: #7aaa7a; letter-spacing: 5px; text-transform: uppercase; font-weight: 300; margin-top: 2px; }
-        .version-badge { display: inline-block; padding: 2px 10px; border: 1px solid rgba(255,215,0,0.1); border-radius: 10px; font-size: 0.5rem; color: #FFD700; letter-spacing: 1px; background: rgba(255,215,0,0.03); margin-top: 4px; }
-        .version-badge i { color: #2ecc71; font-size: 4px; margin-right: 4px; }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            margin-bottom: 14px;
-        }
-        .feature-item {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 8px;
-            padding: 6px 2px;
-            text-align: center;
-            color: #9aaa9a;
-            font-size: 0.5rem;
-            font-weight: 400;
-        }
-        .feature-item i { color: #FFD700; font-size: 0.7rem; display: block; margin-bottom: 2px; }
-
-        .tabs {
-            display: flex;
-            border-radius: 10px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.04);
-            margin-bottom: 12px;
-            background: rgba(255,255,255,0.01);
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 8px 4px;
-            border: none;
-            background: transparent;
-            color: #6a8a6a;
             font-family: 'Rajdhani', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
-        }
-        .tab-btn.active { color: #FFD700; background: rgba(255,215,0,0.04); border-bottom-color: #FFD700; }
-
-        .form { display: none; flex-direction: column; gap: 8px; }
-        .form.active { display: flex; }
-
-        .form-group { position: relative; }
-        .form-group i {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #5a7a5a;
-            font-size: 0.7rem;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 10px 10px 10px 34px;
-            background: rgba(255,255,255,0.04);
-            border: 1.5px solid rgba(255,255,255,0.06);
-            border-radius: 8px;
+            background: #0a1a0a;
             color: #fff;
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.8rem;
-            outline: none;
-            transition: all 0.2s;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-        .form-group input:focus, .form-group select:focus {
-            border-color: rgba(255,215,0,0.2);
-            background: rgba(255,255,255,0.06);
-        }
-        .form-group input::placeholder { color: #5a7a5a; font-weight: 300; }
-        .form-group select option { background: #1a2e1a; color: #fff; }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-
-            font-size: 0.65rem;
-            color: #ff6b6b;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,107,107,0.08);
-            padding: 8px 12px;
-            border-radius: 8px;
-            border: 1.5px solid rgba(255,107,107,0.15);
-            font-weight: 600;
-            margin: 2px 0;
-        }
-        @keyframes pulse-warning {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
         }
 
-        .btn-submit {
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
-            color: #0a0a1a;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-        .btn-submit:active { transform: scale(0.97); opacity: 0.8; }
-        .btn-submit:disabled { opacity: 0.4; pointer-events: none; }
-        .btn-submit .spinner {
-            display: none;
-            width: 16px;
-            height: 16px;
-            border: 2px solid rgba(10,10,26,0.2);
-            border-top-color: #0a0a1a;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-        .btn-submit.loading .spinner { display: inline-block; }
-        .btn-submit.loading .btn-text { display: none; }
-
-        .form-footer {
-            text-align: center;
-            color: #5a7a5a;
-            font-size: 0.6rem;
-            margin-top: 2px;
-        }
-        .form-footer a { color: #FFD700; text-decoration: none; font-weight: 600; cursor: pointer; }
-
-        .zoom-controls {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            padding: 6px 14px;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid rgba(255,215,0,0.12);
-            z-index: 9999;
-            font-family: 'Rajdhani', sans-serif;
-        }
-        .zoom-controls button {
-            background: rgba(255,215,0,0.08);
-            border: none;
-            color: #FFD700;
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        .zoom-controls button:hover { background: rgba(255,215,0,0.2); }
-        .zoom-controls .zoom-level {
-            min-width: 36px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #aaa;
-        }
-        .zoom-controls .reset-btn { font-size: 0.8rem; }
-
-        /* ===== POPUP ===== */
-        .popup-overlay {
+        /* ===== OVERLAY ROTATION (mobile) ===== */
+        #rotate-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0,0,0,0.95);
             z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        #rotate-overlay i {
+            font-size: 4rem;
+            color: #FFD700;
+            animation: spin 2s infinite;
+        }
+        #rotate-overlay h2 { margin-top: 20px; font-family: 'Orbitron', monospace; }
+        #rotate-overlay p { color: #aaa; margin-top: 10px; }
+
+        /* ===== WIZARD ===== */
+        #wizardOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 99998;
             align-items: center;
             justify-content: center;
             padding: 20px;
             backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease;
         }
-        .popup-overlay.active { display: flex; }
-        .popup {
+        #wizardOverlay.active { display: flex; }
+        .wizard-container {
             background: #1a2e1a;
             border: 2px solid rgba(255,215,0,0.15);
-            border-radius: 24px;
-            padding: 30px 25px;
-            max-width: 420px;
+            border-radius: 25px;
+            padding: 35px;
+            max-width: 450px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        }
+        .wizard-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .wizard-progress::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 30px;
+            right: 30px;
+            height: 2px;
+            background: rgba(255,255,255,0.1);
+            z-index: 0;
+        }
+        .wizard-progress .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            flex: 1;
+        }
+        .wizard-progress .step .circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #666;
+            transition: all 0.5s ease;
+        }
+        .wizard-progress .step.active .circle {
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            border-color: #FFD700;
+            color: #0a0a1a;
+            box-shadow: 0 0 30px rgba(255,215,0,0.3);
+        }
+        .wizard-progress .step.done .circle {
+            background: #2ecc71;
+            border-color: #2ecc71;
+            color: #fff;
+        }
+        .wizard-progress .step .label {
+            font-size: 0.55rem;
+            color: #666;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            animation: slideUp 0.4s ease;
         }
-        .popup .icon {
-            font-size: 3.5rem;
-            color: #2ecc71;
-            margin-bottom: 10px;
-        }
-        .popup .icon.download { color: #FFD700; }
-        .popup h2 {
+        .wizard-progress .step.active .label { color: #FFD700; }
+        .wizard-progress .step.done .label { color: #2ecc71; }
+        .wizard-step { display: none; }
+        .wizard-step.active { display: block; }
+        .wizard-step .step-icon { font-size: 3rem; text-align: center; margin-bottom: 10px; }
+        .wizard-step h2 {
             font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
             color: #FFD700;
-            font-size: 1.3rem;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            text-align: center;
         }
-        .popup p {
-            color: #8aaa8a;
+        .wizard-step p {
+            color: #aaa;
             font-size: 0.9rem;
             line-height: 1.6;
             margin-bottom: 15px;
+            text-align: center;
         }
-        .popup .highlight {
-            color: #FFD700;
-            font-weight: 700;
-        }
-        .popup .btn-popup {
-            padding: 12px 30px;
-            border: none;
+        .status-box {
+            background: rgba(255,255,255,0.03);
             border-radius: 12px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
-            color: #0a0a1a;
+            padding: 12px 18px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .status-box .status-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .status-box .status-icon.pending { color: #f39c12; }
+        .status-box .status-icon.success { color: #2ecc71; }
+        .status-box .status-text { color: #ddd; font-size: 0.85rem; }
+        .instruction-box {
+            background: rgba(255,215,0,0.05);
+            border-left: 3px solid #FFD700;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .instruction-box p { font-size: 0.8rem; color: #ccc; margin: 4px 0; text-align: left; }
+        .instruction-box .lang-en {
+            color: #888;
+            font-size: 0.75rem;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .wizard-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .wizard-actions button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 10px;
             font-family: 'Orbitron', monospace;
             font-size: 0.7rem;
             font-weight: 700;
-            text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 5px;
         }
-        .popup .btn-popup:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
-        .popup .btn-popup.secondary {
+        .wizard-actions .btn-prev {
             background: rgba(255,255,255,0.05);
             color: #aaa;
             border: 1px solid rgba(255,255,255,0.1);
-            margin-top: 8px;
         }
-        .popup .btn-popup.secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .wizard-actions .btn-next {
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            color: #0a0a1a;
+            flex: 1;
+        }
+        .wizard-actions .btn-next:disabled { opacity: 0.3; cursor: not-allowed; }
+        .wizard-actions .btn-finish {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: #fff;
+            flex: 1;
+        }
+        .wizard-actions .btn-skip {
+            background: transparent;
+            color: #666;
+            font-size: 0.65rem;
+        }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        .toast {
-            position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.92);
-            color: #FFD700;
-            padding: 10px 20px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,215,0,0.12);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 0.8rem;
-            z-index: 999999;
-            max-width: 88%;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-            animation: toastIn 0.3s ease;
+        /* ===== PAGE PRINCIPALE ===== */
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(180deg, #0a2a0a 0%, #0d1f0d 100%);
+        }
+        .main-card {
+            width: 90%;
+            max-width: 1100px;
+            max-height: 90vh;
+            background: rgba(10,30,10,0.7);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            border: 1px solid rgba(255,215,0,0.1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+        .left-panel {
+            flex: 1;
+            padding: 40px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 280px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(10,30,10,0.5);
+        }
+        .left-panel .bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            z-index: 0;
             pointer-events: none;
         }
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .left-panel .content { position: relative; z-index: 1; }
+        .logo {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #FFD700;
+            letter-spacing: 4px;
+            margin-bottom: 2px;
+            text-shadow: 0 0 60px rgba(255,215,0,0.2);
         }
-        @keyframes toastOut {
-            from { opacity: 1; transform: translateX(-50%) translateY(0); }
-            to { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        .logo-sub {
+            font-size: 1rem;
+            color: #7aaa7a;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 25px;
         }
+        .tagline {
+            color: #8aaa8a;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+        .tagline i { color: #FFD700; margin-right: 10px; width: 22px; }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #9aaa9a;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .feature-item i { color: #FFD700; font-size: 0.8rem; width: 16px; }
+        .right-panel {
+            flex: 1.2;
+            padding: 35px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 300px;
+            max-height: 90vh;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.3);
+        }
+        .right-panel::-webkit-scrollbar { width: 4px; }
+        .right-panel::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 10px; }
+        .form-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .form-title span { color: #FFD700; }
+        .form-subtitle {
+            color: #6a8a6a;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 18px;
+        }
+        .tabs {
+            display: flex;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 18px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            background: rgba(255,255,255,0.02);
+            color: #7a9a7a;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active { color: #FFD700; background: rgba(255,215,0,0.06); border-bottom-color: #FFD700; }
+        .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.06); color: #b0d0b0; }
+        .form { display: none; flex-direction: column; gap: 12px; }
+        .form.active { display: flex; }
+        .form-group { position: relative; }
+        .form-group i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5a7a5a;
+            font-size: 0.9rem;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 18px 12px 42px;
+            background: rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .form-group select { appearance: none; cursor: pointer; padding-right: 35px; }
+        .form-group select option { background: #1a2e1a; color: #fff; }
+        .form-group select optgroup { background: #0a1a0a; color: #FFD700; font-weight: 700; }
+        .form-group input:focus, .form-group select:focus {
+            border-color: rgba(255,215,0,0.3);
+            background: rgba(255,255,255,0.08);
+        }
+        .form-group input::placeholder { color: #5a7a5a; font-weight: 300; }
+        .form-group .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #5a7a5a;
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 5px;
+            z-index: 2;
+            transition: color 0.3s;
+        }
+        .form-group .toggle-password:hover { color: #b0d0b0; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .form-row .form-group input { padding: 12px 18px 12px 42px; }
+        .btn-submit {
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            color: #0a0a1a;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-submit:hover { background: linear-gradient(135deg, #f5c400, #e09520); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
+        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+        .btn-submit .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(10,10,26,0.2);
+            border-top-color: #0a0a1a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .btn-submit.loading .spinner { display: inline-block; }
+        .btn-submit.loading .btn-text { display: none; }
+        .form-footer { text-align: center; color: #5a7a5a; font-size: 0.8rem; margin-top: 4px; }
+        .form-footer a { color: #FFD700; text-decoration: none; font-weight: 600; cursor: pointer; transition: color 0.3s; }
+        .form-footer a:hover { color: #f5c400; text-decoration: underline; }
+        .test-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.15);
+            border-radius: 25px;
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .test-link:hover { background: rgba(255,215,0,0.2); transform: translateY(-2px); }
+        .session-link {
+            display: block;
+            text-align: center;
+            margin-top: 12px;
+            padding: 12px;
+            background: rgba(255,215,0,0.05);
+            border: 1px solid rgba(255,215,0,0.1);
+            border-radius: 10px;
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .session-link:hover { background: rgba(255,215,0,0.1); transform: translateY(-2px); }
+        .session-link i { margin-right: 8px; }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            body { padding: 6px; }
-            .container { padding: 14px 12px 18px; border-radius: 18px; max-height: 96vh; }
-            .logo { font-size: 1.6rem; }
-            .logo .v1 { font-size: 0.6rem; }
-            .form-group input, .form-group select { padding: 8px 8px 8px 30px; font-size: 0.8rem; min-height: 40px; }
-            .form-group i { left: 8px; font-size: 0.65rem; }
-            .btn-submit { padding: 10px; font-size: 0.6rem; min-height: 40px; }
-            .feature-item { font-size: 0.45rem; padding: 4px 2px; }
-            .feature-item i { font-size: 0.6rem; }
-            .tab-btn { font-size: 0.55rem; padding: 6px 2px; }
-            .popup { padding: 25px 20px; }
-            .popup h2 { font-size: 1.1rem; }
-            .popup p { font-size: 0.8rem; }
-            .popup .icon { font-size: 3rem; }
+            .main-card { flex-direction: column; max-height: 95vh; margin: 10px; overflow-y: auto; border-radius: 20px; }
+            .left-panel { padding: 20px 15px; border-radius: 20px 20px 0 0; min-width: unset; }
+            .left-panel .bg-image { opacity: 0.12; }
+            .right-panel { padding: 20px 15px; min-width: unset; max-height: unset; }
+            .logo { font-size: 2rem; letter-spacing: 2px; }
+            .logo-sub { font-size: 0.6rem; letter-spacing: 4px; }
+            .tagline { font-size: 0.7rem; line-height: 1.6; }
+            .tagline i { width: 16px; margin-right: 6px; }
+            .features { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .feature-item { font-size: 0.65rem; padding: 4px 8px; }
+            .form-title { font-size: 1rem; }
+            .form-subtitle { font-size: 0.7rem; margin-bottom: 12px; }
+            .tab-btn { font-size: 0.7rem; padding: 8px 10px; }
+            .form-group input, .form-group select { padding: 10px 12px 10px 35px; font-size: 0.8rem; }
+            .form-group i { left: 10px; font-size: 0.8rem; }
+            .form-row { grid-template-columns: 1fr; gap: 8px; }
+            .btn-submit { padding: 12px; font-size: 0.8rem; }
+            .wizard-container { padding: 25px 20px; }
+            .wizard-step h2 { font-size: 1.1rem; }
         }
-
-        @media (min-width: 769px) {
-            body { padding: 30px; }
-            .container { max-width: 600px; padding: 32px 36px 36px; border-radius: 28px; max-height: 95vh; }
-            .logo { font-size: 2.6rem; }
-            .logo .v1 { font-size: 0.9rem; }
-            .logo-sub { font-size: 0.75rem; letter-spacing: 7px; }
-            .feature-item { padding: 8px 4px; font-size: 0.6rem; }
-            .feature-item i { font-size: 0.8rem; }
-            .tab-btn { padding: 10px 12px; font-size: 0.7rem; }
-            .form-group input, .form-group select { padding: 12px 14px 12px 42px; font-size: 0.9rem; min-height: 44px; }
-            .form-group i { left: 12px; font-size: 0.8rem; }
-            .btn-submit { padding: 14px; font-size: 0.75rem; min-height: 44px; }
-            .zoom-controls { display: flex; padding: 8px 16px; gap: 12px; }
-            .zoom-controls button { font-size: 1.1rem; padding: 4px 10px; }
-            .zoom-controls .zoom-level { font-size: 0.8rem; min-width: 40px; }
-        }
-
-        @media (min-width: 1024px) {
-            body { padding: 40px; }
-            .container { max-width: 720px; padding: 40px 48px 48px; border-radius: 32px; }
-            .logo { font-size: 3.2rem; }
-            .logo .v1 { font-size: 1rem; }
-            .logo-sub { font-size: 0.85rem; letter-spacing: 8px; }
-            .feature-item { padding: 10px 6px; font-size: 0.7rem; }
-            .feature-item i { font-size: 0.9rem; }
-            .tab-btn { padding: 12px 16px; font-size: 0.8rem; }
-            .form-group input, .form-group select { padding: 14px 18px 14px 48px; font-size: 1rem; min-height: 48px; }
-            .form-group i { left: 14px; font-size: 0.9rem; }
-            .btn-submit { padding: 16px; font-size: 0.85rem; min-height: 48px; }
-            .zoom-controls { padding: 10px 20px; gap: 16px; }
-            .zoom-controls button { font-size: 1.4rem; padding: 6px 14px; }
-            .zoom-controls .zoom-level { font-size: 1rem; min-width: 50px; }
-        }
-
-        @media (min-width: 1440px) {
-            body { padding: 60px; }
-            .container { max-width: 820px; padding: 48px 56px 56px; border-radius: 36px; }
-            .logo { font-size: 3.8rem; }
-            .logo .v1 { font-size: 1.2rem; }
-            .logo-sub { font-size: 1rem; letter-spacing: 10px; }
-            .feature-item { font-size: 0.75rem; padding: 12px 8px; }
-            .feature-item i { font-size: 1rem; }
-            .form-group input, .form-group select { padding: 16px 20px 16px 52px; font-size: 1.05rem; min-height: 52px; }
-            .form-group i { left: 16px; font-size: 1rem; }
-            .btn-submit { padding: 18px; font-size: 0.9rem; min-height: 52px; }
+        @media (max-width: 480px) and (orientation: landscape) {
+            .main-card { flex-direction: row; max-height: 92vh; margin: 5px; }
+            .left-panel { padding: 10px 12px; border-radius: 20px 0 0 20px; flex: 0.8; }
+            .left-panel .bg-image { opacity: 0.08; }
+            .right-panel { padding: 10px 12px; flex: 1.2; }
+            .logo { font-size: 1.4rem; }
+            .logo-sub { font-size: 0.5rem; letter-spacing: 3px; }
+            .tagline { font-size: 0.6rem; line-height: 1.4; margin-bottom: 10px; }
+            .features { grid-template-columns: 1fr 1fr; gap: 4px; }
+            .feature-item { font-size: 0.5rem; padding: 2px 6px; }
+            .form-title { font-size: 0.8rem; }
+            .tab-btn { font-size: 0.6rem; padding: 4px 8px; }
+            .form-group input, .form-group select { padding: 6px 8px 6px 28px; font-size: 0.7rem; }
+            .form-group i { left: 8px; font-size: 0.7rem; }
+            .btn-submit { padding: 8px; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
 
+<!-- ===== OVERLAY ROTATION (mobile) ===== -->
+<div id="rotate-overlay">
+    <i class="fas fa-rotate-90"></i>
+    <h2>📱 Tournez votre téléphone</h2>
+    <p>Mode paysage requis pour Football Manager</p>
+</div>
+
+<!-- ===== WIZARD (mobile uniquement) ===== -->
+<div id="wizardOverlay">
+    <div class="wizard-container">
+        <div class="wizard-progress">
+            <div class="step active"><div class="circle">1</div><div class="label">Paysage</div></div>
+            <div class="step"><div class="circle">2</div><div class="label">Desktop</div></div>
+            <div class="step"><div class="circle">3</div><div class="label">Prêt</div></div>
+        </div>
+
+        <!-- Étape 1 -->
+        <div class="wizard-step active" data-step="0">
+            <div class="step-icon">📱</div>
+            <h2>Mode Paysage</h2>
+            <p>Tournez votre téléphone à l'<strong>horizontal</strong></p>
+            <div class="status-box">
+                <span class="status-icon pending"><i class="fas fa-sync-alt fa-spin"></i></span>
+                <div class="status-text">En attente...</div>
+            </div>
+            <div style="text-align:center;padding:15px;background:rgba(255,215,0,0.05);border-radius:12px;">
+                <i class="fas fa-rotate-90" style="color:#FFD700;font-size:2.5rem;animation:spin 2s infinite;"></i>
+            </div>
+            <div class="wizard-actions">
+                <button class="btn-next" id="step1Next" disabled>Vérifier →</button>
+            </div>
+        </div>
+
+        <!-- Étape 2 -->
+        <div class="wizard-step" data-step="1">
+            <div class="step-icon">🖥️</div>
+            <h2>Activer "Version ordinateur"</h2>
+            <div class="instruction-box">
+                <p>🇫🇷 Appuyez sur les <strong>trois points</strong> (⋮) → <strong>Cochez</strong> "Version ordinateur"</p>
+                <p class="lang-en">🇬🇧 Tap <strong>three dots</strong> (⋮) → <strong>Check</strong> "Desktop Site"</p>
+            </div>
+            <div class="status-box">
+                <span class="status-icon pending"><i class="fas fa-sync-alt fa-spin"></i></span>
+                <div class="status-text">En attente...</div>
+            </div>
+            <div class="wizard-actions">
+                <button class="btn-prev" id="step2Prev">← Précédent</button>
+                <button class="btn-next" id="step2Next" disabled>Vérifier →</button>
+            </div>
+        </div>
+
+        <!-- Étape 3 -->
+        <div class="wizard-step" data-step="2">
+            <div class="step-icon">✅</div>
+            <h2>Configuration terminée !</h2>
+            <p>Votre téléphone est prêt</p>
+            <div style="background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);border-radius:12px;padding:20px;text-align:center;margin:15px 0;">
+                <i class="fas fa-check-circle" style="color:#2ecc71;font-size:3rem;"></i>
+                <p style="color:#2ecc71;font-size:1rem;margin-top:10px;">✅ Tout est prêt !</p>
+            </div>
+            <div class="wizard-actions">
+                <button class="btn-prev" id="step3Prev">← Précédent</button>
+                <button class="btn-finish" id="step3Finish"><i class="fas fa-play"></i> Jouer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== PAGE PRINCIPALE ===== -->
 <div class="container">
-    <div class="header">
-        <div class="logo">⚽ <span>FMTK</span><span class="v1">V1</span></div>
-        <div class="logo-sub">Football Manager</div>
-        <div class="version-badge"><i class="fas fa-circle"></i> VERSION 1.0</div>
-    </div>
-
-    <div class="features">
-        <div class="feature-item"><i class="fas fa-futbol"></i> Matchs</div>
-        <div class="feature-item"><i class="fas fa-chart-line"></i> Stats</div>
-        <div class="feature-item"><i class="fas fa-tasks"></i> Tactique</div>
-        <div class="feature-item"><i class="fas fa-users-cog"></i> Équipe</div>
-        <div class="feature-item"><i class="fas fa-euro-sign"></i> Transferts</div>
-        <div class="feature-item"><i class="fas fa-medal"></i> Compétitions</div>
-    </div>
-
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="login" onclick="switchTab('login')">
-            <i class="fas fa-sign-in-alt"></i> Connexion
-        </button>
-        <button class="tab-btn" data-tab="register" onclick="switchTab('register')">
-            <i class="fas fa-user-plus"></i> Inscription
-        </button>
-    </div>
-
-    <form class="form active" id="loginForm" onsubmit="handleLogin(event)">
-        <div class="form-group"><i class="fas fa-user"></i><input type="text" id="loginPseudo" placeholder="Pseudo" required></div>
-        <div class="form-group"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Mot de passe" required minlength="6"></div>
-        <button type="submit" class="btn-submit" id="loginBtn"><span class="spinner"></span><span class="btn-text"><i class="fas fa-sign-in-alt"></i> Se connecter</span></button>
-        <div class="form-footer">Pas encore de compte ? <a onclick="switchTab('register')">Inscrivez-vous</a></div>
-    </form>
-
-    <form class="form" id="registerForm" onsubmit="handleRegister(event)">
-        <div class="form-group"><i class="fas fa-flag"></i>
-            <select id="countrySelect" required><option value="">🌍 Pays d'origine</option></select>
-        </div>
-        <div class="form-group"><i class="fas fa-user"></i><input type="text" id="registerPseudo" placeholder="Pseudo" required></div>
-        <div class="form-group"><i class="fas fa-envelope"></i><input type="email" id="registerEmail" placeholder="Email" required></div>
-        <div class="form-row">
-            <div class="form-group" style="flex:0.35;"><i class="fas fa-phone"></i>
-                <select id="prefixSelect" required><option value="">+??</option></select>
-            </div>
-            <div class="form-group" style="flex:0.65;"><i class="fas fa-phone" style="opacity:0;"></i>
-                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:5px;">📱 Entrez votre numéro WhatsApp (optionnel mais recommandé)</div>
-                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:10px;">📱 WhatsApp est optionnel mais recommandé pour les notifications</div>
-                <input type="tel" id="whatsappInput" placeholder="WhatsApp" required>
+    <div class="main-card">
+        <div class="left-panel">
+            <img src="/accueil/OIP-1393549177.jpg" alt="Football Manager" class="bg-image" loading="lazy">
+            <div class="content">
+                <div class="logo">⚽ FM</div>
+                <div class="logo-sub">Football Manager</div>
+                <div class="tagline">
+                    <i class="fas fa-trophy"></i> 100 joueurs max<br>
+                    <i class="fas fa-users"></i> Sessions indépendantes<br>
+                    <i class="fas fa-cloud"></i> Sauvegardes cloud<br>
+                    <i class="fas fa-gamepad"></i> Moteur de match réaliste
+                </div>
+                <div class="features">
+                    <div class="feature-item"><i class="fas fa-futbol"></i> Matchs en direct</div>
+                    <div class="feature-item"><i class="fas fa-chart-line"></i> Statistiques</div>
+                    <div class="feature-item"><i class="fas fa-tasks"></i> Tactiques</div>
+                    <div class="feature-item"><i class="fas fa-users-cog"></i> Gestion d'équipe</div>
+                    <div class="feature-item"><i class="fas fa-euro-sign"></i> Transferts</div>
+                    <div class="feature-item"><i class="fas fa-medal"></i> Compétitions</div>
+                </div>
+                <a href="/test/terrain/terrain4.html" class="test-link">▶ Tester le terrain</a>
             </div>
         </div>
-            <i class="fas fa-exclamation-circle"></i>
-            <span>⚠ WhatsApp OBLIGATOIRE - Sans WhatsApp, vous ne pourrez pas jouer !</span>
+        <div class="right-panel">
+            <div class="form-title">Bienvenue <span>Manager</span></div>
+            <div class="form-subtitle">Connectez-vous ou créez votre compte</div>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="login" onclick="switchTab('login')">
+                    <i class="fas fa-sign-in-alt"></i> Connexion
+                </button>
+                <button class="tab-btn" data-tab="register" onclick="switchTab('register')">
+                    <i class="fas fa-user-plus"></i> Inscription
+                </button>
+            </div>
+
+            <!-- Connexion -->
+            <form class="form active" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="loginPseudo" placeholder="Pseudo d'entraîneur" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="Mot de passe" required minlength="6">
+                    <button type="button" class="toggle-password" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                </div>
+                <button type="submit" class="btn-submit" id="loginBtn">
+                    <span class="spinner"></span>
+                    <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Se connecter</span>
+                </button>
+                <div class="form-footer">
+                    Pas encore de compte ? <a onclick="switchTab('register')">Inscrivez-vous</a>
+                </div>
+                <a href="/session/charger" class="session-link">
+                    <i class="fas fa-upload"></i> 📂 Charger ma session
+                </a>
+            </form>
+
+            <!-- Inscription -->
+            <form class="form" id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <i class="fas fa-flag"></i>
+                    <select id="countrySelect" required>
+                        <option value="">🌍 Choisissez votre pays</option>
+                        <optgroup label="🌍 Afrique">
+                            <option value="BJ">🇧🇯 Bénin</option>
+                            <option value="BF">🇧🇫 Burkina Faso</option>
+                            <option value="CM">🇨🇲 Cameroun</option>
+                            <option value="CI">🇨🇮 Côte d'Ivoire</option>
+                            <option value="SN">🇸🇳 Sénégal</option>
+                            <option value="TG">🇹🇬 Togo</option>
+                            <option value="DZ">🇩🇿 Algérie</option>
+                            <option value="MA">🇲🇦 Maroc</option>
+                            <option value="TN">🇹🇳 Tunisie</option>
+                            <option value="EG">🇪🇬 Égypte</option>
+                            <option value="NG">🇳🇬 Nigéria</option>
+                            <option value="GH">🇬🇭 Ghana</option>
+                            <option value="KE">🇰🇪 Kenya</option>
+                            <option value="ZA">🇿🇦 Afrique du Sud</option>
+                        </optgroup>
+                        <optgroup label="🌍 Europe">
+                            <option value="FR">🇫🇷 France</option>
+                            <option value="BE">🇧🇪 Belgique</option>
+                            <option value="CH">🇨🇭 Suisse</option>
+                            <option value="DE">🇩🇪 Allemagne</option>
+                            <option value="ES">🇪🇸 Espagne</option>
+                            <option value="IT">🇮🇹 Italie</option>
+                            <option value="GB">🇬🇧 Royaume-Uni</option>
+                            <option value="PT">🇵🇹 Portugal</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="registerPseudo" placeholder="Surnom du coach" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="registerEmail" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="whatsappInput" placeholder="WhatsApp (ex: +229 97 00 00 00)">
+                </div>
+                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:10px;">
+                    📱 WhatsApp est optionnel mais recommandé
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="registerPassword" placeholder="Mot de passe (6 caractères min)" required minlength="6">
+                    <button type="button" class="toggle-password" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                </div>
+                <button type="submit" class="btn-submit" id="registerBtn">
+                    <span class="spinner"></span>
+                    <span class="btn-text"><i class="fas fa-user-plus"></i> Créer mon compte</span>
+                </button>
+                <div class="form-footer">
+                    Déjà inscrit ? <a onclick="switchTab('login')">Connectez-vous</a>
+                </div>
+            </form>
         </div>
-        <div class="form-group"><i class="fas fa-lock"></i><input type="password" id="registerPassword" placeholder="Mot de passe (6 min)" required minlength="6"></div>
-        <button type="submit" class="btn-submit" id="registerBtn"><span class="spinner"></span><span class="btn-text"><i class="fas fa-user-plus"></i> Créer mon compte</span></button>
-        <div class="form-footer">Déjà inscrit ? <a onclick="switchTab('login')">Connectez-vous</a></div>
-    </form>
-</div>
-
-<div class="zoom-controls" id="zoomControls">
-    <button id="zoomOut" title="Zoom arrière (Ctrl + -)">−</button>
-    <span class="zoom-level" id="zoomLevel">100%</span>
-    <button id="zoomIn" title="Zoom avant (Ctrl + +)">+</button>
-    <button id="zoomReset" class="reset-btn" title="Réinitialiser (Ctrl + 0)">⟲</button>
-</div>
-
-<!-- ===== POPUP SUCCÈS ===== -->
-<div class="popup-overlay" id="successPopup">
-    <div class="popup">
-        <div class="icon"><i class="fas fa-check-circle"></i></div>
-        <h2>✅ Inscription réussie !</h2>
-        <p>
-            Votre fichier <span class="highlight">.FMTK</span> a été généré et téléchargé.<br><br>
-            📁 Sauvegardez-le dans un dossier sûr.<br>
-            🔐 Puis connectez-vous avec votre <span class="highlight">pseudo</span> et <span class="highlight">mot de passe</span>.
-        </p>
-        <button class="btn-popup" onclick="closePopupAndGoToLogin()">🔐 Aller à la connexion</button>
-        <button class="btn-popup secondary" onclick="closePopup()">Continuer sur la page</button>
     </div>
 </div>
-
-<!-- ===== TOAST ===== -->
-<div class="toast" id="toast" style="display:none;"></div>
 
 <script>
-// ===== TOUS LES PAYS =====
-const TOUS_LES_PAYS = [
-    "Afghanistan", "Afrique du Sud", "Albanie", "Algérie", "Allemagne", "Andorre", "Angola",
-    "Antigua-et-Barbuda", "Arabie saoudite", "Argentine", "Arménie", "Australie", "Autriche",
-    "Azerbaïdjan", "Bahamas", "Bahreïn", "Bangladesh", "Barbade", "Belgique", "Belize", "Bénin",
-    "Bhoutan", "Biélorussie", "Birmanie", "Bolivie", "Bosnie-Herzégovine", "Botswana", "Brésil",
-    "Brunei", "Bulgarie", "Burkina Faso", "Burundi", "Cambodge", "Cameroun", "Canada", "Cap-Vert",
-    "Centrafrique", "Chili", "Chine", "Chypre", "Colombie", "Comores", "Corée du Nord", "Corée du Sud",
-    "Costa Rica", "Côte d'Ivoire", "Croatie", "Cuba", "Danemark", "Djibouti", "Dominique", "Égypte",
-    "Émirats arabes unis", "Équateur", "Érythrée", "Espagne", "Estonie", "Eswatini", "États-Unis",
-    "Éthiopie", "Fidji", "Finlande", "France", "Gabon", "Gambie", "Géorgie", "Ghana", "Grèce",
-    "Grenade", "Guatemala", "Guinée", "Guinée équatoriale", "Guinée-Bissau", "Guyana", "Haïti",
-    "Honduras", "Hongrie", "Îles Cook", "Îles Marshall", "Îles Salomon", "Inde", "Indonésie", "Irak",
-    "Iran", "Irlande", "Islande", "Israël", "Italie", "Jamaïque", "Japon", "Jordanie", "Kazakhstan",
-    "Kenya", "Kirghizistan", "Kiribati", "Kosovo", "Koweït", "Laos", "Lesotho", "Lettonie", "Liban",
-    "Libéria", "Libye", "Liechtenstein", "Lituanie", "Luxembourg", "Macédoine du Nord", "Madagascar",
-    "Malaisie", "Malawi", "Maldives", "Mali", "Malte", "Maroc", "Maurice", "Mauritanie", "Mexique",
-    "Micronésie", "Moldavie", "Monaco", "Mongolie", "Monténégro", "Mozambique", "Namibie", "Nauru",
-    "Népal", "Nicaragua", "Niger", "Nigéria", "Norvège", "Nouvelle-Zélande", "Oman", "Ouganda",
-    "Ouzbékistan", "Pakistan", "Palestine", "Panama", "Papouasie-Nouvelle-Guinée", "Paraguay",
-    "Pays-Bas", "Pérou", "Philippines", "Pologne", "Portugal", "Qatar", "RD Congo",
-    "République centrafricaine", "République dominicaine", "République tchèque", "Roumanie",
-    "Royaume-Uni", "Russie", "Rwanda", "Saint-Christophe-et-Niévès", "Sainte-Lucie", "Saint-Marin",
-    "Saint-Vincent-et-les-Grenadines", "Salvador", "Samoa", "Sao Tomé-et-Principe", "Sénégal",
-    "Serbie", "Seychelles", "Sierra Leone", "Singapour", "Slovaquie", "Slovénie", "Somalie",
-    "Soudan", "Soudan du Sud", "Sri Lanka", "Suède", "Suisse", "Suriname", "Syrie", "Tadjikistan",
-    "Tanzanie", "Tchad", "Thaïlande", "Timor oriental", "Togo", "Tonga", "Trinité-et-Tobago",
-    "Tunisie", "Turkménistan", "Turquie", "Tuvalu", "Ukraine", "Uruguay", "Vanuatu", "Vatican",
-    "Venezuela", "Viêt Nam", "Yémen", "Zambie", "Zimbabwe"
-];
+// ===== DÉTECTION MOBILE =====
+function isMobile() {
+    return /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+}
 
-const TOUS_LES_PREFIXES = [
-    { code: "+93", pays: "Afghanistan" }, { code: "+355", pays: "Albanie" }, { code: "+213", pays: "Algérie" },
-    { code: "+376", pays: "Andorre" }, { code: "+244", pays: "Angola" }, { code: "+54", pays: "Argentine" },
-    { code: "+374", pays: "Arménie" }, { code: "+61", pays: "Australie" }, { code: "+43", pays: "Autriche" },
-    { code: "+994", pays: "Azerbaïdjan" }, { code: "+1", pays: "Bahamas" }, { code: "+973", pays: "Bahreïn" },
-    { code: "+880", pays: "Bangladesh" }, { code: "+32", pays: "Belgique" }, { code: "+229", pays: "Bénin" },
-    { code: "+975", pays: "Bhoutan" }, { code: "+591", pays: "Bolivie" }, { code: "+387", pays: "Bosnie" },
-    { code: "+267", pays: "Botswana" }, { code: "+55", pays: "Brésil" }, { code: "+359", pays: "Bulgarie" },
-    { code: "+226", pays: "Burkina Faso" }, { code: "+257", pays: "Burundi" }, { code: "+855", pays: "Cambodge" },
-    { code: "+237", pays: "Cameroun" }, { code: "+1", pays: "Canada" }, { code: "+238", pays: "Cap-Vert" },
-    { code: "+236", pays: "Centrafrique" }, { code: "+56", pays: "Chili" }, { code: "+86", pays: "Chine" },
-    { code: "+57", pays: "Colombie" }, { code: "+269", pays: "Comores" }, { code: "+82", pays: "Corée du Sud" },
-    { code: "+506", pays: "Costa Rica" }, { code: "+225", pays: "Côte d'Ivoire" }, { code: "+385", pays: "Croatie" },
-    { code: "+53", pays: "Cuba" }, { code: "+45", pays: "Danemark" }, { code: "+253", pays: "Djibouti" },
-    { code: "+20", pays: "Égypte" }, { code: "+971", pays: "Émirats arabes unis" }, { code: "+593", pays: "Équateur" },
-    { code: "+34", pays: "Espagne" }, { code: "+372", pays: "Estonie" }, { code: "+1", pays: "États-Unis" },
-    { code: "+251", pays: "Éthiopie" }, { code: "+679", pays: "Fidji" }, { code: "+358", pays: "Finlande" },
-    { code: "+33", pays: "France" }, { code: "+241", pays: "Gabon" }, { code: "+220", pays: "Gambie" },
-    { code: "+995", pays: "Géorgie" }, { code: "+233", pays: "Ghana" }, { code: "+30", pays: "Grèce" },
-    { code: "+502", pays: "Guatemala" }, { code: "+224", pays: "Guinée" }, { code: "+245", pays: "Guinée-Bissau" },
-    { code: "+509", pays: "Haïti" }, { code: "+504", pays: "Honduras" }, { code: "+36", pays: "Hongrie" },
-    { code: "+91", pays: "Inde" }, { code: "+62", pays: "Indonésie" }, { code: "+98", pays: "Iran" },
-    { code: "+964", pays: "Irak" }, { code: "+353", pays: "Irlande" }, { code: "+354", pays: "Islande" },
-    { code: "+972", pays: "Israël" }, { code: "+39", pays: "Italie" }, { code: "+1", pays: "Jamaïque" },
-    { code: "+81", pays: "Japon" }, { code: "+962", pays: "Jordanie" }, { code: "+7", pays: "Kazakhstan" },
-    { code: "+254", pays: "Kenya" }, { code: "+996", pays: "Kirghizistan" }, { code: "+383", pays: "Kosovo" },
-    { code: "+965", pays: "Koweït" }, { code: "+856", pays: "Laos" }, { code: "+371", pays: "Lettonie" },
-    { code: "+961", pays: "Liban" }, { code: "+231", pays: "Libéria" }, { code: "+218", pays: "Libye" },
-    { code: "+423", pays: "Liechtenstein" }, { code: "+370", pays: "Lituanie" }, { code: "+352", pays: "Luxembourg" },
-    { code: "+389", pays: "Macédoine du Nord" }, { code: "+261", pays: "Madagascar" }, { code: "+60", pays: "Malaisie" },
-    { code: "+265", pays: "Malawi" }, { code: "+960", pays: "Maldives" }, { code: "+223", pays: "Mali" },
-    { code: "+356", pays: "Malte" }, { code: "+212", pays: "Maroc" }, { code: "+230", pays: "Maurice" },
-    { code: "+222", pays: "Mauritanie" }, { code: "+52", pays: "Mexique" }, { code: "+373", pays: "Moldavie" },
-    { code: "+377", pays: "Monaco" }, { code: "+976", pays: "Mongolie" }, { code: "+382", pays: "Monténégro" },
-    { code: "+258", pays: "Mozambique" }, { code: "+264", pays: "Namibie" }, { code: "+977", pays: "Népal" },
-    { code: "+505", pays: "Nicaragua" }, { code: "+227", pays: "Niger" }, { code: "+234", pays: "Nigéria" },
-    { code: "+47", pays: "Norvège" }, { code: "+64", pays: "Nouvelle-Zélande" }, { code: "+968", pays: "Oman" },
-    { code: "+256", pays: "Ouganda" }, { code: "+92", pays: "Pakistan" }, { code: "+970", pays: "Palestine" },
-    { code: "+507", pays: "Panama" }, { code: "+675", pays: "Papouasie" }, { code: "+595", pays: "Paraguay" },
-    { code: "+31", pays: "Pays-Bas" }, { code: "+51", pays: "Pérou" }, { code: "+63", pays: "Philippines" },
-    { code: "+48", pays: "Pologne" }, { code: "+351", pays: "Portugal" }, { code: "+974", pays: "Qatar" },
-    { code: "+243", pays: "RD Congo" }, { code: "+40", pays: "Roumanie" }, { code: "+44", pays: "Royaume-Uni" },
-    { code: "+7", pays: "Russie" }, { code: "+250", pays: "Rwanda" }, { code: "+1", pays: "Saint-Christophe" },
-    { code: "+1", pays: "Sainte-Lucie" }, { code: "+378", pays: "Saint-Marin" }, { code: "+503", pays: "Salvador" },
-    { code: "+685", pays: "Samoa" }, { code: "+239", pays: "Sao Tomé" }, { code: "+221", pays: "Sénégal" },
-    { code: "+381", pays: "Serbie" }, { code: "+248", pays: "Seychelles" }, { code: "+232", pays: "Sierra Leone" },
-    { code: "+65", pays: "Singapour" }, { code: "+421", pays: "Slovaquie" }, { code: "+386", pays: "Slovénie" },
-    { code: "+252", pays: "Somalie" }, { code: "+249", pays: "Soudan" }, { code: "+211", pays: "Soudan du Sud" },
-    { code: "+94", pays: "Sri Lanka" }, { code: "+46", pays: "Suède" }, { code: "+41", pays: "Suisse" },
-    { code: "+597", pays: "Suriname" }, { code: "+963", pays: "Syrie" }, { code: "+992", pays: "Tadjikistan" },
-    { code: "+255", pays: "Tanzanie" }, { code: "+235", pays: "Tchad" }, { code: "+66", pays: "Thaïlande" },
-    { code: "+228", pays: "Togo" }, { code: "+676", pays: "Tonga" }, { code: "+216", pays: "Tunisie" },
-    { code: "+90", pays: "Turquie" }, { code: "+993", pays: "Turkménistan" }, { code: "+380", pays: "Ukraine" },
-    { code: "+598", pays: "Uruguay" }, { code: "+998", pays: "Ouzbékistan" }, { code: "+678", pays: "Vanuatu" },
-    { code: "+379", pays: "Vatican" }, { code: "+58", pays: "Venezuela" }, { code: "+84", pays: "Viêt Nam" },
-    { code: "+967", pays: "Yémen" }, { code: "+260", pays: "Zambie" }, { code: "+263", pays: "Zimbabwe" }
-];
+// ===== OVERLAY ROTATION =====
+function checkOrientation() {
+    const overlay = document.getElementById('rotate-overlay');
+    if (isMobile() && window.innerHeight > window.innerWidth) {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    } else {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+}
 
-function loadPays() {
-    const sel = document.getElementById('countrySelect');
-    TOUS_LES_PAYS.forEach(p => {
-        const opt = document.createElement('option');
-        opt.value = p;
-        opt.textContent = p;
-        sel.appendChild(opt);
+// ===== WIZARD =====
+let currentStep = 0;
+const totalSteps = 3;
+
+function goToStep(step) {
+    currentStep = step;
+    document.querySelectorAll('.wizard-step').forEach((el, i) => {
+        el.classList.toggle('active', i === step);
+    });
+    document.querySelectorAll('.wizard-progress .step').forEach((el, i) => {
+        el.classList.remove('active', 'done');
+        if (i < step) el.classList.add('done');
+        if (i === step) el.classList.add('active');
     });
 }
 
-function loadPrefixes() {
-    const sel = document.getElementById('prefixSelect');
-    TOUS_LES_PREFIXES.forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item.code;
-        opt.textContent = item.code + ' ' + item.pays;
-        sel.appendChild(opt);
-    });
+function nextStep() {
+    if (currentStep < totalSteps - 1) goToStep(currentStep + 1);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    loadPays();
-    loadPrefixes();
-});
+function prevStep() {
+    if (currentStep > 0) goToStep(currentStep - 1);
+}
 
+function checkLandscape() {
+    const isLandscape = window.innerWidth > window.innerHeight;
+    const statusBox = document.querySelector('#wizardOverlay .status-box');
+    if (statusBox && document.querySelector('.wizard-step.active[data-step="0"]')) {
+        const icon = statusBox.querySelector('.status-icon');
+        const text = statusBox.querySelector('.status-text');
+        if (isLandscape) {
+            icon.className = 'status-icon success';
+            icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+            text.textContent = '✅ Mode paysage détecté !';
+            document.getElementById('step1Next').disabled = false;
+        } else {
+            icon.className = 'status-icon pending';
+            icon.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i>';
+            text.textContent = '⏳ Tournez votre téléphone...';
+            document.getElementById('step1Next').disabled = true;
+        }
+    }
+}
+
+function checkDesktop() {
+    const viewportWidth = window.innerWidth;
+    const isDesktop = viewportWidth > 768;
+    const statusBox = document.querySelector('#wizardOverlay .status-box');
+    if (statusBox && document.querySelector('.wizard-step.active[data-step="1"]')) {
+        const icon = statusBox.querySelector('.status-icon');
+        const text = statusBox.querySelector('.status-text');
+        if (isDesktop) {
+            icon.className = 'status-icon success';
+            icon.innerHTML = '<i class="fas fa-check-circle"></i>';
+            text.textContent = '✅ "Version ordinateur" activée !';
+            document.getElementById('step2Next').disabled = false;
+        } else {
+            icon.className = 'status-icon pending';
+            icon.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i>';
+            text.textContent = '⏳ Cochez "Version ordinateur"...';
+            document.getElementById('step2Next').disabled = true;
+        }
+    }
+}
+
+function finishWizard() {
+    document.getElementById('wizardOverlay').classList.remove('active');
+    localStorage.setItem('fm_config_done', 'true');
+}
+
+// ===== TABS =====
 function switchTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-    document.querySelectorAll('.form').forEach(f => f.classList.toggle('active', f.id === (tab === 'login' ? 'loginForm' : 'registerForm')));
+    document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === tab);
+    });
+    document.querySelectorAll('.form').forEach(f => {
+        f.classList.toggle('active', f.id === (tab === 'login' ? 'loginForm' : 'registerForm'));
+    });
 }
 
-function showToast(msg, type = 'info') {
-    const colors = { success: '#2ecc71', error: '#e74c3c', warning: '#f39c12', info: '#FFD700' };
-    const toast = document.getElementById('toast');
-    toast.style.color = colors[type] || '#FFD700';
-    toast.style.borderColor = (colors[type] || '#FFD700') + '40';
-    toast.textContent = msg;
-    toast.style.display = 'block';
-    toast.style.animation = 'toastIn 0.3s ease';
-    setTimeout(() => {
-        toast.style.animation = 'toastOut 0.3s ease forwards';
-        setTimeout(() => { toast.style.display = 'none'; }, 400);
-    }, 3000);
+// ===== TOGGLE PASSWORD =====
+function togglePassword(btn) {
+    const input = btn.parentElement.querySelector('input');
+    const icon = btn.querySelector('i');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fas fa-eye-slash';
+    } else {
+        input.type = 'password';
+        icon.className = 'fas fa-eye';
+    }
 }
 
-// ===== POPUP =====
-function showPopup() {
-    document.getElementById('successPopup').classList.add('active');
-}
-
-function closePopup() {
-    document.getElementById('successPopup').classList.remove('active');
-}
-
-function closePopupAndGoToLogin() {
-    closePopup();
-    switchTab('login');
-    showToast('🔐 Connectez-vous avec votre pseudo et mot de passe', 'success');
-}
-
-// ===== TÉLÉCHARGEMENT FICHIER .FMTK =====
-function downloadFMTK(playerData) {
-    const blob = new Blob([JSON.stringify(playerData, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${playerData.pseudo}.FMTK`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
-// ===== API =====
+// ===== API CALL =====
 async function callAPI(endpoint, data) {
-    const r = await fetch(endpoint, {
+    const response = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
-    return r.json();
+    return await response.json();
 }
 
 // ===== LOGIN =====
-async function handleLogin(e) {
-    e.preventDefault();
+async function handleLogin(event) {
+    event.preventDefault();
     const btn = document.getElementById('loginBtn');
     btn.classList.add('loading');
     btn.disabled = true;
+
     const pseudo = document.getElementById('loginPseudo').value.trim();
     const password = document.getElementById('loginPassword').value;
+
     try {
-        const res = await callAPI('/api/login', { pseudo, password });
-        if (res.success) {
-            showToast('✅ ' + res.message, 'success');
-            setTimeout(() => window.location.href = '/session/charger', 1200);
+        const result = await callAPI('/api/login', { pseudo, password });
+        if (result.success) {
+            alert('✅ ' + result.message);
+            window.location.href = '/session/charger';
         } else {
-            showToast('❌ ' + res.message, 'error');
+            alert('❌ ' + result.message);
         }
-    } catch { showToast('❌ Erreur de connexion', 'error'); }
+    } catch(e) {
+        alert('❌ Erreur de connexion');
+    }
+
     btn.classList.remove('loading');
     btn.disabled = false;
 }
 
 // ===== REGISTER =====
-async function handleRegister(e) {
-    e.preventDefault();
+async function handleRegister(event) {
+    event.preventDefault();
     const btn = document.getElementById('registerBtn');
     btn.classList.add('loading');
     btn.disabled = true;
+
     const pseudo = document.getElementById('registerPseudo').value.trim();
     const email = document.getElementById('registerEmail').value.trim();
-    const prefix = document.getElementById('prefixSelect').value;
-                <div style="font-size:0.7rem;color:#5a7a5a;margin-top:-5px;margin-bottom:10px;">📱 WhatsApp est optionnel mais recommandé pour les notifications</div>
     const whatsapp = document.getElementById('whatsappInput').value.trim();
     const password = document.getElementById('registerPassword').value;
     const country = document.getElementById('countrySelect').value;
 
-    if (!whatsapp || whatsapp.length < 6) {
-        showToast('⚠ WhatsApp est OBLIGATOIRE !', 'warning');
-        btn.classList.remove('loading');
-        btn.disabled = false;
-        return;
-    }
-    if (!prefix) {
-        showToast('⚠ Sélectionnez votre indicatif !', 'warning');
+    if (password.length < 6) {
+        alert('⚠️ Le mot de passe doit contenir au moins 6 caractères');
         btn.classList.remove('loading');
         btn.disabled = false;
         return;
     }
 
     try {
-        const res = await callAPI('/api/register', {
-            pseudo, email, whatsapp: prefix + whatsapp.replace(/\s/g, ''), password, country
-        });
-        if (res.success) {
-            // Télécharger le fichier .FMTK
-            downloadFMTK(res.player);
-            // Afficher le popup
-            setTimeout(() => showPopup(), 500);
-            showToast('📁 Fichier .FMTK téléchargé !', 'success');
+        const result = await callAPI('/api/register', { pseudo, email, whatsapp, password, country });
+        if (result.success) {
+            alert('✅ ' + result.message + '\n\n📁 Téléchargez votre fichier .FM !');
+            window.location.href = '/session/charger';
         } else {
-            showToast('❌ ' + res.message, 'error');
+            alert('❌ ' + result.message);
         }
-    } catch { showToast('❌ Erreur d\'inscription', 'error'); }
+    } catch(e) {
+        alert('❌ Erreur d\'inscription');
+    }
+
     btn.classList.remove('loading');
     btn.disabled = false;
 }
 
-document.querySelectorAll('.form-footer a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        switchTab(this.textContent.includes('Inscrivez') ? 'register' : 'login');
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Orientation
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', function() {
+        setTimeout(checkOrientation, 300);
+    });
+
+    // Wizard (uniquement sur mobile)
+    if (isMobile() && localStorage.getItem('fm_config_done') !== 'true') {
+        document.getElementById('wizardOverlay').classList.add('active');
+        setTimeout(checkLandscape, 500);
+        setTimeout(checkDesktop, 500);
+
+        window.addEventListener('resize', function() {
+            if (document.getElementById('wizardOverlay').classList.contains('active')) {
+                checkLandscape();
+                checkDesktop();
+            }
+        });
+
+        document.getElementById('step1Next').addEventListener('click', nextStep);
+        document.getElementById('step2Prev').addEventListener('click', prevStep);
+        document.getElementById('step2Next').addEventListener('click', nextStep);
+        document.getElementById('step3Prev').addEventListener('click', prevStep);
+        document.getElementById('step3Finish').addEventListener('click', finishWizard);
+    }
+
+    // Liens footer
+    document.querySelectorAll('.form-footer a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tab = this.textContent.includes('Inscrivez') ? 'register' : 'login';
+            switchTab(tab);
+        });
     });
 });
-
-// ZOOM SUR PC
-const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-if (!isMobile) {
-    let zoom = 1;
-    const minZoom = 0.7, maxZoom = 1.5, step = 0.05;
-    function updateZoom() {
-        document.body.style.zoom = zoom;
-        document.getElementById('zoomLevel').textContent = Math.round(zoom * 100) + '%';
-    }
-    document.getElementById('zoomIn').addEventListener('click', function() {
-        if (zoom < maxZoom) { zoom += step; updateZoom(); }
-    });
-    document.getElementById('zoomOut').addEventListener('click', function() {
-        if (zoom > minZoom) { zoom -= step; updateZoom(); }
-    });
-    document.getElementById('zoomReset').addEventListener('click', function() {
-        zoom = 1; updateZoom();
-    });
-    document.addEventListener('wheel', function(e) {
-        if (e.ctrlKey) {
-            e.preventDefault();
-            if (e.deltaY < 0 && zoom < maxZoom) { zoom += step; updateZoom(); }
-            else if (e.deltaY > 0 && zoom > minZoom) { zoom -= step; updateZoom(); }
-        }
-    }, { passive: false });
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === '0') { zoom = 1; updateZoom(); e.preventDefault(); }
-        if (e.ctrlKey && (e.key === '=' || e.key === '+')) {
-            if (zoom < maxZoom) { zoom += step; updateZoom(); }
-            e.preventDefault();
-        }
-        if (e.ctrlKey && e.key === '-') {
-            if (zoom > minZoom) { zoom -= step; updateZoom(); }
-            e.preventDefault();
-        }
-    });
-    document.getElementById('zoomControls').style.display = 'flex';
-}
 </script>
 </body>
 </html>
