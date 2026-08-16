@@ -379,3 +379,174 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+<style>
+    /* ===== POPUP ===== */
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+    }
+    .popup-overlay.active { display: flex; }
+    .popup-box {
+        background: #1a2e1a;
+        border: 2px solid rgba(255,215,0,0.2);
+        border-radius: 20px;
+        padding: 35px 30px;
+        max-width: 450px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        animation: popupIn 0.5s ease;
+    }
+    @keyframes popupIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .popup-box .icon { font-size: 3rem; margin-bottom: 10px; }
+    .popup-box .icon.success { color: #2ecc71; }
+    .popup-box .icon.error { color: #e74c3c; }
+    .popup-box .icon.info { color: #FFD700; }
+    .popup-box h2 {
+        font-family: 'Orbitron', monospace;
+        font-size: 1.2rem;
+        color: #FFD700;
+        margin-bottom: 8px;
+    }
+    .popup-box p {
+        color: #aaa;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    .popup-box .btn-popup {
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #FFD700, #f5a623);
+        border: none;
+        border-radius: 10px;
+        color: #0a0a1a;
+        font-family: 'Orbitron', monospace;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .popup-box .btn-popup:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
+    .popup-box .btn-popup.success {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        color: #fff;
+    }
+
+    /* ===== LOADER ===== */
+    .fmtk-loader {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.92);
+        z-index: 99998;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        backdrop-filter: blur(8px);
+    }
+    .fmtk-loader.active { display: flex; }
+    .fmtk-loader .spinner {
+        width: 70px;
+        height: 70px;
+        border: 5px solid rgba(255,215,0,0.1);
+        border-top-color: #FFD700;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+    }
+    .fmtk-loader .text {
+        font-family: 'Orbitron', monospace;
+        font-size: 1.5rem;
+        color: #FFD700;
+        letter-spacing: 4px;
+        animation: pulse 1.5s ease-in-out infinite;
+    }
+    .fmtk-loader .sub {
+        color: #7aaa7a;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        letter-spacing: 2px;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+</style>
+
+<!-- ===== LOADER ===== -->
+<div class="fmtk-loader" id="fmtkLoader">
+    <div class="spinner"></div>
+    <div class="text">📂 FMTK</div>
+    <div class="sub">Chargement de votre session...</div>
+</div>
+
+<!-- ===== POPUP ===== -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="icon" id="popupIcon">✅</div>
+        <h2 id="popupTitle">Succès</h2>
+        <p id="popupMessage">Votre session a été chargée !</p>
+        <button class="btn-popup" id="popupBtn" onclick="closePopup()">OK</button>
+    </div>
+</div>
+<script>
+// ===== POPUPS =====
+function showPopup(icon, title, message, type = 'info') {
+    document.getElementById('popupIcon').className = `icon ${type}`;
+    document.getElementById('popupIcon').textContent = icon;
+    document.getElementById('popupTitle').textContent = title;
+    document.getElementById('popupMessage').textContent = message;
+    document.getElementById('popup').classList.add('active');
+}
+
+function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+}
+
+function showLoader(text, sub) {
+    const loader = document.getElementById('fmtkLoader');
+    loader.querySelector('.text').textContent = text || '📂 FMTK';
+    loader.querySelector('.sub').textContent = sub || 'Chargement de votre session...';
+    loader.classList.add('active');
+}
+
+function hideLoader() {
+    document.getElementById('fmtkLoader').classList.remove('active');
+}
+
+// ===== MISE À JOUR DU BOUTON UPLOAD =====
+uploadBtn.addEventListener('click', () => {
+    if (!selectedFile || !fileContent) {
+        showPopup('⚠️', 'Fichier manquant', 'Veuillez sélectionner un fichier .FMTK', 'error');
+        return;
+    }
+
+    showLoader('📂 FMTK', 'Analyse de votre fichier...');
+
+    setTimeout(() => {
+        hideLoader();
+        showPopup('✅', 'Session chargée !', `Bienvenue ${fileContent.pseudo} !`, 'success');
+        
+        setTimeout(() => {
+            if (fileContent.equipe && fileContent.equipe.nom && fileContent.equipe.nom !== '') {
+                window.location.href = '/dashboard.html';
+            } else {
+                window.location.href = '/equipe/creer.html';
+            }
+        }, 1500);
+    }, 1500);
+});
+</script>
