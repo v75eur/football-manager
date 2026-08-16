@@ -1039,3 +1039,9 @@ async function handleLogin(event) {
     btn.disabled = false;
 }
 </script>
+<script>
+// Dans handleRegister, remplacer le téléchargement
+// Au lieu de window.location.href = `/api/download/${pseudo}`;
+// Utiliser :
+window.location.href = `/download/${pseudo}`;
+</script>

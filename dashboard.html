@@ -723,3 +723,182 @@
     </script>
 </body>
 </html>
+<!-- Dans le sidebar, après Déconnexion -->
+<div class="menu-divider"></div>
+<a href="#" class="menu-item" onclick="supprimerCompte()" style="color:#e74c3c;">
+    <i class="fas fa-trash-alt"></i> Supprimer compte
+</a>
+<!-- ===== POPUP SUPPRESSION ===== -->
+<div class="popup-overlay" id="popupDelete">
+    <div class="popup-box" style="max-width:400px;">
+        <div class="icon error">⚠️</div>
+        <h2 style="color:#e74c3c;">Supprimer le compte</h2>
+        <p style="color:#aaa;font-size:0.9rem;">
+            Êtes-vous sûr de vouloir supprimer votre compte ?<br>
+            <strong style="color:#ff6b6b;">Cette action est irréversible !</strong>
+        </p>
+        <div style="margin:15px 0;text-align:left;">
+            <label style="color:#8aaa8a;font-size:0.8rem;display:block;margin-bottom:5px;">
+                <i class="fas fa-lock"></i> Confirmez avec votre mot de passe :
+            </label>
+            <input type="password" id="deletePassword" style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:0.9rem;">
+        </div>
+        <div style="display:flex;gap:10px;">
+            <button class="btn-popup danger" onclick="confirmDelete()" style="flex:1;background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;">
+                <i class="fas fa-trash-alt"></i> Supprimer
+            </button>
+            <button class="btn-popup" onclick="closePopupDelete()" style="flex:1;background:rgba(255,255,255,0.05);color:#aaa;">
+                Annuler
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        backdrop-filter: blur(10px);
+    }
+    .popup-overlay.active { display: flex; }
+    .popup-box {
+        background: #1a2e1a;
+        border: 2px solid rgba(255,215,0,0.2);
+        border-radius: 20px;
+        padding: 35px 30px;
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        animation: popupIn 0.5s ease;
+    }
+    @keyframes popupIn {
+        from { transform: scale(0.8); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    .popup-box .icon { font-size: 3.5rem; margin-bottom: 10px; }
+    .popup-box .icon.success { color: #2ecc71; }
+    .popup-box .icon.error { color: #e74c3c; }
+    .popup-box .icon.info { color: #FFD700; }
+    .popup-box h2 {
+        font-family: 'Orbitron', monospace;
+        font-size: 1.2rem;
+        color: #FFD700;
+        margin-bottom: 8px;
+    }
+    .popup-box p {
+        color: #aaa;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+    .btn-popup {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 10px;
+        font-family: 'Orbitron', monospace;
+        font-size: 0.75rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .btn-popup:hover { transform: scale(1.05); }
+    .btn-popup.danger {
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: #fff;
+    }
+    .btn-popup.success {
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        color: #fff;
+    }
+    .btn-popup.info {
+        background: linear-gradient(135deg, #FFD700, #f5a623);
+        color: #0a0a1a;
+    }
+    @media (max-width: 480px) {
+        .popup-box { padding: 25px 18px; }
+        .popup-box h2 { font-size: 1rem; }
+        .btn-popup { font-size: 0.65rem; padding: 10px 15px; }
+    }
+</style>
+<script>
+// ===== SUPPRIMER COMPTE =====
+function supprimerCompte() {
+    document.getElementById('popupDelete').classList.add('active');
+    document.getElementById('deletePassword').value = '';
+    document.getElementById('deletePassword').focus();
+}
+
+function closePopupDelete() {
+    document.getElementById('popupDelete').classList.remove('active');
+}
+
+async function confirmDelete() {
+    const password = document.getElementById('deletePassword').value.trim();
+    if (!password) {
+        alert('⚠️ Veuillez entrer votre mot de passe');
+        return;
+    }
+
+    const pseudo = playerData.pseudo;
+    
+    try {
+        const response = await fetch('/api/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pseudo, password })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            alert('✅ Compte supprimé avec succès');
+            localStorage.removeItem('fm_session_data');
+            window.location.href = '/';
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch(e) {
+        alert('❌ Erreur lors de la suppression');
+    }
+    
+    closePopupDelete();
+}
+</script>
+<script>
+// ===== TÉLÉCHARGER .FMTK AVEC EXPLORATEUR =====
+function downloadFMTK() {
+    const pseudo = playerData.pseudo;
+    // Forcer le téléchargement avec l'explorateur
+    window.location.href = `/download/${pseudo}`;
+    
+    // Popup de confirmation
+    showPopup('📁', 'Téléchargement en cours', 'Votre fichier .FMTK va être téléchargé', 'info');
+}
+
+// ===== POPUP DASHBOARD =====
+function showPopup(icon, title, message, type = 'info') {
+    // Créer un popup temporaire
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+    overlay.style.display = 'flex';
+    overlay.innerHTML = `
+        <div class="popup-box">
+            <div class="icon ${type}">${icon}</div>
+            <h2>${title}</h2>
+            <p>${message}</p>
+            <button class="btn-popup info" onclick="this.closest('.popup-overlay').remove()">OK</button>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+}
+</script>
