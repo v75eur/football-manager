@@ -48,7 +48,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 180px;
+            min-height: 160px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -86,7 +86,7 @@
             font-size: 0.7rem;
             letter-spacing: 0.5px;
             line-height: 1.6;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .tagline i { color: #FFD700; margin-right: 6px; width: 18px; }
 
@@ -287,7 +287,9 @@
         }
         .test-link:hover { background: rgba(255,215,0,0.1); }
 
-        /* ===== WIZARD ===== */
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== WIZARD (mobile uniquement) ===== */
         #wizardOverlay {
             display: none;
             position: fixed;
@@ -376,14 +378,14 @@
         .wizard-step .step-icon { font-size: 2.5rem; text-align: center; margin-bottom: 8px; }
         .wizard-step h2 {
             font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #FFD700;
             margin-bottom: 8px;
             text-align: center;
         }
         .wizard-step p {
             color: #aaa;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             line-height: 1.5;
             margin-bottom: 12px;
             text-align: center;
@@ -444,42 +446,11 @@
             flex: 1;
         }
 
-        /* ===== OVERLAY ROTATION ===== */
-        #rotate-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 99998;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        #rotate-overlay i {
-            font-size: 3.5rem;
-            color: #FFD700;
-            animation: spin 2s infinite;
-        }
-        #rotate-overlay h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            margin-top: 15px;
-        }
-        #rotate-overlay p { color: #aaa; margin-top: 8px; font-size: 0.9rem; }
-
-        @keyframes spin { to { transform: rotate(360deg); } }
-
         /* ===== PC ===== */
         @media (min-width: 769px) {
             .container { padding: 30px; }
             .main-card { max-width: 600px; max-height: 90vh; border-radius: 30px; }
-            .header { min-height: 200px; padding: 30px; }
+            .header { min-height: 180px; padding: 30px; }
             .logo { font-size: 3.2rem; }
             .body { padding: 25px 30px 30px; }
             .form-title { font-size: 1.3rem; }
@@ -490,43 +461,29 @@
 </head>
 <body>
 
-<!-- ===== OVERLAY ROTATION ===== -->
-<div id="rotate-overlay">
-    <i class="fas fa-rotate-90"></i>
-    <h2>📱 Tournez votre téléphone</h2>
-    <p>Mode paysage requis pour Football Manager</p>
-</div>
-
-<!-- ===== WIZARD (mobile) ===== -->
+<!-- ===== WIZARD (mobile uniquement) ===== -->
 <div id="wizardOverlay">
     <div class="wizard-container">
         <div class="wizard-progress">
-            <div class="step active"><div class="circle">1</div><div class="label">Paysage</div></div>
+            <div class="step active"><div class="circle">1</div><div class="label">Config</div></div>
             <div class="step"><div class="circle">2</div><div class="label">Desktop</div></div>
             <div class="step"><div class="circle">3</div><div class="label">Prêt</div></div>
         </div>
         <div class="wizard-step active" data-step="0">
             <div class="step-icon">📱</div>
-            <h2>Mode Paysage</h2>
-            <p>Tournez votre téléphone à l'<strong>horizontal</strong></p>
-            <div class="status-box">
-                <span class="status-icon pending"><i class="fas fa-sync-alt fa-spin"></i></span>
-                <div class="status-text">En attente...</div>
-            </div>
-            <div style="text-align:center;padding:12px;background:rgba(255,215,0,0.05);border-radius:10px;">
-                <i class="fas fa-rotate-90" style="color:#FFD700;font-size:2rem;animation:spin 2s infinite;"></i>
-            </div>
-            <div class="wizard-actions">
-                <button class="btn-next" id="step1Next" disabled>Vérifier →</button>
-            </div>
-        </div>
-        <div class="wizard-step" data-step="1">
-            <div class="step-icon">🖥️</div>
-            <h2>Activer "Version PC"</h2>
+            <h2>Configuration</h2>
+            <p>Activez le mode <strong>"Version ordinateur"</strong> dans votre navigateur</p>
             <div class="instruction-box">
                 <p>🇫🇷 Appuyez sur ⋮ → <strong>Cochez</strong> "Version ordinateur"</p>
                 <p class="lang-en">🇬🇧 Tap ⋮ → <strong>Check</strong> "Desktop Site"</p>
             </div>
+            <div class="wizard-actions">
+                <button class="btn-next" id="step1Next">Vérifier →</button>
+            </div>
+        </div>
+        <div class="wizard-step" data-step="1">
+            <div class="step-icon">🖥️</div>
+            <h2>Vérification</h2>
             <div class="status-box">
                 <span class="status-icon pending"><i class="fas fa-sync-alt fa-spin"></i></span>
                 <div class="status-text">En attente...</div>
@@ -539,7 +496,7 @@
         <div class="wizard-step" data-step="2">
             <div class="step-icon">✅</div>
             <h2>Prêt !</h2>
-            <p>Votre téléphone est prêt</p>
+            <p>Votre téléphone est configuré</p>
             <div style="background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.2);border-radius:10px;padding:15px;text-align:center;margin:10px 0;">
                 <i class="fas fa-check-circle" style="color:#2ecc71;font-size:2.5rem;"></i>
                 <p style="color:#2ecc71;font-size:0.9rem;margin-top:6px;">✅ Tout est prêt !</p>
@@ -861,16 +818,6 @@ function isMobile() {
     return /Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 }
 
-// ===== OVERLAY ROTATION =====
-function checkOrientation() {
-    const overlay = document.getElementById('rotate-overlay');
-    if (isMobile() && window.innerHeight > window.innerWidth) {
-        overlay.style.display = 'flex';
-    } else {
-        overlay.style.display = 'none';
-    }
-}
-
 // ===== TABS =====
 function switchTab(tab) {
     document.querySelectorAll('.tab-btn').forEach(b => {
@@ -916,26 +863,6 @@ function nextStep() {
 
 function prevStep() {
     if (currentStep > 0) goToStep(currentStep - 1);
-}
-
-function checkLandscape() {
-    const isLandscape = window.innerWidth > window.innerHeight;
-    const statusBox = document.querySelector('#wizardOverlay .status-box');
-    if (statusBox && document.querySelector('.wizard-step.active[data-step="0"]')) {
-        const icon = statusBox.querySelector('.status-icon');
-        const text = statusBox.querySelector('.status-text');
-        if (isLandscape) {
-            icon.className = 'status-icon success';
-            icon.innerHTML = '<i class="fas fa-check-circle"></i>';
-            text.textContent = '✅ Mode paysage détecté !';
-            document.getElementById('step1Next').disabled = false;
-        } else {
-            icon.className = 'status-icon pending';
-            icon.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i>';
-            text.textContent = '⏳ Tournez votre téléphone...';
-            document.getElementById('step1Next').disabled = true;
-        }
-    }
 }
 
 function checkDesktop() {
@@ -1031,25 +958,27 @@ async function handleRegister(event) {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
-    checkOrientation();
-    window.addEventListener('resize', checkOrientation);
-    window.addEventListener('orientationchange', function() {
-        setTimeout(checkOrientation, 300);
-    });
-
+    // Wizard UNIQUEMENT sur mobile
     if (isMobile() && localStorage.getItem('fm_config_done') !== 'true') {
         document.getElementById('wizardOverlay').classList.add('active');
-        setTimeout(checkLandscape, 500);
         setTimeout(checkDesktop, 500);
-        window.addEventListener('resize', function() {
-            if (document.getElementById('wizardOverlay').classList.contains('active')) {
-                checkLandscape();
-                checkDesktop();
+        
+        document.getElementById('step1Next').addEventListener('click', function() {
+            checkDesktop();
+            if (document.getElementById('step2Next').disabled === false) {
+                nextStep();
+            } else {
+                alert('⚠️ Veuillez activer "Version ordinateur" dans votre navigateur');
             }
         });
-        document.getElementById('step1Next').addEventListener('click', nextStep);
+        
         document.getElementById('step2Prev').addEventListener('click', prevStep);
-        document.getElementById('step2Next').addEventListener('click', nextStep);
+        document.getElementById('step2Next').addEventListener('click', function() {
+            checkDesktop();
+            if (document.getElementById('step2Next').disabled === false) {
+                nextStep();
+            }
+        });
         document.getElementById('step3Prev').addEventListener('click', prevStep);
         document.getElementById('step3Finish').addEventListener('click', finishWizard);
     }
