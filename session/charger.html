@@ -2,154 +2,78 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#0a1a0a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Charger .FMTK - Football Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Charger ma session - Football Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         html, body {
-            width: 100%;
-            min-height: 100vh;
-            font-family: 'Rajdhani', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width:100%; height:100%;
+            font-family:'Rajdhani',sans-serif;
+            background:#0a1a0a; color:#fff;
+            overflow-y: auto !important;
+            overflow-x: auto !important;
         }
-        body {
-            padding: 10px;
-            background: radial-gradient(ellipse at center, #0d1f0d 0%, #0a0a0a 100%);
-        }
-
-        /* ===== WIZARD PAYSAGE (bloque l'accès en portrait) ===== */
-        #wizardLandscape {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 999999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 30px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: opacity 0.5s ease;
-        }
-        #wizardLandscape.hidden { opacity: 0; pointer-events: none; }
-        #wizardLandscape .icon {
-            font-size: 4.5rem;
-            color: #FFD700;
-            animation: rotate-phone 2s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
-        @keyframes rotate-phone {
-            0%, 100% { transform: rotate(0deg); }
-            50% { transform: rotate(90deg); }
-        }
-        #wizardLandscape h1 {
-            font-family: 'Orbitron', monospace;
-            color: #FFD700;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        #wizardLandscape p {
-            color: #8aaa8a;
-            font-size: 1.1rem;
-            max-width: 400px;
-            line-height: 1.6;
-        }
-        #wizardLandscape .step {
-            margin-top: 20px;
-            color: #aaa;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        #wizardLandscape .spinner {
-            margin-top: 30px;
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255,215,0,0.1);
-            border-top-color: #FFD700;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            margin: 0 auto;
-            background: rgba(10,20,10,0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 24px;
-            border: 1px solid rgba(255,215,0,0.06);
-            padding: 24px 20px 28px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            position: relative;
-            overflow: hidden;
-        }
-        .container::before {
+        body::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: url('/accueil/OIP-1393549177.jpg') center/cover no-repeat;
-            opacity: 0.05;
-            z-index: 0;
-            pointer-events: none;
+            opacity: 0.08;
+            z-index: -1;
         }
-        .container > * { position: relative; z-index: 1; }
-
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            color: #FFD700;
+        .container {
+            width:100%;
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            background: rgba(10,30,10,0.5);
+            backdrop-filter: blur(10px);
+        }
+        .upload-card {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(10,30,10,0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255,215,0,0.08);
+            padding: 35px 30px 30px;
             text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
         }
-        .logo .v1 { font-size: 0.7rem; color: #2ecc71; }
-
-        h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            color: #fff;
-            text-align: center;
-            margin: 10px 0 5px;
-        }
+        .logo { font-family: 'Orbitron', monospace; font-size: 2.2rem; font-weight: 900; color: #FFD700; }
+        .logo-sub { font-size: 0.7rem; color: #7aaa7a; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 15px; }
+        .upload-icon { font-size: 3.5rem; color: #FFD700; margin-bottom: 10px; }
+        h2 { font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #fff; margin-bottom: 5px; }
         h2 span { color: #FFD700; }
-
-        p { color: #8aaa8a; text-align: center; font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
-
+        .sub-text { color: #8aaa8a; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; }
         .upload-area {
             border: 2px dashed rgba(255,215,0,0.2);
-            border-radius: 16px;
-            padding: 30px 20px;
-            text-align: center;
+            border-radius: 15px;
+            padding: 25px 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             background: rgba(255,255,255,0.02);
+            margin: 10px 0;
         }
         .upload-area:hover { border-color: rgba(255,215,0,0.4); background: rgba(255,215,0,0.05); }
-        .upload-area .icon { font-size: 3rem; color: #5a7a5a; }
-        .upload-area .text { color: #8aaa8a; font-size: 0.9rem; }
+        .upload-area .icon { font-size: 2.5rem; color: #5a7a5a; }
+        .upload-area .text { color: #8aaa8a; font-size: 0.85rem; }
         .upload-area .text strong { color: #FFD700; }
-        .upload-area.dragover { border-color: #FFD700; background: rgba(255,215,0,0.1); }
-        .file-info { display: none; color: #2ecc71; margin-top: 10px; }
-
+        .file-info {
+            display: none;
+            color: #2ecc71;
+            font-size: 0.9rem;
+            margin-top: 8px;
+            padding: 8px;
+            background: rgba(46,204,113,0.05);
+            border-radius: 8px;
+        }
+        .file-info i { margin-right: 8px; }
         .btn-upload {
             width: 100%;
             padding: 14px;
@@ -164,177 +88,198 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
-        .btn-upload:disabled { opacity: 0.5; cursor: not-allowed; }
-
+        .btn-upload:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+        .btn-upload .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(10,10,26,0.2);
+            border-top-color: #0a0a1a;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .btn-upload.loading .spinner { display: inline-block; }
+        .btn-upload.loading .btn-text { display: none; }
         .btn-back {
             display: inline-block;
             margin-top: 12px;
             padding: 10px 20px;
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
             color: #7a9a7a;
             text-decoration: none;
             font-size: 0.8rem;
             transition: all 0.3s ease;
-            text-align: center;
-            width: 100%;
         }
         .btn-back:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
-        .error { background: rgba(255,107,107,0.1); border: 1px solid rgba(255,107,107,0.2); border-radius: 10px; padding: 12px; margin: 10px 0; color: #ff6b6b; display: none; }
-        .success { background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.2); border-radius: 10px; padding: 12px; margin: 10px 0; color: #2ecc71; display: none; }
-
-        .spinner-small {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(10,10,26,0.2);
-            border-top-color: #0a0a1a;
-            border-radius: 50%;
-            animation: spin 0.7s linear infinite;
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.92);
-            color: #FFD700;
-            padding: 10px 20px;
+        .error {
+            background: rgba(255,107,107,0.1);
+            border: 1px solid rgba(255,107,107,0.15);
             border-radius: 10px;
-            border: 1px solid rgba(255,215,0,0.12);
-            font-family: 'Rajdhani', sans-serif;
+            padding: 10px;
+            margin: 10px 0;
+            color: #ff6b6b;
+            font-size: 0.85rem;
+            display: none;
+        }
+        .success {
+            background: rgba(46,204,113,0.1);
+            border: 1px solid rgba(46,204,113,0.15);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            color: #2ecc71;
+            font-size: 0.85rem;
+            display: none;
+        }
+        .info-box {
+            background: rgba(255,215,0,0.05);
+            border-left: 3px solid #FFD700;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            text-align: left;
+        }
+        .info-box p {
+            color: #aaa;
             font-size: 0.8rem;
-            z-index: 999999;
-            max-width: 88%;
+            margin: 4px 0;
+        }
+        .info-box i { color: #FFD700; margin-right: 8px; width: 18px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== MESSAGE MOBILE ===== */
+        #mobileNotice {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
-            animation: toastIn 0.3s ease;
-            pointer-events: none;
         }
-        @keyframes toastIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        #mobileNotice.show { display: flex; }
+        #mobileNotice .icon { font-size: 3rem; color: #FFD700; margin-bottom: 15px; }
+        #mobileNotice h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.1rem;
+            color: #FFD700;
+            margin-bottom: 10px;
         }
-        @keyframes toastOut {
-            from { opacity: 1; transform: translateX(-50%) translateY(0); }
-            to { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        #mobileNotice p { color: #aaa; font-size: 0.85rem; line-height: 1.6; max-width: 400px; margin-bottom: 15px; }
+        #mobileNotice .steps {
+            background: rgba(255,215,0,0.05);
+            border-radius: 12px;
+            padding: 15px 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 15px;
+        }
+        #mobileNotice .steps li {
+            color: #ccc;
+            font-size: 0.8rem;
+            padding: 5px 0;
+            list-style: none;
+        }
+        #mobileNotice .steps li i { color: #FFD700; margin-right: 10px; width: 20px; }
+        #mobileNotice .btn-confirm {
+            padding: 12px 40px;
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            border: none;
+            border-radius: 12px;
+            color: #0a0a1a;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        #mobileNotice .btn-confirm:hover { transform: scale(1.05); }
+        #mobileNotice .lang-en {
+            color: #666;
+            font-size: 0.65rem;
+            margin-top: 12px;
         }
 
-        @media (max-width: 400px) {
-            .container { padding: 16px 14px 20px; }
-            .logo { font-size: 1.6rem; }
+        @media (max-width: 480px) {
+            .upload-card { padding: 25px 18px 25px; }
+            .logo { font-size: 1.8rem; }
+            .upload-icon { font-size: 2.8rem; }
             h2 { font-size: 1rem; }
-            .upload-area { padding: 20px 12px; }
-            .upload-area .icon { font-size: 2.5rem; }
-            .btn-upload { padding: 12px; font-size: 0.7rem; }
-        }
-
-        @media (orientation: landscape) and (max-height: 500px) {
-            body { padding: 4px; align-items: flex-start; }
-            .container { padding: 12px 16px; max-width: 500px; border-radius: 16px; }
-            .logo { font-size: 1.4rem; }
-            h2 { font-size: 0.9rem; margin: 5px 0; }
-            p { font-size: 0.75rem; margin-bottom: 10px; }
-            .upload-area { padding: 12px 10px; }
-            .upload-area .icon { font-size: 2rem; }
-            .btn-upload { padding: 8px; font-size: 0.6rem; margin-top: 8px; }
-            .btn-back { padding: 6px; font-size: 0.6rem; margin-top: 6px; }
-        }
-
-        @media (min-width: 769px) {
-            body { padding: 30px; }
-            .container { max-width: 600px; padding: 32px 36px; }
-            .logo { font-size: 2.6rem; }
-            h2 { font-size: 1.4rem; }
-            .btn-upload { padding: 16px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== WIZARD PAYSAGE ===== -->
-<div id="wizardLandscape">
+<!-- ===== MESSAGE MOBILE ===== -->
+<div id="mobileNotice">
     <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-    <h1>📱 Mode Paysage</h1>
-    <p>Veuillez tourner votre téléphone à l'<strong>horizontal</strong> pour charger votre session</p>
-    <div class="step">
-        <span class="wait"><i class="fas fa-spinner fa-spin"></i></span>
-        <span id="statusText">En attente du mode paysage...</span>
+    <h2>📱 Version ordinateur</h2>
+    <p>Pour une meilleure expérience sur mobile</p>
+    <div class="steps">
+        <li><i class="fas fa-ellipsis-v"></i> Appuyez sur les <strong>trois points</strong> (⋮)</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Cochez</strong> "Version ordinateur"</li>
+        <li><i class="fas fa-redo"></i> Rechargez la page</li>
     </div>
-    <div class="spinner"></div>
+    <button class="btn-confirm" onclick="confirmMobile()">✅ J'ai fait !</button>
+    <div class="lang-en">🇬🇧 Tap ⋮ → Check "Desktop Site"</div>
 </div>
 
-<!-- ===== CONTENEUR PRINCIPAL ===== -->
-<div class="container" id="mainContent" style="display:none;">
-    <div class="logo">⚽ FMTK<span class="v1">V1</span></div>
-    <h2>Charger votre <span>session</span></h2>
-    <p>Upload votre fichier <strong style="color:#FFD700;">.FMTK</strong> pour reprendre votre partie</p>
+<!-- ===== PAGE ===== -->
+<div class="container">
+    <div class="upload-card">
+        <div class="logo">⚽ FM</div>
+        <div class="logo-sub">Football Manager</div>
+        <div class="upload-icon"><i class="fas fa-upload"></i></div>
+        <h2>Charger ma <span>session</span></h2>
+        <p class="sub-text">Upload votre fichier <strong style="color:#FFD700;">.FM</strong> pour reprendre votre partie</p>
 
-    <div class="upload-area" id="dropZone">
-        <div class="icon"><i class="fas fa-file-upload"></i></div>
-        <div class="text"><strong>Cliquez ici</strong> ou glissez votre fichier .FMTK<br><span style="font-size:0.8rem;color:#5a7a5a;">Format accepté : .FMTK</span></div>
-        <div class="file-info" id="fileInfo"><i class="fas fa-check-circle"></i> <span id="fileName">fichier.FMTK</span></div>
-        <input type="file" id="fileInput" accept=".FMTK,.json" style="display:none;">
+        <div class="info-box">
+            <p><i class="fas fa-info-circle"></i> Fichier généré lors de votre inscription</p>
+            <p><i class="fas fa-file"></i> Format accepté : <strong style="color:#FFD700;">.FM</strong></p>
+        </div>
+
+        <div class="upload-area" id="dropZone">
+            <div class="icon"><i class="fas fa-file-upload"></i></div>
+            <div class="text"><strong>Cliquez ici</strong> ou glissez votre fichier .FM<br><span style="font-size:0.75rem;color:#5a7a5a;">Format accepté : .FM</span></div>
+            <div class="file-info" id="fileInfo"><i class="fas fa-check-circle"></i> <span id="fileName">fichier.FM</span></div>
+            <input type="file" id="fileInput" accept=".FM,.json" style="display:none;">
+        </div>
+
+        <div class="error" id="errorMessage"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
+        <div class="success" id="successMessage"><i class="fas fa-check-circle"></i> <span id="successText"></span></div>
+
+        <button class="btn-upload" id="uploadBtn" disabled>
+            <span class="spinner"></span>
+            <span class="btn-text"><i class="fas fa-play"></i> Charger ma session</span>
+        </button>
+
+        <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
     </div>
-
-    <div class="error" id="errorMessage"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
-    <div class="success" id="successMessage"><i class="fas fa-check-circle"></i> <span id="successText"></span></div>
-
-    <button class="btn-upload" id="uploadBtn" disabled><i class="fas fa-play"></i> Charger ma session</button>
-    <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
 </div>
-
-<!-- ===== TOAST ===== -->
-<div class="toast" id="toast" style="display:none;"></div>
 
 <script>
-// ===== WIZARD PAYSAGE =====
-function checkOrientation() {
-    const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-    const wizard = document.getElementById('wizardLandscape');
-    const main = document.getElementById('mainContent');
-    const statusText = document.getElementById('statusText');
-
-    if (!isMobile) {
-        wizard.classList.add('hidden');
-        main.style.display = 'block';
-        return;
-    }
-
-    const isLandscape = window.innerWidth > window.innerHeight;
-    if (isLandscape) {
-        wizard.classList.add('hidden');
-        main.style.display = 'block';
-        statusText.textContent = '✅ Mode paysage détecté !';
-    } else {
-        wizard.classList.remove('hidden');
-        main.style.display = 'none';
-        statusText.textContent = '⏳ En attente du mode paysage...';
-    }
+// ===== DÉTECTION MOBILE =====
+function isMobile() {
+    return /Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 }
 
-window.addEventListener('resize', checkOrientation);
-window.addEventListener('orientationchange', function() { setTimeout(checkOrientation, 300); });
-document.addEventListener('DOMContentLoaded', checkOrientation);
-
-// ===== TOAST =====
-function showToast(msg, type = 'info') {
-    const colors = { success: '#2ecc71', error: '#e74c3c', warning: '#f39c12', info: '#FFD700' };
-    const toast = document.getElementById('toast');
-    toast.style.color = colors[type] || '#FFD700';
-    toast.style.borderColor = (colors[type] || '#FFD700') + '40';
-    toast.textContent = msg;
-    toast.style.display = 'block';
-    toast.style.animation = 'toastIn 0.3s ease';
-    setTimeout(() => {
-        toast.style.animation = 'toastOut 0.3s ease forwards';
-        setTimeout(() => { toast.style.display = 'none'; }, 400);
-    }, 3000);
+// ===== MESSAGE MOBILE =====
+function confirmMobile() {
+    document.getElementById('mobileNotice').classList.remove('show');
+    localStorage.setItem('fm_mobile_ok', 'true');
 }
 
 // ===== UPLOAD =====
@@ -347,47 +292,33 @@ const errorMsg = document.getElementById('errorMessage');
 const errorText = document.getElementById('errorText');
 const successMsg = document.getElementById('successMessage');
 const successText = document.getElementById('successText');
-let selectedFile = null, fileContent = null;
+let selectedFile = null;
+let fileContent = null;
 
-// Drag & Drop
 dropZone.addEventListener('click', () => fileInput.click());
-
-dropZone.addEventListener('dragover', (e) => {
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = '#FFD700'; });
+dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'rgba(255,215,0,0.2)'; });
+dropZone.addEventListener('drop', e => {
     e.preventDefault();
-    dropZone.classList.add('dragover');
+    dropZone.style.borderColor = 'rgba(255,215,0,0.2)';
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
 });
-
-dropZone.addEventListener('dragleave', () => {
-    dropZone.classList.remove('dragover');
-});
-
-dropZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropZone.classList.remove('dragover');
-    if (e.dataTransfer.files.length) {
-        handleFile(e.dataTransfer.files[0]);
-    }
-});
-
-fileInput.addEventListener('change', (e) => {
-    if (e.target.files.length) {
-        handleFile(e.target.files[0]);
-    }
+fileInput.addEventListener('change', e => {
+    if (e.target.files.length) handleFile(e.target.files[0]);
 });
 
 function handleFile(file) {
     const ext = file.name.split('.').pop().toLowerCase();
-    if (ext !== 'fmtk' && ext !== 'json') {
-        showError('⚠️ Format invalide. Utilisez un fichier .FMTK');
+    if (ext !== 'fm' && ext !== 'json') {
+        showError('⚠️ Format invalide. Utilisez un fichier .FM');
         return;
     }
-
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = e => {
         try {
             const content = JSON.parse(e.target.result);
             if (!content.pseudo) {
-                showError('⚠️ Fichier .FMTK invalide');
+                showError('⚠️ Fichier .FM invalide ou corrompu');
                 return;
             }
             selectedFile = file;
@@ -398,7 +329,6 @@ function handleFile(file) {
             dropZone.querySelector('.icon').style.display = 'none';
             uploadBtn.disabled = false;
             showSuccess('✅ Fichier valide ! Bienvenue ' + content.pseudo);
-            showToast('✅ Fichier ' + content.pseudo + '.FMTK chargé !', 'success');
         } catch(err) {
             showError('⚠️ Erreur de lecture du fichier');
         }
@@ -420,25 +350,31 @@ function showSuccess(msg) {
     setTimeout(() => successMsg.style.display = 'none', 5000);
 }
 
-// ===== UPLOAD =====
 uploadBtn.addEventListener('click', () => {
-    if (!selectedFile || !fileContent) {
-        showToast('⚠ Veuillez sélectionner un fichier .FMTK', 'warning');
-        return;
-    }
+    if (!selectedFile || !fileContent) return;
 
     // Sauvegarder dans localStorage
     localStorage.setItem('fm_session_data', JSON.stringify(fileContent));
     localStorage.setItem('fm_session_pseudo', fileContent.pseudo);
 
-    uploadBtn.innerHTML = '<span class="spinner-small"></span> Chargement...';
+    uploadBtn.classList.add('loading');
     uploadBtn.disabled = true;
-    showToast('🚀 Chargement de votre session...', 'info');
 
-    // Redirection vers le jeu avec animation
     setTimeout(() => {
-        window.location.href = '/jeu';
+        // Vérifier si l'équipe existe déjà
+        if (fileContent.equipe && fileContent.equipe.nom && fileContent.equipe.nom !== '') {
+            window.location.href = '/dashboard.html';
+        } else {
+            window.location.href = '/equipe/creer.html';
+        }
     }, 1500);
+});
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+    if (isMobile() && localStorage.getItem('fm_mobile_ok') !== 'true') {
+        document.getElementById('mobileNotice').classList.add('show');
+    }
 });
 </script>
 </body>
