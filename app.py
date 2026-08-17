@@ -234,3 +234,27 @@ def serve_static(path):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+from backend.backup_manager import BackupManager
+
+# Initialiser le BackupManager
+backup_manager = BackupManager()
+from backend.backup_manager import BackupManager
+
+# Initialiser le BackupManager
+backup_manager = BackupManager()
+
+# ===== API : RESTAURER DEPUIS BACKUP =====
+@app.route('/api/restore/<pseudo>', methods=['GET'])
+def restore_from_backup(pseudo):
+    try:
+        data = backup_manager.restore_player(pseudo)
+        if data:
+            # Sauvegarder localement
+            filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+            return jsonify({'success': True, 'message': 'Fichier restauré depuis le backup', 'data': data})
+        else:
+            return jsonify({'success': False, 'message': 'Aucun backup trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
