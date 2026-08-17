@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dashboard - FMTK-v1.26</title>
+    <title>FMTK-v1.26 - Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -20,14 +20,14 @@
         .header {
             background: linear-gradient(135deg, #0d2a0d, #0a1a0a);
             border-bottom: 2px solid rgba(255,215,0,0.1);
-            padding: 12px 15px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 8px;
         }
-        .header-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .header-left { display: flex; align-items: center; gap: 12px; flex-wrap:wrap; }
         .header-left .logo {
             font-family:'Orbitron',monospace;
             font-size:1.2rem;
@@ -48,23 +48,23 @@
         .header-right {
             display: flex;
             align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
+            gap:10px;
+            flex-wrap:wrap;
         }
         .header-right .coach {
             color:#8aaa8a;
-            font-size:0.7rem;
+            font-size:0.75rem;
             text-align:right;
         }
         .header-right .coach strong { color:#FFD700; }
         .header-right .btn-download {
-            padding:6px 12px;
+            padding:6px 14px;
             background:linear-gradient(135deg, #FFD700, #f5a623);
             border:none;
-            border-radius:8px;
+            border-radius:6px;
             color:#0a0a1a;
             font-family:'Orbitron',monospace;
-            font-size:0.55rem;
+            font-size:0.6rem;
             font-weight:700;
             cursor:pointer;
             transition:all 0.3s;
@@ -72,27 +72,27 @@
             align-items:center;
             gap:4px;
         }
-        .header-right .btn-download:hover { transform:scale(1.05); box-shadow:0 4px 20px rgba(255,215,0,0.3); }
+        .header-right .btn-download:hover { transform:scale(1.05); }
 
-        /* ===== STATS BAR ===== */
+        /* ===== BANDEAU STATS ===== */
         .stats-bar {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            padding: 10px 12px;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap:5px;
+            padding:10px 15px;
             background: rgba(0,0,0,0.3);
             border-bottom: 1px solid rgba(255,215,0,0.05);
         }
         .stat-item {
             text-align:center;
-            padding:6px 4px;
+            padding:5px;
             background:rgba(255,255,255,0.02);
             border-radius:8px;
             border:1px solid rgba(255,255,255,0.03);
         }
         .stat-item .number {
             font-family:'Orbitron',monospace;
-            font-size:1.1rem;
+            font-size:1.2rem;
             font-weight:700;
             color:#FFD700;
         }
@@ -101,57 +101,53 @@
             color:#7aaa7a;
             text-transform:uppercase;
             letter-spacing:0.5px;
-            margin-top:1px;
         }
 
         /* ===== CONTENU ===== */
         .container {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            padding: 12px;
-            max-width: 1400px;
+            grid-template-columns: 220px 1fr;
+            gap:15px;
+            padding:15px;
+            max-width:1400px;
             margin:0 auto;
         }
 
-        /* ===== SIDEBAR (mobile = grid) ===== */
+        /* ===== SIDEBAR ===== */
         .sidebar {
             background:rgba(10,30,10,0.5);
             border-radius:12px;
             border:1px solid rgba(255,215,0,0.05);
-            padding:10px;
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            gap:4px;
+            padding:12px;
+            height:fit-content;
         }
         .sidebar .menu-title {
-            grid-column:1/-1;
             font-size:0.6rem;
             color:#5a7a5a;
             text-transform:uppercase;
             letter-spacing:1px;
+            margin-bottom:8px;
             padding-bottom:4px;
             border-bottom:1px solid rgba(255,255,255,0.05);
-            margin-bottom:4px;
         }
         .sidebar .menu-item {
             display:flex;
             align-items:center;
-            gap:8px;
+            gap:10px;
             padding:8px 10px;
             border-radius:8px;
             color:#9aaa9a;
             text-decoration:none;
             transition:all 0.3s;
             cursor:pointer;
-            font-size:0.75rem;
+            font-size:0.8rem;
         }
         .sidebar .menu-item:hover, .sidebar .menu-item.active {
             background:rgba(255,215,0,0.05);
             color:#FFD700;
-            border-left:2px solid #FFD700;
+            border-left:3px solid #FFD700;
         }
-        .sidebar .menu-item i { width:16px; color:#FFD700; font-size:0.8rem; }
+        .sidebar .menu-item i { width:18px; color:#FFD700; font-size:0.9rem; }
         .sidebar .menu-item .badge {
             margin-left:auto;
             background:rgba(255,215,0,0.1);
@@ -161,18 +157,13 @@
             border-radius:8px;
         }
         .sidebar .menu-divider {
-            grid-column:1/-1;
             height:1px;
             background:rgba(255,255,255,0.05);
-            margin:4px 0;
+            margin:6px 0;
         }
 
-        /* ===== MAIN CONTENT ===== */
-        .main-content {
-            display:flex;
-            flex-direction:column;
-            gap:12px;
-        }
+        /* ===== CONTENU PRINCIPAL ===== */
+        .main-content { display:flex; flex-direction:column; gap:15px; }
 
         /* ===== CARTES ===== */
         .card {
@@ -183,7 +174,7 @@
         }
         .card-title {
             font-family:'Orbitron',monospace;
-            font-size:0.75rem;
+            font-size:0.8rem;
             color:#FFD700;
             margin-bottom:10px;
             display:flex;
@@ -195,37 +186,35 @@
         /* ===== PROCHAIN MATCH ===== */
         .next-match {
             display:flex;
-            flex-direction:column;
+            justify-content:space-between;
             align-items:center;
-            gap:10px;
             padding:12px;
             background:rgba(255,215,0,0.03);
-            border-radius:10px;
+            border-radius:8px;
             border:1px solid rgba(255,215,0,0.05);
-            text-align:center;
+            flex-wrap:wrap;
+            gap:8px;
         }
-        .next-match .info { color:#8aaa8a; font-size:0.8rem; }
+        .next-match .info { color:#8aaa8a; font-size:0.85rem; }
         .next-match .info strong { color:#fff; }
-        .next-match .btn-match {
-            padding:8px 20px;
+        .btn-match {
+            padding:8px 18px;
             background:linear-gradient(135deg, #2ecc71, #27ae60);
             border:none;
             border-radius:8px;
             color:#fff;
             font-family:'Orbitron',monospace;
-            font-size:0.6rem;
+            font-size:0.65rem;
             font-weight:700;
             cursor:pointer;
             transition:all 0.3s;
-            width:100%;
-            max-width:200px;
         }
-        .next-match .btn-match:hover { transform:scale(1.05); }
+        .btn-match:hover { transform:scale(1.05); }
 
-        /* ===== PLAYER GRID ===== */
+        /* ===== JOUEURS ===== */
         .player-grid {
             display:grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap:8px;
         }
         .player-card {
@@ -234,17 +223,15 @@
             padding:10px;
             text-align:center;
             border:1px solid rgba(255,255,255,0.03);
-            transition:all 0.3s;
         }
-        .player-card:hover { background:rgba(255,215,0,0.03); }
         .player-card .number {
-            font-size:1.2rem;
+            font-size:1.4rem;
             font-weight:700;
             color:#FFD700;
             font-family:'Orbitron',monospace;
         }
         .player-card .name {
-            font-size:0.75rem;
+            font-size:0.8rem;
             font-weight:600;
             color:#fff;
         }
@@ -254,7 +241,7 @@
         }
         .player-card .rating {
             display:inline-block;
-            padding:1px 8px;
+            padding:2px 8px;
             border-radius:8px;
             font-size:0.6rem;
             font-weight:700;
@@ -264,38 +251,12 @@
         .player-card .rating.silver { background:rgba(192,192,192,0.2); color:#c0c0c0; }
         .player-card .rating.bronze { background:rgba(205,127,50,0.2); color:#cd7f32; }
 
-        /* ===== ACTIONS ===== */
-        .actions-grid {
-            display:grid;
-            grid-template-columns: 1fr 1fr;
-            gap:8px;
-        }
-        .actions-grid .btn-action {
-            padding:10px;
-            background:rgba(255,215,0,0.05);
-            border:1px solid rgba(255,215,0,0.08);
-            border-radius:8px;
-            color:#FFD700;
-            font-family:'Rajdhani',sans-serif;
-            font-size:0.7rem;
-            font-weight:600;
-            cursor:pointer;
-            transition:all 0.3s;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:6px;
-        }
-        .actions-grid .btn-action:hover { background:rgba(255,215,0,0.1); }
-
         /* ===== POPUP ===== */
         .popup-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.85);
             z-index: 99999;
             align-items: center;
@@ -307,56 +268,67 @@
         .popup-box {
             background: #1a2e1a;
             border: 2px solid rgba(255,215,0,0.2);
-            border-radius: 16px;
-            padding: 25px 20px;
-            max-width: 400px;
+            border-radius: 20px;
+            padding: 30px 25px;
+            max-width: 450px;
             width: 100%;
-            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-            animation: popupIn 0.4s ease;
+            animation: popupIn 0.5s ease;
         }
         @keyframes popupIn {
             from { transform: scale(0.8); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        .popup-box .icon { font-size: 2.5rem; margin-bottom: 8px; }
+        .popup-box .icon { font-size: 3rem; margin-bottom: 10px; }
         .popup-box .icon.success { color: #2ecc71; }
         .popup-box .icon.error { color: #e74c3c; }
         .popup-box .icon.info { color: #FFD700; }
         .popup-box h2 {
             font-family: 'Orbitron', monospace;
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #FFD700;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
         .popup-box p {
             color: #aaa;
-            font-size: 0.8rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            line-height: 1.6;
             margin-bottom: 12px;
         }
-        .popup-box input {
-            width:100%;
-            padding:10px 12px;
-            background:rgba(255,255,255,0.05);
-            border:1px solid rgba(255,255,255,0.1);
-            border-radius:8px;
-            color:#fff;
-            font-size:0.85rem;
-            margin-bottom:10px;
+        .popup-box label {
+            color: #8aaa8a;
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .popup-box input, .popup-box select {
+            width: 100%;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 10px;
+        }
+        .popup-box input:focus, .popup-box select:focus {
+            border-color: rgba(255,215,0,0.3);
         }
         .popup-box .btn-popup {
-            padding:10px 20px;
+            padding: 10px 25px;
             border: none;
-            border-radius:8px;
+            border-radius: 10px;
             font-family: 'Orbitron', monospace;
-            font-size:0.65rem;
-            font-weight:700;
-            cursor:pointer;
-            transition:all 0.3s;
-            margin:3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 5px;
         }
-        .popup-box .btn-popup:hover { transform:scale(1.05); }
+        .popup-box .btn-popup:hover { transform: scale(1.05); }
         .popup-box .btn-popup.danger {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: #fff;
@@ -372,566 +344,564 @@
         .popup-box .btn-popup.secondary {
             background: rgba(255,255,255,0.05);
             color: #aaa;
-            border:1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
         }
+        .popup-box .row { display:flex; gap:10px; }
+        .popup-box .row > * { flex:1; }
 
         /* ===== RESPONSIVE ===== */
-        @media (min-width: 768px) {
-            .container { grid-template-columns: 240px 1fr; padding: 20px; gap: 20px; }
-            .sidebar { display:block; padding:15px; }
-            .sidebar .menu-item { font-size:0.85rem; padding:10px 14px; }
-            .stats-bar { grid-template-columns: repeat(7, 1fr); padding:12px 20px; }
-            .stat-item .number { font-size:1.3rem; }
-            .player-grid { grid-template-columns: repeat(4, 1fr); }
-            .actions-grid { grid-template-columns: repeat(3, 1fr); }
-            .header { padding:15px 25px; }
-            .header-left .logo { font-size:1.5rem; }
-            .header-left .club-name { font-size:1.2rem; }
-            .next-match { flex-direction:row; justify-content:space-between; text-align:left; }
-            .next-match .btn-match { width:auto; }
-        }
-
-        @media (max-width: 480px) {
-            .stats-bar { grid-template-columns: repeat(2, 1fr); }
-            .player-grid { grid-template-columns: 1fr 1fr; }
-            .sidebar { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding:10px; gap:10px; }
+            .sidebar { display:grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap:4px; }
+            .sidebar .menu-title { grid-column:1/-1; }
+            .sidebar .menu-item { padding:6px 8px; font-size:0.7rem; }
+            .stats-bar { grid-template-columns: repeat(3,1fr); padding:8px 10px; }
+            .stat-item .number { font-size:1rem; }
+            .header { padding:10px 15px; }
+            .header-left .logo { font-size:1rem; }
             .header-left .club-name { font-size:0.85rem; }
-            .header-right .coach { font-size:0.6rem; }
+            .player-grid { grid-template-columns: repeat(2,1fr); }
+            .popup-box { padding:20px 15px; }
+            .popup-box .row { flex-direction:column; }
+        }
+        @media (max-width: 480px) {
+            .stats-bar { grid-template-columns: repeat(2,1fr); }
+            .player-grid { grid-template-columns: 1fr 1fr; }
+            .header-right .coach { font-size:0.65rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <div class="header-left">
-            <span class="logo">⚽ FMTK</span>
-            <div class="club-name" id="clubName">
-                Mon Club
-                <small>Division · Pays</small>
-            </div>
-        </div>
-        <div class="header-right">
-            <div class="coach">
-                <strong id="coachName">Coach</strong><br>
-                <span id="lastLogin">16/08/2026</span>
-            </div>
-            <button class="btn-download" onclick="downloadFMTK()">
-                <i class="fas fa-download"></i> .FMTK
-            </button>
-        </div>
-    </header>
-
-    <!-- ===== STATS BAR ===== -->
-    <div class="stats-bar">
-        <div class="stat-item">
-            <div class="number" id="matchsJoues">0</div>
-            <div class="label">Matchs</div>
-        </div>
-        <div class="stat-item">
-            <div class="number" id="victoires">0</div>
-            <div class="label">Victoires</div>
-        </div>
-        <div class="stat-item">
-            <div class="number" id="defaites">0</div>
-            <div class="label">Défaites</div>
-        </div>
-        <div class="stat-item">
-            <div class="number" id="nuls">0</div>
-            <div class="label">Nuls</div>
-        </div>
-        <div class="stat-item">
-            <div class="number" id="butsMarques">0</div>
-            <div class="label">Buts +</div>
-        </div>
-        <div class="stat-item">
-            <div class="number" id="butsEncaisses">0</div>
-            <div class="label">Buts -</div>
-        </div>
-        <div class="stat-item">
-            <div class="number" id="budget">0</div>
-            <div class="label">Budget</div>
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <div class="header-left">
+        <span class="logo">⚽ FMTK</span>
+        <div class="club-name" id="clubName">
+            Mon Club
+            <small>Division · Pays</small>
         </div>
     </div>
+    <div class="header-right">
+        <div class="coach">
+            <strong id="coachName">Coach</strong><br>
+            <span id="lastLogin">Dernière connexion: --</span>
+        </div>
+        <button class="btn-download" onclick="downloadFMTK()">
+            <i class="fas fa-download"></i> .FMTK
+        </button>
+    </div>
+</header>
 
-    <!-- ===== CONTENU ===== -->
-    <div class="container">
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+    <div class="stat-item"><div class="number" id="matchsJoues">0</div><div class="label">Matchs</div></div>
+    <div class="stat-item"><div class="number" id="victoires">0</div><div class="label">Victoires</div></div>
+    <div class="stat-item"><div class="number" id="defaites">0</div><div class="label">Défaites</div></div>
+    <div class="stat-item"><div class="number" id="nuls">0</div><div class="label">Nuls</div></div>
+    <div class="stat-item"><div class="number" id="butsMarques">0</div><div class="label">Buts +</div></div>
+    <div class="stat-item"><div class="number" id="butsEncaisses">0</div><div class="label">Buts -</div></div>
+    <div class="stat-item"><div class="number" id="budget">0</div><div class="label">Budget (€)</div></div>
+</div>
 
-        <!-- ===== SIDEBAR ===== -->
-        <aside class="sidebar">
-            <div class="menu-title">📋 Navigation</div>
-            <a href="#" class="menu-item active" onclick="showSection('dashboard')">
-                <i class="fas fa-home"></i> Dashboard
-            </a>
-            <a href="#" class="menu-item" onclick="showSection('equipe')">
-                <i class="fas fa-users"></i> Équipe
-                <span class="badge" id="nbJoueurs">0</span>
-            </a>
-            <a href="#" class="menu-item" onclick="showSection('club')">
-                <i class="fas fa-building"></i> Club
-            </a>
-            <a href="#" class="menu-item" onclick="showSection('match')">
-                <i class="fas fa-futbol"></i> Match
-            </a>
-            <a href="#" class="menu-item" onclick="showSection('stats')">
-                <i class="fas fa-chart-line"></i> Stats
-            </a>
-            <a href="#" class="menu-item" onclick="showSection('transferts')">
-                <i class="fas fa-euro-sign"></i> Transferts
-            </a>
-            <div class="menu-divider"></div>
-            <a href="#" class="menu-item" onclick="showSection('options')">
-                <i class="fas fa-cog"></i> Options
-            </a>
-            <a href="#" class="menu-item" style="color:#e74c3c;" onclick="supprimerCompte()">
-                <i class="fas fa-trash-alt"></i> Supprimer
-            </a>
-            <a href="/" class="menu-item">
-                <i class="fas fa-sign-out-alt"></i> Déconnexion
-            </a>
-        </aside>
+<!-- ===== CONTENU ===== -->
+<div class="container">
 
-        <!-- ===== MAIN ===== -->
-        <main class="main-content">
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+        <div class="menu-title">📋 Navigation</div>
+        <a href="#" class="menu-item active" onclick="showSection('dashboard')"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="#" class="menu-item" onclick="showSection('club')"><i class="fas fa-building"></i> Club</a>
+        <a href="#" class="menu-item" onclick="showSection('equipe')"><i class="fas fa-users"></i> Équipe <span class="badge" id="nbJoueurs">0</span></a>
+        <a href="#" class="menu-item" onclick="showSection('tactique')"><i class="fas fa-tasks"></i> Tactique</a>
+        <a href="#" class="menu-item" onclick="showSection('match')"><i class="fas fa-futbol"></i> Match</a>
+        <a href="#" class="menu-item" onclick="showSection('stats')"><i class="fas fa-chart-line"></i> Statistiques</a>
+        <a href="#" class="menu-item" onclick="showSection('transferts')"><i class="fas fa-euro-sign"></i> Transferts</a>
+        <div class="menu-divider"></div>
+        <a href="#" class="menu-item" onclick="showSection('options')"><i class="fas fa-cog"></i> Options</a>
+        <a href="#" class="menu-item" style="color:#e74c3c;" onclick="supprimerCompte()"><i class="fas fa-trash-alt"></i> Supprimer compte</a>
+        <div class="menu-divider"></div>
+        <a href="/" class="menu-item"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+    </aside>
 
-            <!-- ===== DASHBOARD ===== -->
-            <section id="section-dashboard">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-calendar-alt"></i> Prochain match</div>
-                    <div class="next-match">
-                        <div class="info">
-                            <strong id="nextMatch">Aucun match programmé</strong>
-                        </div>
-                        <button class="btn-match" onclick="showSection('match')">
-                            <i class="fas fa-play"></i> Jouer
-                        </button>
-                    </div>
+    <!-- ===== CONTENU PRINCIPAL ===== -->
+    <main class="main-content">
+
+        <!-- ===== DASHBOARD ===== -->
+        <section id="section-dashboard">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-calendar-alt"></i> Prochain match</div>
+                <div class="next-match">
+                    <div class="info"><strong id="nextMatch">Aucun match programmé</strong></div>
+                    <button class="btn-match" onclick="showSection('match')"><i class="fas fa-play"></i> Jouer</button>
                 </div>
+            </div>
 
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-star"></i> Meilleurs joueurs</div>
-                    <div class="player-grid" id="bestPlayers">
-                        <div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:15px;font-size:0.8rem;">
-                            Aucun joueur dans l'équipe
-                        </div>
-                    </div>
+            <div class="card">
+                <div class="card-title"><i class="fas fa-star"></i> Meilleurs joueurs</div>
+                <div class="player-grid" id="bestPlayers">
+                    <div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:10px;">Aucun joueur</div>
                 </div>
+            </div>
 
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-bolt"></i> Actions rapides</div>
-                    <div class="actions-grid">
-                        <button class="btn-action" onclick="showSection('equipe')">
-                            <i class="fas fa-users"></i> Équipe
-                        </button>
-                        <button class="btn-action" onclick="showSection('club')">
-                            <i class="fas fa-building"></i> Club
-                        </button>
-                        <button class="btn-action" onclick="downloadFMTK()">
-                            <i class="fas fa-save"></i> Sauvegarder
-                        </button>
-                        <button class="btn-action" onclick="showSection('match')">
-                            <i class="fas fa-futbol"></i> Match
-                        </button>
-                    </div>
+            <div class="card">
+                <div class="card-title"><i class="fas fa-bolt"></i> Actions rapides</div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;">
+                    <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;" onclick="showSection('club')"><i class="fas fa-building"></i> Club</button>
+                    <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;" onclick="showSection('equipe')"><i class="fas fa-users"></i> Équipe</button>
+                    <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;" onclick="downloadFMTK()"><i class="fas fa-save"></i> Sauvegarder</button>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ===== EQUIPE ===== -->
-            <section id="section-equipe" style="display:none;">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-users"></i> Effectif</div>
-                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
-                        <span style="color:#8aaa8a;font-size:0.8rem;" id="effectifInfo">0 joueurs</span>
-                        <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;padding:6px 14px;font-size:0.6rem;border:none;border-radius:6px;cursor:pointer;" onclick="ajouterJoueur()">
-                            <i class="fas fa-plus"></i> Ajouter
-                        </button>
-                    </div>
-                    <div class="player-grid" id="teamPlayers">
-                        <div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:15px;font-size:0.8rem;">
-                            Aucun joueur dans l'équipe
-                        </div>
-                    </div>
+        <!-- ===== CLUB ===== -->
+        <section id="section-club" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-building"></i> Informations du club</div>
+                <div id="clubInfo" style="padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    <div><strong style="color:#7aaa7a;">Nom:</strong> <span id="cNom">-</span></div>
+                    <div><strong style="color:#7aaa7a;">Division:</strong> <span id="cDivision">-</span></div>
+                    <div><strong style="color:#7aaa7a;">Pays:</strong> <span id="cPays">-</span></div>
+                    <div><strong style="color:#7aaa7a;">Stade:</strong> <span id="cStade">-</span></div>
+                    <div><strong style="color:#7aaa7a;">Couleurs:</strong> <span id="cCouleurs">-</span></div>
+                    <div><strong style="color:#7aaa7a;">Coach:</strong> <span id="cCoach">-</span></div>
                 </div>
-            </section>
+                <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;width:100%;margin-top:8px;" onclick="creerClub()">
+                    <i class="fas fa-edit"></i> Modifier le club
+                </button>
+            </div>
+        </section>
 
-            <!-- ===== CLUB ===== -->
-            <section id="section-club" style="display:none;">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-building"></i> Club</div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px 0;font-size:0.8rem;">
-                        <div><strong style="color:#7aaa7a;">Nom:</strong> <span id="clubNom">-</span></div>
-                        <div><strong style="color:#7aaa7a;">Division:</strong> <span id="clubDivision">-</span></div>
-                        <div><strong style="color:#7aaa7a;">Pays:</strong> <span id="clubPays">-</span></div>
-                        <div><strong style="color:#7aaa7a;">Stade:</strong> <span id="clubStade">-</span></div>
-                        <div><strong style="color:#7aaa7a;">Couleurs:</strong> <span id="clubCouleurs">-</span></div>
-                        <div><strong style="color:#7aaa7a;">Coach:</strong> <span id="clubCoach">-</span></div>
-                    </div>
-                    <button class="btn-action" style="width:100%;margin-top:8px;" onclick="modifierClub()">
-                        <i class="fas fa-edit"></i> Modifier le club
+        <!-- ===== EQUIPE ===== -->
+        <section id="section-equipe" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-users"></i> Effectif</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+                    <span style="color:#8aaa8a;font-size:0.85rem;" id="effectifInfo">0 joueurs</span>
+                    <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;padding:4px 12px;font-size:0.65rem;" onclick="ajouterJoueur()">
+                        <i class="fas fa-plus"></i> Ajouter
                     </button>
                 </div>
-            </section>
-
-            <!-- ===== MATCH ===== -->
-            <section id="section-match" style="display:none;">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-futbol"></i> Jouer un match</div>
-                    <div style="padding:10px 0;text-align:center;">
-                        <p style="color:#8aaa8a;font-size:0.8rem;margin-bottom:10px;">Choisissez votre adversaire</p>
-                        <select id="adversaireSelect" style="width:100%;max-width:300px;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:0.85rem;margin-bottom:10px;">
-                            <option value="">-- Adversaire --</option>
-                            <option value="Real Madrid">Real Madrid</option>
-                            <option value="Atletico Madrid">Atletico Madrid</option>
-                            <option value="Sevilla">Sevilla</option>
-                            <option value="Valencia">Valencia</option>
-                            <option value="Villarreal">Villarreal</option>
-                            <option value="Bayern Munich">Bayern Munich</option>
-                            <option value="PSG">PSG</option>
-                            <option value="Liverpool">Liverpool</option>
-                        </select>
-                        <button class="btn-match" style="width:100%;max-width:300px;background:linear-gradient(135deg,#FFD700,#f5a623);color:#0a0a1a;" onclick="jouerMatch()">
-                            <i class="fas fa-play"></i> Jouer le match
-                        </button>
-                    </div>
+                <div class="player-grid" id="teamPlayers">
+                    <div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:10px;">Aucun joueur</div>
                 </div>
-            </section>
-
-            <!-- ===== STATS ===== -->
-            <section id="section-stats" style="display:none;">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-chart-line"></i> Statistiques</div>
-                    <div id="statsDetail" style="padding:10px;color:#8aaa8a;font-size:0.8rem;text-align:center;">
-                        Sélectionnez une catégorie
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== TRANSFERTS ===== -->
-            <section id="section-transferts" style="display:none;">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-euro-sign"></i> Transferts</div>
-                    <div style="padding:10px;text-align:center;color:#8aaa8a;font-size:0.8rem;">
-                        <p>Budget: <strong style="color:#FFD700;" id="budgetTransferts">0 €</strong></p>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
-                            <button class="btn-action" onclick="alert('🔜 Fonctionnalité en développement')">
-                                <i class="fas fa-user-plus"></i> Acheter
-                            </button>
-                            <button class="btn-action" onclick="alert('🔜 Fonctionnalité en développement')">
-                                <i class="fas fa-user-minus"></i> Vendre
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== OPTIONS ===== -->
-            <section id="section-options" style="display:none;">
-                <div class="card">
-                    <div class="card-title"><i class="fas fa-cog"></i> Options</div>
-                    <div style="display:grid;grid-template-columns:1fr;gap:8px;padding:6px 0;">
-                        <button class="btn-action" onclick="downloadFMTK()">
-                            <i class="fas fa-download"></i> Télécharger .FMTK
-                        </button>
-                        <button class="btn-action" onclick="showPopup('info','Info','Version FMTK-v1.26')">
-                            <i class="fas fa-info-circle"></i> Version
-                        </button>
-                        <button class="btn-action" style="color:#e74c3c;" onclick="supprimerCompte()">
-                            <i class="fas fa-trash-alt"></i> Supprimer compte
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-        </main>
-    </div>
-
-    <!-- ===== POPUPS ===== -->
-    <div class="popup-overlay" id="popup">
-        <div class="popup-box">
-            <div class="icon" id="popupIcon">✅</div>
-            <h2 id="popupTitle">Succès</h2>
-            <p id="popupMessage">Message</p>
-            <button class="btn-popup info" onclick="closePopup()">OK</button>
-        </div>
-    </div>
-
-    <div class="popup-overlay" id="popupDelete">
-        <div class="popup-box">
-            <div class="icon error">⚠️</div>
-            <h2 style="color:#e74c3c;">Supprimer le compte</h2>
-            <p style="color:#aaa;font-size:0.8rem;">
-                Êtes-vous sûr ?<br>
-                <strong style="color:#ff6b6b;">Cette action est irréversible !</strong>
-            </p>
-            <input type="password" id="deletePassword" placeholder="Mot de passe">
-            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-                <button class="btn-popup danger" onclick="confirmDelete()">
-                    <i class="fas fa-trash-alt"></i> Supprimer
-                </button>
-                <button class="btn-popup secondary" onclick="closePopupDelete()">Annuler</button>
             </div>
+        </section>
+
+        <!-- ===== TACTIQUE ===== -->
+        <section id="section-tactique" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-tasks"></i> Tactique</div>
+                <div id="tactiqueInfo" style="padding:10px;text-align:center;color:#8aaa8a;">
+                    <p>Formation: <strong id="tFormation" style="color:#FFD700;">4-3-3</strong></p>
+                    <p>Style: <strong id="tStyle" style="color:#FFD700;">Attaque</strong></p>
+                    <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;margin-top:10px;" onclick="modifierTactique()">
+                        <i class="fas fa-edit"></i> Modifier la tactique
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MATCH ===== -->
+        <section id="section-match" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-futbol"></i> Jouer un match</div>
+                <div style="padding:10px;text-align:center;">
+                    <p style="color:#8aaa8a;margin-bottom:10px;">Choisissez votre adversaire</p>
+                    <select id="adversaireSelect" style="width:100%;max-width:300px;padding:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:0.9rem;margin-bottom:10px;">
+                        <option value="">-- Sélectionner --</option>
+                        <option value="Real Madrid">Real Madrid</option>
+                        <option value="Atletico Madrid">Atletico Madrid</option>
+                        <option value="Sevilla">Sevilla</option>
+                        <option value="Valencia">Valencia</option>
+                        <option value="Villarreal">Villarreal</option>
+                        <option value="Betis">Betis</option>
+                        <option value="Athletic Bilbao">Athletic Bilbao</option>
+                        <option value="Real Sociedad">Real Sociedad</option>
+                    </select>
+                    <button class="btn-match" onclick="jouerMatch()"><i class="fas fa-play"></i> Jouer</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STATS ===== -->
+        <section id="section-stats" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-chart-line"></i> Statistiques</div>
+                <div id="statsDetail" style="padding:10px;color:#8aaa8a;text-align:center;">
+                    <p>Matchs: <strong id="sMatchs" style="color:#FFD700;">0</strong></p>
+                    <p>Victoires: <strong id="sVictoires" style="color:#2ecc71;">0</strong></p>
+                    <p>Défaites: <strong id="sDefaites" style="color:#e74c3c;">0</strong></p>
+                    <p>Nuls: <strong id="sNuls" style="color:#f39c12;">0</strong></p>
+                    <p>Buts marqués: <strong id="sButsM" style="color:#FFD700;">0</strong></p>
+                    <p>Buts encaissés: <strong id="sButsE" style="color:#e74c3c;">0</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TRANSFERTS ===== -->
+        <section id="section-transferts" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-euro-sign"></i> Transferts</div>
+                <div style="padding:10px;text-align:center;color:#8aaa8a;">
+                    <p>Budget: <strong style="color:#FFD700;" id="budgetTransferts">0 €</strong></p>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;">
+                        <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;" onclick="alert('Fonctionnalité en développement')">
+                            <i class="fas fa-user-plus"></i> Acheter
+                        </button>
+                        <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;" onclick="alert('Fonctionnalité en développement')">
+                            <i class="fas fa-user-minus"></i> Vendre
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== OPTIONS ===== -->
+        <section id="section-options" style="display:none;">
+            <div class="card">
+                <div class="card-title"><i class="fas fa-cog"></i> Options</div>
+                <div style="padding:10px;text-align:center;color:#8aaa8a;">
+                    <button class="btn-match" style="background:rgba(255,215,0,0.1);color:#FFD700;width:100%;margin-bottom:8px;" onclick="downloadFMTK()">
+                        <i class="fas fa-download"></i> Télécharger .FMTK
+                    </button>
+                    <button class="btn-match" style="background:rgba(52,152,219,0.1);color:#3498db;width:100%;margin-top:8px;" onclick="restaurerBackup()">
+                        <i class="fas fa-cloud-download-alt"></i> Restaurer depuis le cloud
+                    </button>
+                    <button class="btn-match" style="background:rgba(231,76,60,0.1);color:#e74c3c;width:100%;margin-top:8px;" onclick="supprimerCompte()">
+                        <i class="fas fa-trash-alt"></i> Supprimer mon compte
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- ===== POPUPS ===== -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="icon" id="popupIcon">✅</div>
+        <h2 id="popupTitle">Succès</h2>
+        <p id="popupMessage">Action effectuée avec succès !</p>
+        <button class="btn-popup info" onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+<!-- ===== POPUP CREER CLUB ===== -->
+<div class="popup-overlay" id="popupClub">
+    <div class="popup-box">
+        <div class="icon info">🏟️</div>
+        <h2>Créer votre club</h2>
+        <p>Remplissez les informations de votre club</p>
+        <label>🏷️ Nom du club</label>
+        <input type="text" id="clubNomInput" placeholder="FC Barcelone">
+        <label>🏴 Pays</label>
+        <select id="clubPaysInput">
+            <option value="France">🇫🇷 France</option>
+            <option value="Espagne">🇪🇸 Espagne</option>
+            <option value="Angleterre">🇬🇧 Angleterre</option>
+            <option value="Allemagne">🇩🇪 Allemagne</option>
+            <option value="Italie">🇮🇹 Italie</option>
+            <option value="Portugal">🇵🇹 Portugal</option>
+            <option value="Pays-Bas">🇳🇱 Pays-Bas</option>
+            <option value="Belgique">🇧🇪 Belgique</option>
+            <option value="Bénin">🇧🇯 Bénin</option>
+            <option value="Cameroun">🇨🇲 Cameroun</option>
+            <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
+            <option value="Sénégal">🇸🇳 Sénégal</option>
+            <option value="Togo">🇹🇬 Togo</option>
+        </select>
+        <label>🏆 Division</label>
+        <input type="text" id="clubDivisionInput" placeholder="Liga Santander">
+        <label>🏟️ Stade</label>
+        <input type="text" id="clubStadeInput" placeholder="Camp Nou">
+        <label>🎨 Couleurs (ex: #FFD700 / #003366)</label>
+        <input type="text" id="clubCouleursInput" placeholder="#FFD700 / #003366">
+        <div class="row">
+            <button class="btn-popup success" onclick="saveClub()" style="flex:1;"><i class="fas fa-check"></i> Créer</button>
+            <button class="btn-popup secondary" onclick="closePopupClub()" style="flex:1;">Annuler</button>
         </div>
     </div>
+</div>
 
-    <script>
-        // ===== DONNÉES =====
-        let playerData = {
-            pseudo: "Coach",
-            equipe: {
-                nom: "Mon Club",
-                division: "Division",
-                pays: "Pays",
-                stade: "Stade",
-                couleurs: "#FFD700 / #003366",
-                joueurs: [],
-                stats: { matchs: 0, victoires: 0, defaites: 0, nuls: 0, buts_marques: 0, buts_encaisses: 0 },
-                transferts: { budget: 50000000 }
-            }
-        };
+<!-- ===== POPUP TACTIQUE ===== -->
+<div class="popup-overlay" id="popupTactique">
+    <div class="popup-box">
+        <div class="icon info">📋</div>
+        <h2>Modifier la tactique</h2>
+        <label>📐 Formation</label>
+        <select id="tactiqueFormation">
+            <option value="4-3-3">4-3-3</option>
+            <option value="4-4-2">4-4-2</option>
+            <option value="3-5-2">3-5-2</option>
+            <option value="4-2-3-1">4-2-3-1</option>
+            <option value="5-3-2">5-3-2</option>
+            <option value="4-1-2-1-2">4-1-2-1-2</option>
+        </select>
+        <label>🎯 Style de jeu</label>
+        <select id="tactiqueStyle">
+            <option value="Attaque">⚡ Attaque</option>
+            <option value="Défense">🛡️ Défense</option>
+            <option value="Équilibré">⚖️ Équilibré</option>
+            <option value="Pressing">🔥 Pressing</option>
+            <option value="Contre-attaque">🏃 Contre-attaque</option>
+            <option value="Possession">🎯 Possession</option>
+        </select>
+        <div class="row">
+            <button class="btn-popup success" onclick="saveTactique()" style="flex:1;"><i class="fas fa-check"></i> Valider</button>
+            <button class="btn-popup secondary" onclick="closePopupTactique()" style="flex:1;">Annuler</button>
+        </div>
+    </div>
+</div>
 
-        // ===== CHARGER LES DONNÉES =====
-        function loadData() {
-            const saved = localStorage.getItem('fm_session_data');
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    if (data && data.equipe) {
-                        playerData = data;
-                    }
-                } catch(e) {}
-            }
-            updateUI();
-        }
+<!-- ===== POPUP SUPPRESSION ===== -->
+<div class="popup-overlay" id="popupDelete">
+    <div class="popup-box">
+        <div class="icon error">⚠️</div>
+        <h2 style="color:#e74c3c;">Supprimer le compte</h2>
+        <p>Cette action est <strong style="color:#ff6b6b;">irréversible !</strong></p>
+        <label><i class="fas fa-lock"></i> Confirmez avec votre mot de passe :</label>
+        <input type="password" id="deletePassword" placeholder="Mot de passe">
+        <div class="row">
+            <button class="btn-popup danger" onclick="confirmDelete()" style="flex:1;"><i class="fas fa-trash-alt"></i> Supprimer</button>
+            <button class="btn-popup secondary" onclick="closePopupDelete()" style="flex:1;">Annuler</button>
+        </div>
+    </div>
+</div>
 
-        // ===== METTRE À JOUR UI =====
-        function updateUI() {
-            const e = playerData.equipe;
-            const s = e.stats || { matchs:0, victoires:0, defaites:0, nuls:0, buts_marques:0, buts_encaisses:0 };
-            const t = e.transferts || { budget:0 };
+<!-- ===== POPUP AJOUT JOUEUR ===== -->
+<div class="popup-overlay" id="popupJoueur">
+    <div class="popup-box">
+        <div class="icon info">👤</div>
+        <h2>Ajouter un joueur</h2>
+        <label>👤 Nom</label>
+        <input type="text" id="joueurNom" placeholder="Messi">
+        <label>📏 Poste</label>
+        <select id="joueurPoste">
+            <option value="Gardien">🧤 Gardien</option>
+            <option value="Défenseur">🛡️ Défenseur</option>
+            <option value="Milieu">⚡ Milieu</option>
+            <option value="Attaquant">🎯 Attaquant</option>
+        </select>
+        <label>📊 Note (1-100)</label>
+        <input type="number" id="joueurNote" placeholder="85" min="1" max="100">
+        <div class="row">
+            <button class="btn-popup success" onclick="saveJoueur()" style="flex:1;"><i class="fas fa-plus"></i> Ajouter</button>
+            <button class="btn-popup secondary" onclick="closePopupJoueur()" style="flex:1;">Annuler</button>
+        </div>
+    </div>
+</div>
 
-            document.getElementById('clubName').innerHTML = `${e.nom || 'Mon Club'} <small>${e.division || 'Division'} · ${e.pays || 'Pays'}</small>`;
-            document.getElementById('coachName').textContent = playerData.pseudo || 'Coach';
-
-            document.getElementById('matchsJoues').textContent = s.matchs || 0;
-            document.getElementById('victoires').textContent = s.victoires || 0;
-            document.getElementById('defaites').textContent = s.defaites || 0;
-            document.getElementById('nuls').textContent = s.nuls || 0;
-            document.getElementById('butsMarques').textContent = s.buts_marques || 0;
-            document.getElementById('butsEncaisses').textContent = s.buts_encaisses || 0;
-            document.getElementById('budget').textContent = (t.budget || 0).toLocaleString();
-            document.getElementById('budgetTransferts').textContent = (t.budget || 0).toLocaleString() + ' €';
-
-            const joueurs = e.joueurs || [];
-            document.getElementById('nbJoueurs').textContent = joueurs.length;
-            document.getElementById('effectifInfo').textContent = joueurs.length + ' joueurs';
-
-            // Meilleurs joueurs
-            const bestContainer = document.getElementById('bestPlayers');
-            if (joueurs.length === 0) {
-                bestContainer.innerHTML = '<div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:15px;font-size:0.8rem;">Aucun joueur dans l\'équipe</div>';
-            } else {
-                const sorted = [...joueurs].sort((a,b) => b.note - a.note).slice(0, 4);
-                bestContainer.innerHTML = sorted.map(j => `
-                    <div class="player-card">
-                        <div class="number">${j.note || 70}</div>
-                        <div class="name">${j.nom || 'Joueur'}</div>
-                        <div class="position">${j.poste || '?'}</div>
-                        <span class="rating ${j.note >= 85 ? 'gold' : j.note >= 75 ? 'silver' : 'bronze'}">${j.note || 70}</span>
-                    </div>
-                `).join('');
-            }
-
-            // Équipe complète
-            const teamContainer = document.getElementById('teamPlayers');
-            if (joueurs.length === 0) {
-                teamContainer.innerHTML = '<div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:15px;font-size:0.8rem;">Aucun joueur dans l\'équipe</div>';
-            } else {
-                teamContainer.innerHTML = joueurs.map(j => `
-                    <div class="player-card">
-                        <div class="number">${j.note || 70}</div>
-                        <div class="name">${j.nom || 'Joueur'}</div>
-                        <div class="position">${j.poste || '?'}</div>
-                        <span class="rating ${j.note >= 85 ? 'gold' : j.note >= 75 ? 'silver' : 'bronze'}">${j.note || 70}</span>
-                        <div style="font-size:0.5rem;color:#5a7a5a;margin-top:2px;">
-                            ⚽ ${j.buts || 0} · 🎯 ${j.passes || 0}
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            // Club
-            document.getElementById('clubNom').textContent = e.nom || '-';
-            document.getElementById('clubDivision').textContent = e.division || '-';
-            document.getElementById('clubPays').textContent = e.pays || '-';
-            document.getElementById('clubStade').textContent = e.stade || '-';
-            document.getElementById('clubCouleurs').textContent = e.couleurs || '-';
-            document.getElementById('clubCoach').textContent = playerData.pseudo || '-';
-        }
-
-        // ===== NAVIGATION =====
-        function showSection(section) {
-            document.querySelectorAll('.sidebar .menu-item').forEach(el => el.classList.remove('active'));
-            document.querySelector(`.sidebar .menu-item[onclick*="${section}"]`)?.classList.add('active');
-
-            document.querySelectorAll('[id^="section-"]').forEach(el => el.style.display = 'none');
-            const target = document.getElementById(`section-${section}`);
-            if (target) target.style.display = 'block';
-        }
-
-        // ===== POPUPS =====
-        function showPopup(icon, title, message, type = 'info') {
-            document.getElementById('popupIcon').className = `icon ${type}`;
-            document.getElementById('popupIcon').textContent = icon;
-            document.getElementById('popupTitle').textContent = title;
-            document.getElementById('popupMessage').textContent = message;
-            document.getElementById('popup').classList.add('active');
-        }
-
-        function closePopup() {
-            document.getElementById('popup').classList.remove('active');
-        }
-
-        // ===== SUPPRIMER COMPTE =====
-        function supprimerCompte() {
-            document.getElementById('popupDelete').classList.add('active');
-            document.getElementById('deletePassword').value = '';
-        }
-
-        function closePopupDelete() {
-            document.getElementById('popupDelete').classList.remove('active');
-        }
-
-        async function confirmDelete() {
-            const password = document.getElementById('deletePassword').value.trim();
-            if (!password) {
-                showPopup('⚠️', 'Erreur', 'Veuillez entrer votre mot de passe', 'error');
-                return;
-            }
-
-            const pseudo = playerData.pseudo;
-            try {
-                const response = await fetch('/api/delete', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pseudo, password })
-                });
-                const result = await response.json();
-                if (result.success) {
-                    showPopup('✅', 'Compte supprimé', 'Votre compte a été supprimé avec succès', 'success');
-                    localStorage.removeItem('fm_session_data');
-                    setTimeout(() => window.location.href = '/', 1500);
-                } else {
-                    showPopup('❌', 'Erreur', result.message, 'error');
-                }
-            } catch(e) {
-                showPopup('❌', 'Erreur', 'Impossible de supprimer le compte', 'error');
-            }
-            closePopupDelete();
-        }
-
-        // ===== TÉLÉCHARGER .FMTK =====
-        function downloadFMTK() {
-            const pseudo = playerData.pseudo;
-            window.location.href = `/download/${pseudo}`;
-            showPopup('📁', 'Téléchargement', 'Votre fichier .FMTK va être téléchargé', 'info');
-        }
-
-        // ===== AJOUTER JOUEUR =====
-        function ajouterJoueur() {
-            const nom = prompt("Nom du joueur:");
-            if (!nom) return;
-            const poste = prompt("Poste (Attaquant/Milieu/Défenseur/Gardien):") || "Attaquant";
-            const note = parseInt(prompt("Note (1-100):") || "70");
-            if (isNaN(note) || note < 1 || note > 100) { showPopup('⚠️', 'Erreur', 'Note invalide', 'error'); return; }
-
-            playerData.equipe.joueurs.push({ nom, poste, note, buts:0, passes:0 });
-            sauvegarder();
-            updateUI();
-            showPopup('✅', 'Joueur ajouté', `${nom} rejoint l'équipe !`, 'success');
-        }
-
-        // ===== MODIFIER CLUB =====
-        function modifierClub() {
-            const nom = prompt("Nom du club:", playerData.equipe.nom || "");
-            if (nom !== null) playerData.equipe.nom = nom;
-            const division = prompt("Division:", playerData.equipe.division || "");
-            if (division !== null) playerData.equipe.division = division;
-            const pays = prompt("Pays:", playerData.equipe.pays || "");
-            if (pays !== null) playerData.equipe.pays = pays;
-            const stade = prompt("Stade:", playerData.equipe.stade || "");
-            if (stade !== null) playerData.equipe.stade = stade;
-
-            sauvegarder();
-            updateUI();
-            showPopup('✅', 'Club modifié', 'Les informations du club ont été mises à jour', 'success');
-        }
-
-        // ===== JOUER MATCH =====
-        function jouerMatch() {
-            const adversaire = document.getElementById('adversaireSelect').value;
-            if (!adversaire) { showPopup('⚠️', 'Erreur', 'Veuillez sélectionner un adversaire', 'error'); return; }
-
-            const butsEquipe = Math.floor(Math.random() * 4);
-            const butsAdversaire = Math.floor(Math.random() * 3);
-            const resultat = butsEquipe > butsAdversaire ? "victoire" : butsEquipe === butsAdversaire ? "nul" : "defaite";
-
-            const s = playerData.equipe.stats;
-            s.matchs = (s.matchs || 0) + 1;
-            if (resultat === "victoire") s.victoires = (s.victoires || 0) + 1;
-            else if (resultat === "defaite") s.defaites = (s.defaites || 0) + 1;
-            else s.nuls = (s.nuls || 0) + 1;
-            s.buts_marques = (s.buts_marques || 0) + butsEquipe;
-            s.buts_encaisses = (s.buts_encaisses || 0) + butsAdversaire;
-
-            const joueurs = playerData.equipe.joueurs || [];
-            if (butsEquipe > 0 && joueurs.length > 0) {
-                for (let i=0; i<butsEquipe; i++) {
-                    const idx = Math.floor(Math.random() * joueurs.length);
-                    joueurs[idx].buts = (joueurs[idx].buts || 0) + 1;
-                }
-            }
-
-            sauvegarder();
-            updateUI();
-            const emoji = resultat === 'victoire' ? '🏆' : resultat === 'defaite' ? '😤' : '🤝';
-            showPopup('⚽', 'Résultat', `${playerData.equipe.nom} ${butsEquipe} - ${butsAdversaire} ${adversaire}\n${emoji} ${resultat === 'victoire' ? 'Victoire !' : resultat === 'defaite' ? 'Défaite' : 'Nul'}`, 'info');
-        }
-
-        // ===== SAUVEGARDER =====
-        function sauvegarder() {
-            localStorage.setItem('fm_session_data', JSON.stringify(playerData));
-            fetch('/api/save', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ pseudo: playerData.pseudo, data: playerData })
-            }).catch(() => {});
-        }
-
-        // ===== INIT =====
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-            showSection('dashboard');
-        });
-    </script>
-</body>
-</html>
-<!-- Dans la section Options -->
-<button class="btn-match" style="background:rgba(52,152,219,0.1);color:#3498db;width:100%;margin-top:8px;" onclick="restaurerBackup()">
-    <i class="fas fa-cloud-download-alt"></i> Restaurer depuis le cloud
-</button>
-<!-- Dans la section Options -->
-<button class="btn-match" style="background:rgba(52,152,219,0.1);color:#3498db;width:100%;margin-top:8px;" onclick="restaurerBackup()">
-    <i class="fas fa-cloud-download-alt"></i> Restaurer depuis le cloud
-</button>
 <script>
+// ===== DONNÉES =====
+let playerData = {
+    pseudo: "Coach",
+    equipe: {
+        nom: "",
+        division: "",
+        pays: "",
+        stade: "",
+        couleurs: "#FFD700 / #003366",
+        terrain: "style1_classique.html",
+        joueurs: [],
+        stats: { matchs:0, victoires:0, defaites:0, nuls:0, buts_marques:0, buts_encaisses:0 },
+        transferts: { budget:50000000 },
+        tactique: { formation:"4-3-3", style:"Attaque" }
+    },
+    session: { games_played:0, win_rate:0 }
+};
+
+// ===== CHARGER LES DONNÉES =====
+function loadData() {
+    const saved = localStorage.getItem('fm_session_data');
+    if (saved) {
+        try {
+            const data = JSON.parse(saved);
+            if (data && data.equipe) {
+                playerData = data;
+                if (!playerData.equipe.tactique) {
+                    playerData.equipe.tactique = { formation:"4-3-3", style:"Attaque" };
+                }
+            }
+        } catch(e) {}
+    }
+    updateUI();
+    verifierClub();
+}
+
+// ===== VÉRIFIER SI CLUB EXISTE =====
+function verifierClub() {
+    if (!playerData.equipe.nom || playerData.equipe.nom === "") {
+        setTimeout(() => {
+            document.getElementById('popupClub').classList.add('active');
+        }, 500);
+    }
+}
+
+// ===== SAUVE CLUB =====
+function saveClub() {
+    const nom = document.getElementById('clubNomInput').value.trim();
+    const pays = document.getElementById('clubPaysInput').value;
+    const division = document.getElementById('clubDivisionInput').value.trim();
+    const stade = document.getElementById('clubStadeInput').value.trim();
+    const couleurs = document.getElementById('clubCouleursInput').value.trim();
+
+    if (!nom) { alert('Veuillez entrer un nom de club'); return; }
+
+    playerData.equipe.nom = nom || "Mon Club";
+    playerData.equipe.pays = pays || "France";
+    playerData.equipe.division = division || "Division";
+    playerData.equipe.stade = stade || "Stade";
+    playerData.equipe.couleurs = couleurs || "#FFD700 / #003366";
+
+    sauvegarder();
+    updateUI();
+    closePopupClub();
+    showPopup('✅', 'Club créé !', `Bienvenue ${nom} !`, 'success');
+}
+
+// ===== SAUVE TACTIQUE =====
+function saveTactique() {
+    const formation = document.getElementById('tactiqueFormation').value;
+    const style = document.getElementById('tactiqueStyle').value;
+
+    playerData.equipe.tactique.formation = formation;
+    playerData.equipe.tactique.style = style;
+
+    sauvegarder();
+    updateUI();
+    closePopupTactique();
+    showPopup('✅', 'Tactique mise à jour !', `${formation} - ${style}`, 'success');
+}
+
+// ===== AJOUTER JOUEUR =====
+function ajouterJoueur() {
+    document.getElementById('joueurNom').value = '';
+    document.getElementById('joueurNote').value = '';
+    document.getElementById('popupJoueur').classList.add('active');
+}
+
+function saveJoueur() {
+    const nom = document.getElementById('joueurNom').value.trim();
+    const poste = document.getElementById('joueurPoste').value;
+    const note = parseInt(document.getElementById('joueurNote').value) || 70;
+
+    if (!nom) { alert('Veuillez entrer un nom'); return; }
+
+    playerData.equipe.joueurs.push({ nom, poste, note, buts:0, passes:0 });
+    sauvegarder();
+    updateUI();
+    closePopupJoueur();
+    showPopup('✅', 'Joueur ajouté !', `${nom} (${poste}) - Note: ${note}`, 'success');
+}
+
+// ===== MODIFIER TACTIQUE =====
+function modifierTactique() {
+    const t = playerData.equipe.tactique || { formation:"4-3-3", style:"Attaque" };
+    document.getElementById('tactiqueFormation').value = t.formation;
+    document.getElementById('tactiqueStyle').value = t.style;
+    document.getElementById('popupTactique').classList.add('active');
+}
+
+// ===== CREER CLUB =====
+function creerClub() {
+    document.getElementById('clubNomInput').value = playerData.equipe.nom || '';
+    document.getElementById('clubPaysInput').value = playerData.equipe.pays || 'France';
+    document.getElementById('clubDivisionInput').value = playerData.equipe.division || '';
+    document.getElementById('clubStadeInput').value = playerData.equipe.stade || '';
+    document.getElementById('clubCouleursInput').value = playerData.equipe.couleurs || '#FFD700 / #003366';
+    document.getElementById('popupClub').classList.add('active');
+}
+
+// ===== SUPPRIMER COMPTE =====
+function supprimerCompte() {
+    document.getElementById('deletePassword').value = '';
+    document.getElementById('popupDelete').classList.add('active');
+}
+
+async function confirmDelete() {
+    const password = document.getElementById('deletePassword').value.trim();
+    if (!password) { alert('Veuillez entrer votre mot de passe'); return; }
+
+    try {
+        const response = await fetch('/api/delete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pseudo: playerData.pseudo, password })
+        });
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ Compte supprimé');
+            localStorage.removeItem('fm_session_data');
+            window.location.href = '/';
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch(e) {
+        alert('❌ Erreur');
+    }
+    closePopupDelete();
+}
+
+// ===== JOUER MATCH =====
+function jouerMatch() {
+    const adversaire = document.getElementById('adversaireSelect').value;
+    if (!adversaire) { alert('Choisissez un adversaire'); return; }
+
+    const butsEquipe = Math.floor(Math.random() * 4);
+    const butsAdversaire = Math.floor(Math.random() * 3);
+    const resultat = butsEquipe > butsAdversaire ? "victoire" : butsEquipe === butsAdversaire ? "nul" : "defaite";
+
+    const s = playerData.equipe.stats;
+    s.matchs = (s.matchs || 0) + 1;
+    if (resultat === "victoire") s.victoires = (s.victoires || 0) + 1;
+    else if (resultat === "defaite") s.defaites = (s.defaites || 0) + 1;
+    else s.nuls = (s.nuls || 0) + 1;
+    s.buts_marques = (s.buts_marques || 0) + butsEquipe;
+    s.buts_encaisses = (s.buts_encaisses || 0) + butsAdversaire;
+
+    const joueurs = playerData.equipe.joueurs || [];
+    if (butsEquipe > 0 && joueurs.length > 0) {
+        for (let i=0; i<butsEquipe; i++) {
+            const idx = Math.floor(Math.random() * joueurs.length);
+            joueurs[idx].buts = (joueurs[idx].buts || 0) + 1;
+        }
+    }
+
+    sauvegarder();
+    updateUI();
+    showPopup('🏆', `Résultat: ${butsEquipe} - ${butsAdversaire}`,
+        `${playerData.equipe.nom} vs ${adversaire}\n${resultat === 'victoire' ? '✅ Victoire !' : resultat === 'defaite' ? '❌ Défaite' : '🤝 Nul'}`,
+        resultat === 'victoire' ? 'success' : 'error'
+    );
+}
+
+// ===== SAUVEGARDER =====
+function sauvegarder() {
+    localStorage.setItem('fm_session_data', JSON.stringify(playerData));
+    fetch('/api/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pseudo: playerData.pseudo, data: playerData })
+    }).catch(() => {});
+}
+
+// ===== TÉLÉCHARGER .FMTK =====
+function downloadFMTK() {
+    const pseudo = playerData.pseudo;
+    window.location.href = `/download/${pseudo}`;
+    showPopup('📁', 'Téléchargement', 'Votre fichier .FMTK va être téléchargé', 'info');
+}
+
 // ===== RESTAURER DEPUIS BACKUP =====
 async function restaurerBackup() {
     if (!confirm('⚠️ Voulez-vous restaurer votre fichier depuis le cloud ?\nCela écrasera vos données locales.')) return;
-    
+
     try {
         const response = await fetch(`/api/restore/${playerData.pseudo}`);
         const result = await response.json();
-        
+
         if (result.success) {
             playerData = result.data;
             localStorage.setItem('fm_session_data', JSON.stringify(playerData));
@@ -944,4 +914,129 @@ async function restaurerBackup() {
         showPopup('❌', 'Erreur', 'Impossible de restaurer depuis le cloud.', 'error');
     }
 }
+
+// ===== METTRE À JOUR UI =====
+function updateUI() {
+    const e = playerData.equipe;
+    const s = e.stats || { matchs:0, victoires:0, defaites:0, nuls:0, buts_marques:0, buts_encaisses:0 };
+    const t = e.transferts || { budget:50000000 };
+
+    document.getElementById('clubName').innerHTML = `${e.nom || 'Mon Club'} <small>${e.division || 'Division'} · ${e.pays || 'Pays'}</small>`;
+    document.getElementById('coachName').textContent = playerData.pseudo || 'Coach';
+    document.getElementById('lastLogin').textContent = `Dernière connexion: ${new Date().toLocaleDateString()}`;
+
+    document.getElementById('matchsJoues').textContent = s.matchs || 0;
+    document.getElementById('victoires').textContent = s.victoires || 0;
+    document.getElementById('defaites').textContent = s.defaites || 0;
+    document.getElementById('nuls').textContent = s.nuls || 0;
+    document.getElementById('butsMarques').textContent = s.buts_marques || 0;
+    document.getElementById('butsEncaisses').textContent = s.buts_encaisses || 0;
+    document.getElementById('budget').textContent = (t.budget || 0).toLocaleString();
+    document.getElementById('budgetTransferts').textContent = (t.budget || 0).toLocaleString() + ' €';
+
+    document.getElementById('sMatchs').textContent = s.matchs || 0;
+    document.getElementById('sVictoires').textContent = s.victoires || 0;
+    document.getElementById('sDefaites').textContent = s.defaites || 0;
+    document.getElementById('sNuls').textContent = s.nuls || 0;
+    document.getElementById('sButsM').textContent = s.buts_marques || 0;
+    document.getElementById('sButsE').textContent = s.buts_encaisses || 0;
+
+    document.getElementById('cNom').textContent = e.nom || '-';
+    document.getElementById('cDivision').textContent = e.division || '-';
+    document.getElementById('cPays').textContent = e.pays || '-';
+    document.getElementById('cStade').textContent = e.stade || '-';
+    document.getElementById('cCouleurs').textContent = e.couleurs || '-';
+    document.getElementById('cCoach').textContent = playerData.pseudo || '-';
+
+    const tac = e.tactique || { formation:"4-3-3", style:"Attaque" };
+    document.getElementById('tFormation').textContent = tac.formation || '4-3-3';
+    document.getElementById('tStyle').textContent = tac.style || 'Attaque';
+
+    const joueurs = e.joueurs || [];
+    document.getElementById('nbJoueurs').textContent = joueurs.length;
+    document.getElementById('effectifInfo').textContent = joueurs.length + ' joueurs';
+
+    const bestContainer = document.getElementById('bestPlayers');
+    if (joueurs.length === 0) {
+        bestContainer.innerHTML = '<div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:10px;">Aucun joueur</div>';
+    } else {
+        const sorted = [...joueurs].sort((a,b) => b.note - a.note).slice(0, 4);
+        bestContainer.innerHTML = sorted.map(j => `
+            <div class="player-card">
+                <div class="number">${j.note || 70}</div>
+                <div class="name">${j.nom || 'Joueur'}</div>
+                <div class="position">${j.poste || '?'}</div>
+                <span class="rating ${j.note >= 85 ? 'gold' : j.note >= 75 ? 'silver' : 'bronze'}">${j.note || 70}</span>
+            </div>
+        `).join('');
+    }
+
+    const teamContainer = document.getElementById('teamPlayers');
+    if (joueurs.length === 0) {
+        teamContainer.innerHTML = '<div style="color:#5a7a5a;grid-column:1/-1;text-align:center;padding:10px;">Aucun joueur</div>';
+    } else {
+        teamContainer.innerHTML = joueurs.map(j => `
+            <div class="player-card">
+                <div class="number">${j.note || 70}</div>
+                <div class="name">${j.nom || 'Joueur'}</div>
+                <div class="position">${j.poste || '?'}</div>
+                <span class="rating ${j.note >= 85 ? 'gold' : j.note >= 75 ? 'silver' : 'bronze'}">${j.note || 70}</span>
+                <div style="font-size:0.55rem;color:#5a7a5a;margin-top:2px;">⚽ ${j.buts || 0} · 🎯 ${j.passes || 0}</div>
+            </div>
+        `).join('');
+    }
+}
+
+// ===== POPUPS =====
+function showPopup(icon, title, message, type = 'info') {
+    document.getElementById('popupIcon').className = `icon ${type}`;
+    document.getElementById('popupIcon').textContent = icon;
+    document.getElementById('popupTitle').textContent = title;
+    document.getElementById('popupMessage').textContent = message;
+    document.getElementById('popup').classList.add('active');
+}
+
+function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+}
+
+function closePopupClub() {
+    document.getElementById('popupClub').classList.remove('active');
+}
+
+function closePopupTactique() {
+    document.getElementById('popupTactique').classList.remove('active');
+}
+
+function closePopupDelete() {
+    document.getElementById('popupDelete').classList.remove('active');
+}
+
+function closePopupJoueur() {
+    document.getElementById('popupJoueur').classList.remove('active');
+}
+
+// ===== NAVIGATION =====
+function showSection(section) {
+    document.querySelectorAll('.sidebar .menu-item').forEach(el => el.classList.remove('active'));
+    document.querySelector(`.sidebar .menu-item[onclick*="${section}"]`)?.classList.add('active');
+
+    document.querySelectorAll('[id^="section-"]').forEach(el => el.style.display = 'none');
+    const target = document.getElementById(`section-${section}`);
+    if (target) target.style.display = 'block';
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+    loadData();
+    showSection('dashboard');
+
+    if (!playerData.equipe.nom || playerData.equipe.nom === "") {
+        setTimeout(() => {
+            document.getElementById('popupClub').classList.add('active');
+        }, 500);
+    }
+});
 </script>
+</body>
+</html>
