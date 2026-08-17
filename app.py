@@ -1,3 +1,5 @@
+from backend.backup_manager import BackupManager
+backup_manager = BackupManager()
 from flask import Flask, send_file, send_from_directory, redirect, request, jsonify
 import os
 import json
@@ -234,14 +236,10 @@ def serve_static(path):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
-from backend.backup_manager import BackupManager
 
 # Initialiser le BackupManager
-backup_manager = BackupManager()
-from backend.backup_manager import BackupManager
 
 # Initialiser le BackupManager
-backup_manager = BackupManager()
 
 # ===== API : RESTAURER DEPUIS BACKUP =====
 @app.route('/api/restore/<pseudo>', methods=['GET'])
