@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Charger ma session - Football Manager</title>
+    <title>Charger ma session - FMTK-v1.26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -155,7 +155,6 @@
         .info-box i { color: #FFD700; margin-right: 8px; width: 18px; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ===== MESSAGE MOBILE ===== */
         #mobileNotice {
             display: none;
             position: fixed;
@@ -171,56 +170,20 @@
         }
         #mobileNotice.show { display: flex; }
         #mobileNotice .icon { font-size: 3rem; color: #FFD700; margin-bottom: 15px; }
-        #mobileNotice h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.1rem;
-            color: #FFD700;
-            margin-bottom: 10px;
-        }
+        #mobileNotice h2 { font-family: 'Orbitron', monospace; font-size: 1.1rem; color: #FFD700; margin-bottom: 10px; }
         #mobileNotice p { color: #aaa; font-size: 0.85rem; line-height: 1.6; max-width: 400px; margin-bottom: 15px; }
-        #mobileNotice .steps {
-            background: rgba(255,215,0,0.05);
-            border-radius: 12px;
-            padding: 15px 20px;
-            text-align: left;
-            width: 100%;
-            max-width: 350px;
-            margin-bottom: 15px;
-        }
-        #mobileNotice .steps li {
-            color: #ccc;
-            font-size: 0.8rem;
-            padding: 5px 0;
-            list-style: none;
-        }
+        #mobileNotice .steps { background: rgba(255,215,0,0.05); border-radius: 12px; padding: 15px 20px; text-align: left; width: 100%; max-width: 350px; margin-bottom: 15px; }
+        #mobileNotice .steps li { color: #ccc; font-size: 0.8rem; padding: 5px 0; list-style: none; }
         #mobileNotice .steps li i { color: #FFD700; margin-right: 10px; width: 20px; }
-        #mobileNotice .btn-confirm {
-            padding: 12px 40px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
-            border: none;
-            border-radius: 12px;
-            color: #0a0a1a;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
+        #mobileNotice .btn-confirm { padding: 12px 40px; background: linear-gradient(135deg, #FFD700, #f5a623); border: none; border-radius: 12px; color: #0a0a1a; font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: transform 0.3s; }
         #mobileNotice .btn-confirm:hover { transform: scale(1.05); }
-        #mobileNotice .lang-en {
-            color: #666;
-            font-size: 0.65rem;
-            margin-top: 12px;
-        }
+        #mobileNotice .lang-en { color: #666; font-size: 0.65rem; margin-top: 12px; }
 
-        /* ===== POPUP ===== */
         .popup-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.85);
             z-index: 99999;
             align-items: center;
@@ -248,44 +211,17 @@
         .popup-box .icon.success { color: #2ecc71; }
         .popup-box .icon.error { color: #e74c3c; }
         .popup-box .icon.info { color: #FFD700; }
-        .popup-box h2 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2rem;
-            color: #FFD700;
-            margin-bottom: 8px;
-        }
-        .popup-box p {
-            color: #aaa;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        .popup-box .btn-popup {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
-            border: none;
-            border-radius: 10px;
-            color: #0a0a1a;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        .popup-box h2 { font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 8px; }
+        .popup-box p { color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; }
+        .popup-box .btn-popup { padding: 12px 30px; background: linear-gradient(135deg, #FFD700, #f5a623); border: none; border-radius: 10px; color: #0a0a1a; font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
         .popup-box .btn-popup:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
-        .popup-box .btn-popup.success {
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: #fff;
-        }
+        .popup-box .btn-popup.success { background: linear-gradient(135deg, #2ecc71, #27ae60); color: #fff; }
 
-        /* ===== LOADER ===== */
         .fmtk-loader {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0,0,0,0.92);
             z-index: 99998;
             align-items: center;
@@ -362,8 +298,8 @@
 <!-- ===== PAGE ===== -->
 <div class="container">
     <div class="upload-card">
-        <div class="logo">⚽ FM</div>
-        <div class="logo-sub">Football Manager</div>
+        <div class="logo">⚽ FMTK</div>
+        <div class="logo-sub">v1.26</div>
         <div class="upload-icon"><i class="fas fa-upload"></i></div>
         <h2>Charger ma <span>session</span></h2>
         <p class="sub-text">Upload votre fichier <strong style="color:#FFD700;">.FMTK</strong> pour reprendre votre partie</p>
@@ -393,18 +329,15 @@
 </div>
 
 <script>
-// ===== DÉTECTION MOBILE =====
 function isMobile() {
     return /Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 }
 
-// ===== MESSAGE MOBILE =====
 function confirmMobile() {
     document.getElementById('mobileNotice').classList.remove('show');
     localStorage.setItem('fm_mobile_ok', 'true');
 }
 
-// ===== POPUPS =====
 function showPopup(icon, title, message, type = 'info') {
     document.getElementById('popupIcon').className = `icon ${type}`;
     document.getElementById('popupIcon').textContent = icon;
@@ -428,7 +361,6 @@ function hideLoader() {
     document.getElementById('fmtkLoader').classList.remove('active');
 }
 
-// ===== UPLOAD =====
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const uploadBtn = document.getElementById('uploadBtn');
@@ -490,7 +422,7 @@ uploadBtn.addEventListener('click', () => {
     setTimeout(() => {
         hideLoader();
         showPopup('✅', 'Session chargée !', `Bienvenue ${fileContent.pseudo} !`, 'success');
-        
+
         setTimeout(() => {
             if (fileContent.equipe && fileContent.equipe.nom && fileContent.equipe.nom !== '') {
                 window.location.href = '/dashboard.html';
@@ -501,7 +433,6 @@ uploadBtn.addEventListener('click', () => {
     }, 1500);
 });
 
-// ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
     if (isMobile() && localStorage.getItem('fm_mobile_ok') !== 'true') {
         document.getElementById('mobileNotice').classList.add('show');

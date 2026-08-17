@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Football Manager</title>
+    <title>FMTK-v1.26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -83,6 +83,117 @@
             font-size: 0.7rem;
             margin-top: 15px;
         }
+
+        /* ===== POPUP ===== */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .popup-overlay.active { display: flex; }
+        .popup-box {
+            background: #1a2e1a;
+            border: 2px solid rgba(255,215,0,0.2);
+            border-radius: 20px;
+            padding: 35px 30px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+            animation: popupIn 0.5s ease;
+        }
+        @keyframes popupIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .popup-box .icon { font-size: 3.5rem; margin-bottom: 10px; }
+        .popup-box .icon.success { color: #2ecc71; }
+        .popup-box .icon.warning { color: #f39c12; }
+        .popup-box .icon.error { color: #e74c3c; }
+        .popup-box .icon.info { color: #FFD700; }
+        .popup-box h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            color: #FFD700;
+            margin-bottom: 8px;
+        }
+        .popup-box p {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .popup-box .btn-popup {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            border: none;
+            border-radius: 10px;
+            color: #0a0a1a;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 5px;
+        }
+        .popup-box .btn-popup:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
+        .popup-box .btn-popup.danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+        }
+        .popup-box .btn-popup.success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: #fff;
+        }
+
+        /* ===== LOADER ===== */
+        .fmtk-loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.92);
+            z-index: 99998;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(8px);
+        }
+        .fmtk-loader.active { display: flex; }
+        .fmtk-loader .spinner {
+            width: 70px;
+            height: 70px;
+            border: 5px solid rgba(255,215,0,0.1);
+            border-top-color: #FFD700;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        .fmtk-loader .text {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: #FFD700;
+            letter-spacing: 4px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        .fmtk-loader .sub {
+            color: #7aaa7a;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
         /* ===== PAGE ===== */
         .container {
@@ -206,21 +317,21 @@
         .tab-btn:hover:not(.active) { background:rgba(255,255,255,0.06); color:#b0d0b0; }
         .form { display:none; flex-direction:column; gap:8px; }
         .form.active { display:flex; }
-        .form-group { position:relative; }
-        .form-group i {
-            position:absolute; left:12px; top:50%;
+        .form-group { position:relative; margin-bottom:2px; }
+        .form-group i:first-child {
+            position:absolute; left:14px; top:50%;
             transform:translateY(-50%);
-            color:#5a7a5a; font-size:0.8rem; z-index:2;
+            color:#5a7a5a; font-size:0.9rem; z-index:2;
         }
         .form-group input, .form-group select {
             width:100%;
-            padding:10px 12px 10px 35px;
+            padding:12px 45px 12px 42px !important;
             background:rgba(255,255,255,0.05);
             border:1.5px solid rgba(255,255,255,0.06);
-            border-radius:8px;
+            border-radius:10px;
             color:#fff;
             font-family:'Rajdhani',sans-serif;
-            font-size:0.85rem;
+            font-size:0.9rem;
             outline:none;
             transition:border-color 0.3s;
         }
@@ -233,12 +344,24 @@
         }
         .form-group input::placeholder { color:#5a7a5a; font-weight:300; }
         .form-group .toggle-password {
-            position:absolute; right:10px; top:50%;
+            position:absolute;
+            right:12px;
+            top:50%;
             transform:translateY(-50%);
-            background:none; border:none;
-            color:#5a7a5a; cursor:pointer; font-size:0.8rem;
-            padding:5px; z-index:2;
+            background:none;
+            border:none;
+            color:#5a7a5a;
+            cursor:pointer;
+            font-size:1rem;
+            padding:8px;
+            z-index:2;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            line-height:1;
         }
+        .form-group .toggle-password:hover { color:#FFD700; }
+        .form-group .toggle-password i { font-size:1.1rem; }
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
         .btn-submit {
             padding:12px;
@@ -305,14 +428,56 @@
     <div class="lang-en">🇬🇧 Tap ⋮ → Check "Desktop Site"</div>
 </div>
 
+<!-- ===== LOADER ===== -->
+<div class="fmtk-loader" id="fmtkLoader">
+    <div class="spinner"></div>
+    <div class="text">⏳ FMTK</div>
+    <div class="sub">Génération de votre fichier de session...</div>
+</div>
+
+<!-- ===== POPUPS ===== -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="icon" id="popupIcon">✅</div>
+        <h2 id="popupTitle">Succès</h2>
+        <p id="popupMessage">Votre fichier .FMTK a été généré !</p>
+        <button class="btn-popup" id="popupBtn" onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+<div class="popup-overlay" id="popupDownload">
+    <div class="popup-box">
+        <div class="icon success">📁</div>
+        <h2>Téléchargement FMTK</h2>
+        <div class="fmtk-file" style="display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(255,215,0,0.05);border-radius:10px;border:1px solid rgba(255,215,0,0.1);margin:10px 0;">
+            <div class="icon" style="font-size:2rem;color:#FFD700;"><i class="fas fa-file-code"></i></div>
+            <div class="info" style="flex:1;text-align:left;">
+                <div class="name" style="color:#fff;font-weight:600;font-size:0.95rem;" id="downloadFileName">joueur.FMTK</div>
+                <div class="size" style="color:#5a7a5a;font-size:0.75rem;">Fichier de session</div>
+            </div>
+            <span class="status" style="padding:4px 12px;border-radius:12px;font-size:0.7rem;font-weight:700;background:rgba(46,204,113,0.2);color:#2ecc71;">✅ Prêt</span>
+        </div>
+        <p style="font-size:0.8rem;color:#ff6b6b;">
+            ⚠️ <strong>Ne perdez pas ce fichier !</strong><br>
+            C'est votre identité dans le jeu.
+        </p>
+        <button class="btn-popup" onclick="closePopupDownload()">
+            <i class="fas fa-download"></i> Télécharger
+        </button>
+        <button class="btn-popup danger" onclick="closePopupDownload()" style="margin-top:8px;">
+            Je le ferai plus tard
+        </button>
+    </div>
+</div>
+
 <!-- ===== PAGE ===== -->
 <div class="container">
     <div class="main-card">
         <div class="header">
-            <img src="/accueil/OIP-1393549177.jpg" alt="FM" class="bg-image" loading="lazy">
+            <img src="/accueil/OIP-1393549177.jpg" alt="FMTK" class="bg-image" loading="lazy">
             <div class="content">
-                <div class="logo">⚽ FM</div>
-                <div class="logo-sub">Football Manager</div>
+                <div class="logo">⚽ FMTK</div>
+                <div class="logo-sub">v1.26</div>
                 <div class="tagline">
                     <i class="fas fa-trophy"></i> 100 joueurs max
                     <i class="fas fa-users" style="margin-left:10px;"></i> Sessions indépendantes
@@ -336,7 +501,7 @@
                 <button class="tab-btn" data-tab="register" onclick="switchTab('register')"><i class="fas fa-user-plus"></i> Inscription</button>
             </div>
 
-            <!-- Connexion -->
+            <!-- ===== CONNEXION ===== -->
             <form class="form active" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
@@ -345,7 +510,9 @@
                 <div class="form-group">
                     <i class="fas fa-lock"></i>
                     <input type="password" id="loginPassword" placeholder="Mot de passe" required minlength="6">
-                    <button type="button" class="toggle-password" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                    <button type="button" class="toggle-password" onclick="togglePassword(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 <button type="submit" class="btn-submit" id="loginBtn">
                     <span class="spinner"></span>
@@ -354,7 +521,7 @@
                 <div class="form-footer">Pas encore de compte ? <a onclick="switchTab('register')">Inscrivez-vous</a></div>
             </form>
 
-            <!-- Inscription -->
+            <!-- ===== INSCRIPTION ===== -->
             <form class="form" id="registerForm" onsubmit="handleRegister(event)">
                 <div class="form-group">
                     <i class="fas fa-flag"></i>
@@ -582,7 +749,9 @@
                 <div class="form-group">
                     <i class="fas fa-lock"></i>
                     <input type="password" id="registerPassword" placeholder="Mot de passe (6 min)" required minlength="6">
-                    <button type="button" class="toggle-password" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                    <button type="button" class="toggle-password" onclick="togglePassword(this)">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
                 <button type="submit" class="btn-submit" id="registerBtn">
                     <span class="spinner"></span>
@@ -604,6 +773,40 @@ function isMobile() {
 function confirmMobile() {
     document.getElementById('mobileNotice').classList.remove('show');
     localStorage.setItem('fm_mobile_ok', 'true');
+}
+
+// ===== POPUPS =====
+function showPopup(icon, title, message, type = 'info') {
+    document.getElementById('popupIcon').className = `icon ${type}`;
+    document.getElementById('popupIcon').textContent = icon;
+    document.getElementById('popupTitle').textContent = title;
+    document.getElementById('popupMessage').textContent = message;
+    document.getElementById('popup').classList.add('active');
+}
+
+function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+}
+
+function showPopupDownload(filename) {
+    document.getElementById('downloadFileName').textContent = filename;
+    document.getElementById('popupDownload').classList.add('active');
+}
+
+function closePopupDownload() {
+    document.getElementById('popupDownload').classList.remove('active');
+}
+
+// ===== LOADER =====
+function showLoader(text, sub) {
+    const loader = document.getElementById('fmtkLoader');
+    loader.querySelector('.text').textContent = text || '⏳ FMTK';
+    loader.querySelector('.sub').textContent = sub || 'Génération de votre fichier...';
+    loader.classList.add('active');
+}
+
+function hideLoader() {
+    document.getElementById('fmtkLoader').classList.remove('active');
 }
 
 // ===== TABS =====
@@ -639,306 +842,6 @@ async function callAPI(endpoint, data) {
     return await response.json();
 }
 
-// ===== LOGIN =====
-async function handleLogin(event) {
-    event.preventDefault();
-    const btn = document.getElementById('loginBtn');
-    btn.classList.add('loading');
-    btn.disabled = true;
-    const pseudo = document.getElementById('loginPseudo').value.trim();
-    const password = document.getElementById('loginPassword').value;
-    try {
-        const result = await callAPI('/api/login', { pseudo, password });
-        if (result.success) {
-            alert('✅ ' + result.message);
-            window.location.href = '/session/charger';
-        } else {
-            alert('❌ ' + result.message);
-        }
-    } catch(e) {
-        alert('❌ Erreur de connexion');
-    }
-    btn.classList.remove('loading');
-    btn.disabled = false;
-}
-
-// ===== REGISTER =====
-async function handleRegister(event) {
-    event.preventDefault();
-    const btn = document.getElementById('registerBtn');
-    btn.classList.add('loading');
-    btn.disabled = true;
-    const pseudo = document.getElementById('registerPseudo').value.trim();
-    const email = document.getElementById('registerEmail').value.trim();
-    const whatsapp = document.getElementById('whatsappInput').value.trim();
-    const password = document.getElementById('registerPassword').value;
-    const country = document.getElementById('countrySelect').value;
-    if (password.length < 6) {
-        alert('⚠️ Le mot de passe doit contenir au moins 6 caractères');
-        btn.classList.remove('loading');
-        btn.disabled = false;
-        return;
-    }
-    try {
-        const result = await callAPI('/api/register', { pseudo, email, whatsapp, password, country });
-        if (result.success) {
-            alert('✅ ' + result.message + '\n\n📁 Téléchargez votre fichier .FM !');
-            window.location.href = '/';
-        } else {
-            alert('❌ ' + result.message);
-        }
-    } catch(e) {
-        alert('❌ Erreur d\'inscription');
-    }
-    btn.classList.remove('loading');
-    btn.disabled = false;
-}
-
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', function() {
-    if (isMobile() && localStorage.getItem('fm_mobile_ok') !== 'true') {
-        document.getElementById('mobileNotice').classList.add('show');
-    }
-
-    document.querySelectorAll('.form-footer a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const tab = this.textContent.includes('Inscrivez') ? 'register' : 'login';
-            switchTab(tab);
-        });
-    });
-});
-</script>
-</body>
-</html>
-<style>
-    /* ===== POPUP ===== */
-    .popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.85);
-        z-index: 99999;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        backdrop-filter: blur(10px);
-    }
-    .popup-overlay.active { display: flex; }
-    .popup-box {
-        background: #1a2e1a;
-        border: 2px solid rgba(255,215,0,0.2);
-        border-radius: 20px;
-        padding: 35px 30px;
-        max-width: 450px;
-        width: 100%;
-        text-align: center;
-        box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-        animation: popupIn 0.5s ease;
-    }
-    @keyframes popupIn {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-    .popup-box .icon { font-size: 3.5rem; margin-bottom: 10px; }
-    .popup-box .icon.success { color: #2ecc71; }
-    .popup-box .icon.warning { color: #f39c12; }
-    .popup-box .icon.error { color: #e74c3c; }
-    .popup-box .icon.info { color: #FFD700; }
-    .popup-box h2 {
-        font-family: 'Orbitron', monospace;
-        font-size: 1.2rem;
-        color: #FFD700;
-        margin-bottom: 8px;
-    }
-    .popup-box p {
-        color: #aaa;
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin-bottom: 15px;
-    }
-    .popup-box .btn-popup {
-        padding: 12px 30px;
-        background: linear-gradient(135deg, #FFD700, #f5a623);
-        border: none;
-        border-radius: 10px;
-        color: #0a0a1a;
-        font-family: 'Orbitron', monospace;
-        font-size: 0.8rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.3s;
-        margin-top: 5px;
-    }
-    .popup-box .btn-popup:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
-    .popup-box .btn-popup.danger {
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-        color: #fff;
-    }
-    .popup-box .btn-popup.success {
-        background: linear-gradient(135deg, #2ecc71, #27ae60);
-        color: #fff;
-    }
-
-    /* ===== LOADER FMTK ===== */
-    .fmtk-loader {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.92);
-        z-index: 99998;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        backdrop-filter: blur(8px);
-    }
-    .fmtk-loader.active { display: flex; }
-    .fmtk-loader .spinner {
-        width: 70px;
-        height: 70px;
-        border: 5px solid rgba(255,215,0,0.1);
-        border-top-color: #FFD700;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-bottom: 20px;
-    }
-    .fmtk-loader .text {
-        font-family: 'Orbitron', monospace;
-        font-size: 1.5rem;
-        color: #FFD700;
-        letter-spacing: 4px;
-        animation: pulse 1.5s ease-in-out infinite;
-    }
-    .fmtk-loader .sub {
-        color: #7aaa7a;
-        font-size: 0.9rem;
-        margin-top: 10px;
-        letter-spacing: 2px;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-    /* ===== FMTK FILE ANIMATION ===== */
-    .fmtk-file {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 18px;
-        background: rgba(255,215,0,0.05);
-        border-radius: 10px;
-        border: 1px solid rgba(255,215,0,0.1);
-        margin: 10px 0;
-        animation: slideIn 0.5s ease;
-    }
-    @keyframes slideIn {
-        from { transform: translateX(-20px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-    }
-    .fmtk-file .icon { font-size: 2rem; color: #FFD700; }
-    .fmtk-file .info { flex: 1; text-align: left; }
-    .fmtk-file .info .name {
-        color: #fff;
-        font-weight: 600;
-        font-size: 0.95rem;
-    }
-    .fmtk-file .info .size {
-        color: #5a7a5a;
-        font-size: 0.75rem;
-    }
-    .fmtk-file .status {
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 0.7rem;
-        font-weight: 700;
-    }
-    .fmtk-file .status.success { background: rgba(46,204,113,0.2); color: #2ecc71; }
-    .fmtk-file .status.pending { background: rgba(241,196,15,0.2); color: #f1c40f; }
-    .fmtk-file .status.error { background: rgba(231,76,60,0.2); color: #e74c3c; }
-</style>
-
-<!-- ===== LOADER FMTK ===== -->
-<div class="fmtk-loader" id="fmtkLoader">
-    <div class="spinner"></div>
-    <div class="text">⏳ FMTK</div>
-    <div class="sub">Génération de votre fichier de session...</div>
-</div>
-
-<!-- ===== POPUP GÉNÉRIQUE ===== -->
-<div class="popup-overlay" id="popup">
-    <div class="popup-box">
-        <div class="icon" id="popupIcon">✅</div>
-        <h2 id="popupTitle">Succès</h2>
-        <p id="popupMessage">Votre fichier .FMTK a été généré !</p>
-        <button class="btn-popup" id="popupBtn" onclick="closePopup()">OK</button>
-    </div>
-</div>
-
-<!-- ===== POPUP TÉLÉCHARGEMENT ===== -->
-<div class="popup-overlay" id="popupDownload">
-    <div class="popup-box">
-        <div class="icon success">📁</div>
-        <h2>Téléchargement FMTK</h2>
-        <div class="fmtk-file">
-            <div class="icon"><i class="fas fa-file-code"></i></div>
-            <div class="info">
-                <div class="name" id="downloadFileName">joueur.FMTK</div>
-                <div class="size">Fichier de session Football Manager</div>
-            </div>
-            <span class="status success">✅ Prêt</span>
-        </div>
-        <p style="font-size:0.8rem;color:#ff6b6b;">
-            ⚠️ <strong>Ne perdez pas ce fichier !</strong><br>
-            C'est votre identité dans le jeu.
-        </p>
-        <button class="btn-popup" onclick="closePopupDownload()">
-            <i class="fas fa-download"></i> Télécharger
-        </button>
-        <button class="btn-popup danger" onclick="closePopupDownload()" style="margin-top:8px;">
-            Je le ferai plus tard
-        </button>
-    </div>
-</div>
-<script>
-// ===== POPUPS =====
-function showPopup(icon, title, message, type = 'info') {
-    document.getElementById('popupIcon').className = `icon ${type}`;
-    document.getElementById('popupIcon').textContent = icon;
-    document.getElementById('popupTitle').textContent = title;
-    document.getElementById('popupMessage').textContent = message;
-    document.getElementById('popup').classList.add('active');
-}
-
-function closePopup() {
-    document.getElementById('popup').classList.remove('active');
-}
-
-function showPopupDownload(filename) {
-    document.getElementById('downloadFileName').textContent = filename;
-    document.getElementById('popupDownload').classList.add('active');
-}
-
-function closePopupDownload() {
-    document.getElementById('popupDownload').classList.remove('active');
-}
-
-// ===== LOADER FMTK =====
-function showLoader(text, sub) {
-    const loader = document.getElementById('fmtkLoader');
-    loader.querySelector('.text').textContent = text || '⏳ FMTK';
-    loader.querySelector('.sub').textContent = sub || 'Génération de votre fichier...';
-    loader.classList.add('active');
-}
-
-function hideLoader() {
-    document.getElementById('fmtkLoader').classList.remove('active');
-}
-</script>
-<script>
 // ===== INSCRIPTION =====
 async function handleRegister(event) {
     event.preventDefault();
@@ -966,24 +869,17 @@ async function handleRegister(event) {
         return;
     }
 
-    // Afficher le loader
     showLoader('⚡ FMTK', 'Création de votre fichier de session...');
 
     try {
         const result = await callAPI('/api/register', { pseudo, email, whatsapp, password, country });
-
         hideLoader();
 
         if (result.success) {
-            // Afficher la popup de téléchargement
             showPopupDownload(`${pseudo}.FMTK`);
-            
-            // Ajouter le téléchargement automatique
             setTimeout(() => {
-                window.location.href = `/api/download/${pseudo}`;
+                window.location.href = `/download/${pseudo}`;
             }, 500);
-            
-            // Rediriger vers la connexion après un moment
             setTimeout(() => {
                 window.location.href = '/';
             }, 5000);
@@ -1038,27 +934,21 @@ async function handleLogin(event) {
     btn.classList.remove('loading');
     btn.disabled = false;
 }
-</script>
-<script>
-// Dans handleRegister, remplacer le téléchargement
-// Au lieu de window.location.href = `/api/download/${pseudo}`;
-// Utiliser :
-window.location.href = `/download/${pseudo}`;
-</script>
-<!-- Connexion - Mot de passe -->
-<div class="form-group">
-    <i class="fas fa-lock"></i>
-    <input type="password" id="loginPassword" placeholder="Mot de passe" required minlength="6">
-    <button type="button" class="toggle-password" onclick="togglePassword(this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#5a7a5a;cursor:pointer;font-size:1rem;padding:8px;z-index:2;display:flex;align-items:center;justify-content:center;line-height:1;">
-        <i class="fas fa-eye" style="font-size:1.1rem;"></i>
-    </button>
-</div>
 
-<!-- Inscription - Mot de passe -->
-<div class="form-group">
-    <i class="fas fa-lock"></i>
-    <input type="password" id="registerPassword" placeholder="Mot de passe (6 min)" required minlength="6">
-    <button type="button" class="toggle-password" onclick="togglePassword(this)" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:#5a7a5a;cursor:pointer;font-size:1rem;padding:8px;z-index:2;display:flex;align-items:center;justify-content:center;line-height:1;">
-        <i class="fas fa-eye" style="font-size:1.1rem;"></i>
-    </button>
-</div>
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+    if (isMobile() && localStorage.getItem('fm_mobile_ok') !== 'true') {
+        document.getElementById('mobileNotice').classList.add('show');
+    }
+
+    document.querySelectorAll('.form-footer a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const tab = this.textContent.includes('Inscrivez') ? 'register' : 'login';
+            switchTab(tab);
+        });
+    });
+});
+</script>
+</body>
+</html>
