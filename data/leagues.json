@@ -1,0 +1,1353 @@
+[
+  {
+    "pays": "Afghanistan",
+    "ligues": [
+      "Afghan Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Afrique du Sud",
+    "ligues": [
+      "PSL",
+      "National First Division",
+      "SAFA Second Division"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Albanie",
+    "ligues": [
+      "Kategoria Superiore",
+      "Kategoria e Parë",
+      "Kategoria e Dytë"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Algérie",
+    "ligues": [
+      "Ligue 1",
+      "Ligue 2",
+      "Inter-Régions"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Allemagne",
+    "ligues": [
+      "Bundesliga",
+      "2. Bundesliga",
+      "3. Liga",
+      "Regionalliga"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Andorre",
+    "ligues": [
+      "Primera Divisió",
+      "Segona Divisió"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Angleterre",
+    "ligues": [
+      "Premier League",
+      "Championship",
+      "League One",
+      "League Two"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Angola",
+    "ligues": [
+      "Girabola",
+      "Segundona"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Arabie Saoudite",
+    "ligues": [
+      "Saudi Pro League",
+      "First Division",
+      "Second Division"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Argentine",
+    "ligues": [
+      "Liga Profesional",
+      "Primera Nacional",
+      "Primera B",
+      "Primera C"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Arménie",
+    "ligues": [
+      "Premier League",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Australie",
+    "ligues": [
+      "A-League",
+      "NPL"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Autriche",
+    "ligues": [
+      "Bundesliga",
+      "2. Liga",
+      "Regionalliga"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Azerbaïdjan",
+    "ligues": [
+      "Premier League",
+      "First Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Bahreïn",
+    "ligues": [
+      "Premier League",
+      "Second Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Bangladesh",
+    "ligues": [
+      "Premier League",
+      "Championship"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Belgique",
+    "ligues": [
+      "Pro League",
+      "Challenger Pro League",
+      "National Division 1"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Bénin",
+    "ligues": [
+      "Super Ligue",
+      "Championnat D2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Biélorussie",
+    "ligues": [
+      "Premier League",
+      "First League",
+      "Second League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Birmanie",
+    "ligues": [
+      "National League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Bolivie",
+    "ligues": [
+      "División Profesional",
+      "Copa Simón Bolívar"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Bosnie",
+    "ligues": [
+      "Premier League",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Botswana",
+    "ligues": [
+      "Premier League",
+      "First Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Brésil",
+    "ligues": [
+      "Série A",
+      "Série B",
+      "Série C",
+      "Série D"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Bulgarie",
+    "ligues": [
+      "First League",
+      "Second League",
+      "Third League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Burkina Faso",
+    "ligues": [
+      "Fasofoot Ligue 1"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Burundi",
+    "ligues": [
+      "Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Cambodge",
+    "ligues": [
+      "C-League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Cameroun",
+    "ligues": [
+      "Elite One",
+      "Elite Two"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Canada",
+    "ligues": [
+      "Canadian Premier League",
+      "League1 Ontario",
+      "PLSQ"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Cap-Vert",
+    "ligues": [
+      "Campeonato Nacional"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Centrafrique",
+    "ligues": [
+      "Central African Republic League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Chili",
+    "ligues": [
+      "Primera División",
+      "Primera B",
+      "Segunda División"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Chine",
+    "ligues": [
+      "Super League",
+      "League One",
+      "League Two"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Chypre",
+    "ligues": [
+      "First Division",
+      "Second Division",
+      "Third Division"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Colombie",
+    "ligues": [
+      "Primera A",
+      "Primera B"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Comores",
+    "ligues": [
+      "Comoros Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Congo",
+    "ligues": [
+      "Congo Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Corée du Sud",
+    "ligues": [
+      "K League 1",
+      "K League 2",
+      "K3 League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Costa Rica",
+    "ligues": [
+      "Primera División",
+      "Segunda División"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Côte d'Ivoire",
+    "ligues": [
+      "Ligue 1",
+      "Ligue 2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Croatie",
+    "ligues": [
+      "HNL",
+      "Prva NL",
+      "Druga NL"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Cuba",
+    "ligues": [
+      "Campeonato Nacional"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Danemark",
+    "ligues": [
+      "Superliga",
+      "1. Division",
+      "2. Division",
+      "3. Division"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Djibouti",
+    "ligues": [
+      "Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Écosse",
+    "ligues": [
+      "Scottish Premiership",
+      "Championship",
+      "League One",
+      "League Two"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Égypte",
+    "ligues": [
+      "Egyptian Premier League",
+      "Second Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Émirats Arabes Unis",
+    "ligues": [
+      "UAE Pro League",
+      "First Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Équateur",
+    "ligues": [
+      "Serie A",
+      "Serie B"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Érythrée",
+    "ligues": [
+      "Eritrean Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Espagne",
+    "ligues": [
+      "La Liga",
+      "Segunda División",
+      "Primera RFEF",
+      "Segunda RFEF"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Estonie",
+    "ligues": [
+      "Meistriliiga",
+      "Esiliiga"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Eswatini",
+    "ligues": [
+      "Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Éthiopie",
+    "ligues": [
+      "Ethiopian Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Finlande",
+    "ligues": [
+      "Veikkausliiga",
+      "Ykkönen",
+      "Kakkonen"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "France",
+    "ligues": [
+      "Ligue 1",
+      "Ligue 2",
+      "National 1",
+      "National 2"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Gabon",
+    "ligues": [
+      "Championnat National D1"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Gambie",
+    "ligues": [
+      "GFA League First Division"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Géorgie",
+    "ligues": [
+      "Erovnuli Liga",
+      "Erovnuli Liga 2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Ghana",
+    "ligues": [
+      "Ghana Premier League",
+      "Division One"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Gibraltar",
+    "ligues": [
+      "National League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Grèce",
+    "ligues": [
+      "Super League",
+      "Super League 2",
+      "Gamma Ethniki"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Guatemala",
+    "ligues": [
+      "Liga Nacional"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Guinée",
+    "ligues": [
+      "Championnat National"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Guinée-Bissau",
+    "ligues": [
+      "Guiné-Bissau Championship"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Guinée équatoriale",
+    "ligues": [
+      "Equatoguinean Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Guyana",
+    "ligues": [
+      "GFF Elite League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Haïti",
+    "ligues": [
+      "Championnat National D1"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Honduras",
+    "ligues": [
+      "Liga Nacional"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Hong Kong",
+    "ligues": [
+      "Premier League",
+      "First Division",
+      "Second Division"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Hongrie",
+    "ligues": [
+      "NB I",
+      "NB II",
+      "NB III"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Inde",
+    "ligues": [
+      "Indian Super League",
+      "I-League",
+      "I-League 2"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Indonésie",
+    "ligues": [
+      "Liga 1",
+      "Liga 2",
+      "Liga 3"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Irak",
+    "ligues": [
+      "Iraqi Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Iran",
+    "ligues": [
+      "Persian Gulf Pro League",
+      "Azadegan League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Irlande",
+    "ligues": [
+      "League of Ireland Premier",
+      "First Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Islande",
+    "ligues": [
+      "Úrvalsdeild",
+      "1. deild",
+      "2. deild"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Israël",
+    "ligues": [
+      "Ligat Ha'Al",
+      "Liga Leumit",
+      "Liga Alef"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Italie",
+    "ligues": [
+      "Serie A",
+      "Serie B",
+      "Serie C",
+      "Serie D"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Jamaïque",
+    "ligues": [
+      "National Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Japon",
+    "ligues": [
+      "J1 League",
+      "J2 League",
+      "J3 League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Jordanie",
+    "ligues": [
+      "Jordanian Pro League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Kazakhstan",
+    "ligues": [
+      "Premier League",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Kenya",
+    "ligues": [
+      "Kenya Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Kosovo",
+    "ligues": [
+      "Superliga",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Koweït",
+    "ligues": [
+      "Premier League",
+      "First Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Laos",
+    "ligues": [
+      "Lao League 1"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Lesotho",
+    "ligues": [
+      "Lesotho Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Lettonie",
+    "ligues": [
+      "Virslīga",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Liban",
+    "ligues": [
+      "Lebanese Premier League",
+      "Second Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Libye",
+    "ligues": [
+      "Libyan Premier League",
+      "Second Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Liechtenstein",
+    "ligues": [
+      "No league (play in Swiss)"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Lituanie",
+    "ligues": [
+      "A Lyga",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Luxembourg",
+    "ligues": [
+      "Nationalliga",
+      "Division of Honour"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Macédoine",
+    "ligues": [
+      "First League",
+      "Second League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Madagascar",
+    "ligues": [
+      "Madagascar Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Malaisie",
+    "ligues": [
+      "Malaysia Super League",
+      "Malaysia Premier League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Malawi",
+    "ligues": [
+      "Malawi Super League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Maldives",
+    "ligues": [
+      "Dhivehi Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Mali",
+    "ligues": [
+      "Malian Première Division"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Malte",
+    "ligues": [
+      "Maltese Premier League",
+      "Challenge League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Maroc",
+    "ligues": [
+      "Botola Pro",
+      "Botola 2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Maurice",
+    "ligues": [
+      "Mauritian Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Mauritanie",
+    "ligues": [
+      "Super D1"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Mexique",
+    "ligues": [
+      "Liga MX",
+      "Liga de Expansión",
+      "Liga Premier"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Moldavie",
+    "ligues": [
+      "Super Liga",
+      "Divizia A"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Monaco",
+    "ligues": [
+      "No league (play in France)"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Mongolie",
+    "ligues": [
+      "National Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Monténégro",
+    "ligues": [
+      "First League",
+      "Second League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Mozambique",
+    "ligues": [
+      "Mozambola"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Namibie",
+    "ligues": [
+      "Namibia Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Népal",
+    "ligues": [
+      "Nepal Super League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Nicaragua",
+    "ligues": [
+      "Liga Primera"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Niger",
+    "ligues": [
+      "Super Ligue"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Nigéria",
+    "ligues": [
+      "NPFL",
+      "NNL",
+      "NLO"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Norvège",
+    "ligues": [
+      "Eliteserien",
+      "OBOS-ligaen",
+      "PostNord-ligaen"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Nouvelle-Zélande",
+    "ligues": [
+      "New Zealand National League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Oman",
+    "ligues": [
+      "Oman Professional League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Ouganda",
+    "ligues": [
+      "Uganda Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Ouzbékistan",
+    "ligues": [
+      "Super League",
+      "Pro League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Pakistan",
+    "ligues": [
+      "Pakistan Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Panama",
+    "ligues": [
+      "Liga Panameña"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Papouasie-Nouvelle-Guinée",
+    "ligues": [
+      "PNG National Soccer League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Paraguay",
+    "ligues": [
+      "Primera División",
+      "División Intermedia"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Pays-Bas",
+    "ligues": [
+      "Eredivisie",
+      "Eerste Divisie",
+      "Tweede Divisie"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Pérou",
+    "ligues": [
+      "Liga 1",
+      "Liga 2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Philippines",
+    "ligues": [
+      "Philippines Football League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Pologne",
+    "ligues": [
+      "Ekstraklasa",
+      "I Liga",
+      "II Liga",
+      "III Liga"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Portugal",
+    "ligues": [
+      "Primeira Liga",
+      "Liga Portugal 2",
+      "Liga 3"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Qatar",
+    "ligues": [
+      "Qatar Stars League",
+      "Second Division"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "RDC",
+    "ligues": [
+      "Linafoot"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "République tchèque",
+    "ligues": [
+      "First League",
+      "Second League",
+      "Third League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Roumanie",
+    "ligues": [
+      "Liga I",
+      "Liga II",
+      "Liga III"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Russie",
+    "ligues": [
+      "Premier League",
+      "First League",
+      "Second League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Rwanda",
+    "ligues": [
+      "Rwanda Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Saint-Marin",
+    "ligues": [
+      "Campionato Sammarinese"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Salvador",
+    "ligues": [
+      "Primera División"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Sao Tomé",
+    "ligues": [
+      "National Championship"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Sénégal",
+    "ligues": [
+      "Ligue 1",
+      "Ligue 2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Serbie",
+    "ligues": [
+      "SuperLiga",
+      "First League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Seychelles",
+    "ligues": [
+      "Seychelles Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Sierra Leone",
+    "ligues": [
+      "Sierra Leone Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Singapour",
+    "ligues": [
+      "Singapore Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Slovaquie",
+    "ligues": [
+      "Super Liga",
+      "2. Liga",
+      "3. Liga"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Slovénie",
+    "ligues": [
+      "Prva Liga",
+      "Second League"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Somalie",
+    "ligues": [
+      "Somalia Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Soudan",
+    "ligues": [
+      "Sudan Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Soudan du Sud",
+    "ligues": [
+      "South Sudan Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Sri Lanka",
+    "ligues": [
+      "Sri Lanka Champions League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Suède",
+    "ligues": [
+      "Allsvenskan",
+      "Superettan",
+      "Ettan"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Suisse",
+    "ligues": [
+      "Super League",
+      "Challenge League",
+      "1. Liga"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Suriname",
+    "ligues": [
+      "SVB Eerste Divisie"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Syrie",
+    "ligues": [
+      "Syrian Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Tadjikistan",
+    "ligues": [
+      "Tajikistan Higher League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Tanzanie",
+    "ligues": [
+      "Tanzania Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Tchad",
+    "ligues": [
+      "Chad Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Thaïlande",
+    "ligues": [
+      "Thai League 1",
+      "Thai League 2",
+      "Thai League 3"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Togo",
+    "ligues": [
+      "Championnat National D1"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Tonga",
+    "ligues": [
+      "Tonga Major League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Trinité-et-Tobago",
+    "ligues": [
+      "TT Pro League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Tunisie",
+    "ligues": [
+      "Ligue 1",
+      "Ligue 2",
+      "Ligue 3"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Turkménistan",
+    "ligues": [
+      "Yokary Liga"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Turquie",
+    "ligues": [
+      "Süper Lig",
+      "1. Lig",
+      "2. Lig",
+      "3. Lig"
+    ],
+    "niveau_max": 4
+  },
+  {
+    "pays": "Ukraine",
+    "ligues": [
+      "Premier League",
+      "First League",
+      "Second League"
+    ],
+    "niveau_max": 3
+  },
+  {
+    "pays": "Uruguay",
+    "ligues": [
+      "Primera División",
+      "Segunda División"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Vanuatu",
+    "ligues": [
+      "Vanuatu Premier League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Venezuela",
+    "ligues": [
+      "Primera División",
+      "Segunda División"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Viêt Nam",
+    "ligues": [
+      "V.League 1",
+      "V.League 2"
+    ],
+    "niveau_max": 2
+  },
+  {
+    "pays": "Yémen",
+    "ligues": [
+      "Yemeni League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Zambie",
+    "ligues": [
+      "Super League"
+    ],
+    "niveau_max": 1
+  },
+  {
+    "pays": "Zimbabwe",
+    "ligues": [
+      "Zimbabwe Premier League"
+    ],
+    "niveau_max": 1
+  }
+]
