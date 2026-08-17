@@ -106,6 +106,10 @@ def register():
                     'budget': 50000000,
                     'joueurs_achetes': [],
                     'joueurs_vendus': []
+                },
+                'tactique': {
+                    'formation': '4-3-3',
+                    'style': 'Attaque'
                 }
             },
             'session': {
@@ -116,6 +120,9 @@ def register():
 
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
+
+        # ✅ SAUVEGARDE AUTOMATIQUE SUR GITHUB
+        backup_manager.backup_player(pseudo, player_data)
 
         return jsonify({
             'success': True,
@@ -145,6 +152,9 @@ def login():
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
 
+        # ✅ SAUVEGARDE AUTOMATIQUE SUR GITHUB
+        backup_manager.backup_player(pseudo, player_data)
+
         return jsonify({
             'success': True,
             'message': f'Bienvenue {pseudo} !',
@@ -165,6 +175,9 @@ def save():
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
+
+        # ✅ SAUVEGARDE AUTOMATIQUE SUR GITHUB
+        backup_manager.backup_player(pseudo, player_data)
 
         return jsonify({'success': True, 'message': 'Sauvegarde effectuée !'})
     except Exception as e:
@@ -221,6 +234,40 @@ def delete_account():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
 
+# ===== API : RESTAURER DEPUIS BACKUP =====
+@app.route('/api/restore/<pseudo>', methods=['GET'])
+def restore_from_backup(pseudo):
+    try:
+        data = backup_manager.restore_player(pseudo)
+        if data:
+            filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+            with open(filepath, 'w') as f:
+                json.dump(data, f, indent=2)
+            return jsonify({'success': True, 'message': 'Fichier restauré depuis le backup', 'data': data})
+        else:
+            return jsonify({'success': False, 'message': 'Aucun backup trouvé'}), 404
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+# ===== API : LISTE DES JOUEURS =====
+@app.route('/api/players', methods=['GET'])
+def list_players():
+    try:
+        files = os.listdir(DATA_DIR)
+        players = [f.replace('.FMTK', '') for f in files if f.endswith('.FMTK')]
+        return jsonify({'players': players})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# ===== API : VÉRIFIER SI JOUEUR EXISTE =====
+@app.route('/api/check/<pseudo>', methods=['GET'])
+def check_player(pseudo):
+    filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+    if os.path.exists(filepath):
+        return jsonify({'exists': True, 'message': 'Joueur trouvé'})
+    else:
+        return jsonify({'exists': False, 'message': 'Joueur non trouvé'}), 404
+
 # ===== FALLBACK =====
 @app.route('/<path:path>')
 def serve_static(path):
@@ -236,23 +283,3 @@ def serve_static(path):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
-
-# Initialiser le BackupManager
-
-# Initialiser le BackupManager
-
-# ===== API : RESTAURER DEPUIS BACKUP =====
-@app.route('/api/restore/<pseudo>', methods=['GET'])
-def restore_from_backup(pseudo):
-    try:
-        data = backup_manager.restore_player(pseudo)
-        if data:
-            # Sauvegarder localement
-            filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
-            with open(filepath, 'w') as f:
-                json.dump(data, f, indent=2)
-            return jsonify({'success': True, 'message': 'Fichier restauré depuis le backup', 'data': data})
-        else:
-            return jsonify({'success': False, 'message': 'Aucun backup trouvé'}), 404
-    except Exception as e:
-        return jsonify({'success': False, 'message': str(e)}), 500
