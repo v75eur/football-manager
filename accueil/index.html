@@ -103,9 +103,10 @@
             border: 2px solid rgba(255,215,0,0.2);
             border-radius: 20px;
             padding: 35px 30px;
-            max-width: 450px;
+            max-width: 480px;
             width: 100%;
-            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
             box-shadow: 0 40px 80px rgba(0,0,0,0.8);
             animation: popupIn 0.5s ease;
         }
@@ -123,27 +124,36 @@
             font-size: 1.2rem;
             color: #FFD700;
             margin-bottom: 8px;
+            text-align: center;
         }
         .popup-box p {
             color: #aaa;
             font-size: 0.9rem;
             line-height: 1.6;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .popup-box .highlight {
+            color: #FFD700;
+            font-weight: 700;
+        }
+        .popup-box .danger {
+            color: #ff6b6b;
+            font-weight: 700;
         }
         .popup-box .btn-popup {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
+            padding: 12px 25px;
             border: none;
             border-radius: 10px;
-            color: #0a0a1a;
             font-family: 'Orbitron', monospace;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
-            margin-top: 5px;
+            margin: 5px;
+            width: 100%;
         }
-        .popup-box .btn-popup:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
+        .popup-box .btn-popup:hover { transform: scale(1.02); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
         .popup-box .btn-popup.danger {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: #fff;
@@ -152,6 +162,47 @@
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             color: #fff;
         }
+        .popup-box .btn-popup.info {
+            background: linear-gradient(135deg, #FFD700, #f5a623);
+            color: #0a0a1a;
+        }
+        .popup-box .btn-popup.secondary {
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .popup-box .row { display:flex; gap:10px; flex-wrap:wrap; }
+        .popup-box .row .btn-popup { flex:1; min-width:120px; }
+
+        /* ===== FICHIER FMTK ===== */
+        .fmtk-file {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            background: rgba(255,215,0,0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255,215,0,0.1);
+            margin: 10px 0;
+        }
+        .fmtk-file .icon { font-size: 2rem; color: #FFD700; }
+        .fmtk-file .info { flex: 1; text-align: left; }
+        .fmtk-file .info .name {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .fmtk-file .info .size {
+            color: #5a7a5a;
+            font-size: 0.75rem;
+        }
+        .fmtk-file .status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .fmtk-file .status.success { background: rgba(46,204,113,0.2); color: #2ecc71; }
 
         /* ===== LOADER ===== */
         .fmtk-loader {
@@ -189,6 +240,7 @@
             margin-top: 10px;
             letter-spacing: 2px;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
         /* ===== PAGE ===== */
@@ -340,21 +392,12 @@
         }
         .form-group input::placeholder { color:#5a7a5a; font-weight:300; }
         .form-group .toggle-password {
-            position:absolute;
-            right:12px;
-            top:50%;
+            position:absolute; right:12px; top:50%;
             transform:translateY(-50%);
-            background:none;
-            border:none;
-            color:#5a7a5a;
-            cursor:pointer;
-            font-size:1rem;
-            padding:8px;
-            z-index:2;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            line-height:1;
+            background:none; border:none;
+            color:#5a7a5a; cursor:pointer; font-size:1rem;
+            padding:8px; z-index:2;
+            display:flex; align-items:center; justify-content:center;
         }
         .form-group .toggle-password:hover { color:#FFD700; }
         .form-group .toggle-password i { font-size:1.1rem; }
@@ -372,7 +415,7 @@
             letter-spacing:1px;
             cursor:pointer;
             margin-top:4px;
-            transition:all 0.3s ease;
+            transition:all 0.3s;
             display:flex; align-items:center; justify-content:center; gap:6px;
         }
         .btn-submit:hover { background:linear-gradient(135deg, #f5c400, #e09520); transform:scale(1.01); }
@@ -406,6 +449,12 @@
             .features { grid-template-columns:repeat(6,1fr); padding:10px 20px; }
             .feature-item { font-size:0.65rem; }
         }
+        @media (max-width:480px) {
+            .popup-box { padding:25px 18px; }
+            .popup-box h2 { font-size:1rem; }
+            .popup-box .row { flex-direction:column; }
+            .popup-box .row .btn-popup { width:100%; }
+        }
     </style>
 </head>
 <body>
@@ -431,41 +480,60 @@
     <div class="sub">Génération de votre fichier de session...</div>
 </div>
 
-<!-- ===== POPUPS ===== -->
+<!-- ===== POPUP SUCCÈS ===== -->
 <div class="popup-overlay" id="popup">
     <div class="popup-box">
         <div class="icon" id="popupIcon">✅</div>
         <h2 id="popupTitle">Succès</h2>
-        <p id="popupMessage">Votre fichier .FMTK a été généré !</p>
-        <button class="btn-popup" id="popupBtn" onclick="closePopup()">OK</button>
+        <p id="popupMessage">Action effectuée avec succès !</p>
+        <button class="btn-popup info" onclick="closePopup()">OK</button>
     </div>
 </div>
 
+<!-- ===== POPUP TÉLÉCHARGEMENT FMTK ===== -->
 <div class="popup-overlay" id="popupDownload">
     <div class="popup-box">
         <div class="icon success">📁</div>
-        <h2>Téléchargement FMTK</h2>
-        <div class="fmtk-file" style="display:flex;align-items:center;gap:12px;padding:12px 18px;background:rgba(255,215,0,0.05);border-radius:10px;border:1px solid rgba(255,215,0,0.1);margin:10px 0;">
-            <div class="icon" style="font-size:2rem;color:#FFD700;"><i class="fas fa-file-code"></i></div>
-            <div class="info" style="flex:1;text-align:left;">
-                <div class="name" style="color:#fff;font-weight:600;font-size:0.95rem;" id="downloadFileName">joueur.FMTK</div>
-                <div class="size" style="color:#5a7a5a;font-size:0.75rem;">Fichier de session</div>
+        <h2>🎉 Inscription réussie !</h2>
+        
+        <div class="fmtk-file">
+            <div class="icon"><i class="fas fa-file-code"></i></div>
+            <div class="info">
+                <div class="name" id="downloadFileName">joueur.FMTK</div>
+                <div class="size">Fichier de session FMTK</div>
             </div>
-            <span class="status" style="padding:4px 12px;border-radius:12px;font-size:0.7rem;font-weight:700;background:rgba(46,204,113,0.2);color:#2ecc71;">✅ Prêt</span>
+            <span class="status success">✅ Prêt</span>
         </div>
-        <p id="popupDownloadMessage" style="font-size:0.9rem;color:#aaa;line-height:1.6;">
-            ✅ Votre fichier a été généré.<br><br>
-            <span style="color:#FFD700;">🔑 Retournez vous connecter dans la rubrique <strong>Connexion</strong> avec votre pseudo et mot de passe.</span>
+
+        <div style="background:rgba(255,215,0,0.05);border-left:3px solid #FFD700;padding:12px 14px;border-radius:8px;margin:12px 0;text-align:left;">
+            <p style="color:#ddd;font-size:0.85rem;margin:4px 0;">
+                <i class="fas fa-arrow-right" style="color:#FFD700;margin-right:8px;"></i>
+                <strong>🔑 Retournez vous connecter</strong> dans la rubrique 
+                <span style="color:#FFD700;font-weight:700;">"Connexion"</span>
+                avec votre <strong>pseudo</strong> et <strong>mot de passe</strong>.
+            </p>
+        </div>
+
+        <div style="background:rgba(255,107,107,0.08);border-left:3px solid #ff6b6b;padding:12px 14px;border-radius:8px;margin:12px 0;text-align:left;">
+            <p style="color:#ff6b6b;font-size:0.85rem;margin:4px 0;">
+                <i class="fas fa-exclamation-triangle" style="margin-right:8px;"></i>
+                <strong>⚠️ NE PERDEZ JAMAIS CE FICHIER !</strong><br>
+                C'est votre <strong>identité</strong> dans le jeu. Sans lui, vous ne pourrez pas jouer.
+            </p>
+        </div>
+
+        <p style="color:#888;font-size:0.75rem;margin:8px 0;">
+            💡 Sauvegardez-le dans un dossier sûr, envoyez-le par email, faites une copie !
         </p>
-        <p style="font-size:0.8rem;color:#ff6b6b;margin-top:10px;">
-            ⚠️ <strong>Ne perdez pas ce fichier !</strong> C'est votre identité dans le jeu.
-        </p>
-        <button class="btn-popup" onclick="closePopupDownload()">
-            <i class="fas fa-download"></i> Télécharger
-        </button>
-        <button class="btn-popup danger" onclick="closePopupDownload()" style="margin-top:8px;">
-            Je le ferai plus tard
-        </button>
+
+        <div class="row">
+            <button class="btn-popup success" onclick="downloadAndClose()">
+                <i class="fas fa-download"></i> Télécharger
+            </button>
+            <button class="btn-popup secondary" onclick="closePopupDownload()">
+                Je le ferai plus tard
+            </button>
+        </div>
     </div>
 </div>
 
@@ -796,6 +864,19 @@ function closePopupDownload() {
     document.getElementById('popupDownload').classList.remove('active');
 }
 
+function downloadAndClose() {
+    // Télécharger le fichier
+    const pseudo = document.getElementById('registerPseudo').value.trim();
+    if (pseudo) {
+        window.location.href = `/download/${pseudo}`;
+    }
+    closePopupDownload();
+    // Rediriger vers l'accueil après un moment
+    setTimeout(() => {
+        window.location.href = '/';
+    }, 1000);
+}
+
 // ===== LOADER =====
 function showLoader(text, sub) {
     const loader = document.getElementById('fmtkLoader');
@@ -875,13 +956,8 @@ async function handleRegister(event) {
         hideLoader();
 
         if (result.success) {
+            // Afficher la popup de téléchargement avec les messages
             showPopupDownload(`${pseudo}.FMTK`);
-            setTimeout(() => {
-                window.location.href = `/download/${pseudo}`;
-            }, 500);
-            setTimeout(() => {
-                window.location.href = '/';
-            }, 5000);
         } else {
             showPopup('❌', 'Erreur', result.message, 'error');
         }
