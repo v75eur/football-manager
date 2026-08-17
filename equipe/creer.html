@@ -20,29 +20,28 @@
             align-items:center;
             justify-content:center;
             min-height:100vh;
-            padding:20px;
+            padding:15px;
             background: linear-gradient(180deg, #0a2a0a 0%, #0d1f0d 100%);
         }
         .card {
-            max-width:700px;
+            max-width:600px;
             width:100%;
             background:rgba(10,30,10,0.85);
             backdrop-filter:blur(20px);
             border-radius:25px;
             border:1px solid rgba(255,215,0,0.08);
-            padding:35px 30px;
+            padding:30px 25px;
             box-shadow:0 20px 60px rgba(0,0,0,0.8);
         }
         .logo {
             font-family:'Orbitron',monospace;
-            font-size:2rem;
+            font-size:1.8rem;
             font-weight:900;
             color:#FFD700;
             text-align:center;
-            margin-bottom:2px;
         }
         .logo-sub {
-            font-size:0.7rem;
+            font-size:0.6rem;
             color:#7aaa7a;
             letter-spacing:6px;
             text-transform:uppercase;
@@ -51,32 +50,30 @@
         }
         h1 {
             font-family:'Orbitron',monospace;
-            font-size:1.3rem;
+            font-size:1.2rem;
             color:#FFD700;
             text-align:center;
             margin-bottom:5px;
         }
         .subtitle {
             color:#8aaa8a;
-            font-size:0.85rem;
+            font-size:0.8rem;
             text-align:center;
-            margin-bottom:20px;
+            margin-bottom:15px;
         }
-
         .form-group {
-            margin-bottom:14px;
+            margin-bottom:12px;
         }
         .form-group label {
             display:block;
             color:#8aaa8a;
-            font-size:0.8rem;
+            font-size:0.75rem;
             margin-bottom:4px;
             font-weight:600;
-            letter-spacing:0.5px;
         }
         .form-group input, .form-group select {
             width:100%;
-            padding:12px 15px;
+            padding:12px 14px;
             background:rgba(255,255,255,0.05);
             border:1.5px solid rgba(255,255,255,0.06);
             border-radius:10px;
@@ -92,185 +89,7 @@
         }
         .form-group input::placeholder { color:#5a7a5a; }
         .form-group select option { background:#1a2e1a; color:#fff; }
-        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-
-        /* ===== LOGOS PRÉ-DESSINÉS ===== */
-        .logos-grid {
-            display:grid;
-            grid-template-columns:repeat(auto-fill, minmax(80px, 1fr));
-            gap:10px;
-            margin:10px 0;
-        }
-        .logo-option {
-            aspect-ratio:1/1;
-            border-radius:15px;
-            border:2px solid rgba(255,255,255,0.05);
-            cursor:pointer;
-            transition:all 0.3s;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:2.2rem;
-            background:rgba(255,255,255,0.02);
-            position:relative;
-        }
-        .logo-option:hover {
-            border-color:rgba(255,215,0,0.3);
-            transform:scale(1.05);
-        }
-        .logo-option.selected {
-            border-color:#FFD700;
-            box-shadow:0 0 20px rgba(255,215,0,0.2);
-        }
-        .logo-option.selected::after {
-            content:'✅';
-            position:absolute;
-            top:-6px;
-            right:-6px;
-            font-size:0.8rem;
-        }
-        .logo-option .bg-shape {
-            position:absolute;
-            inset:0;
-            border-radius:13px;
-            opacity:0.15;
-        }
-        .logo-option .icon {
-            position:relative;
-            z-index:1;
-        }
-
-        /* ===== PRÉVISUALISATION CLUB ===== */
-        .club-preview {
-            display:flex;
-            align-items:center;
-            gap:20px;
-            padding:15px 20px;
-            background:rgba(255,255,255,0.02);
-            border-radius:15px;
-            border:1px solid rgba(255,255,255,0.05);
-            margin-bottom:10px;
-            flex-wrap:wrap;
-        }
-        .club-preview .shield {
-            width:80px;
-            height:80px;
-            border-radius:15px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:2rem;
-            font-weight:900;
-            color:#fff;
-            border:2px solid rgba(255,255,255,0.1);
-            transition:all 0.3s;
-            flex-shrink:0;
-            background:linear-gradient(135deg, #FFD700, #f5a623);
-        }
-        .club-preview .shield .letter {
-            text-shadow:0 2px 10px rgba(0,0,0,0.3);
-        }
-        .club-preview .info { flex:1; min-width:150px; }
-        .club-preview .info .name {
-            font-size:1.2rem;
-            font-weight:700;
-            color:#fff;
-        }
-        .club-preview .info .coach {
-            font-size:0.85rem;
-            color:#8aaa8a;
-        }
-        .club-preview .info .detail {
-            font-size:0.75rem;
-            color:#5a7a5a;
-        }
-
-        /* ===== COULEURS ===== */
-        .color-group {
-            display:flex;
-            gap:10px;
-            align-items:center;
-            flex-wrap:wrap;
-        }
-        .color-group input[type="color"] {
-            width:45px;
-            height:45px;
-            padding:3px;
-            border:2px solid rgba(255,255,255,0.1);
-            border-radius:10px;
-            background:transparent;
-            cursor:pointer;
-        }
-        .color-group input[type="text"] {
-            flex:1;
-            min-width:100px;
-        }
-
-        /* ===== MAILLOT ===== */
-        .kit-preview {
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:20px;
-            padding:15px;
-            background:rgba(255,255,255,0.02);
-            border-radius:12px;
-            border:1px solid rgba(255,255,255,0.05);
-            flex-wrap:wrap;
-        }
-        .kit-preview .shirt {
-            width:70px;
-            height:85px;
-            border-radius:10px 10px 4px 4px;
-            position:relative;
-            border:2px solid rgba(255,255,255,0.1);
-            transition:all 0.3s;
-            background:linear-gradient(135deg, #FFD700, #f5a623);
-        }
-        .kit-preview .shirt::before {
-            content:'';
-            position:absolute;
-            top:12px;
-            left:50%;
-            transform:translateX(-50%);
-            width:22px;
-            height:22px;
-            border-radius:50%;
-            border:2px solid rgba(255,255,255,0.1);
-        }
-        .kit-preview .shirt .number {
-            position:absolute;
-            bottom:10px;
-            left:50%;
-            transform:translateX(-50%);
-            font-size:1rem;
-            font-weight:900;
-            color:rgba(255,255,255,0.25);
-        }
-        .kit-preview .shirt .collar {
-            position:absolute;
-            top:-2px;
-            left:50%;
-            transform:translateX(-50%);
-            width:22px;
-            height:6px;
-            border-radius:3px 3px 0 0;
-            background:rgba(255,255,255,0.1);
-        }
-        .kit-preview .shirt .stripes {
-            position:absolute;
-            inset:0;
-            background:repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 8px,
-                rgba(255,255,255,0.05) 8px,
-                rgba(255,255,255,0.05) 9px
-            );
-            border-radius:8px 8px 2px 2px;
-        }
-
-        /* ===== BOUTON ===== */
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
         .btn-submit {
             width:100%;
             padding:14px;
@@ -296,7 +115,6 @@
             cursor:not-allowed;
             transform:none !important;
         }
-
         .spinner {
             display:inline-block;
             width:18px;
@@ -310,14 +128,25 @@
         }
         @keyframes spin { to { transform:rotate(360deg); } }
 
+        .info-box {
+            background:rgba(255,215,0,0.05);
+            border-left:3px solid #FFD700;
+            padding:10px 14px;
+            border-radius:8px;
+            margin-bottom:12px;
+        }
+        .info-box p {
+            color:#8aaa8a;
+            font-size:0.75rem;
+            margin:3px 0;
+        }
+        .info-box i { color:#FFD700; margin-right:6px; }
+
         @media (max-width:480px) {
-            .card { padding:25px 18px; }
+            .card { padding:20px 15px; }
             .form-row { grid-template-columns:1fr; }
-            .logo { font-size:1.6rem; }
-            h1 { font-size:1.1rem; }
-            .club-preview .shield { width:60px; height:60px; font-size:1.5rem; }
-            .logos-grid { grid-template-columns:repeat(auto-fill, minmax(60px, 1fr)); }
-            .logo-option { font-size:1.6rem; }
+            .logo { font-size:1.5rem; }
+            h1 { font-size:1rem; }
         }
     </style>
 </head>
@@ -327,82 +156,67 @@
             <div class="logo">⚽ FMTK</div>
             <div class="logo-sub">v1.26</div>
             <h1>🏟️ Créer mon club</h1>
-            <p class="subtitle">Choisissez votre club et personnalisez votre identité</p>
+            <p class="subtitle">Choisissez votre club et personnalisez votre équipe</p>
+
+            <div class="info-box">
+                <p><i class="fas fa-users"></i> Votre club aura <strong>25 joueurs</strong> avec des stats détaillées</p>
+                <p><i class="fas fa-coins"></i> Budget de départ : <strong>50 000 000 €</strong></p>
+            </div>
 
             <form id="clubForm" onsubmit="saveClub(event)">
-
-                <!-- ===== COACH ===== -->
                 <div class="form-group">
                     <label>🧑‍✈️ Nom du coach</label>
                     <input type="text" id="coachNom" placeholder="Votre pseudo" required>
                 </div>
 
-                <!-- ===== CLUB & DIVISION ===== -->
+                <div class="form-group">
+                    <label>🏷️ Club</label>
+                    <select id="clubSelect">
+                        <optgroup label="🌍 Afrique">
+                            <option value="AS Cotonou">🇧🇯 AS Cotonou</option>
+                            <option value="ASPAC FC">🇧🇯 ASPAC FC</option>
+                            <option value="Buffles FC">🇧🇯 Buffles FC</option>
+                            <option value="Dragons FC">🇧🇯 Dragons FC</option>
+                            <option value="ASEC Mimosas">🇨🇮 ASEC Mimosas</option>
+                            <option value="Africa Sports">🇨🇮 Africa Sports</option>
+                            <option value="Stade Malien">🇲🇱 Stade Malien</option>
+                            <option value="Djoliba AC">🇲🇱 Djoliba AC</option>
+                            <option value="TP Mazembe">🇨🇩 TP Mazembe</option>
+                            <option value="Al Ahly">🇪🇬 Al Ahly</option>
+                            <option value="Espérance">🇹🇳 Espérance</option>
+                            <option value="Raja Casablanca">🇲🇦 Raja Casablanca</option>
+                            <option value="Wydad Casablanca">🇲🇦 Wydad Casablanca</option>
+                            <option value="Mamelodi Sundowns">🇿🇦 Mamelodi Sundowns</option>
+                        </optgroup>
+                        <optgroup label="🌍 Europe">
+                            <option value="PSG">🇫🇷 PSG</option>
+                            <option value="Marseille">🇫🇷 Marseille</option>
+                            <option value="Barcelona">🇪🇸 FC Barcelona</option>
+                            <option value="Real Madrid">🇪🇸 Real Madrid</option>
+                            <option value="Manchester City">🇬🇧 Manchester City</option>
+                            <option value="Liverpool">🇬🇧 Liverpool</option>
+                            <option value="Bayern Munich">🇩🇪 Bayern Munich</option>
+                            <option value="Juventus">🇮🇹 Juventus</option>
+                            <option value="AC Milan">🇮🇹 AC Milan</option>
+                            <option value="Benfica">🇵🇹 Benfica</option>
+                        </optgroup>
+                    </select>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label>🏷️ Club</label>
-                        <select id="clubSelect">
-                            <optgroup label="🌍 Afrique">
-                                <option value="AS Cotonou">🇧🇯 AS Cotonou</option>
-                                <option value="ASPAC FC">🇧🇯 ASPAC FC</option>
-                                <option value="Buffles FC">🇧🇯 Buffles FC</option>
-                                <option value="Dragons FC">🇧🇯 Dragons FC</option>
-                                <option value="JS Pobè">🇧🇯 JS Pobè</option>
-                                <option value="Soleil FC">🇧🇯 Soleil FC</option>
-                                <option value="AS Togo">🇹🇬 AS Togo</option>
-                                <option value="Sara FC">🇹🇬 Sara FC</option>
-                                <option value="ASEC Mimosas">🇨🇮 ASEC Mimosas</option>
-                                <option value="Africa Sports">🇨🇮 Africa Sports</option>
-                                <option value="Stade Malien">🇲🇱 Stade Malien</option>
-                                <option value="Djoliba AC">🇲🇱 Djoliba AC</option>
-                                <option value="AS Vita Club">🇨🇩 AS Vita Club</option>
-                                <option value="TP Mazembe">🇨🇩 TP Mazembe</option>
-                                <option value="Al Ahly">🇪🇬 Al Ahly</option>
-                                <option value="Zamalek">🇪🇬 Zamalek</option>
-                                <option value="Espérance">🇹🇳 Espérance</option>
-                                <option value="Étoile du Sahel">🇹🇳 Étoile du Sahel</option>
-                                <option value="Raja Casablanca">🇲🇦 Raja Casablanca</option>
-                                <option value="Wydad Casablanca">🇲🇦 Wydad Casablanca</option>
-                                <option value="Kaiser Chiefs">🇿🇦 Kaiser Chiefs</option>
-                                <option value="Orlando Pirates">🇿🇦 Orlando Pirates</option>
-                                <option value="Mamelodi Sundowns">🇿🇦 Mamelodi Sundowns</option>
-                            </optgroup>
-                            <optgroup label="🌍 Europe">
-                                <option value="PSG">🇫🇷 Paris Saint-Germain</option>
-                                <option value="OM">🇫🇷 Olympique Marseille</option>
-                                <option value="OL">🇫🇷 Olympique Lyonnais</option>
-                                <option value="AS Monaco">🇫🇷 AS Monaco</option>
-                                <option value="Barcelona">🇪🇸 FC Barcelona</option>
-                                <option value="Real Madrid">🇪🇸 Real Madrid</option>
-                                <option value="Atletico Madrid">🇪🇸 Atlético Madrid</option>
-                                <option value="Manchester City">🇬🇧 Manchester City</option>
-                                <option value="Manchester United">🇬🇧 Manchester United</option>
-                                <option value="Liverpool">🇬🇧 Liverpool FC</option>
-                                <option value="Arsenal">🇬🇧 Arsenal FC</option>
-                                <option value="Chelsea">🇬🇧 Chelsea FC</option>
-                                <option value="Bayern Munich">🇩🇪 Bayern Munich</option>
-                                <option value="Dortmund">🇩🇪 Borussia Dortmund</option>
-                                <option value="Juventus">🇮🇹 Juventus</option>
-                                <option value="AC Milan">🇮🇹 AC Milan</option>
-                                <option value="Inter Milan">🇮🇹 Inter Milan</option>
-                                <option value="Benfica">🇵🇹 Benfica</option>
-                                <option value="Porto">🇵🇹 FC Porto</option>
-                                <option value="Ajax">🇳🇱 Ajax Amsterdam</option>
-                            </optgroup>
-                            <optgroup label="🌍 Amérique">
-                                <option value="Flamengo">🇧🇷 Flamengo</option>
-                                <option value="Palmeiras">🇧🇷 Palmeiras</option>
-                                <option value="River Plate">🇦🇷 River Plate</option>
-                                <option value="Boca Juniors">🇦🇷 Boca Juniors</option>
-                                <option value="Club America">🇲🇽 Club América</option>
-                                <option value="LA Galaxy">🇺🇸 LA Galaxy</option>
-                            </optgroup>
-                            <optgroup label="🌍 Asie">
-                                <option value="Al Hilal">🇸🇦 Al Hilal</option>
-                                <option value="Al Nassr">🇸🇦 Al Nassr</option>
-                                <option value="Urawa Reds">🇯🇵 Urawa Reds</option>
-                                <option value="Jeonbuk">🇰🇷 Jeonbuk Hyundai</option>
-                            </optgroup>
+                        <label>🏴 Pays</label>
+                        <select id="clubPays">
+                            <option value="Bénin">🇧🇯 Bénin</option>
+                            <option value="France">🇫🇷 France</option>
+                            <option value="Espagne">🇪🇸 Espagne</option>
+                            <option value="Angleterre">🇬🇧 Angleterre</option>
+                            <option value="Allemagne">🇩🇪 Allemagne</option>
+                            <option value="Italie">🇮🇹 Italie</option>
+                            <option value="Portugal">🇵🇹 Portugal</option>
+                            <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
+                            <option value="Sénégal">🇸🇳 Sénégal</option>
+                            <option value="Maroc">🇲🇦 Maroc</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -411,98 +225,9 @@
                     </div>
                 </div>
 
-                <!-- ===== STADE ===== -->
                 <div class="form-group">
                     <label>🏟️ Stade</label>
-                    <input type="text" id="clubStade" placeholder="Stade de l'Amitié">
-                </div>
-
-                <!-- ===== PRÉVISUALISATION ===== -->
-                <div class="form-group">
-                    <label>👁️ Prévisualisation</label>
-                    <div class="club-preview">
-                        <div class="shield" id="logoShield" style="background:linear-gradient(135deg, #FFD700, #f5a623);">
-                            <span class="letter" id="logoLetter">F</span>
-                        </div>
-                        <div class="info">
-                            <div class="name" id="previewClubName">AS Cotonou</div>
-                            <div class="coach" id="previewCoachName">Coach</div>
-                            <div class="detail" id="previewDetail">🏟️ Stade de l'Amitié · Ligue 1</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ===== LOGOS PRÉ-DESSINÉS ===== -->
-                <div class="form-group">
-                    <label>🎨 Choisissez un logo</label>
-                    <div class="logos-grid" id="logosGrid">
-                        <div class="logo-option selected" data-icon="⚽" data-bg1="#FFD700" data-bg2="#f5a623">
-                            <span class="icon">⚽</span>
-                        </div>
-                        <div class="logo-option" data-icon="🦁" data-bg1="#e74c3c" data-bg2="#c0392b">
-                            <span class="icon">🦁</span>
-                        </div>
-                        <div class="logo-option" data-icon="🐉" data-bg1="#2ecc71" data-bg2="#27ae60">
-                            <span class="icon">🐉</span>
-                        </div>
-                        <div class="logo-option" data-icon="🦅" data-bg1="#3498db" data-bg2="#2980b9">
-                            <span class="icon">🦅</span>
-                        </div>
-                        <div class="logo-option" data-icon="🐺" data-bg1="#95a5a6" data-bg2="#7f8c8d">
-                            <span class="icon">🐺</span>
-                        </div>
-                        <div class="logo-option" data-icon="🐘" data-bg1="#8e44ad" data-bg2="#6c3483">
-                            <span class="icon">🐘</span>
-                        </div>
-                        <div class="logo-option" data-icon="🦓" data-bg1="#2c3e50" data-bg2="#1a252f">
-                            <span class="icon">🦓</span>
-                        </div>
-                        <div class="logo-option" data-icon="⚡" data-bg1="#f39c12" data-bg2="#e67e22">
-                            <span class="icon">⚡</span>
-                        </div>
-                        <div class="logo-option" data-icon="🏆" data-bg1="#1abc9c" data-bg2="#16a085">
-                            <span class="icon">🏆</span>
-                        </div>
-                        <div class="logo-option" data-icon="🔥" data-bg1="#e74c3c" data-bg2="#d35400">
-                            <span class="icon">🔥</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ===== COULEURS LOGO ===== -->
-                <div class="form-group">
-                    <label>🎨 Couleurs du logo</label>
-                    <div class="color-group">
-                        <input type="color" id="logoColor1" value="#FFD700" onchange="updateLogo()">
-                        <input type="color" id="logoColor2" value="#f5a623" onchange="updateLogo()">
-                        <input type="text" id="logoColors" value="#FFD700 / #f5a623" placeholder="#FFD700 / #f5a623">
-                    </div>
-                </div>
-
-                <!-- ===== MAILLOT ===== -->
-                <div class="form-group">
-                    <label>👕 Maillot</label>
-                    <div class="kit-preview">
-                        <div class="shirt" id="shirtPreview">
-                            <div class="collar"></div>
-                            <div class="stripes"></div>
-                            <div class="number">10</div>
-                        </div>
-                        <div>
-                            <div class="color-group" style="flex-direction:column;align-items:flex-start;gap:8px;">
-                                <div style="display:flex;gap:10px;align-items:center;">
-                                    <span style="color:#5a7a5a;font-size:0.75rem;">Principal</span>
-                                    <input type="color" id="kitColor1" value="#FFD700" onchange="updateKit()">
-                                    <span style="color:#5a7a5a;font-size:0.75rem;">Secondaire</span>
-                                    <input type="color" id="kitColor2" value="#f5a623" onchange="updateKit()">
-                                </div>
-                                <div style="display:flex;gap:10px;align-items:center;">
-                                    <span style="color:#5a7a5a;font-size:0.75rem;">Numéro</span>
-                                    <input type="color" id="kitNumberColor" value="#ffffff" onchange="updateKit()">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <input type="text" id="clubStade" placeholder="Stade de l'Amitié" value="Stade de l'Amitié">
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">
@@ -513,91 +238,18 @@
     </div>
 
     <script>
-        // ===== LOGO SELECTION =====
-        document.querySelectorAll('.logo-option').forEach(el => {
-            el.addEventListener('click', function() {
-                document.querySelectorAll('.logo-option').forEach(l => l.classList.remove('selected'));
-                this.classList.add('selected');
-                const icon = this.dataset.icon;
-                const bg1 = this.dataset.bg1;
-                const bg2 = this.dataset.bg2;
-                document.getElementById('logoLetter').textContent = icon;
-                document.getElementById('logoColor1').value = bg1;
-                document.getElementById('logoColor2').value = bg2;
-                document.getElementById('logoColors').value = `${bg1} / ${bg2}`;
-                updateLogo();
-            });
-        });
-
-        // ===== UPDATE LOGO =====
-        function updateLogo() {
-            const c1 = document.getElementById('logoColor1').value;
-            const c2 = document.getElementById('logoColor2').value;
-            document.getElementById('logoColors').value = `${c1} / ${c2}`;
-            document.getElementById('logoShield').style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
-        }
-
-        // ===== UPDATE KIT =====
-        function updateKit() {
-            const c1 = document.getElementById('kitColor1').value;
-            const c2 = document.getElementById('kitColor2').value;
-            const num = document.getElementById('kitNumberColor').value;
-            document.getElementById('shirtPreview').style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
-            document.getElementById('shirtPreview').querySelector('.number').style.color = num;
-        }
-
-        // ===== UPDATE PREVIEW =====
-        function updatePreview() {
-            const club = document.getElementById('clubSelect').value;
-            const coach = document.getElementById('coachNom').value || 'Coach';
-            const division = document.getElementById('clubDivision').value || 'Ligue 1';
-            const stade = document.getElementById('clubStade').value || 'Stade';
-            document.getElementById('previewClubName').textContent = club;
-            document.getElementById('previewCoachName').textContent = coach;
-            document.getElementById('previewDetail').textContent = `🏟️ ${stade} · ${division}`;
-            // Mettre à jour la lettre du logo
-            document.getElementById('logoLetter').textContent = document.querySelector('.logo-option.selected')?.dataset.icon || '⚽';
-        }
-
-        // ===== EVENTS =====
-        document.getElementById('clubSelect').addEventListener('change', updatePreview);
-        document.getElementById('coachNom').addEventListener('input', updatePreview);
-        document.getElementById('clubDivision').addEventListener('input', updatePreview);
-        document.getElementById('clubStade').addEventListener('input', updatePreview);
-
-        // ===== INIT =====
-        document.addEventListener('DOMContentLoaded', function() {
-            // Récupérer les données de session
-            const saved = localStorage.getItem('fm_session_data');
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    if (data.pseudo) {
-                        document.getElementById('coachNom').value = data.pseudo;
-                    }
-                } catch(e) {}
-            }
-            updatePreview();
-            updateKit();
-        });
-
-        // ===== SAVE =====
         async function saveClub(event) {
             event.preventDefault();
 
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span> Création...';
+            btn.innerHTML = '<span class="spinner"></span> Création en cours...';
 
             const coach = document.getElementById('coachNom').value.trim();
             const club = document.getElementById('clubSelect').value;
+            const pays = document.getElementById('clubPays').value;
             const division = document.getElementById('clubDivision').value.trim();
             const stade = document.getElementById('clubStade').value.trim();
-            const colors = document.getElementById('logoColors').value.trim();
-            const kit1 = document.getElementById('kitColor1').value;
-            const kit2 = document.getElementById('kitColor2').value;
-            const kitNum = document.getElementById('kitNumberColor').value;
-            const logoIcon = document.querySelector('.logo-option.selected')?.dataset.icon || '⚽';
 
             if (!coach) {
                 alert('⚠️ Veuillez entrer votre nom de coach');
@@ -606,39 +258,115 @@
                 return;
             }
 
-            const saved = localStorage.getItem('fm_session_data');
-            if (!saved) {
-                alert('❌ Aucune session trouvée');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon club';
-                return;
-            }
-
-            const playerData = JSON.parse(saved);
-            playerData.pseudo = coach;
-            playerData.equipe.nom = club;
-            playerData.equipe.division = division || 'Ligue 1';
-            playerData.equipe.stade = stade || 'Mon Stade';
-            playerData.equipe.couleurs = colors || '#FFD700 / #f5a623';
-            playerData.equipe.logoIcon = logoIcon;
-            playerData.equipe.kitColor1 = kit1;
-            playerData.equipe.kitColor2 = kit2;
-            playerData.equipe.kitNumberColor = kitNum;
-
-            localStorage.setItem('fm_session_data', JSON.stringify(playerData));
-
             try {
+                // Récupérer les données de session
+                const saved = localStorage.getItem('fm_session_data');
+                let playerData = saved ? JSON.parse(saved) : {};
+
+                // Créer les données du club
+                playerData.pseudo = coach;
+                playerData.equipe = {
+                    nom: club,
+                    pays: pays,
+                    division: division || 'Ligue 1',
+                    stade: stade || 'Mon Stade',
+                    budget: 50000000,
+                    joueurs: []
+                };
+
+                // Générer 25 joueurs pour le club
+                const response = await fetch('/api/generate_players', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        pays: pays, 
+                        club: club, 
+                        nombre: 25 
+                    })
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    playerData.equipe.joueurs = result.players;
+                } else {
+                    // Fallback : générer des joueurs locaux
+                    playerData.equipe.joueurs = generateLocalPlayers(pays, club, 25);
+                }
+
+                // Sauvegarder
+                localStorage.setItem('fm_session_data', JSON.stringify(playerData));
+
+                // Sauvegarder sur le serveur
                 await fetch('/api/save', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pseudo: playerData.pseudo, data: playerData })
+                    body: JSON.stringify({ 
+                        pseudo: playerData.pseudo, 
+                        data: playerData 
+                    })
                 });
-            } catch(e) {}
 
-            btn.innerHTML = '✅ Club créé !';
-            setTimeout(() => {
-                window.location.href = '/dashboard.html';
-            }, 1000);
+                btn.innerHTML = '✅ Club créé !';
+                setTimeout(() => {
+                    window.location.href = '/dashboard.html';
+                }, 1000);
+
+            } catch(e) {
+                console.error(e);
+                alert('❌ Erreur lors de la création du club');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon club';
+            }
+        }
+
+        // Fallback : générer des joueurs localement
+        function generateLocalPlayers(pays, club, nombre) {
+            const postes = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'];
+            const noms = {
+                'Bénin': ['Mounié', 'Dossou', 'Hountondji', 'Adénon', 'Gestede'],
+                'France': ['Martin', 'Bernard', 'Dubois', 'Petit', 'Garcia'],
+                'Espagne': ['García', 'Rodríguez', 'González', 'Martínez', 'López'],
+                'Angleterre': ['Smith', 'Jones', 'Williams', 'Taylor', 'Davies'],
+                'Allemagne': ['Müller', 'Schmidt', 'Schneider', 'Fischer', 'Weber'],
+                'Italie': ['Rossi', 'Russo', 'Ferrari', 'Esposito', 'Bianchi']
+            };
+            const prenoms = {
+                'Bénin': ['Steve', 'Jodel', 'Cédric', 'Sessi', 'Marcel'],
+                'France': ['Jean', 'Pierre', 'Paul', 'Jacques', 'Antoine'],
+                'Espagne': ['Antonio', 'José', 'Manuel', 'Javier', 'Francisco'],
+                'Angleterre': ['James', 'John', 'William', 'George', 'Henry'],
+                'Allemagne': ['Hans', 'Peter', 'Klaus', 'Dieter', 'Uwe'],
+                'Italie': ['Marco', 'Alessandro', 'Francesco', 'Luca', 'Matteo']
+            };
+
+            const paysNoms = noms[pays] || noms['France'];
+            const paysPrenoms = prenoms[pays] || prenoms['France'];
+            const joueurs = [];
+
+            for (let i = 0; i < nombre; i++) {
+                const nom = paysNoms[i % paysNoms.length];
+                const prenom = paysPrenoms[i % paysPrenoms.length];
+                const note = Math.floor(Math.random() * 50) + 40; // 40-90
+                const age = Math.floor(Math.random() * 10) + 16; // 16-26
+
+                joueurs.push({
+                    id: `joueur_${i}`,
+                    prenom: prenom,
+                    nom: nom,
+                    age: age,
+                    poste: postes[i % postes.length],
+                    note: note,
+                    valeur: note * 100000,
+                    attributs: {
+                        vitesse: Math.floor(Math.random() * 50) + 40,
+                        tir: Math.floor(Math.random() * 50) + 30,
+                        passe: Math.floor(Math.random() * 50) + 30,
+                        defense: Math.floor(Math.random() * 50) + 30,
+                        physique: Math.floor(Math.random() * 50) + 40
+                    }
+                });
+            }
+            return joueurs;
         }
     </script>
 </body>

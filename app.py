@@ -198,3 +198,41 @@ def serve_static(path):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+# ===== API : GÉNÉRER DES JOUEURS =====
+@app.route('/api/generate_players', methods=['POST'])
+def generate_players():
+    try:
+        data = request.json
+        pays = data.get('pays', 'France')
+        club = data.get('club', 'Mon Club')
+        nombre = data.get('nombre', 25)
+        
+        # Charger tous les joueurs
+        import json
+        import random
+        
+        with open('data/all_players_complete_200k.json', 'r') as f:
+            all_players = json.load(f)
+        
+        # Filtrer par pays
+        players_from_country = [p for p in all_players if p.get('pays') == pays]
+        
+        if len(players_from_country) < nombre:
+            players_from_country = all_players
+        
+        # Sélectionner aléatoirement
+        selected = random.sample(players_from_country, min(nombre, len(players_from_country)))
+        
+        # Assigner le club
+        for p in selected:
+            p['club'] = club
+        
+        return jsonify({
+            'success': True,
+            'players': selected,
+            'message': f'{len(selected)} joueurs générés pour {club}'
+        })
+        
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
