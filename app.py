@@ -288,3 +288,17 @@ if __name__ == '__main__':
 @app.route('/test', methods=['GET'])
 def test():
     return jsonify({'status': 'OK', 'message': 'Le serveur fonctionne !'})
+
+# ===== ROUTE : TÉLÉCHARGER .FMTK =====
+@app.route('/download/<pseudo>')
+def download_fmtk(pseudo):
+    filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+    if not os.path.exists(filepath):
+        return jsonify({'error': 'Fichier non trouvé'}), 404
+    
+    return send_file(
+        filepath,
+        as_attachment=True,
+        download_name=f"{pseudo}.FMTK",
+        mimetype='application/json'
+    )
