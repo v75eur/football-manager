@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard - FMTK-v1.26</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Rajdhani',sans-serif; background:#0a1a0a; color:#fff; min-height:100vh; overflow-x:hidden; }
+        
+        /* ===== HEADER ===== */
+        .header {
+            background:linear-gradient(135deg,#0d2a0d,#0a1a0a);
+            border-bottom:2px solid rgba(255,215,0,0.1);
+            padding:10px 15px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:8px;
+            position:sticky;
+            top:0;
+            z-index:100;
+            backdrop-filter:blur(10px);
+        }
+        .header .logo {
+            font-family:'Orbitron',monospace;
+            font-size:1.1rem;
+            color:#FFD700;
+            font-weight:900;
+        }
+        .header .info {
+            display:flex;
+            gap:12px;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+        .header .info .stat {
+            text-align:center;
+            padding:4px 8px;
+            background:rgba(255,255,255,0.03);
+            border-radius:8px;
+            min-width:50px;
+        }
+        .header .info .stat .value {
+            font-size:0.9rem;
+            font-weight:700;
+            color:#FFD700;
+        }
+        .header .info .stat .label {
+            font-size:0.5rem;
+            color:#666;
+            text-transform:uppercase;
+        }
+        .header .btn {
+            padding:6px 12px;
+            background:linear-gradient(135deg,#FFD700,#f5a623);
+            border:none;
+            border-radius:6px;
+            color:#0a0a1a;
+            font-family:'Orbitron',monospace;
+            font-size:0.55rem;
+            font-weight:700;
+            cursor:pointer;
+            transition:all 0.3s;
+        }
+        .header .btn:hover { transform:scale(1.05); box-shadow:0 4px 20px rgba(255,215,0,0.2); }
+        
+        /* ===== TABS ===== */
+        .tab-bar {
+            display:flex;
+            gap:4px;
+            padding:10px 15px;
+            background:rgba(0,0,0,0.2);
+            overflow-x:auto;
+            -webkit-overflow-scrolling:touch;
+        }
+        .tab-bar::-webkit-scrollbar { height:2px; }
+        .tab-bar::-webkit-scrollbar-thumb { background:#FFD700; border-radius:2px; }
+        .tab {
+            padding:6px 14px;
+            background:rgba(255,255,255,0.03);
+            border:1px solid rgba(255,255,255,0.05);
+            border-radius:6px;
+            color:#666;
+            cursor:pointer;
+            transition:all 0.3s;
+            font-size:0.7rem;
+            white-space:nowrap;
+            font-family:'Rajdhani',sans-serif;
+            font-weight:600;
+        }
+        .tab.active {
+            background:rgba(255,215,0,0.1);
+            border-color:#FFD700;
+            color:#FFD700;
+        }
+        .tab:hover { border-color:#FFD700; color:#fff; }
+        
+        /* ===== MAIN ===== */
+        .main { padding:10px 15px 80px; max-width:800px; margin:0 auto; }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
+        
+        /* ===== CARDS ===== */
+        .card {
+            background:rgba(10,30,10,0.85);
+            backdrop-filter:blur(10px);
+            border-radius:12px;
+            border:1px solid rgba(255,215,0,0.05);
+            padding:15px;
+            margin-bottom:12px;
+        }
+        .card h3 {
+            color:#FFD700;
+            font-family:'Orbitron',monospace;
+            font-size:0.75rem;
+            margin-bottom:10px;
+            border-bottom:1px solid rgba(255,215,0,0.1);
+            padding-bottom:8px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .card h3 .badge {
+            font-size:0.55rem;
+            background:rgba(255,215,0,0.1);
+            padding:2px 10px;
+            border-radius:10px;
+            color:#FFD700;
+        }
+        
+        /* ===== PLAYER LIST ===== */
+        .player-list { max-height:400px; overflow-y:auto; }
+        .player-list::-webkit-scrollbar { width:3px; }
+        .player-list::-webkit-scrollbar-thumb { background:#FFD700; border-radius:3px; }
+        .player-item {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:6px 5px;
+            border-bottom:1px solid rgba(255,255,255,0.03);
+            font-size:0.8rem;
+            gap:8px;
+            flex-wrap:wrap;
+        }
+        .player-item .name { color:#fff; font-weight:600; flex:1; min-width:100px; }
+        .player-item .name .num { color:#666; font-size:0.6rem; margin-right:5px; }
+        .player-item .poste { color:#666; font-size:0.6rem; }
+        .player-item .note { color:#FFD700; font-weight:700; font-size:0.85rem; min-width:30px; text-align:right; }
+        .player-item .age { color:#7aaa7a; font-size:0.6rem; min-width:30px; text-align:right; }
+        .player-item .stats-mini { display:flex; gap:6px; font-size:0.5rem; color:#555; }
+        .player-item .stats-mini span { background:rgba(255,255,255,0.03); padding:1px 5px; border-radius:3px; }
+        
+        /* ===== STATS ===== */
+        .stats-grid {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(80px, 1fr));
+            gap:8px;
+        }
+        .stats-grid .stat-box {
+            text-align:center;
+            background:rgba(255,255,255,0.02);
+            padding:10px 5px;
+            border-radius:8px;
+        }
+        .stats-grid .stat-box .val {
+            font-size:1.2rem;
+            font-weight:700;
+            color:#FFD700;
+        }
+        .stats-grid .stat-box .lbl {
+            font-size:0.5rem;
+            color:#666;
+            text-transform:uppercase;
+            margin-top:2px;
+        }
+        
+        /* ===== MATCH LIST ===== */
+        .match-item {
+            padding:8px 10px;
+            background:rgba(255,215,0,0.02);
+            border-radius:6px;
+            margin-bottom:6px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            font-size:0.8rem;
+            border-left:3px solid #666;
+        }
+        .match-item.victoire { border-left-color:#2ecc71; }
+        .match-item.defaite { border-left-color:#e74c3c; }
+        .match-item.nul { border-left-color:#f39c12; }
+        .match-item .score { font-weight:700; color:#FFD700; }
+        .match-item .adversaire { color:#aaa; }
+        .match-item .resultat { font-size:0.6rem; }
+        
+        /* ===== TRANSFER LIST ===== */
+        .transfer-item {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:6px 5px;
+            border-bottom:1px solid rgba(255,255,255,0.03);
+            font-size:0.75rem;
+            gap:8px;
+            flex-wrap:wrap;
+        }
+        .transfer-item .btn-sm {
+            padding:3px 10px;
+            background:linear-gradient(135deg,#2ecc71,#27ae60);
+            border:none;
+            border-radius:4px;
+            color:#fff;
+            font-size:0.55rem;
+            cursor:pointer;
+            font-weight:700;
+        }
+        .transfer-item .btn-sm.danger {
+            background:linear-gradient(135deg,#e74c3c,#c0392b);
+        }
+        .transfer-item .prix { color:#2ecc71; font-weight:700; }
+        
+        /* ===== RANKING ===== */
+        .ranking-item {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:4px 5px;
+            border-bottom:1px solid rgba(255,255,255,0.02);
+            font-size:0.7rem;
+            gap:4px;
+        }
+        .ranking-item .pos { color:#666; min-width:25px; }
+        .ranking-item .team { flex:1; color:#fff; }
+        .ranking-item .pts { color:#FFD700; font-weight:700; }
+        
+        /* ===== LOADING ===== */
+        .loading {
+            text-align:center;
+            padding:40px 20px;
+            color:#666;
+        }
+        .loading .spinner {
+            width:30px;
+            height:30px;
+            border:3px solid rgba(255,215,0,0.1);
+            border-top-color:#FFD700;
+            border-radius:50%;
+            animation:spin 0.8s linear infinite;
+            margin:0 auto 10px;
+        }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width:600px) {
+            .header .logo { font-size:0.9rem; }
+            .header .info .stat { min-width:40px; padding:2px 6px; }
+            .header .info .stat .value { font-size:0.75rem; }
+            .header .btn { padding:4px 10px; font-size:0.5rem; }
+            .tab { font-size:0.6rem; padding:4px 10px; }
+            .player-item { font-size:0.7rem; }
+            .player-item .stats-mini { display:none; }
+            .stats-grid { grid-template-columns:repeat(3, 1fr); }
+            .card { padding:10px; }
+            .main { padding:8px 10px 70px; }
+            .match-item { font-size:0.7rem; }
+            .transfer-item { font-size:0.65rem; }
+        }
+        @media (max-width:400px) {
+            .header .info { gap:6px; }
+            .header .info .stat { min-width:35px; }
+            .tab { font-size:0.5rem; padding:3px 8px; }
+            .player-item .name { min-width:60px; font-size:0.65rem; }
+        }
+        
+        /* ===== POPUP ===== */
+        .popup-overlay {
+            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center;
+            padding:20px; backdrop-filter:blur(10px);
+        }
+        .popup-overlay.active { display:flex; }
+        .popup-box {
+            background:#1a2e1a; border:2px solid rgba(255,215,0,0.2); border-radius:20px;
+            padding:25px 20px; max-width:400px; width:100%; max-height:90vh; overflow-y:auto;
+            box-shadow:0 40px 80px rgba(0,0,0,0.8); animation:popupIn 0.4s ease;
+        }
+        @keyframes popupIn { from { transform:scale(0.8); opacity:0; } to { transform:scale(1); opacity:1; } }
+        .popup-box .icon { font-size:2.5rem; text-align:center; margin-bottom:10px; }
+        .popup-box h2 { font-family:'Orbitron',monospace; font-size:1rem; color:#FFD700; text-align:center; }
+        .popup-box p { color:#aaa; font-size:0.85rem; text-align:center; margin:10px 0; }
+        .popup-box .btn-popup { padding:10px; border:none; border-radius:8px; font-family:'Orbitron',monospace; font-size:0.65rem; font-weight:700; cursor:pointer; width:100%; }
+        .popup-box .btn-popup.info { background:linear-gradient(135deg,#FFD700,#f5a623); color:#0a0a1a; }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <div class="logo">⚽ FMTK</div>
+    <div class="info">
+        <div class="stat">
+            <div class="value" id="clubName">Mon Club</div>
+            <div class="label">🏆 Équipe</div>
+        </div>
+        <div class="stat">
+            <div class="value" id="clubBudget">50 M€</div>
+            <div class="label">💰 Budget</div>
+        </div>
+        <div class="stat">
+            <div class="value" id="clubRank">-</div>
+            <div class="label">📊 Classement</div>
+        </div>
+        <button class="btn" onclick="simulerMatch()"><i class="fas fa-play"></i> Match</button>
+        <button class="btn" onclick="sauvegarder()"><i class="fas fa-save"></i></button>
+    </div>
+</div>
+
+<!-- ===== TABS ===== -->
+<div class="tab-bar">
+    <div class="tab active" onclick="switchTab('equipe')">👥 Équipe</div>
+    <div class="tab" onclick="switchTab('stats')">📊 Stats</div>
+    <div class="tab" onclick="switchTab('transferts')">💰 Transferts</div>
+    <div class="tab" onclick="switchTab('matchs')">⚽ Matchs</div>
+    <div class="tab" onclick="switchTab('classement')">🏆 Classement</div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+    <!-- TAB 1: ÉQUIPE -->
+    <div class="tab-content active" id="tab-equipe">
+        <div class="card">
+            <h3>📋 Effectif <span class="badge" id="playerCount">0 joueurs</span></h3>
+            <div id="playerList" class="player-list">
+                <div class="loading"><div class="spinner"></div>Chargement...</div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>📈 Meilleurs joueurs</h3>
+            <div id="bestPlayers"></div>
+        </div>
+    </div>
+
+    <!-- TAB 2: STATS -->
+    <div class="tab-content" id="tab-stats">
+        <div class="card">
+            <h3>📊 Statistiques de l'équipe</h3>
+            <div class="stats-grid" id="teamStats">
+                <div class="stat-box"><div class="val" id="statMatchs">0</div><div class="lbl">Matchs</div></div>
+                <div class="stat-box"><div class="val" id="statWins">0</div><div class="lbl">Victoires</div></div>
+                <div class="stat-box"><div class="val" id="statDraws">0</div><div class="lbl">Nuls</div></div>
+                <div class="stat-box"><div class="val" id="statLosses">0</div><div class="lbl">Défaites</div></div>
+                <div class="stat-box"><div class="val" id="statGoalsFor">0</div><div class="lbl">Buts +</div></div>
+                <div class="stat-box"><div class="val" id="statGoalsAgainst">0</div><div class="lbl">Buts -</div></div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>🏅 Meilleur buteur</h3>
+            <div id="topScorer">Aucun but marqué</div>
+        </div>
+    </div>
+
+    <!-- TAB 3: TRANSFERTS -->
+    <div class="tab-content" id="tab-transferts">
+        <div class="card">
+            <h3>📤 Vendre <span class="badge" id="sellCount">0</span></h3>
+            <div id="sellList"></div>
+        </div>
+        <div class="card">
+            <h3>📥 Acheter <span class="badge" id="buyCount">0</span></h3>
+            <div id="buyList"></div>
+        </div>
+    </div>
+
+    <!-- TAB 4: MATCHS -->
+    <div class="tab-content" id="tab-matchs">
+        <div class="card">
+            <h3>⚽ Historique des matchs <span class="badge" id="matchCount">0</span></h3>
+            <div id="matchHistory"><div class="loading">Aucun match joué</div></div>
+        </div>
+    </div>
+
+    <!-- TAB 5: CLASSEMENT -->
+    <div class="tab-content" id="tab-classement">
+        <div class="card">
+            <h3>🏆 Classement du championnat</h3>
+            <div id="rankingList">
+                <div class="ranking-item" style="font-weight:700;border-bottom:2px solid #FFD700;font-size:0.6rem;">
+                    <span class="pos">#</span>
+                    <span class="team">Équipe</span>
+                    <span>J</span>
+                    <span>V</span>
+                    <span>N</span>
+                    <span>D</span>
+                    <span>Pts</span>
+                </div>
+                <div id="rankingContent"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== POPUP ===== -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="icon" id="popupIcon">✅</div>
+        <h2 id="popupTitle">Succès !</h2>
+        <p id="popupMessage">Message</p>
+        <button class="btn-popup info" onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+<script>
+// ============================================
+// DONNÉES
+// ============================================
+let teamData = {
+    nom: "Mon Club",
+    budget: 50000000,
+    joueurs: [],
+    stats: { matchs: 0, victoires: 0, defaites: 0, nuls: 0, buts_marques: 0, buts_encaisses: 0 },
+    matchs: [],
+    classement: [],
+    pseudo: ""
+};
+
+let allPlayers = {};
+let allClubs = [];
+
+// ============================================
+// CHARGEMENT DES DONNÉES
+// ============================================
+async function chargerDonnees() {
+    try {
+        // 1. Récupérer les données de session
+        const sessionData = sessionStorage.getItem('fmtk_team_data');
+        if (sessionData) {
+            const parsed = JSON.parse(sessionData);
+            teamData.nom = parsed.club || "Mon Club";
+            teamData.budget = parsed.budget || 50000000;
+            teamData.pseudo = parsed.coach || "Coach";
+            
+            document.getElementById('clubName').textContent = teamData.nom;
+            document.getElementById('clubBudget').textContent = (teamData.budget / 1000000).toFixed(0) + ' M€';
+        }
+        
+        // 2. Charger les joueurs du club depuis l'API
+        await chargerJoueursClub(teamData.nom);
+        
+        // 3. Charger le classement
+        await chargerClassement();
+        
+        // 4. Afficher tout
+        afficherEquipe();
+        afficherStats();
+        afficherTransferts();
+        afficherMatchs();
+        afficherClassement();
+        
+    } catch(e) {
+        console.error('Erreur chargement:', e);
+        showPopup('❌', 'Erreur', 'Impossible de charger les données: ' + e.message);
+    }
+}
+
+async function chargerJoueursClub(club) {
+    try {
+        // Essayer de charger depuis l'API
+        const response = await fetch(`/api/players/${encodeURIComponent(club)}`);
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success && data.players) {
+                teamData.joueurs = data.players;
+                document.getElementById('playerCount').textContent = teamData.joueurs.length + ' joueurs';
+                return;
+            }
+        }
+        
+        // Fallback: générer des joueurs fictifs si API échoue
+        genererJoueursFictifs();
+        
+    } catch(e) {
+        console.warn('Erreur API, génération fictive:', e);
+        genererJoueursFictifs();
+    }
+}
+
+function genererJoueursFictifs() {
+    const postes = ["Gardien", "Défenseur", "Défenseur", "Défenseur", "Milieu", "Milieu", "Milieu", "Attaquant", "Attaquant", "Attaquant"];
+    const noms = ["Martin", "Bernard", "Dubois", "Thomas", "Robert", "Richard", "Petit", "Durand", "Leroy", "Moreau", 
+                 "Simon", "Laurent", "Michel", "Garcia", "David", "Bertrand", "Roux", "Vincent", "Fournier", "Morel"];
+    
+    for (let i = 0; i < 22; i++) {
+        const poste = postes[i % postes.length];
+        const note = Math.floor(Math.random() * 30) + 60;
+        teamData.joueurs.push({
+            nom: noms[i % noms.length] + " " + (i+1),
+            age: Math.floor(Math.random() * 15) + 18,
+            poste: poste,
+            note: note,
+            numero: i+1,
+            vitesse: Math.floor(Math.random() * 30) + 60,
+            tir: Math.floor(Math.random() * 30) + 50,
+            passe: Math.floor(Math.random() * 30) + 55,
+            dribble: Math.floor(Math.random() * 30) + 55
+        });
+    }
+    document.getElementById('playerCount').textContent = teamData.joueurs.length + ' joueurs';
+}
+
+async function chargerClassement() {
+    // Générer un classement fictif pour l'instant
+    const noms = ["Paris SG", "Marseille", "Lyon", "Monaco", "Lille", "Rennes", "Nice", "Lens"];
+    teamData.classement = noms.map((nom, i) => ({
+        nom: nom,
+        joues: Math.floor(Math.random() * 20) + 10,
+        victoires: Math.floor(Math.random() * 15),
+        nuls: Math.floor(Math.random() * 6),
+        defaites: Math.floor(Math.random() * 5),
+        points: 0
+    }));
+    // Calculer les points
+    teamData.classement.forEach(e => {
+        e.points = e.victoires * 3 + e.nuls;
+    });
+    teamData.classement.sort((a, b) => b.points - a.points);
+    
+    // Trouver la position de l'équipe du joueur
+    const pos = teamData.classement.findIndex(e => e.nom === teamData.nom);
+    if (pos !== -1) {
+        document.getElementById('clubRank').textContent = '#' + (pos + 1);
+    } else {
+        document.getElementById('clubRank').textContent = '-';
+    }
+}
+
+// ============================================
+// AFFICHAGE
+// ============================================
+
+function afficherEquipe() {
+    const list = document.getElementById('playerList');
+    list.innerHTML = '';
+    
+    if (!teamData.joueurs || teamData.joueurs.length === 0) {
+        list.innerHTML = '<div class="loading">Aucun joueur</div>';
+        return;
+    }
+    
+    const joueursTries = [...teamData.joueurs].sort((a, b) => (b.note || 0) - (a.note || 0));
+    
+    joueursTries.forEach(j => {
+        const div = document.createElement('div');
+        div.className = 'player-item';
+        const note = j.note || 65;
+        const age = j.age || 25;
+        div.innerHTML = `
+            <span class="name"><span class="num">#${j.numero || '?'}</span>${j.nom}</span>
+            <span class="poste">${j.poste || '?'}</span>
+            <span class="age">${age} ans</span>
+            <span class="note">${Math.round(note)}</span>
+        `;
+        list.appendChild(div);
+    });
+    
+    // Meilleurs joueurs
+    const best = document.getElementById('bestPlayers');
+    best.innerHTML = '';
+    const top3 = joueursTries.slice(0, 5);
+    top3.forEach((j, i) => {
+        const div = document.createElement('div');
+        div.className = 'player-item';
+        div.style.fontSize = '0.75rem';
+        div.innerHTML = `
+            <span>${i+1}. ${j.nom}</span>
+            <span style="color:#FFD700;">${Math.round(j.note || 65)}</span>
+        `;
+        best.appendChild(div);
+    });
+}
+
+function afficherStats() {
+    const stats = teamData.stats || { matchs: 0, victoires: 0, defaites: 0, nuls: 0, buts_marques: 0, buts_encaisses: 0 };
+    document.getElementById('statMatchs').textContent = stats.matchs || 0;
+    document.getElementById('statWins').textContent = stats.victoires || 0;
+    document.getElementById('statDraws').textContent = stats.nuls || 0;
+    document.getElementById('statLosses').textContent = stats.defaites || 0;
+    document.getElementById('statGoalsFor').textContent = stats.buts_marques || 0;
+    document.getElementById('statGoalsAgainst').textContent = stats.buts_encaisses || 0;
+    
+    // Meilleur buteur
+    const topScorer = document.getElementById('topScorer');
+    if (teamData.joueurs && teamData.joueurs.length > 0) {
+        const meilleur = teamData.joueurs.reduce((a, b) => (a.tir || 0) > (b.tir || 0) ? a : b);
+        topScorer.textContent = `${meilleur.nom} - ${Math.round(meilleur.tir || 50)}/100`;
+    } else {
+        topScorer.textContent = 'Aucun joueur';
+    }
+}
+
+function afficherTransferts() {
+    const sellList = document.getElementById('sellList');
+    const buyList = document.getElementById('buyList');
+    
+    sellList.innerHTML = '';
+    buyList.innerHTML = '';
+    
+    if (!teamData.joueurs || teamData.joueurs.length === 0) {
+        sellList.innerHTML = '<div class="loading">Aucun joueur à vendre</div>';
+        buyList.innerHTML = '<div class="loading">Aucun joueur disponible</div>';
+        return;
+    }
+    
+    // À vendre (les moins bons)
+    const aVendre = [...teamData.joueurs].sort((a, b) => (a.note || 0) - (b.note || 0)).slice(0, 5);
+    aVendre.forEach(j => {
+        const prix = Math.round((j.note || 65) * 0.5 + 5);
+        const div = document.createElement('div');
+        div.className = 'transfer-item';
+        div.innerHTML = `
+            <span>${j.nom} (${Math.round(j.note || 65)})</span>
+            <span class="prix">${prix} M€</span>
+            <button class="btn-sm" onclick="vendreJoueur('${j.nom}', ${prix})">Vendre</button>
+        `;
+        sellList.appendChild(div);
+    });
+    document.getElementById('sellCount').textContent = aVendre.length;
+    
+    // À acheter (joueurs libres)
+    const noms = ["Mbappé", "Haaland", "Vini Jr", "Bellingham", "Musiala", "Wirtz", "Rice", "Saka", "Pedri", "Gavi", "Yamal", "Kane"];
+    const postes = ["Attaquant", "Milieu", "Défenseur", "Gardien"];
+    for (let i = 0; i < 5; i++) {
+        const nom = noms[Math.floor(Math.random() * noms.length)] + " " + (i+1);
+        const note = Math.floor(Math.random() * 20) + 75;
+        const prix = Math.round(note * 0.6 + 10);
+        const div = document.createElement('div');
+        div.className = 'transfer-item';
+        div.innerHTML = `
+            <span>${nom} (${note})</span>
+            <span class="prix">${prix} M€</span>
+            <button class="btn-sm" onclick="acheterJoueur('${nom}', ${prix}, ${note})">Acheter</button>
+        `;
+        buyList.appendChild(div);
+    }
+    document.getElementById('buyCount').textContent = '5';
+}
+
+function afficherMatchs() {
+    const container = document.getElementById('matchHistory');
+    container.innerHTML = '';
+    document.getElementById('matchCount').textContent = teamData.matchs.length || 0;
+    
+    if (!teamData.matchs || teamData.matchs.length === 0) {
+        container.innerHTML = '<div class="loading">Aucun match joué</div>';
+        return;
+    }
+    
+    teamData.matchs.slice().reverse().forEach(m => {
+        const div = document.createElement('div');
+        div.className = `match-item ${m.resultat === 'Victoire' ? 'victoire' : m.resultat === 'Défaite' ? 'defaite' : 'nul'}`;
+        div.innerHTML = `
+            <span class="adversaire">${m.adversaire}</span>
+            <span class="score">${m.score}</span>
+            <span class="resultat">${m.resultat}</span>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function afficherClassement() {
+    const container = document.getElementById('rankingContent');
+    container.innerHTML = '';
+    
+    if (!teamData.classement || teamData.classement.length === 0) {
+        container.innerHTML = '<div class="loading">Aucun classement</div>';
+        return;
+    }
+    
+    teamData.classement.forEach((e, i) => {
+        const div = document.createElement('div');
+        div.className = 'ranking-item';
+        const isUser = e.nom === teamData.nom;
+        div.style.background = isUser ? 'rgba(255,215,0,0.05)' : 'transparent';
+        div.innerHTML = `
+            <span class="pos">${i+1}</span>
+            <span class="team">${isUser ? '⭐ ' : ''}${e.nom}</span>
+            <span>${e.joues || 0}</span>
+            <span>${e.victoires || 0}</span>
+            <span>${e.nuls || 0}</span>
+            <span>${e.defaites || 0}</span>
+            <span class="pts">${e.points || 0}</span>
+        `;
+        container.appendChild(div);
+    });
+}
+
+// ============================================
+// ACTIONS
+// ============================================
+
+function vendreJoueur(nom, prix) {
+    const idx = teamData.joueurs.findIndex(j => j.nom === nom);
+    if (idx !== -1) {
+        teamData.joueurs.splice(idx, 1);
+        teamData.budget += prix * 1000000;
+        document.getElementById('clubBudget').textContent = (teamData.budget / 1000000).toFixed(0) + ' M€';
+        showPopup('💰', 'Vente réussie', `${nom} vendu pour ${prix} M€ !`);
+        afficherEquipe();
+        afficherTransferts();
+        sauvegarder();
+    }
+}
+
+function acheterJoueur(nom, prix, note) {
+    const budgetM = teamData.budget / 1000000;
+    if (budgetM < prix) {
+        showPopup('❌', 'Fonds insuffisants', `Il vous manque ${(prix - budgetM).toFixed(1)} M€`);
+        return;
+    }
+    
+    teamData.budget -= prix * 1000000;
+    document.getElementById('clubBudget').textContent = (teamData.budget / 1000000).toFixed(0) + ' M€';
+    
+    teamData.joueurs.push({
+        nom: nom,
+        age: Math.floor(Math.random() * 10) + 20,
+        poste: ["Attaquant", "Milieu", "Défenseur", "Gardien"][Math.floor(Math.random() * 4)],
+        note: note,
+        numero: teamData.joueurs.length + 1,
+        vitesse: Math.floor(Math.random() * 30) + 70,
+        tir: Math.floor(Math.random() * 30) + 60,
+        passe: Math.floor(Math.random() * 30) + 65,
+        dribble: Math.floor(Math.random() * 30) + 65
+    });
+    
+    showPopup('✅', 'Transfert réussi', `${nom} rejoint votre équipe !`);
+    afficherEquipe();
+    afficherTransferts();
+    sauvegarder();
+}
+
+function simulerMatch() {
+    const adversaires = ["Paris SG", "Marseille", "Lyon", "Monaco", "Lille", "Rennes", "Nice", "Lens", "Strasbourg", "Brest"];
+    const adversaire = adversaires[Math.floor(Math.random() * adversaires.length)];
+    
+    const score1 = Math.floor(Math.random() * 4);
+    const score2 = Math.floor(Math.random() * 4);
+    
+    const stats = teamData.stats;
+    stats.matchs = (stats.matchs || 0) + 1;
+    
+    let resultat;
+    if (score1 > score2) {
+        stats.victoires = (stats.victoires || 0) + 1;
+        resultat = "Victoire";
+    } else if (score2 > score1) {
+        stats.defaites = (stats.defaites || 0) + 1;
+        resultat = "Défaite";
+    } else {
+        stats.nuls = (stats.nuls || 0) + 1;
+        resultat = "Nul";
+    }
+    stats.buts_marques = (stats.buts_marques || 0) + score1;
+    stats.buts_encaisses = (stats.buts_encaisses || 0) + score2;
+    
+    const match = {
+        date: new Date().toLocaleDateString('fr-FR'),
+        adversaire: adversaire,
+        score: `${score1} - ${score2}`,
+        resultat: resultat
+    };
+    teamData.matchs.push(match);
+    
+    showPopup('⚽', 'Match terminé !', `${teamData.nom} ${score1} - ${score2} ${adversaire} (${resultat})`);
+    afficherStats();
+    afficherMatchs();
+    sauvegarder();
+}
+
+// ============================================
+// ONGLETS
+// ============================================
+
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector(`.tab[onclick*="${tab}"]`).classList.add('active');
+    document.getElementById(`tab-${tab}`).classList.add('active');
+}
+
+// ============================================
+// SAUVEGARDE
+// ============================================
+
+function sauvegarder() {
+    try {
+        const data = {
+            nom: teamData.nom,
+            budget: teamData.budget,
+            joueurs: teamData.joueurs,
+            stats: teamData.stats,
+            matchs: teamData.matchs,
+            classement: teamData.classement
+        };
+        sessionStorage.setItem('fmtk_team_data', JSON.stringify(data));
+        showPopup('✅', 'Sauvegarde', 'Données sauvegardées !');
+    } catch(e) {
+        showPopup('❌', 'Erreur', 'Impossible de sauvegarder');
+    }
+}
+
+// ============================================
+// POPUP
+// ============================================
+
+function showPopup(icon, title, message) {
+    document.getElementById('popupIcon').textContent = icon;
+    document.getElementById('popupTitle').textContent = title;
+    document.getElementById('popupMessage').textContent = message;
+    document.getElementById('popup').classList.add('active');
+}
+
+function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+}
+
+// ============================================
+// INIT
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    chargerDonnees();
+});
+</script>
+</body>
+</html>
