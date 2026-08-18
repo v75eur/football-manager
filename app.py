@@ -7,11 +7,13 @@ from datetime import datetime
 app = Flask(__name__, static_folder='.')
 app.secret_key = 'dev-secret-key'
 
-# ===== DOSSIER DATA =====
+# ===== DOSSIER DATA (SAUVEGARDE) =====
 DATA_DIR = 'data'
 os.makedirs(DATA_DIR, exist_ok=True)
 
-# ===== ROUTES PRINCIPALES =====
+# ============================================
+# ROUTES PRINCIPALES
+# ============================================
 @app.route('/')
 def index():
     return send_file('accueil/index.html')
@@ -23,6 +25,10 @@ def dashboard():
 @app.route('/session/charger')
 def session_charger():
     return send_file('session/charger.html')
+
+@app.route('/equipe/creer')
+def equipe_creer():
+    return send_file('equipe/creer.html')
 
 @app.route('/accueil/<path:path>')
 def accueil_files(path):
@@ -36,12 +42,13 @@ def test_files(path):
 def terrain_files(path):
     return send_from_directory('test/terrain', path)
 
-# ===== ROUTE DE TEST =====
 @app.route('/test', methods=['GET'])
 def test():
     return jsonify({'status': 'OK', 'message': 'Le serveur fonctionne !'})
 
-# ===== API : LISTE DES JOUEURS =====
+# ============================================
+# API : LISTE DES JOUEURS
+# ============================================
 @app.route('/api/players', methods=['GET'])
 def list_players():
     try:
@@ -51,7 +58,9 @@ def list_players():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# ===== API : INSCRIPTION =====
+# ============================================
+# API : INSCRIPTION (avec sauvegarde forcée)
+# ============================================
 @app.route('/api/register', methods=['POST'])
 def register():
     try:
@@ -68,10 +77,14 @@ def register():
         if len(password) < 6:
             return jsonify({'success': False, 'message': 'Mot de passe trop court (6 caractères min)'}), 400
 
+        # Chemin du fichier .FMTK
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        
+        # Vérifier si le pseudo existe déjà
         if os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
 
+        # Créer les données du joueur
         player_data = {
             'version': '1.0',
             'pseudo': pseudo,
@@ -90,31 +103,22 @@ def register():
                 'terrain': 'style1_classique.html',
                 'joueurs': [],
                 'stats': {
-                    'matchs': 0,
-                    'victoires': 0,
-                    'defaites': 0,
-                    'nuls': 0,
-                    'buts_marques': 0,
-                    'buts_encaisses': 0
+                    'matchs': 0, 'victoires': 0, 'defaites': 0, 'nuls': 0,
+                    'buts_marques': 0, 'buts_encaisses': 0
                 },
-                'transferts': {
-                    'budget': 50000000,
-                    'joueurs_achetes': [],
-                    'joueurs_vendus': []
-                },
-                'tactique': {
-                    'formation': '4-3-3',
-                    'style': 'Attaque'
-                }
+                'transferts': {'budget': 50000000, 'joueurs_achetes': [], 'joueurs_vendus': []},
+                'tactique': {'formation': '4-3-3', 'style': 'Attaque'}
             },
-            'session': {
-                'games_played': 0,
-                'win_rate': 0
-            }
+            'session': {'games_played': 0, 'win_rate': 0}
         }
 
+        # ===== SAUVEGARDE OBLIGATOIRE =====
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
+
+        # Vérifier que le fichier a bien été créé
+        if not os.path.exists(filepath):
+            raise Exception("Le fichier n'a pas pu être créé")
 
         return jsonify({
             'success': True,
@@ -125,7 +129,9 @@ def register():
     except Exception as e:
         return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
 
-# ===== API : CONNEXION =====
+# ============================================
+# API : CONNEXION
+# ============================================
 @app.route('/api/login', methods=['POST'])
 def login():
     try:
@@ -153,7 +159,9 @@ def login():
     except Exception as e:
         return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
 
-# ===== API : SAUVEGARDER =====
+# ============================================
+# API : SAUVEGARDER
+# ============================================
 @app.route('/api/save', methods=['POST'])
 def save():
     try:
@@ -169,7 +177,9 @@ def save():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
 
-# ===== ROUTE : TÉLÉCHARGER .FMTK =====
+# ============================================
+# ROUTE : TÉLÉCHARGER .FMTK
+# ============================================
 @app.route('/download/<pseudo>')
 def download_fmtk(pseudo):
     filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
@@ -183,7 +193,36 @@ def download_fmtk(pseudo):
         mimetype='application/json'
     )
 
-# ===== FALLBACK =====
+# ============================================
+# API : GENERER DES JOUEURS
+# ============================================
+@app.route('/api/generate_players', methods=['POST'])
+def generate_players():
+    try:
+        import random
+        data = request.json
+        pays = data.get('pays', 'France')
+        club = data.get('club', 'Mon Club')
+        nombre = data.get('nombre', 25)
+        
+        with open('data/all_players_complete_200k.json', 'r') as f:
+            all_players = json.load(f)
+        
+        players_from_country = [p for p in all_players if p.get('pays') == pays]
+        if len(players_from_country) < nombre:
+            players_from_country = all_players
+        
+        selected = random.sample(players_from_country, min(nombre, len(players_from_country)))
+        for p in selected:
+            p['club'] = club
+        
+        return jsonify({'success': True, 'players': selected})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+# ============================================
+# FALLBACK
+# ============================================
 @app.route('/<path:path>')
 def serve_static(path):
     if os.path.exists(path):
@@ -195,44 +234,9 @@ def serve_static(path):
     else:
         return redirect('/')
 
+# ============================================
+# LANCEMENT
+# ============================================
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
-
-# ===== API : GÉNÉRER DES JOUEURS =====
-@app.route('/api/generate_players', methods=['POST'])
-def generate_players():
-    try:
-        data = request.json
-        pays = data.get('pays', 'France')
-        club = data.get('club', 'Mon Club')
-        nombre = data.get('nombre', 25)
-        
-        # Charger tous les joueurs
-        import json
-        import random
-        
-        with open('data/all_players_complete_200k.json', 'r') as f:
-            all_players = json.load(f)
-        
-        # Filtrer par pays
-        players_from_country = [p for p in all_players if p.get('pays') == pays]
-        
-        if len(players_from_country) < nombre:
-            players_from_country = all_players
-        
-        # Sélectionner aléatoirement
-        selected = random.sample(players_from_country, min(nombre, len(players_from_country)))
-        
-        # Assigner le club
-        for p in selected:
-            p['club'] = club
-        
-        return jsonify({
-            'success': True,
-            'players': selected,
-            'message': f'{len(selected)} joueurs générés pour {club}'
-        })
-        
-    except Exception as e:
-        return jsonify({'success': False, 'message': str(e)}), 500
