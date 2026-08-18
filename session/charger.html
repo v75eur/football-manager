@@ -441,3 +441,49 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+<script>
+// ===== VÉRIFICATION DU FICHIER AVANT UPLOAD =====
+async function verifyFile(file) {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+        const response = await fetch('/api/verify', {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
+        return result;
+    } catch(e) {
+        return { success: false, message: 'Erreur de vérification' };
+    }
+}
+
+// Modifier handleFile pour inclure la vérification
+async function handleFile(file) {
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (ext !== 'fmtk' && ext !== 'json') {
+        showPopup('⚠️', 'Format invalide', 'Utilisez un fichier .FMTK', 'error');
+        return;
+    }
+
+    // ===== VÉRIFIER LA SIGNATURE =====
+    const verification = await verifyFile(file);
+    
+    if (!verification.success) {
+        showPopup('❌', 'Fichier invalide', verification.message || 'Fichier corrompu ou modifié', 'error');
+        return;
+    }
+
+    // Succès
+    const content = verification.player;
+    selectedFile = file;
+    fileContent = content;
+    fileName.textContent = file.name;
+    fileInfo.style.display = 'block';
+    dropZone.querySelector('.text').style.display = 'none';
+    dropZone.querySelector('.icon').style.display = 'none';
+    uploadBtn.disabled = false;
+    showPopup('✅', 'Fichier valide !', `Bienvenue ${content.pseudo}`, 'success');
+}
+</script>
