@@ -491,9 +491,6 @@
 </div>
 
 <!-- ===== POPUP TÉLÉCHARGEMENT FMTK ===== -->
-<div class="popup-overlay" id="popupDownload">
-    <div class="popup-box">
-        <div class="icon success">📁</div>
         <h2>🎉 Inscription réussie !</h2>
         
         <div class="fmtk-file">
@@ -1082,6 +1079,37 @@ function downloadWithPopup() {
         // Fermer la popup de téléchargement
         closePopupDownload();
         // Rediriger vers l'accueil
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 2000);
+    }, 1500);
+}
+</script>
+<script>
+function downloadAndClose() {
+    const pseudo = document.getElementById('registerPseudo').value.trim();
+    if (!pseudo) {
+        showPopup('⚠️', 'Erreur', 'Pseudo non trouvé', 'error');
+        return;
+    }
+    
+    // Afficher popup de téléchargement en cours
+    showDownloadingPopup();
+    
+    // Télécharger
+    const downloadUrl = `/download/${pseudo}`;
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `${pseudo}.FMTK`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Cacher popup de téléchargement et fermer la popup
+    setTimeout(() => {
+        hideDownloadingPopup();
+        closePopupDownload();
+        showPopup('✅', 'Téléchargement terminé !', 'Votre fichier .FMTK a été téléchargé.', 'success');
         setTimeout(() => {
             window.location.href = '/';
         }, 2000);
