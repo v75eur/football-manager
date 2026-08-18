@@ -214,3 +214,43 @@ def download_file(pseudo):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+# ===== CHARGER LES JOUEURS =====
+def load_players():
+    """Charge tous les joueurs depuis le fichier JSON"""
+    try:
+        with open('data/players/all_players_complete.json', 'r', encoding='utf-8') as f:
+            players = json.load(f)
+            print(f"✅ {len(players)} clubs chargés")
+            total = sum(len(p) for p in players.values())
+            print(f"✅ {total} joueurs chargés")
+            return players
+    except Exception as e:
+        print(f"❌ Erreur chargement joueurs: {e}")
+        return {}
+
+PLAYERS_DATA = load_players()
+
+@app.route('/api/players/<club>')
+def get_club_players(club):
+    """Récupère les joueurs d'un club"""
+    if club in PLAYERS_DATA:
+        return jsonify({'success': True, 'players': PLAYERS_DATA[club]})
+    return jsonify({'success': False, 'message': 'Club non trouvé'}), 404
+
+@app.route('/api/players/search')
+def search_players():
+    """Recherche des joueurs"""
+    query = request.args.get('q', '').lower()
+    results = []
+    for club, joueurs in PLAYERS_DATA.items():
+        for joueur in joueurs:
+            if query in joueur.get('nom', '').lower():
+                results.append({
+                    'nom': joueur['nom'],
+                    'club': club,
+                    'note': joueur.get('note', 0),
+                    'poste': joueur.get('poste', ''),
+                    'age': joueur.get('age', 0)
+                })
+    return jsonify({'success': True, 'results': results[:50]})
