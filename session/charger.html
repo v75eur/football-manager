@@ -35,267 +35,104 @@
             backdrop-filter: blur(10px);
         }
         .upload-card {
-            max-width: 500px;
-            width: 100%;
-            background: rgba(10,30,10,0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(255,215,0,0.08);
-            padding: 35px 30px 30px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            max-width:500px;
+            width:100%;
+            background:rgba(10,30,10,0.85);
+            backdrop-filter:blur(20px);
+            border-radius:25px;
+            border:1px solid rgba(255,215,0,0.08);
+            padding:35px 30px 30px;
+            text-align:center;
+            box-shadow:0 20px 60px rgba(0,0,0,0.8);
         }
-        .logo { font-family: 'Orbitron', monospace; font-size: 2.2rem; font-weight: 900; color: #FFD700; }
-        .logo-sub { font-size: 0.7rem; color: #7aaa7a; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 15px; }
-        .upload-icon { font-size: 3.5rem; color: #FFD700; margin-bottom: 10px; }
-        h2 { font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #fff; margin-bottom: 5px; }
-        h2 span { color: #FFD700; }
-        .sub-text { color: #8aaa8a; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; }
+        .logo { font-family:'Orbitron',monospace; font-size:2.2rem; font-weight:900; color:#FFD700; }
+        .logo-sub { font-size:0.7rem; color:#7aaa7a; letter-spacing:6px; text-transform:uppercase; margin-bottom:15px; }
+        .upload-icon { font-size:3.5rem; color:#FFD700; margin-bottom:10px; }
+        h2 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#fff; margin-bottom:5px; }
+        h2 span { color:#FFD700; }
+        .sub-text { color:#8aaa8a; font-size:0.9rem; line-height:1.6; margin-bottom:15px; }
         .upload-area {
-            border: 2px dashed rgba(255,215,0,0.2);
-            border-radius: 15px;
-            padding: 25px 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.02);
-            margin: 10px 0;
+            border:2px dashed rgba(255,215,0,0.2);
+            border-radius:15px;
+            padding:25px 15px;
+            cursor:pointer;
+            transition:all 0.3s ease;
+            background:rgba(255,255,255,0.02);
+            margin:10px 0;
         }
-        .upload-area:hover { border-color: rgba(255,215,0,0.4); background: rgba(255,215,0,0.05); }
-        .upload-area .icon { font-size: 2.5rem; color: #5a7a5a; }
-        .upload-area .text { color: #8aaa8a; font-size: 0.85rem; }
-        .upload-area .text strong { color: #FFD700; }
-        .file-info {
-            display: none;
-            color: #2ecc71;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            padding: 8px;
-            background: rgba(46,204,113,0.05);
-            border-radius: 8px;
-        }
-        .file-info i { margin-right: 8px; }
+        .upload-area:hover { border-color:rgba(255,215,0,0.4); background:rgba(255,215,0,0.05); }
+        .upload-area .icon { font-size:2.5rem; color:#5a7a5a; }
+        .upload-area .text { color:#8aaa8a; font-size:0.85rem; }
+        .upload-area .text strong { color:#FFD700; }
+        .file-info { display:none; color:#2ecc71; font-size:0.9rem; margin-top:8px; padding:8px; background:rgba(46,204,113,0.05); border-radius:8px; }
+        .file-info i { margin-right:8px; }
         .btn-upload {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #FFD700, #f5a623);
-            color: #0a0a1a;
-            font-family: 'Orbitron', monospace;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            width:100%; padding:14px; border:none; border-radius:12px;
+            background:linear-gradient(135deg, #FFD700, #f5a623);
+            color:#0a0a1a; font-family:'Orbitron',monospace; font-size:0.8rem; font-weight:700;
+            text-transform:uppercase; cursor:pointer; transition:all 0.3s ease; margin-top:15px;
+            display:flex; align-items:center; justify-content:center; gap:8px;
         }
-        .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,215,0,0.2); }
-        .btn-upload:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
-        .btn-upload .spinner {
-            display: none;
-            width: 18px;
-            height: 18px;
-            border: 3px solid rgba(10,10,26,0.2);
-            border-top-color: #0a0a1a;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-        .btn-upload.loading .spinner { display: inline-block; }
-        .btn-upload.loading .btn-text { display: none; }
-        .btn-back {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 10px 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 8px;
-            color: #7a9a7a;
-            text-decoration: none;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        .btn-back:hover { background: rgba(255,255,255,0.1); color: #fff; }
-        .error {
-            background: rgba(255,107,107,0.1);
-            border: 1px solid rgba(255,107,107,0.15);
-            border-radius: 10px;
-            padding: 10px;
-            margin: 10px 0;
-            color: #ff6b6b;
-            font-size: 0.85rem;
-            display: none;
-        }
-        .success {
-            background: rgba(46,204,113,0.1);
-            border: 1px solid rgba(46,204,113,0.15);
-            border-radius: 10px;
-            padding: 10px;
-            margin: 10px 0;
-            color: #2ecc71;
-            font-size: 0.85rem;
-            display: none;
-        }
-        .info-box {
-            background: rgba(255,215,0,0.05);
-            border-left: 3px solid #FFD700;
-            padding: 12px 15px;
-            border-radius: 8px;
-            margin: 12px 0;
-            text-align: left;
-        }
-        .info-box p {
-            color: #aaa;
-            font-size: 0.8rem;
-            margin: 4px 0;
-        }
-        .info-box i { color: #FFD700; margin-right: 8px; width: 18px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        #mobileNotice {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 99999;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            padding: 30px;
-            text-align: center;
-        }
-        #mobileNotice.show { display: flex; }
-        #mobileNotice .icon { font-size: 3rem; color: #FFD700; margin-bottom: 15px; }
-        #mobileNotice h2 { font-family: 'Orbitron', monospace; font-size: 1.1rem; color: #FFD700; margin-bottom: 10px; }
-        #mobileNotice p { color: #aaa; font-size: 0.85rem; line-height: 1.6; max-width: 400px; margin-bottom: 15px; }
-        #mobileNotice .steps { background: rgba(255,215,0,0.05); border-radius: 12px; padding: 15px 20px; text-align: left; width: 100%; max-width: 350px; margin-bottom: 15px; }
-        #mobileNotice .steps li { color: #ccc; font-size: 0.8rem; padding: 5px 0; list-style: none; }
-        #mobileNotice .steps li i { color: #FFD700; margin-right: 10px; width: 20px; }
-        #mobileNotice .btn-confirm { padding: 12px 40px; background: linear-gradient(135deg, #FFD700, #f5a623); border: none; border-radius: 12px; color: #0a0a1a; font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: transform 0.3s; }
-        #mobileNotice .btn-confirm:hover { transform: scale(1.05); }
-        #mobileNotice .lang-en { color: #666; font-size: 0.65rem; margin-top: 12px; }
-
+        .btn-upload:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,215,0,0.2); }
+        .btn-upload:disabled { opacity:0.4; cursor:not-allowed; transform:none !important; }
+        .btn-upload .spinner { display:none; width:18px; height:18px; border:3px solid rgba(10,10,26,0.2); border-top-color:#0a0a1a; border-radius:50%; animation:spin 0.8s linear infinite; }
+        .btn-upload.loading .spinner { display:inline-block; }
+        .btn-upload.loading .btn-text { display:none; }
+        .btn-back { display:inline-block; margin-top:12px; padding:10px 20px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:#7a9a7a; text-decoration:none; font-size:0.8rem; transition:all 0.3s ease; }
+        .btn-back:hover { background:rgba(255,255,255,0.1); color:#fff; }
+        .info-box { background:rgba(255,215,0,0.05); border-left:3px solid #FFD700; padding:12px 15px; border-radius:8px; margin:12px 0; text-align:left; }
+        .info-box p { color:#aaa; font-size:0.8rem; margin:4px 0; }
+        .info-box i { color:#FFD700; margin-right:8px; width:18px; }
         .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 99999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(10px);
+            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center;
+            padding:20px; backdrop-filter:blur(10px);
         }
-        .popup-overlay.active { display: flex; }
+        .popup-overlay.active { display:flex; }
         .popup-box {
-            background: #1a2e1a;
-            border: 2px solid rgba(255,215,0,0.2);
-            border-radius: 20px;
-            padding: 35px 30px;
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-            animation: popupIn 0.5s ease;
+            background:#1a2e1a; border:2px solid rgba(255,215,0,0.2); border-radius:20px;
+            padding:35px 30px; max-width:450px; width:100%; text-align:center;
+            box-shadow:0 40px 80px rgba(0,0,0,0.8); animation:popupIn 0.5s ease;
         }
-        @keyframes popupIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .popup-box .icon { font-size: 3rem; margin-bottom: 10px; }
-        .popup-box .icon.success { color: #2ecc71; }
-        .popup-box .icon.error { color: #e74c3c; }
-        .popup-box .icon.info { color: #FFD700; }
-        .popup-box h2 { font-family: 'Orbitron', monospace; font-size: 1.2rem; color: #FFD700; margin-bottom: 8px; }
-        .popup-box p { color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-bottom: 15px; }
-        .popup-box .btn-popup { padding: 12px 30px; background: linear-gradient(135deg, #FFD700, #f5a623); border: none; border-radius: 10px; color: #0a0a1a; font-family: 'Orbitron', monospace; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s; }
-        .popup-box .btn-popup:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(255,215,0,0.3); }
-        .popup-box .btn-popup.success { background: linear-gradient(135deg, #2ecc71, #27ae60); color: #fff; }
-
+        @keyframes popupIn { from { transform:scale(0.8); opacity:0; } to { transform:scale(1); opacity:1; } }
+        .popup-box .icon { font-size:3rem; margin-bottom:10px; }
+        .popup-box .icon.success { color:#2ecc71; }
+        .popup-box .icon.error { color:#e74c3c; }
+        .popup-box .icon.info { color:#FFD700; }
+        .popup-box h2 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#FFD700; margin-bottom:8px; }
+        .popup-box p { color:#aaa; font-size:0.9rem; line-height:1.6; margin-bottom:15px; }
+        .popup-box .btn-popup { padding:12px 30px; border:none; border-radius:10px; font-family:'Orbitron',monospace; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
+        .popup-box .btn-popup:hover { transform:scale(1.05); box-shadow:0 8px 30px rgba(255,215,0,0.3); }
         .fmtk-loader {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.92);
-            z-index: 99998;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            backdrop-filter: blur(8px);
+            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.92); z-index:99998; align-items:center; justify-content:center;
+            flex-direction:column; backdrop-filter:blur(8px);
         }
-        .fmtk-loader.active { display: flex; }
-        .fmtk-loader .spinner {
-            width: 70px;
-            height: 70px;
-            border: 5px solid rgba(255,215,0,0.1);
-            border-top-color: #FFD700;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        .fmtk-loader .text {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            color: #FFD700;
-            letter-spacing: 4px;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-        .fmtk-loader .sub {
-            color: #7aaa7a;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            letter-spacing: 2px;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-
-        @media (max-width: 480px) {
-            .upload-card { padding: 25px 18px 25px; }
-            .logo { font-size: 1.8rem; }
-            .upload-icon { font-size: 2.8rem; }
-            h2 { font-size: 1rem; }
-        }
+        .fmtk-loader.active { display:flex; }
+        .fmtk-loader .spinner { width:70px; height:70px; border:5px solid rgba(255,215,0,0.1); border-top-color:#FFD700; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px; }
+        .fmtk-loader .text { font-family:'Orbitron',monospace; font-size:1.5rem; color:#FFD700; letter-spacing:4px; animation:pulse 1.5s ease-in-out infinite; }
+        .fmtk-loader .sub { color:#7aaa7a; font-size:0.9rem; margin-top:10px; letter-spacing:2px; }
+        @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.5; } }
+        @keyframes spin { to { transform:rotate(360deg); } }
     </style>
 </head>
 <body>
 
-<!-- ===== MESSAGE MOBILE ===== -->
-<div id="mobileNotice">
-    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
-    <h2>📱 Version ordinateur</h2>
-    <p>Pour une meilleure expérience sur mobile</p>
-    <div class="steps">
-        <li><i class="fas fa-ellipsis-v"></i> Appuyez sur les <strong>trois points</strong> (⋮)</li>
-        <li><i class="fas fa-check-circle"></i> <strong>Cochez</strong> "Version ordinateur"</li>
-        <li><i class="fas fa-redo"></i> Rechargez la page</li>
-    </div>
-    <button class="btn-confirm" onclick="confirmMobile()">✅ J'ai fait !</button>
-    <div class="lang-en">🇬🇧 Tap ⋮ → Check "Desktop Site"</div>
-</div>
-
-<!-- ===== LOADER ===== -->
 <div class="fmtk-loader" id="fmtkLoader">
     <div class="spinner"></div>
     <div class="text">📂 FMTK</div>
     <div class="sub">Chargement de votre session...</div>
 </div>
 
-<!-- ===== POPUP ===== -->
 <div class="popup-overlay" id="popup">
     <div class="popup-box">
         <div class="icon" id="popupIcon">✅</div>
         <h2 id="popupTitle">Succès</h2>
         <p id="popupMessage">Votre session a été chargée !</p>
-        <button class="btn-popup" id="popupBtn" onclick="closePopup()">OK</button>
+        <button class="btn-popup" onclick="closePopup()" style="background:linear-gradient(135deg,#FFD700,#f5a623);color:#0a0a1a;">OK</button>
     </div>
 </div>
 
-<!-- ===== PAGE ===== -->
 <div class="container">
     <div class="upload-card">
         <div class="logo">⚽ FMTK</div>
@@ -307,6 +144,7 @@
         <div class="info-box">
             <p><i class="fas fa-info-circle"></i> Fichier généré lors de votre inscription</p>
             <p><i class="fas fa-file"></i> Format accepté : <strong style="color:#FFD700;">.FMTK</strong></p>
+            <p><i class="fas fa-shield-alt"></i> Fichier sécurisé avec signature numérique</p>
         </div>
 
         <div class="upload-area" id="dropZone">
@@ -315,9 +153,6 @@
             <div class="file-info" id="fileInfo"><i class="fas fa-check-circle"></i> <span id="fileName">fichier.FMTK</span></div>
             <input type="file" id="fileInput" accept=".FMTK,.json" style="display:none;">
         </div>
-
-        <div class="error" id="errorMessage"><i class="fas fa-exclamation-circle"></i> <span id="errorText"></span></div>
-        <div class="success" id="successMessage"><i class="fas fa-check-circle"></i> <span id="successText"></span></div>
 
         <button class="btn-upload" id="uploadBtn" disabled>
             <span class="spinner"></span>
@@ -329,15 +164,6 @@
 </div>
 
 <script>
-function isMobile() {
-    return /Android|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
-}
-
-function confirmMobile() {
-    document.getElementById('mobileNotice').classList.remove('show');
-    localStorage.setItem('fm_mobile_ok', 'true');
-}
-
 function showPopup(icon, title, message, type = 'info') {
     document.getElementById('popupIcon').className = `icon ${type}`;
     document.getElementById('popupIcon').textContent = icon;
@@ -366,100 +192,15 @@ const fileInput = document.getElementById('fileInput');
 const uploadBtn = document.getElementById('uploadBtn');
 const fileInfo = document.getElementById('fileInfo');
 const fileName = document.getElementById('fileName');
-const errorMsg = document.getElementById('errorMessage');
-const errorText = document.getElementById('errorText');
-const successMsg = document.getElementById('successMessage');
-const successText = document.getElementById('successText');
 let selectedFile = null;
 let fileContent = null;
 
 dropZone.addEventListener('click', () => fileInput.click());
 dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = '#FFD700'; });
 dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'rgba(255,215,0,0.2)'; });
-dropZone.addEventListener('drop', e => {
-    e.preventDefault();
-    dropZone.style.borderColor = 'rgba(255,215,0,0.2)';
-    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
-});
-fileInput.addEventListener('change', e => {
-    if (e.target.files.length) handleFile(e.target.files[0]);
-});
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor = 'rgba(255,215,0,0.2)'; if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', e => { if (e.target.files.length) handleFile(e.target.files[0]); });
 
-function handleFile(file) {
-    const ext = file.name.split('.').pop().toLowerCase();
-    if (ext !== 'fmtk' && ext !== 'json') {
-        showPopup('⚠️', 'Format invalide', 'Utilisez un fichier .FMTK', 'error');
-        return;
-    }
-    const reader = new FileReader();
-    reader.onload = e => {
-        try {
-            const content = JSON.parse(e.target.result);
-            if (!content.pseudo) {
-                showPopup('⚠️', 'Fichier invalide', 'Fichier .FMTK corrompu', 'error');
-                return;
-            }
-            selectedFile = file;
-            fileContent = content;
-            fileName.textContent = file.name;
-            fileInfo.style.display = 'block';
-            dropZone.querySelector('.text').style.display = 'none';
-            dropZone.querySelector('.icon').style.display = 'none';
-            uploadBtn.disabled = false;
-            showPopup('✅', 'Fichier valide !', `Bienvenue ${content.pseudo}`, 'success');
-        } catch(err) {
-            showPopup('⚠️', 'Erreur', 'Impossible de lire le fichier', 'error');
-        }
-    };
-    reader.readAsText(file);
-}
-
-uploadBtn.addEventListener('click', () => {
-    if (!selectedFile || !fileContent) return;
-
-    showLoader('📂 FMTK', 'Chargement de votre session...');
-
-    setTimeout(() => {
-        hideLoader();
-        showPopup('✅', 'Session chargée !', `Bienvenue ${fileContent.pseudo} !`, 'success');
-
-        setTimeout(() => {
-            if (fileContent.equipe && fileContent.equipe.nom && fileContent.equipe.nom !== '') {
-                window.location.href = '/dashboard.html';
-            } else {
-                window.location.href = '/equipe/creer.html';
-            }
-        }, 1500);
-    }, 1500);
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    if (isMobile() && localStorage.getItem('fm_mobile_ok') !== 'true') {
-        document.getElementById('mobileNotice').classList.add('show');
-    }
-});
-</script>
-</body>
-</html>
-<script>
-// ===== VÉRIFICATION DU FICHIER AVANT UPLOAD =====
-async function verifyFile(file) {
-    const formData = new FormData();
-    formData.append('file', file);
-    
-    try {
-        const response = await fetch('/api/verify', {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-        return result;
-    } catch(e) {
-        return { success: false, message: 'Erreur de vérification' };
-    }
-}
-
-// Modifier handleFile pour inclure la vérification
 async function handleFile(file) {
     const ext = file.name.split('.').pop().toLowerCase();
     if (ext !== 'fmtk' && ext !== 'json') {
@@ -467,23 +208,49 @@ async function handleFile(file) {
         return;
     }
 
-    // ===== VÉRIFIER LA SIGNATURE =====
-    const verification = await verifyFile(file);
-    
-    if (!verification.success) {
-        showPopup('❌', 'Fichier invalide', verification.message || 'Fichier corrompu ou modifié', 'error');
-        return;
-    }
+    // Vérifier la signature
+    const formData = new FormData();
+    formData.append('file', file);
 
-    // Succès
-    const content = verification.player;
-    selectedFile = file;
-    fileContent = content;
-    fileName.textContent = file.name;
-    fileInfo.style.display = 'block';
-    dropZone.querySelector('.text').style.display = 'none';
-    dropZone.querySelector('.icon').style.display = 'none';
-    uploadBtn.disabled = false;
-    showPopup('✅', 'Fichier valide !', `Bienvenue ${content.pseudo}`, 'success');
+    try {
+        const response = await fetch('/api/verify', { method: 'POST', body: formData });
+        const result = await response.json();
+
+        if (!result.success) {
+            showPopup('❌', 'Fichier invalide', result.message || 'Fichier corrompu ou modifié', 'error');
+            return;
+        }
+
+        const content = result.player;
+        selectedFile = file;
+        fileContent = content;
+        fileName.textContent = file.name;
+        fileInfo.style.display = 'block';
+        dropZone.querySelector('.text').style.display = 'none';
+        dropZone.querySelector('.icon').style.display = 'none';
+        uploadBtn.disabled = false;
+        showPopup('✅', 'Fichier valide !', `Bienvenue ${content.pseudo}`, 'success');
+
+    } catch(e) {
+        showPopup('❌', 'Erreur', 'Impossible de vérifier le fichier', 'error');
+    }
 }
+
+uploadBtn.addEventListener('click', () => {
+    if (!selectedFile || !fileContent) return;
+    showLoader('📂 FMTK', 'Chargement de votre session...');
+    setTimeout(() => {
+        hideLoader();
+        showPopup('✅', 'Session chargée !', `Bienvenue ${fileContent.pseudo} !`, 'success');
+        setTimeout(() => {
+            if (fileContent.equipe && fileContent.equipe.nom && fileContent.equipe.nom !== '') {
+                window.location.href = '/dashboard.html';
+            } else {
+                window.location.href = '/equipe/creer';
+            }
+        }, 1500);
+    }, 1500);
+});
 </script>
+</body>
+</html>

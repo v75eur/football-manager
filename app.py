@@ -19,7 +19,7 @@ os.makedirs(DATA_DIR, exist_ok=True)
 SECRET_KEY = app.secret_key.encode()
 SALT = b'fmtk_salt_2026'
 
-# ===== GÉNÉRER UNE CLÉ FERNET (chiffrement) =====
+# ===== GÉNÉRER UNE CLÉ FERNET =====
 try:
     with open('data/.fernet_key', 'rb') as f:
         FERNET_KEY = f.read()
@@ -34,26 +34,22 @@ cipher = Fernet(FERNET_KEY)
 # FONCTIONS DE SÉCURISATION
 # ============================================
 def generate_signature(data):
-    """Génère une signature HMAC pour le fichier"""
     json_str = json.dumps(data, sort_keys=True)
     signature = hmac.new(SECRET_KEY, json_str.encode(), hashlib.sha256).digest()
     return base64.b64encode(signature).decode()
 
 def verify_signature(data, signature):
-    """Vérifie la signature du fichier"""
     json_str = json.dumps(data, sort_keys=True)
     expected = hmac.new(SECRET_KEY, json_str.encode(), hashlib.sha256).digest()
     expected_b64 = base64.b64encode(expected).decode()
     return hmac.compare_digest(signature, expected_b64)
 
 def encrypt_player_data(player_data):
-    """Chiffre les données sensibles"""
     json_str = json.dumps(player_data)
     encrypted = cipher.encrypt(json_str.encode())
     return base64.b64encode(encrypted).decode()
 
 def decrypt_player_data(encrypted_data):
-    """Déchiffre les données"""
     decrypted = cipher.decrypt(base64.b64decode(encrypted_data))
     return json.loads(decrypted.decode())
 
@@ -93,16 +89,13 @@ def test():
     return jsonify({'status': 'OK', 'message': 'Le serveur fonctionne !'})
 
 # ============================================
-# API : LISTE DES JOUEURS (admin)
+# API : LISTE DES JOUEURS
 # ============================================
 @app.route('/api/players', methods=['GET'])
 def list_players():
     try:
         files = os.listdir(DATA_DIR)
-        players = []
-        for f in files:
-            if f.endswith('.FMTK'):
-                players.append(f.replace('.FMTK', ''))
+        players = [f.replace('.FMTK', '') for f in files if f.endswith('.FMTK')]
         return jsonify({'players': players})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -130,7 +123,6 @@ def register():
         if os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
 
-        # Vérifier email/WhatsApp uniques
         for filename in os.listdir(DATA_DIR):
             if filename.endswith('.FMTK'):
                 try:
@@ -143,7 +135,6 @@ def register():
                 except:
                     pass
 
-        # Créer les données du joueur
         player_data = {
             'version': '2.0',
             'pseudo': pseudo,
@@ -171,13 +162,9 @@ def register():
             'session': {'games_played': 0, 'win_rate': 0}
         }
 
-        # ===== GÉNÉRER LA SIGNATURE =====
         signature = generate_signature(player_data)
-
-        # ===== FICHIER CHIFFRÉ + SIGNATURE =====
         encrypted_data = encrypt_player_data(player_data)
 
-        # Sauvegarder le fichier avec signature
         file_content = {
             'data': encrypted_data,
             'signature': signature,
@@ -199,7 +186,7 @@ def register():
         return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
 
 # ============================================
-# API : CONNEXION AVEC VÉRIFICATION
+# API : CONNEXION
 # ============================================
 @app.route('/api/login', methods=['POST'])
 def login():
@@ -215,27 +202,22 @@ def login():
         with open(filepath, 'r') as f:
             file_content = json.load(f)
 
-        # ===== VÉRIFIER LA SIGNATURE =====
         encrypted_data = file_content.get('data')
         signature = file_content.get('signature')
 
         if not encrypted_data or not signature:
             return jsonify({'success': False, 'message': 'Fichier corrompu'}), 400
 
-        # Déchiffrer
         try:
             player_data = decrypt_player_data(encrypted_data)
         except:
             return jsonify({'success': False, 'message': 'Fichier invalide'}), 400
 
-        # Vérifier la signature
         if not verify_signature(player_data, signature):
             return jsonify({'success': False, 'message': 'Signature invalide - Fichier modifié'}), 400
 
-        # Mettre à jour la dernière connexion
         player_data['last_login'] = datetime.now().isoformat()
 
-        # Regénérer la signature
         new_signature = generate_signature(player_data)
         new_encrypted = encrypt_player_data(player_data)
 
@@ -255,7 +237,7 @@ def login():
         return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
 
 # ============================================
-# API : SAUVEGARDER AVEC SIGNATURE
+# API : SAUVEGARDER
 # ============================================
 @app.route('/api/save', methods=['POST'])
 def save():
@@ -268,11 +250,9 @@ def save():
         if not os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Fichier non trouvé'}), 404
 
-        # ===== VÉRIFIER L'EXISTANT =====
         with open(filepath, 'r') as f:
             file_content = json.load(f)
 
-        # ===== CRÉER NOUVELLE SIGNATURE =====
         signature = generate_signature(player_data)
         encrypted_data = encrypt_player_data(player_data)
 
@@ -288,7 +268,7 @@ def save():
         return jsonify({'success': False, 'message': str(e)}), 500
 
 # ============================================
-# ROUTE : TÉLÉCHARGER .FMTK (format sécurisé)
+# ROUTE : TÉLÉCHARGER .FMTK
 # ============================================
 @app.route('/download/<pseudo>')
 def download_fmtk(pseudo):
@@ -304,7 +284,7 @@ def download_fmtk(pseudo):
     )
 
 # ============================================
-# API : VÉRIFIER UN FICHIER .FMTK (upload)
+# API : VÉRIFIER UN FICHIER
 # ============================================
 @app.route('/api/verify', methods=['POST'])
 def verify_file():
@@ -315,7 +295,6 @@ def verify_file():
         file = request.files['file']
         content = json.load(file)
 
-        # Vérifier la signature
         encrypted_data = content.get('data')
         signature = content.get('signature')
 

@@ -8,166 +8,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        html, body {
-            width:100%; min-height:100vh;
-            font-family:'Rajdhani',sans-serif;
-            background:#0a1a0a; color:#fff;
-            overflow-y: auto !important;
-            overflow-x: auto !important;
-        }
-        .container {
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            min-height:100vh;
-            padding:15px;
-            background: linear-gradient(180deg, #0a2a0a 0%, #0d1f0d 100%);
-        }
-        .card {
-            max-width:650px;
-            width:100%;
-            background:rgba(10,30,10,0.85);
-            backdrop-filter:blur(20px);
-            border-radius:25px;
-            border:1px solid rgba(255,215,0,0.08);
-            padding:30px 25px;
-            box-shadow:0 20px 60px rgba(0,0,0,0.8);
-        }
-        .logo {
-            font-family:'Orbitron',monospace;
-            font-size:1.8rem;
-            font-weight:900;
-            color:#FFD700;
-            text-align:center;
-        }
-        .logo-sub {
-            font-size:0.6rem;
-            color:#7aaa7a;
-            letter-spacing:6px;
-            text-transform:uppercase;
-            text-align:center;
-            margin-bottom:15px;
-        }
-        h1 {
-            font-family:'Orbitron',monospace;
-            font-size:1.2rem;
-            color:#FFD700;
-            text-align:center;
-            margin-bottom:5px;
-        }
-        .subtitle {
-            color:#8aaa8a;
-            font-size:0.8rem;
-            text-align:center;
-            margin-bottom:15px;
-        }
-        .form-group {
-            margin-bottom:12px;
-        }
-        .form-group label {
-            display:block;
-            color:#8aaa8a;
-            font-size:0.75rem;
-            margin-bottom:4px;
-            font-weight:600;
-        }
-        .form-group input, .form-group select {
-            width:100%;
-            padding:12px 14px;
-            background:rgba(255,255,255,0.05);
-            border:1.5px solid rgba(255,255,255,0.06);
-            border-radius:10px;
-            color:#fff;
-            font-size:0.9rem;
-            outline:none;
-            transition:border-color 0.3s;
-            font-family:'Rajdhani',sans-serif;
-        }
-        .form-group input:focus, .form-group select:focus {
-            border-color:rgba(255,215,0,0.3);
-            background:rgba(255,255,255,0.08);
-        }
+        html, body { width:100%; min-height:100vh; font-family:'Rajdhani',sans-serif; background:#0a1a0a; color:#fff; overflow-y:auto !important; overflow-x:auto !important; }
+        .container { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:15px; background:linear-gradient(180deg,#0a2a0a 0%,#0d1f0d 100%); }
+        .card { max-width:650px; width:100%; background:rgba(10,30,10,0.85); backdrop-filter:blur(20px); border-radius:25px; border:1px solid rgba(255,215,0,0.08); padding:30px 25px; box-shadow:0 20px 60px rgba(0,0,0,0.8); }
+        .logo { font-family:'Orbitron',monospace; font-size:1.8rem; font-weight:900; color:#FFD700; text-align:center; }
+        .logo-sub { font-size:0.6rem; color:#7aaa7a; letter-spacing:6px; text-transform:uppercase; text-align:center; margin-bottom:15px; }
+        h1 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#FFD700; text-align:center; margin-bottom:5px; }
+        .subtitle { color:#8aaa8a; font-size:0.8rem; text-align:center; margin-bottom:15px; }
+        .form-group { margin-bottom:12px; }
+        .form-group label { display:block; color:#8aaa8a; font-size:0.75rem; margin-bottom:4px; font-weight:600; }
+        .form-group input, .form-group select { width:100%; padding:12px 14px; background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.06); border-radius:10px; color:#fff; font-size:0.9rem; outline:none; transition:border-color 0.3s; font-family:'Rajdhani',sans-serif; }
+        .form-group input:focus, .form-group select:focus { border-color:rgba(255,215,0,0.3); background:rgba(255,255,255,0.08); }
         .form-group input::placeholder { color:#5a7a5a; }
         .form-group select option { background:#1a2e1a; color:#fff; }
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-        .btn-submit {
-            width:100%;
-            padding:14px;
-            border:none;
-            border-radius:12px;
-            background:linear-gradient(135deg, #FFD700, #f5a623);
-            color:#0a0a1a;
-            font-family:'Orbitron',monospace;
-            font-size:0.85rem;
-            font-weight:700;
-            text-transform:uppercase;
-            letter-spacing:1px;
-            cursor:pointer;
-            transition:all 0.3s;
-            margin-top:10px;
-        }
-        .btn-submit:hover {
-            transform:translateY(-2px);
-            box-shadow:0 8px 30px rgba(255,215,0,0.2);
-        }
-        .btn-submit:disabled {
-            opacity:0.5;
-            cursor:not-allowed;
-            transform:none !important;
-        }
-        .spinner {
-            display:inline-block;
-            width:18px;
-            height:18px;
-            border:3px solid rgba(10,10,26,0.2);
-            border-top-color:#0a0a1a;
-            border-radius:50%;
-            animation:spin 0.8s linear infinite;
-            vertical-align:middle;
-            margin-right:8px;
-        }
+        .btn-submit { width:100%; padding:14px; border:none; border-radius:12px; background:linear-gradient(135deg,#FFD700,#f5a623); color:#0a0a1a; font-family:'Orbitron',monospace; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; cursor:pointer; transition:all 0.3s; margin-top:10px; }
+        .btn-submit:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,215,0,0.2); }
+        .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none !important; }
+        .spinner { display:inline-block; width:18px; height:18px; border:3px solid rgba(10,10,26,0.2); border-top-color:#0a0a1a; border-radius:50%; animation:spin 0.8s linear infinite; vertical-align:middle; margin-right:8px; }
         @keyframes spin { to { transform:rotate(360deg); } }
-
-        .info-box {
-            background:rgba(255,215,0,0.05);
-            border-left:3px solid #FFD700;
-            padding:10px 14px;
-            border-radius:8px;
-            margin-bottom:12px;
-        }
-        .info-box p {
-            color:#8aaa8a;
-            font-size:0.75rem;
-            margin:3px 0;
-        }
+        .info-box { background:rgba(255,215,0,0.05); border-left:3px solid #FFD700; padding:10px 14px; border-radius:8px; margin-bottom:12px; }
+        .info-box p { color:#8aaa8a; font-size:0.75rem; margin:3px 0; }
         .info-box i { color:#FFD700; margin-right:6px; }
-
-        .preview-club {
-            background:rgba(255,255,255,0.02);
-            border-radius:12px;
-            padding:15px;
-            margin-bottom:15px;
-            border:1px solid rgba(255,255,255,0.05);
-            text-align:center;
-        }
-        .preview-club .name {
-            font-size:1.3rem;
-            font-weight:700;
-            color:#FFD700;
-        }
-        .preview-club .details {
-            color:#8aaa8a;
-            font-size:0.8rem;
-            margin-top:4px;
-        }
+        .preview-club { background:rgba(255,255,255,0.02); border-radius:12px; padding:15px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.05); text-align:center; }
+        .preview-club .name { font-size:1.3rem; font-weight:700; color:#FFD700; }
+        .preview-club .details { color:#8aaa8a; font-size:0.8rem; margin-top:4px; }
         .preview-club .details i { margin:0 6px; }
-
-        @media (max-width:480px) {
-            .card { padding:20px 15px; }
-            .form-row { grid-template-columns:1fr; }
-            .logo { font-size:1.5rem; }
-            h1 { font-size:1rem; }
-        }
+        @media (max-width:480px) { .card { padding:20px 15px; } .form-row { grid-template-columns:1fr; } .logo { font-size:1.5rem; } h1 { font-size:1rem; } }
     </style>
 </head>
 <body>
@@ -177,302 +44,108 @@
             <div class="logo-sub">v1.26</div>
             <h1>🏟️ Créer mon équipe</h1>
             <p class="subtitle">Choisissez votre pays, votre division et votre club</p>
-
             <div class="info-box">
                 <p><i class="fas fa-users"></i> Votre équipe aura <strong>25 joueurs</strong> avec des stats détaillées</p>
                 <p><i class="fas fa-coins"></i> Budget de départ : <strong>50 000 000 €</strong></p>
             </div>
-
             <div class="preview-club" id="previewClub">
                 <div class="name" id="previewName">⚽ Mon Club</div>
-                <div class="details">
-                    <i class="fas fa-flag"></i> <span id="previewPays">Pays</span>
-                    <i class="fas fa-trophy"></i> <span id="previewDivision">Division</span>
-                    <i class="fas fa-home"></i> <span id="previewStade">Stade</span>
-                </div>
+                <div class="details"><i class="fas fa-flag"></i> <span id="previewPays">Pays</span> <i class="fas fa-trophy"></i> <span id="previewDivision">Division</span> <i class="fas fa-home"></i> <span id="previewStade">Stade</span></div>
             </div>
-
             <form id="clubForm" onsubmit="saveClub(event)">
                 <div class="form-group">
                     <label>🧑‍✈️ Nom du coach</label>
                     <input type="text" id="coachNom" placeholder="Votre pseudo" required>
                 </div>
-
                 <div class="form-group">
                     <label>🏴 Pays</label>
                     <select id="clubPays" onchange="updateClubs()">
-                        <!-- AFRIQUE -->
-                        <optgroup label="🌍 AFRIQUE (CAF)">
-                            <option value="Algérie">🇩🇿 Algérie</option>
-                            <option value="Angola">🇦🇴 Angola</option>
-                            <option value="Bénin">🇧🇯 Bénin</option>
-                            <option value="Botswana">🇧🇼 Botswana</option>
-                            <option value="Burkina Faso">🇧🇫 Burkina Faso</option>
-                            <option value="Burundi">🇧🇮 Burundi</option>
-                            <option value="Cameroun">🇨🇲 Cameroun</option>
-                            <option value="Cap-Vert">🇨🇻 Cap-Vert</option>
-                            <option value="Centrafrique">🇨🇫 Centrafrique</option>
-                            <option value="Congo">🇨🇬 Congo</option>
-                            <option value="RDC">🇨🇩 RDC</option>
-                            <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
-                            <option value="Égypte">🇪🇬 Égypte</option>
-                            <option value="Éthiopie">🇪🇹 Éthiopie</option>
-                            <option value="Gabon">🇬🇦 Gabon</option>
-                            <option value="Gambie">🇬🇲 Gambie</option>
-                            <option value="Ghana">🇬🇭 Ghana</option>
-                            <option value="Guinée">🇬🇳 Guinée</option>
-                            <option value="Kenya">🇰🇪 Kenya</option>
-                            <option value="Lesotho">🇱🇸 Lesotho</option>
-                            <option value="Liberia">🇱🇷 Liberia</option>
-                            <option value="Libye">🇱🇾 Libye</option>
-                            <option value="Madagascar">🇲🇬 Madagascar</option>
-                            <option value="Malawi">🇲🇼 Malawi</option>
-                            <option value="Mali">🇲🇱 Mali</option>
-                            <option value="Maroc">🇲🇦 Maroc</option>
-                            <option value="Mauritanie">🇲🇷 Mauritanie</option>
-                            <option value="Mozambique">🇲🇿 Mozambique</option>
-                            <option value="Namibie">🇳🇦 Namibie</option>
-                            <option value="Niger">🇳🇪 Niger</option>
-                            <option value="Nigéria">🇳🇬 Nigéria</option>
-                            <option value="Ouganda">🇺🇬 Ouganda</option>
-                            <option value="Rwanda">🇷🇼 Rwanda</option>
-                            <option value="Sao Tomé">🇸🇹 Sao Tomé</option>
-                            <option value="Sénégal">🇸🇳 Sénégal</option>
-                            <option value="Seychelles">🇸🇨 Seychelles</option>
-                            <option value="Sierra Leone">🇸🇱 Sierra Leone</option>
-                            <option value="Somalie">🇸🇴 Somalie</option>
-                            <option value="Soudan">🇸🇩 Soudan</option>
-                            <option value="Tanzanie">🇹🇿 Tanzanie</option>
-                            <option value="Tchad">🇹🇩 Tchad</option>
-                            <option value="Togo">🇹🇬 Togo</option>
-                            <option value="Tunisie">🇹🇳 Tunisie</option>
-                            <option value="Zambie">🇿🇲 Zambie</option>
-                            <option value="Zimbabwe">🇿🇼 Zimbabwe</option>
-                            <option value="Afrique du Sud">🇿🇦 Afrique du Sud</option>
-                        </optgroup>
-
-                        <!-- EUROPE -->
-                        <optgroup label="🌍 EUROPE (UEFA)">
-                            <option value="Albanie">🇦🇱 Albanie</option>
-                            <option value="Allemagne">🇩🇪 Allemagne</option>
-                            <option value="Angleterre">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre</option>
-                            <option value="Autriche">🇦🇹 Autriche</option>
-                            <option value="Belgique">🇧🇪 Belgique</option>
-                            <option value="Bosnie">🇧🇦 Bosnie</option>
-                            <option value="Bulgarie">🇧🇬 Bulgarie</option>
-                            <option value="Croatie">🇭🇷 Croatie</option>
-                            <option value="Danemark">🇩🇰 Danemark</option>
-                            <option value="Écosse">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Écosse</option>
-                            <option value="Espagne">🇪🇸 Espagne</option>
-                            <option value="Finlande">🇫🇮 Finlande</option>
-                            <option value="France">🇫🇷 France</option>
-                            <option value="Galles">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Galles</option>
-                            <option value="Grèce">🇬🇷 Grèce</option>
-                            <option value="Hongrie">🇭🇺 Hongrie</option>
-                            <option value="Irlande">🇮🇪 Irlande</option>
-                            <option value="Islande">🇮🇸 Islande</option>
-                            <option value="Italie">🇮🇹 Italie</option>
-                            <option value="Kazakhstan">🇰🇿 Kazakhstan</option>
-                            <option value="Lituanie">🇱🇹 Lituanie</option>
-                            <option value="Luxembourg">🇱🇺 Luxembourg</option>
-                            <option value="Norvège">🇳🇴 Norvège</option>
-                            <option value="Pays-Bas">🇳🇱 Pays-Bas</option>
-                            <option value="Pologne">🇵🇱 Pologne</option>
-                            <option value="Portugal">🇵🇹 Portugal</option>
-                            <option value="République tchèque">🇨🇿 République tchèque</option>
-                            <option value="Roumanie">🇷🇴 Roumanie</option>
-                            <option value="Russie">🇷🇺 Russie</option>
-                            <option value="Serbie">🇷🇸 Serbie</option>
-                            <option value="Slovaquie">🇸🇰 Slovaquie</option>
-                            <option value="Suède">🇸🇪 Suède</option>
-                            <option value="Suisse">🇨🇭 Suisse</option>
-                            <option value="Turquie">🇹🇷 Turquie</option>
-                            <option value="Ukraine">🇺🇦 Ukraine</option>
-                        </optgroup>
-
-                        <!-- AMÉRIQUE DU SUD -->
-                        <optgroup label="🌍 AMÉRIQUE DU SUD (CONMEBOL)">
-                            <option value="Argentine">🇦🇷 Argentine</option>
-                            <option value="Bolivie">🇧🇴 Bolivie</option>
-                            <option value="Brésil">🇧🇷 Brésil</option>
-                            <option value="Chili">🇨🇱 Chili</option>
-                            <option value="Colombie">🇨🇴 Colombie</option>
-                            <option value="Équateur">🇪🇨 Équateur</option>
-                            <option value="Paraguay">🇵🇾 Paraguay</option>
-                            <option value="Pérou">🇵🇪 Pérou</option>
-                            <option value="Uruguay">🇺🇾 Uruguay</option>
-                            <option value="Venezuela">🇻🇪 Venezuela</option>
-                        </optgroup>
-
-                        <!-- AMÉRIQUE DU NORD -->
-                        <optgroup label="🌍 AMÉRIQUE DU NORD (CONCACAF)">
-                            <option value="Canada">🇨🇦 Canada</option>
-                            <option value="Costa Rica">🇨🇷 Costa Rica</option>
-                            <option value="États-Unis">🇺🇸 États-Unis</option>
-                            <option value="Guatemala">🇬🇹 Guatemala</option>
-                            <option value="Honduras">🇭🇳 Honduras</option>
-                            <option value="Jamaïque">🇯🇲 Jamaïque</option>
-                            <option value="Mexique">🇲🇽 Mexique</option>
-                            <option value="Panama">🇵🇦 Panama</option>
-                            <option value="Salvador">🇸🇻 Salvador</option>
-                            <option value="Trinité-et-Tobago">🇹🇹 Trinité-et-Tobago</option>
-                        </optgroup>
-
-                        <!-- ASIE -->
-                        <optgroup label="🌍 ASIE (AFC)">
-                            <option value="Arabie Saoudite">🇸🇦 Arabie Saoudite</option>
-                            <option value="Australie">🇦🇺 Australie</option>
-                            <option value="Chine">🇨🇳 Chine</option>
-                            <option value="Corée du Sud">🇰🇷 Corée du Sud</option>
-                            <option value="Émirats Arabes Unis">🇦🇪 Émirats Arabes Unis</option>
-                            <option value="Inde">🇮🇳 Inde</option>
-                            <option value="Iran">🇮🇷 Iran</option>
-                            <option value="Japon">🇯🇵 Japon</option>
-                            <option value="Qatar">🇶🇦 Qatar</option>
-                            <option value="Thaïlande">🇹🇭 Thaïlande</option>
-                            <option value="Viêt Nam">🇻🇳 Viêt Nam</option>
-                        </optgroup>
-
-                        <!-- OCÉANIE -->
-                        <optgroup label="🌍 OCÉANIE (OFC)">
-                            <option value="Australie">🇦🇺 Australie</option>
-                            <option value="Nouvelle-Zélande">🇳🇿 Nouvelle-Zélande</option>
-                            <option value="Fidji">🇫🇯 Fidji</option>
-                            <option value="Papouasie">🇵🇬 Papouasie</option>
-                            <option value="Samoa">🇼🇸 Samoa</option>
-                            <option value="Tahiti">🇵🇫 Tahiti</option>
-                            <option value="Tonga">🇹🇴 Tonga</option>
-                            <option value="Vanuatu">🇻🇺 Vanuatu</option>
-                        </optgroup>
+                        <optgroup label="🌍 AFRIQUE (CAF)"><option value="Bénin">🇧🇯 Bénin</option><option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option><option value="Sénégal">🇸🇳 Sénégal</option><option value="Cameroun">🇨🇲 Cameroun</option><option value="Nigéria">🇳🇬 Nigéria</option><option value="Ghana">🇬🇭 Ghana</option><option value="Maroc">🇲🇦 Maroc</option><option value="Tunisie">🇹🇳 Tunisie</option><option value="Algérie">🇩🇿 Algérie</option><option value="Égypte">🇪🇬 Égypte</option><option value="Afrique du Sud">🇿🇦 Afrique du Sud</option></optgroup>
+                        <optgroup label="🌍 EUROPE (UEFA)"><option value="France">🇫🇷 France</option><option value="Espagne">🇪🇸 Espagne</option><option value="Angleterre">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre</option><option value="Allemagne">🇩🇪 Allemagne</option><option value="Italie">🇮🇹 Italie</option><option value="Portugal">🇵🇹 Portugal</option><option value="Pays-Bas">🇳🇱 Pays-Bas</option><option value="Belgique">🇧🇪 Belgique</option><option value="Suisse">🇨🇭 Suisse</option><option value="Turquie">🇹🇷 Turquie</option></optgroup>
+                        <optgroup label="🌍 AMÉRIQUE"><option value="Brésil">🇧🇷 Brésil</option><option value="Argentine">🇦🇷 Argentine</option><option value="Mexique">🇲🇽 Mexique</option><option value="États-Unis">🇺🇸 États-Unis</option></optgroup>
+                        <optgroup label="🌍 ASIE"><option value="Arabie Saoudite">🇸🇦 Arabie Saoudite</option><option value="Japon">🇯🇵 Japon</option><option value="Corée du Sud">🇰🇷 Corée du Sud</option></optgroup>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>🏆 Division</label>
                     <select id="clubDivisionSelect" onchange="updateClubs()">
                         <option value="D1">Division 1</option>
                         <option value="D2">Division 2</option>
-                        <option value="D3">Division 3</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label>🏷️ Club</label>
-                    <select id="clubSelect">
-                        <!-- Clubs chargés dynamiquement -->
-                    </select>
+                    <select id="clubSelect"></select>
                 </div>
-
                 <div class="form-group">
                     <label>🏟️ Stade</label>
                     <input type="text" id="clubStade" placeholder="Camp Nou" value="Camp Nou">
                 </div>
-
-                <button type="submit" class="btn-submit" id="submitBtn">
-                    <i class="fas fa-check"></i> Créer mon équipe
-                </button>
+                <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-check"></i> Créer mon équipe</button>
             </form>
         </div>
     </div>
-
     <script>
-        // ===== CLUBS PAR PAYS ET DIVISIONS =====
         const CLUBS_DATA = {
-            // ===== AFRIQUE =====
-            "Algérie": {"D1": ["USM Alger", "MC Alger", "CR Belouizdad", "ES Sétif", "JS Kabylie"], "D2": ["USM Blida", "NA Hussein Dey", "ASO Chlef", "RC Relizane", "MC Oran B"]},
-            "Bénin": {"D1": ["AS Cotonou", "ASPAC FC", "Buffles FC", "Dragons FC", "JS Pobè"], "D2": ["ASVO", "Ayema FC", "Loto FC", "JAC", "Soleil FC B"]},
-            "Burkina Faso": {"D1": ["AS Douanes", "USFA", "RAHIMO", "SC Majestic", "Vitesse FC"], "D2": ["Real du Faso", "ASFA Yennenga", "Salitas FC", "AS Sonabel", "CFFEB"]},
-            "Cameroun": {"D1": ["Coton Sport", "Canon Yaoundé", "Tonnerre Yaoundé", "Union Douala", "AS Fortuna"], "D2": ["Bamboutos", "New Star", "Fovu Club", "YOSA", "Panthère"]},
-            "Côte d'Ivoire": {"D1": ["ASEC Mimosas", "Africa Sports", "Stade d'Abidjan", "SOA", "CO Korhogo"], "D2": ["San Pédro", "Bassam", "Bouaké", "Tanda", "Denguélé"]},
-            "Égypte": {"D1": ["Al Ahly", "Zamalek", "Pyramids FC", "Al Masry", "Smouha"], "D2": ["ENPPI", "Ceramica Cleopatra", "El Gouna", "Ismaily", "Arab Contractors"]},
-            "Ghana": {"D1": ["Hearts of Oak", "Asante Kotoko", "Medeama", "Bechem United", "Berekum Chelsea"], "D2": ["Dreams FC", "Great Olympics", "Legon Cities", "Real Tamale", "Karela United"]},
-            "Maroc": {"D1": ["Raja Casablanca", "Wydad Casablanca", "AS FAR", "RS Berkane", "Moghreb Tétouan"], "D2": ["Hassania Agadir", "Olympic Safi", "FUS Rabat", "Difaâ El Jadida", "Renaissance Zemamra"]},
-            "Nigéria": {"D1": ["Enyimba", "Rivers United", "Kano Pillars", "Plateau United", "Akwa United"], "D2": ["Lobi Stars", "Sunshine Stars", "Gombe United", "Niger Tornadoes", "Wikki Tourists"]},
-            "RDC": {"D1": ["TP Mazembe", "AS Vita Club", "DCMP", "Motema Pembe", "Renaissance"], "D2": ["Sanga Balende", "Groupe Bazano", "Manika", "Tshinkunku", "OC Bukavu"]},
-            "Sénégal": {"D1": ["Dakar Sacré-Cœur", "Jaraaf", "Teungueth", "AS Pikine", "Casa Sports"], "D2": ["Diambars", "Mbour", "Guédiawaye", "Stade de Mbour", "Niarry Tally"]},
-            "Togo": {"D1": ["AS Togo Port", "Sara FC", "Koroki", "Unisport", "Dyco"], "D2": ["ASKO", "Gomido", "Maranatha", "Anges FC", "Gbohloe-su"]},
-            "Tunisie": {"D1": ["Espérance Tunis", "Étoile du Sahel", "Club Africain", "US Monastir", "CS Sfaxien"], "D2": ["US Ben Guerdane", "Olympique Béja", "Stade Tunisien", "AS Soliman", "Club Bizertin"]},
-            "Zambie": {"D1": ["Zanaco", "Nkana", "Power Dynamos", "Green Buffaloes", "ZESCO United"], "D2": ["Forest Rangers", "Kabwe Warriors", "Mufulira Wanderers", "Konkola", "Nkwazi"]},
-            "Zimbabwe": {"D1": ["Dynamos", "Highlanders", "CAPS United", "FC Platinum", "Ngezi Platinum"], "D2": ["Triangle United", "Chicken Inn", "Bulawayo Chiefs", "Herentals", "Yadah"]},
-            "Afrique du Sud": {"D1": ["Mamelodi Sundowns", "Orlando Pirates", "Kaizer Chiefs", "SuperSport United", "Cape Town City"], "D2": ["Stellenbosch FC", "Polokwane City", "Sekhukhune United", "Royal AM", "TS Galaxy"]},
-
-            // ===== EUROPE =====
-            "Allemagne": {"D1": ["Bayern Munich", "Dortmund", "RB Leipzig", "Leverkusen", "Stuttgart"], "D2": ["Bochum", "Heidenheim", "Werder Bremen", "Augsburg", "Union Berlin"]},
-            "Angleterre": {"D1": ["Manchester City", "Arsenal", "Liverpool", "Chelsea", "Manchester United"], "D2": ["Tottenham", "Newcastle", "Aston Villa", "West Ham", "Brighton"]},
-            "Autriche": {"D1": ["Red Bull Salzburg", "Rapid Vienna", "Austria Vienna", "Sturm Graz", "Wolfsberger"], "D2": ["LASK", "Ried", "Admira", "Hartberg", "Altach"]},
-            "Belgique": {"D1": ["Club Brugge", "Anderlecht", "Genk", "Gent", "Standard Liège"], "D2": ["Mechelen", "Cercle Brugge", "Charleroi", "OH Leuven", "Union SG"]},
-            "Croatie": {"D1": ["Dinamo Zagreb", "Hajduk Split", "Rijeka", "Osijek", "Slaven Belupo"], "D2": ["Istra 1961", "Gorica", "Lokomotiva", "Šibenik", "Varaždin"]},
-            "Danemark": {"D1": ["Copenhagen", "Brøndby", "Midtjylland", "AGF", "Randers"], "D2": ["Nordsjælland", "Lyngby", "Vejle", "Horsens", "SønderjyskE"]},
-            "Écosse": {"D1": ["Celtic", "Rangers", "Hearts", "Hibernian", "Aberdeen"], "D2": ["Kilmarnock", "Dundee", "St Mirren", "Ross County", "Livingston"]},
-            "Espagne": {"D1": ["Real Madrid", "Barcelona", "Atletico Madrid", "Sevilla", "Real Sociedad"], "D2": ["Villarreal", "Betis", "Valencia", "Bilbao", "Girona"]},
-            "France": {"D1": ["PSG", "Marseille", "Lyon", "Monaco", "Lille"], "D2": ["Nice", "Rennes", "Lens", "Strasbourg", "Montpellier"]},
-            "Grèce": {"D1": ["Olympiacos", "Panathinaikos", "AEK Athens", "PAOK", "Aris"], "D2": ["Panetolikos", "Volos", "Ionikos", "Lamia", "OFI"]},
-            "Italie": {"D1": ["Inter Milan", "AC Milan", "Juventus", "Atalanta", "Napoli"], "D2": ["Roma", "Lazio", "Fiorentina", "Bologna", "Torino"]},
-            "Pays-Bas": {"D1": ["PSV", "Ajax", "Feyenoord", "Twente", "AZ"], "D2": ["Utrecht", "Sparta", "Heerenveen", "Go Ahead Eagles", "NEC"]},
-            "Portugal": {"D1": ["Benfica", "Porto", "Sporting", "Braga", "Guimarães"], "D2": ["Gil Vicente", "Famalicão", "Arouca", "Boa Vista", "Moreirense"]},
-            "Roumanie": {"D1": ["FCSB", "CFR Cluj", "Universitatea Craiova", "Rapid București", "Sepsi OSK"], "D2": ["Farul Constanța", "Petrolul Ploiești", "UTA Arad", "Hermannstadt", "Voluntari"]},
-            "Russie": {"D1": ["Zenit", "CSKA Moscow", "Spartak Moscow", "Dynamo Moscow", "Lokomotiv Moscow"], "D2": ["Krasnodar", "Rostov", "Akhmat Grozny", "Krylia Sovetov", "Orenburg"]},
-            "Suède": {"D1": ["Malmö", "AIK", "Djurgården", "Hammarby", "Elfsborg"], "D2": ["Häcken", "Kalmar", "IFK Göteborg", "Mjällby", "Varberg"]},
-            "Suisse": {"D1": ["Young Boys", "Basel", "Servette", "Luzern", "St. Gallen"], "D2": ["Zürich", "Grasshopper", "Lugano", "Winterthur", "Lausanne"]},
-            "Turquie": {"D1": ["Galatasaray", "Fenerbahçe", "Beşiktaş", "Trabzonspor", "Başakşehir"], "D2": ["Sivasspor", "Konyaspor", "Alanyaspor", "Antalyaspor", "Adana Demirspor"]},
-
-            // ===== AMÉRIQUE DU SUD =====
-            "Argentine": {"D1": ["River Plate", "Boca Juniors", "Vélez", "San Lorenzo", "Racing"], "D2": ["Independiente", "Lanús", "Talleres", "Defensa y Justicia", "Huracán"]},
-            "Brésil": {"D1": ["Flamengo", "Palmeiras", "Atlético Mineiro", "Fluminense", "Corinthians"], "D2": ["Internacional", "Grêmio", "São Paulo", "Bahia", "Ceará"]},
-            "Chili": {"D1": ["Colo-Colo", "Universidad de Chile", "Universidad Católica", "Audax Italiano", "Everton"], "D2": ["O'Higgins", "Palestino", "Coquimbo Unido", "Huachipato", "Ñublense"]},
-            "Colombie": {"D1": ["Atlético Nacional", "Millonarios", "América de Cali", "Santa Fe", "Junior"], "D2": ["Cali", "Medellín", "Tolima", "Pereira", "Huila"]},
-            "Uruguay": {"D1": ["Peñarol", "Nacional", "Liverpool Montevideo", "Cerro", "Defensor Sporting"], "D2": ["Wanderers", "River Plate Montevideo", "Racing Montevideo", "Plaza Colonia", "Fénix"]},
-
-            // ===== AMÉRIQUE DU NORD =====
-            "États-Unis": {"D1": ["LA Galaxy", "Inter Miami", "Seattle Sounders", "LAFC", "Columbus"], "D2": ["Atlanta", "NYCFC", "Portland", "Austin", "Cincinnati"]},
-            "Mexique": {"D1": ["América", "Chivas", "Tigres", "Monterrey", "Pumas"], "D2": ["Cruz Azul", "Santos", "Pachuca", "Atlas", "Necaxa"]},
-
-            // ===== ASIE =====
-            "Arabie Saoudite": {"D1": ["Al Hilal", "Al Nassr", "Al Ahli", "Al Ittihad", "Al Shabab"], "D2": ["Al Fateh", "Al Ettifaq", "Al Raed", "Al Wehda", "Al Khaleej"]},
-            "Japon": {"D1": ["Kawasaki", "Yokohama F. Marinos", "Kobe", "Sanfrecce", "Urawa"], "D2": ["Nagoya", "Grampus", "Avispa Fukuoka", "Kashima", "Jubilo"]},
-            "Corée du Sud": {"D1": ["Ulsan", "Jeonbuk", "Pohang", "Gwangju", "Incheon"], "D2": ["Daegu", "Suwon", "Seoul", "Jeju", "Daejeon"]},
-
-            // ===== OCÉANIE =====
-            "Australie": {"D1": ["Sydney FC", "Melbourne Victory", "Melbourne City", "Brisbane", "Adelaide"], "D2": ["Perth", "Newcastle", "Wellington", "Central Coast", "Western Sydney"]},
-            "Nouvelle-Zélande": {"D1": ["Auckland City", "Wellington Olympic", "Eastern Suburbs", "Auckland United", "Western Springs"], "D2": ["Birkenhead", "Hamilton Wanderers", "Canterbury", "Dunedin", "Nelson"]}
+            "Bénin": {"D1": ["AS Cotonou","ASPAC FC","Buffles FC","Dragons FC","JS Pobè"],"D2": ["ASVO","Ayema FC","Loto FC","JAC","Soleil FC B"]},
+            "Côte d'Ivoire": {"D1": ["ASEC Mimosas","Africa Sports","Stade d'Abidjan","SOA","CO Korhogo"],"D2": ["San Pédro","Bassam","Bouaké","Tanda","Denguélé"]},
+            "Sénégal": {"D1": ["Dakar Sacré-Cœur","Jaraaf","Teungueth","AS Pikine","Casa Sports"],"D2": ["Diambars","Mbour","Guédiawaye","Stade de Mbour","Niarry Tally"]},
+            "France": {"D1": ["PSG","Marseille","Lyon","Monaco","Lille"],"D2": ["Nice","Rennes","Lens","Strasbourg","Montpellier"]},
+            "Espagne": {"D1": ["Real Madrid","Barcelona","Atletico Madrid","Sevilla","Real Sociedad"],"D2": ["Villarreal","Betis","Valencia","Bilbao","Girona"]},
+            "Angleterre": {"D1": ["Manchester City","Arsenal","Liverpool","Chelsea","Manchester United"],"D2": ["Tottenham","Newcastle","Aston Villa","West Ham","Brighton"]},
+            "Allemagne": {"D1": ["Bayern Munich","Dortmund","RB Leipzig","Leverkusen","Stuttgart"],"D2": ["Bochum","Heidenheim","Werder Bremen","Augsburg","Union Berlin"]},
+            "Italie": {"D1": ["Inter Milan","AC Milan","Juventus","Atalanta","Napoli"],"D2": ["Roma","Lazio","Fiorentina","Bologna","Torino"]},
+            "Brésil": {"D1": ["Flamengo","Palmeiras","Atlético Mineiro","Fluminense","Corinthians"],"D2": ["Internacional","Grêmio","São Paulo","Bahia","Ceará"]},
+            "Argentine": {"D1": ["River Plate","Boca Juniors","Vélez","San Lorenzo","Racing"],"D2": ["Independiente","Lanús","Talleres","Defensa y Justicia","Huracán"]},
+            "Maroc": {"D1": ["Raja Casablanca","Wydad Casablanca","AS FAR","RS Berkane","Moghreb Tétouan"],"D2": ["Hassania Agadir","Olympic Safi","FUS Rabat","Difaâ El Jadida","Renaissance Zemamra"]},
+            "Tunisie": {"D1": ["Espérance Tunis","Étoile du Sahel","Club Africain","US Monastir","CS Sfaxien"],"D2": ["US Ben Guerdane","Olympique Béja","Stade Tunisien","AS Soliman","Club Bizertin"]},
+            "Algérie": {"D1": ["USM Alger","MC Alger","CR Belouizdad","ES Sétif","JS Kabylie"],"D2": ["USM Blida","NA Hussein Dey","ASO Chlef","RC Relizane","MC Oran B"]},
+            "Égypte": {"D1": ["Al Ahly","Zamalek","Pyramids FC","Al Masry","Smouha"],"D2": ["ENPPI","Ceramica Cleopatra","El Gouna","Ismaily","Arab Contractors"]},
+            "Afrique du Sud": {"D1": ["Mamelodi Sundowns","Orlando Pirates","Kaizer Chiefs","SuperSport United","Cape Town City"],"D2": ["Stellenbosch FC","Polokwane City","Sekhukhune United","Royal AM","TS Galaxy"]},
+            "Nigéria": {"D1": ["Enyimba","Rivers United","Kano Pillars","Plateau United","Akwa United"],"D2": ["Lobi Stars","Sunshine Stars","Gombe United","Niger Tornadoes","Wikki Tourists"]},
+            "Ghana": {"D1": ["Hearts of Oak","Asante Kotoko","Medeama","Bechem United","Berekum Chelsea"],"D2": ["Dreams FC","Great Olympics","Legon Cities","Real Tamale","Karela United"]},
+            "Cameroun": {"D1": ["Coton Sport","Canon Yaoundé","Tonnerre Yaoundé","Union Douala","AS Fortuna"],"D2": ["Bamboutos","New Star","Fovu Club","YOSA","Panthère"]},
+            "Pays-Bas": {"D1": ["PSV","Ajax","Feyenoord","Twente","AZ"],"D2": ["Utrecht","Sparta","Heerenveen","Go Ahead Eagles","NEC"]},
+            "Belgique": {"D1": ["Club Brugge","Anderlecht","Genk","Gent","Standard Liège"],"D2": ["Mechelen","Cercle Brugge","Charleroi","OH Leuven","Union SG"]},
+            "Portugal": {"D1": ["Benfica","Porto","Sporting","Braga","Guimarães"],"D2": ["Gil Vicente","Famalicão","Arouca","Boa Vista","Moreirense"]},
+            "Suisse": {"D1": ["Young Boys","Basel","Servette","Luzern","St. Gallen"],"D2": ["Zürich","Grasshopper","Lugano","Winterthur","Lausanne"]},
+            "Turquie": {"D1": ["Galatasaray","Fenerbahçe","Beşiktaş","Trabzonspor","Başakşehir"],"D2": ["Sivasspor","Konyaspor","Alanyaspor","Antalyaspor","Adana Demirspor"]},
+            "Mexique": {"D1": ["América","Chivas","Tigres","Monterrey","Pumas"],"D2": ["Cruz Azul","Santos","Pachuca","Atlas","Necaxa"]},
+            "États-Unis": {"D1": ["LA Galaxy","Inter Miami","Seattle Sounders","LAFC","Columbus"],"D2": ["Atlanta","NYCFC","Portland","Austin","Cincinnati"]},
+            "Arabie Saoudite": {"D1": ["Al Hilal","Al Nassr","Al Ahli","Al Ittihad","Al Shabab"],"D2": ["Al Fateh","Al Ettifaq","Al Raed","Al Wehda","Al Khaleej"]},
+            "Japon": {"D1": ["Kawasaki","Yokohama F. Marinos","Kobe","Sanfrecce","Urawa"],"D2": ["Nagoya","Grampus","Avispa Fukuoka","Kashima","Jubilo"]},
+            "Corée du Sud": {"D1": ["Ulsan","Jeonbuk","Pohang","Gwangju","Incheon"],"D2": ["Daegu","Suwon","Seoul","Jeju","Daejeon"]}
         };
 
-        // ===== METTRE À JOUR LES CLUBS =====
         function updateClubs() {
             const pays = document.getElementById('clubPays').value;
             const division = document.getElementById('clubDivisionSelect').value;
-            const clubs = CLUBS_DATA[pays]?.[division] || generateFakeClubs(pays, division);
+            const clubs = CLUBS_DATA[pays]?.[division] || [];
             const select = document.getElementById('clubSelect');
             select.innerHTML = '';
-            clubs.forEach(club => {
+            if (clubs.length === 0) {
                 const option = document.createElement('option');
-                option.value = club;
-                option.textContent = club;
+                option.value = 'FC ' + pays;
+                option.textContent = 'FC ' + pays;
                 select.appendChild(option);
-            });
+            } else {
+                clubs.forEach(club => {
+                    const option = document.createElement('option');
+                    option.value = club;
+                    option.textContent = club;
+                    select.appendChild(option);
+                });
+            }
             updatePreview();
         }
 
-        function generateFakeClubs(pays, division) {
-            const suffixes = ["FC", "AS", "US", "ES", "SC", "AC", "JS"];
-            const clubs = [];
-            for (let i = 0; i < 8; i++) {
-                const suffix = suffixes[i % suffixes.length];
-                const city = pays.substring(0, 5);
-                clubs.push(`${suffix} ${city} ${division === 'D1' ? 'United' : 'City'}`);
-            }
-            return clubs;
-        }
-
-        // ===== PRÉVISUALISATION =====
         function updatePreview() {
             const club = document.getElementById('clubSelect').value;
             const pays = document.getElementById('clubPays').value;
             const division = document.getElementById('clubDivisionSelect').value;
             const stade = document.getElementById('clubStade').value || 'Stade';
             const coach = document.getElementById('coachNom').value || 'Coach';
-
-            document.getElementById('previewName').textContent = `⚽ ${club}`;
+            document.getElementById('previewName').textContent = '⚽ ' + club;
             document.getElementById('previewPays').textContent = pays;
             document.getElementById('previewDivision').textContent = division;
             document.getElementById('previewStade').textContent = stade;
@@ -484,24 +157,19 @@
         document.getElementById('clubStade').addEventListener('input', updatePreview);
         document.getElementById('coachNom').addEventListener('input', updatePreview);
 
-        // ===== INIT =====
         document.addEventListener('DOMContentLoaded', function() {
             const saved = localStorage.getItem('fm_session_data');
             if (saved) {
                 try {
                     const data = JSON.parse(saved);
-                    if (data.pseudo) {
-                        document.getElementById('coachNom').value = data.pseudo;
-                    }
+                    if (data.pseudo) document.getElementById('coachNom').value = data.pseudo;
                 } catch(e) {}
             }
             updateClubs();
         });
 
-        // ===== SAUVEGARDER =====
         async function saveClub(event) {
             event.preventDefault();
-
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
             btn.innerHTML = '<span class="spinner"></span> Création en cours...';
@@ -522,27 +190,14 @@
             try {
                 const saved = localStorage.getItem('fm_session_data');
                 let playerData = saved ? JSON.parse(saved) : {};
-
                 playerData.pseudo = coach;
-                playerData.equipe = {
-                    nom: club,
-                    pays: pays,
-                    division: division || 'Ligue 1',
-                    stade: stade || 'Mon Stade',
-                    budget: 50000000,
-                    joueurs: []
-                };
+                playerData.equipe = { nom: club, pays: pays, division: division || 'Ligue 1', stade: stade || 'Mon Stade', budget: 50000000, joueurs: [] };
 
                 const response = await fetch('/api/generate_players', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        pays: pays, 
-                        club: club, 
-                        nombre: 25 
-                    })
+                    body: JSON.stringify({ pays: pays, club: club, nombre: 25 })
                 });
-
                 const result = await response.json();
                 if (result.success) {
                     playerData.equipe.joueurs = result.players;
@@ -551,23 +206,11 @@
                 }
 
                 localStorage.setItem('fm_session_data', JSON.stringify(playerData));
-
-                await fetch('/api/save', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        pseudo: playerData.pseudo, 
-                        data: playerData 
-                    })
-                });
+                await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pseudo: playerData.pseudo, data: playerData }) });
 
                 btn.innerHTML = '✅ Équipe créée !';
-                setTimeout(() => {
-                    window.location.href = '/dashboard.html';
-                }, 1000);
-
+                setTimeout(() => { window.location.href = '/dashboard.html'; }, 1000);
             } catch(e) {
-                console.error(e);
                 alert('❌ Erreur lors de la création de l\'équipe');
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-check"></i> Créer mon équipe';
@@ -576,51 +219,17 @@
 
         function generateLocalPlayers(pays, club, nombre) {
             const postes = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'];
-            const noms = {
-                'France': ['Martin', 'Bernard', 'Dubois', 'Petit', 'Garcia'],
-                'Espagne': ['García', 'Rodríguez', 'González', 'Martínez', 'López'],
-                'Angleterre': ['Smith', 'Jones', 'Williams', 'Taylor', 'Davies'],
-                'Allemagne': ['Müller', 'Schmidt', 'Schneider', 'Fischer', 'Weber'],
-                'Italie': ['Rossi', 'Russo', 'Ferrari', 'Esposito', 'Bianchi'],
-                'Brésil': ['Silva', 'Santos', 'Oliveira', 'Pereira', 'Souza'],
-                'Argentine': ['González', 'García', 'Fernández', 'López', 'Martínez']
-            };
-            const prenoms = {
-                'France': ['Jean', 'Pierre', 'Paul', 'Jacques', 'Antoine'],
-                'Espagne': ['Antonio', 'José', 'Manuel', 'Javier', 'Francisco'],
-                'Angleterre': ['James', 'John', 'William', 'George', 'Henry'],
-                'Allemagne': ['Hans', 'Peter', 'Klaus', 'Dieter', 'Uwe'],
-                'Italie': ['Marco', 'Alessandro', 'Francesco', 'Luca', 'Matteo'],
-                'Brésil': ['André', 'Carlos', 'José', 'Luiz', 'Paulo'],
-                'Argentine': ['Juan', 'Carlos', 'José', 'Luis', 'Diego']
-            };
-
+            const noms = {'France': ['Martin','Bernard','Dubois','Petit','Garcia'],'Espagne': ['García','Rodríguez','González','Martínez','López'],'Angleterre': ['Smith','Jones','Williams','Taylor','Davies'],'Allemagne': ['Müller','Schmidt','Schneider','Fischer','Weber'],'Italie': ['Rossi','Russo','Ferrari','Esposito','Bianchi'],'Brésil': ['Silva','Santos','Oliveira','Pereira','Souza'],'Argentine': ['González','García','Fernández','López','Martínez']};
+            const prenoms = {'France': ['Jean','Pierre','Paul','Jacques','Antoine'],'Espagne': ['Antonio','José','Manuel','Javier','Francisco'],'Angleterre': ['James','John','William','George','Henry'],'Allemagne': ['Hans','Peter','Klaus','Dieter','Uwe'],'Italie': ['Marco','Alessandro','Francesco','Luca','Matteo'],'Brésil': ['André','Carlos','José','Luiz','Paulo'],'Argentine': ['Juan','Carlos','José','Luis','Diego']};
             const paysNoms = noms[pays] || noms['France'];
             const paysPrenoms = prenoms[pays] || prenoms['France'];
             const joueurs = [];
-
             for (let i = 0; i < nombre; i++) {
                 const nom = paysNoms[i % paysNoms.length];
                 const prenom = paysPrenoms[i % paysPrenoms.length];
                 const note = Math.floor(Math.random() * 50) + 40;
                 const age = Math.floor(Math.random() * 10) + 16;
-
-                joueurs.push({
-                    id: `joueur_${i}`,
-                    prenom: prenom,
-                    nom: nom,
-                    age: age,
-                    poste: postes[i % postes.length],
-                    note: note,
-                    valeur: note * 100000,
-                    attributs: {
-                        vitesse: Math.floor(Math.random() * 50) + 40,
-                        tir: Math.floor(Math.random() * 50) + 30,
-                        passe: Math.floor(Math.random() * 50) + 30,
-                        defense: Math.floor(Math.random() * 50) + 30,
-                        physique: Math.floor(Math.random() * 50) + 40
-                    }
-                });
+                joueurs.push({ id: 'joueur_' + i, prenom: prenom, nom: nom, age: age, poste: postes[i % postes.length], note: note, valeur: note * 100000, attributs: { vitesse: Math.floor(Math.random() * 50) + 40, tir: Math.floor(Math.random() * 50) + 30, passe: Math.floor(Math.random() * 50) + 30, defense: Math.floor(Math.random() * 50) + 30, physique: Math.floor(Math.random() * 50) + 40 } });
             }
             return joueurs;
         }
