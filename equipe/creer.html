@@ -281,3 +281,31 @@
     </script>
 </body>
 </html>
+<script>
+// ===== RÉCUPÉRER LES DONNÉES DE SESSION =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer depuis l'URL
+    const params = new URLSearchParams(window.location.search);
+    const pseudo = params.get('pseudo');
+    const playerId = params.get('player_id');
+    
+    // Récupérer depuis sessionStorage
+    try {
+        const sessionData = sessionStorage.getItem('fmtk_session_data');
+        if (sessionData) {
+            const data = JSON.parse(sessionData);
+            if (data && data.pseudo) {
+                document.getElementById('coachNom').value = data.pseudo;
+                console.log('✅ Données de session chargées:', data.pseudo);
+            }
+        }
+    } catch(e) {
+        console.warn('Impossible de charger sessionStorage', e);
+    }
+    
+    // Remplir le pseudo
+    if (pseudo) {
+        document.getElementById('coachNom').value = pseudo;
+    }
+});
+</script>
