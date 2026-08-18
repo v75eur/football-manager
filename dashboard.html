@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Dashboard - FMTK-v1.26</title>
+    <title>FMTK - Dashboard Coach</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -14,45 +14,46 @@
         .header { 
             background:linear-gradient(135deg,#0d2a0d,#0a1a0a); 
             border-bottom:2px solid rgba(255,215,0,0.1); 
-            padding:12px 15px; 
+            padding:10px 12px; 
             display:flex; 
             justify-content:space-between; 
             align-items:center; 
             flex-wrap:wrap; 
-            gap:8px; 
+            gap:6px; 
             position:sticky; 
             top:0; 
             z-index:100;
         }
-        .header .logo { font-family:'Orbitron',monospace; font-size:1.2rem; color:#FFD700; font-weight:900; }
-        .header .info { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+        .header .logo { font-family:'Orbitron',monospace; font-size:1rem; color:#FFD700; font-weight:900; }
+        .header .info { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
         .header .info .stat { text-align:center; }
-        .header .info .stat .value { font-size:1rem; font-weight:700; color:#FFD700; }
-        .header .info .stat .label { font-size:0.5rem; color:#666; text-transform:uppercase; display:block; }
+        .header .info .stat .value { font-size:0.9rem; font-weight:700; color:#FFD700; }
+        .header .info .stat .label { font-size:0.45rem; color:#666; text-transform:uppercase; display:block; }
         
-        /* ===== MAIN CONTENT ===== */
-        .main { padding:12px; max-width:100%; margin:0 auto; }
+        /* ===== MAIN ===== */
+        .main { padding:10px; max-width:100%; margin:0 auto; }
         
         /* ===== TABS ===== */
         .tab-bar { 
             display:flex; 
-            gap:4px; 
-            margin-bottom:12px; 
+            gap:3px; 
+            margin-bottom:10px; 
             overflow-x:auto; 
-            padding:4px 0;
+            padding:3px 0;
             -webkit-overflow-scrolling:touch;
             scrollbar-width:none;
+            flex-wrap:nowrap;
         }
         .tab-bar::-webkit-scrollbar { display:none; }
         .tab { 
-            padding:8px 14px; 
+            padding:6px 10px; 
             background:rgba(255,255,255,0.03); 
             border:1px solid rgba(255,255,255,0.05); 
-            border-radius:8px; 
+            border-radius:6px; 
             color:#666; 
             cursor:pointer; 
             transition:all 0.3s; 
-            font-size:0.7rem; 
+            font-size:0.6rem; 
             white-space:nowrap;
             flex-shrink:0;
             font-family:'Rajdhani',sans-serif;
@@ -67,89 +68,103 @@
         .card { 
             background:rgba(10,30,10,0.85); 
             backdrop-filter:blur(10px); 
-            border-radius:12px; 
+            border-radius:10px; 
             border:1px solid rgba(255,215,0,0.05); 
-            padding:15px; 
-            margin-bottom:12px;
+            padding:12px; 
+            margin-bottom:10px;
         }
         .card h3 { 
             color:#FFD700; 
             font-family:'Orbitron',monospace; 
-            font-size:0.8rem; 
-            margin-bottom:10px; 
+            font-size:0.7rem; 
+            margin-bottom:8px; 
             border-bottom:1px solid rgba(255,215,0,0.1); 
-            padding-bottom:8px; 
+            padding-bottom:6px; 
             display:flex;
             align-items:center;
-            gap:8px;
+            gap:6px;
         }
+        .card .subtitle { font-size:0.6rem; color:#666; font-family:'Rajdhani',sans-serif; margin-left:auto; }
         
         /* ===== PLAYER LIST ===== */
-        .player-list { max-height:400px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+        .player-list { max-height:350px; overflow-y:auto; -webkit-overflow-scrolling:touch; }
         .player-item { 
             display:flex; 
             justify-content:space-between; 
             align-items:center;
-            padding:8px 4px; 
+            padding:6px 3px; 
             border-bottom:1px solid rgba(255,255,255,0.03); 
-            font-size:0.8rem; 
-            gap:5px;
+            font-size:0.7rem; 
+            gap:4px;
             flex-wrap:wrap;
         }
-        .player-item .name { color:#fff; flex:1; min-width:80px; }
+        .player-item .name { color:#fff; flex:1; min-width:60px; font-weight:600; }
         .player-item .note { color:#FFD700; font-weight:700; }
-        .player-item .poste { color:#666; font-size:0.6rem; }
-        .player-item .age { color:#7aaa7a; font-size:0.6rem; }
+        .player-item .poste { color:#666; font-size:0.55rem; }
+        .player-item .age { color:#7aaa7a; font-size:0.55rem; }
         .player-item .badge { 
             display:inline-block; 
-            padding:1px 6px; 
+            padding:1px 5px; 
             border-radius:3px; 
-            font-size:0.5rem; 
+            font-size:0.45rem; 
             font-weight:700; 
         }
         .badge-gardien { background:#3498db; color:#fff; }
         .badge-defense { background:#2ecc71; color:#fff; }
         .badge-milieu { background:#f39c12; color:#fff; }
         .badge-attaque { background:#e74c3c; color:#fff; }
+        .badge-blesse { background:#e74c3c; color:#fff; }
+        .badge-forme { background:#2ecc71; color:#fff; }
         
-        /* ===== STATS ===== */
+        .player-forme { 
+            display:inline-block; 
+            width:6px; 
+            height:6px; 
+            border-radius:50%; 
+            margin-right:3px;
+        }
+        .forme-bonne { background:#2ecc71; }
+        .forme-moyenne { background:#f39c12; }
+        .forme-mauvaise { background:#e74c3c; }
+        
+        /* ===== STATS GRID ===== */
         .stats-grid {
             display:grid;
             grid-template-columns:repeat(3,1fr);
-            gap:8px;
+            gap:6px;
         }
         .stats-grid .stat-box {
             text-align:center;
-            padding:10px 5px;
+            padding:8px 4px;
             background:rgba(255,255,255,0.02);
-            border-radius:8px;
+            border-radius:6px;
         }
         .stats-grid .stat-box .value {
-            font-size:1.2rem;
+            font-size:1rem;
             font-weight:700;
             color:#FFD700;
         }
         .stats-grid .stat-box .label {
-            font-size:0.55rem;
+            font-size:0.5rem;
             color:#666;
             text-transform:uppercase;
         }
         
-        /* ===== MATCH RESULT ===== */
+        /* ===== MATCH ===== */
         .match-item {
-            padding:10px;
+            padding:8px;
             background:rgba(255,215,0,0.03);
-            border-radius:8px;
-            margin-bottom:6px;
+            border-radius:6px;
+            margin-bottom:4px;
             border-left:3px solid #FFD700;
         }
-        .match-item .score { font-size:1rem; font-weight:700; color:#FFD700; }
-        .match-item .details { font-size:0.7rem; color:#666; }
-        .match-item .resultat { 
+        .match-item .score { font-size:0.9rem; font-weight:700; color:#FFD700; }
+        .match-item .details { font-size:0.6rem; color:#666; }
+        .resultat { 
             display:inline-block; 
-            padding:2px 8px; 
-            border-radius:4px; 
-            font-size:0.6rem; 
+            padding:1px 6px; 
+            border-radius:3px; 
+            font-size:0.5rem; 
             font-weight:700;
         }
         .resultat-victoire { background:#2ecc71; color:#fff; }
@@ -161,134 +176,141 @@
             display:flex;
             justify-content:space-between;
             align-items:center;
-            padding:8px 4px;
+            padding:6px 3px;
             border-bottom:1px solid rgba(255,255,255,0.03);
-            font-size:0.8rem;
-            gap:5px;
+            font-size:0.7rem;
+            gap:4px;
         }
-        .btn-transfer {
+        .btn-action {
             padding:4px 10px;
             background:linear-gradient(135deg,#FFD700,#f5a623);
             border:none;
             border-radius:4px;
             color:#0a0a1a;
             font-family:'Orbitron',monospace;
-            font-size:0.55rem;
+            font-size:0.5rem;
             font-weight:700;
             cursor:pointer;
             transition:all 0.3s;
-        }
-        .btn-transfer:active { transform:scale(0.95); }
-        .btn-transfer:disabled { opacity:0.3; cursor:not-allowed; }
-        
-        /* ===== BUTTONS ===== */
-        .btn-action {
-            padding:10px 16px;
-            background:linear-gradient(135deg,#FFD700,#f5a623);
-            border:none;
-            border-radius:8px;
-            color:#0a0a1a;
-            font-family:'Orbitron',monospace;
-            font-size:0.65rem;
-            font-weight:700;
-            cursor:pointer;
-            transition:all 0.3s;
-            width:100%;
-            text-align:center;
         }
         .btn-action:active { transform:scale(0.95); }
         .btn-action:disabled { opacity:0.3; cursor:not-allowed; }
-        
-        .btn-danger {
-            background:linear-gradient(135deg,#e74c3c,#c0392b);
-            color:#fff;
-        }
-        .btn-success {
-            background:linear-gradient(135deg,#2ecc71,#27ae60);
-            color:#fff;
-        }
+        .btn-danger { background:linear-gradient(135deg,#e74c3c,#c0392b); color:#fff; }
+        .btn-success { background:linear-gradient(135deg,#2ecc71,#27ae60); color:#fff; }
+        .btn-full { width:100%; padding:8px; font-size:0.6rem; }
         
         /* ===== RANKING ===== */
         .ranking-item {
             display:grid;
-            grid-template-columns:30px 1fr 40px 40px;
-            padding:6px 4px;
+            grid-template-columns:25px 1fr 30px 30px;
+            padding:5px 3px;
             border-bottom:1px solid rgba(255,255,255,0.03);
-            font-size:0.75rem;
-            gap:4px;
+            font-size:0.65rem;
+            gap:3px;
             align-items:center;
         }
         .ranking-item .pos { color:#666; font-weight:700; }
         .ranking-item .team { color:#fff; }
         .ranking-item .pts { color:#FFD700; font-weight:700; }
-        .ranking-item .games { color:#666; }
         .ranking-header {
             font-weight:700;
             border-bottom:2px solid rgba(255,215,0,0.2);
             color:#666;
-            font-size:0.6rem;
+            font-size:0.5rem;
             text-transform:uppercase;
         }
+        .highlight { background:rgba(255,215,0,0.05); border-radius:4px; }
         
-        /* ===== NOTIFICATION ===== */
+        /* ===== NEWS ===== */
+        .news-item {
+            padding:8px;
+            background:rgba(255,215,0,0.02);
+            border-radius:6px;
+            margin-bottom:4px;
+            border-left:3px solid #FFD700;
+        }
+        .news-item .title { font-weight:600; font-size:0.75rem; color:#fff; }
+        .news-item .date { font-size:0.5rem; color:#666; }
+        .news-item .content { font-size:0.65rem; color:#aaa; margin-top:3px; }
+        
+        /* ===== TRAINING ===== */
+        .training-item {
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:6px 3px;
+            border-bottom:1px solid rgba(255,255,255,0.03);
+            font-size:0.7rem;
+        }
+        .training-item .name { color:#fff; }
+        .progress-bar { 
+            background:rgba(255,255,255,0.05); 
+            border-radius:4px; 
+            height:4px; 
+            overflow:hidden; 
+            flex:1; 
+            margin:0 8px;
+        }
+        .progress-bar .fill { 
+            height:100%; 
+            background:linear-gradient(90deg,#FFD700,#f5a623); 
+            border-radius:4px; 
+            transition:width 0.5s; 
+        }
+        
+        /* ===== INFRA ===== */
+        .infra-item {
+            display:flex;
+            justify-content:space-between;
+            padding:6px 3px;
+            border-bottom:1px solid rgba(255,255,255,0.03);
+            font-size:0.7rem;
+        }
+        .infra-item .name { color:#fff; }
+        .infra-item .level { color:#FFD700; }
+        .infra-item .cost { color:#e74c3c; }
+        
+        /* ===== TOAST ===== */
         .toast {
             position:fixed;
-            bottom:20px;
+            bottom:15px;
             left:50%;
             transform:translateX(-50%);
             background:rgba(10,30,10,0.95);
             border:1px solid rgba(255,215,0,0.2);
-            border-radius:10px;
-            padding:12px 20px;
-            font-size:0.8rem;
+            border-radius:8px;
+            padding:10px 16px;
+            font-size:0.7rem;
             color:#fff;
             z-index:9999;
             display:none;
             max-width:90%;
             text-align:center;
-            animation:slideUp 0.3s ease;
         }
-        .toast.show { display:block; }
+        .toast.show { display:block; animation:slideUp 0.3s ease; }
         .toast.success { border-color:#2ecc71; }
         .toast.error { border-color:#e74c3c; }
         .toast.info { border-color:#FFD700; }
-        
-        @keyframes slideUp {
-            from { opacity:0; transform:translateX(-50%) translateY(20px); }
-            to { opacity:1; transform:translateX(-50%) translateY(0); }
-        }
-        
-        /* ===== CHARGEUR ===== */
-        .loader {
-            text-align:center;
-            padding:20px;
-            color:#666;
-        }
-        .loader .spinner {
-            width:30px;
-            height:30px;
-            border:3px solid rgba(255,215,0,0.1);
-            border-top-color:#FFD700;
-            border-radius:50%;
-            animation:spin 0.8s linear infinite;
-            margin:0 auto 10px;
-        }
-        @keyframes spin { to { transform:rotate(360deg); } }
+        @keyframes slideUp { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
         
         /* ===== RESPONSIVE ===== */
         @media (max-width:480px) {
-            .header .logo { font-size:1rem; }
-            .header .info .stat .value { font-size:0.85rem; }
-            .tab { font-size:0.6rem; padding:6px 10px; }
+            .header .logo { font-size:0.85rem; }
+            .header .info .stat .value { font-size:0.75rem; }
+            .tab { font-size:0.5rem; padding:4px 7px; }
             .stats-grid { grid-template-columns:repeat(2,1fr); }
-            .player-item { font-size:0.7rem; }
-            .ranking-item { grid-template-columns:25px 1fr 30px 30px; font-size:0.65rem; }
+            .player-item { font-size:0.6rem; }
+            .ranking-item { grid-template-columns:20px 1fr 25px 25px; font-size:0.55rem; }
         }
         
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar { width:3px; }
         ::-webkit-scrollbar-track { background:rgba(255,255,255,0.02); }
         ::-webkit-scrollbar-thumb { background:#FFD700; border-radius:3px; }
+        
+        .loader { text-align:center; padding:15px; color:#666; font-size:0.7rem; }
+        .loader .spinner { width:25px; height:25px; border:3px solid rgba(255,215,0,0.1); border-top-color:#FFD700; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 8px; }
+        @keyframes spin { to { transform:rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -309,6 +331,10 @@
             <span class="value" id="clubRank">#1</span>
             <span class="label">📊 Classement</span>
         </div>
+        <div class="stat">
+            <span class="value" id="clubForme">75%</span>
+            <span class="label">💪 Forme</span>
+        </div>
     </div>
 </div>
 
@@ -318,31 +344,123 @@
     <!-- ===== TABS ===== -->
     <div class="tab-bar">
         <div class="tab active" data-tab="equipe">👥 Équipe</div>
-        <div class="tab" data-tab="classement">🏆 Classement</div>
-        <div class="tab" data-tab="transferts">💰 Transferts</div>
+        <div class="tab" data-tab="entrainement">🎯 Training</div>
         <div class="tab" data-tab="matchs">⚽ Matchs</div>
-        <div class="tab" data-tab="stats">📊 Stats</div>
+        <div class="tab" data-tab="tactique">📋 Tactique</div>
+        <div class="tab" data-tab="transferts">💰 Transferts</div>
+        <div class="tab" data-tab="infra">🏟️ Infra</div>
+        <div class="tab" data-tab="classement">🏆 Classement</div>
+        <div class="tab" data-tab="news">📰 News</div>
     </div>
 
     <!-- ===== TAB ÉQUIPE ===== -->
     <div class="tab-content active" id="tab-equipe">
         <div class="card">
-            <h3><i class="fas fa-users"></i> Effectif (<span id="playerCount">0</span>)</h3>
+            <h3><i class="fas fa-users"></i> Effectif <span class="subtitle" id="playerCount">0 joueurs</span></h3>
             <div class="player-list" id="playerList">
                 <div class="loader"><div class="spinner"></div>Chargement...</div>
             </div>
         </div>
-        <button class="btn-action" onclick="simulerMatch()">
-            <i class="fas fa-play"></i> Jouer un match
+        <div class="card">
+            <h3><i class="fas fa-heartbeat"></i> Santé & Forme</h3>
+            <div id="healthStatus">
+                <div class="loader">Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TAB ENTRAÎNEMENT ===== -->
+    <div class="tab-content" id="tab-entrainement">
+        <div class="card">
+            <h3><i class="fas fa-dumbbell"></i> Programme d'entraînement</h3>
+            <div id="trainingPlan">
+                <div class="training-item"><span class="name">Lundi - Technique</span><span>Intensité: 70%</span></div>
+                <div class="training-item"><span class="name">Mardi - Physique</span><span>Intensité: 80%</span></div>
+                <div class="training-item"><span class="name">Mercredi - Tactique</span><span>Intensité: 60%</span></div>
+                <div class="training-item"><span class="name">Jeudi - Repos</span><span>💤 Récupération</span></div>
+                <div class="training-item"><span class="name">Vendredi - Match</span><span>⚽ Préparation</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-chart-line"></i> Progression des joueurs</h3>
+            <div id="playerProgress">
+                <div class="loader">Chargement...</div>
+            </div>
+        </div>
+        <button class="btn-action btn-full" onclick="lancerEntrainement()">
+            <i class="fas fa-play"></i> Lancer la séance
         </button>
     </div>
 
-    <!-- ===== TAB CLASSEMENT ===== -->
-    <div class="tab-content" id="tab-classement">
+    <!-- ===== TAB MATCHS ===== -->
+    <div class="tab-content" id="tab-matchs">
         <div class="card">
-            <h3><i class="fas fa-trophy"></i> Classement</h3>
-            <div id="rankingContent">
-                <div class="loader"><div class="spinner"></div>Chargement...</div>
+            <h3><i class="fas fa-calendar-alt"></i> Prochain match</h3>
+            <div id="nextMatch">
+                <div class="loader">Aucun match programmé</div>
+            </div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-history"></i> Historique</h3>
+            <div id="matchHistory">
+                <div class="loader">Aucun match joué</div>
+            </div>
+        </div>
+        <button class="btn-action btn-full" onclick="simulerMatch()">
+            <i class="fas fa-play"></i> Jouer le match
+        </button>
+        <button class="btn-action btn-full btn-success" onclick="simulerMatchsMultiples()">
+            <i class="fas fa-fast-forward"></i> Simuler 5 matchs
+        </button>
+    </div>
+
+    <!-- ===== TAB TACTIQUE ===== -->
+    <div class="tab-content" id="tab-tactique">
+        <div class="card">
+            <h3><i class="fas fa-sitemap"></i> Formation</h3>
+            <div id="formationDisplay">
+                <div style="text-align:center;padding:15px;">
+                    <div style="font-size:2rem;margin-bottom:8px;">⚽</div>
+                    <div style="font-size:1.2rem;font-weight:700;color:#FFD700;" id="currentFormation">4-3-3</div>
+                    <div style="font-size:0.6rem;color:#666;">Formation actuelle</div>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px;">
+                    <div style="text-align:center;padding:5px;background:rgba(255,255,255,0.02);border-radius:4px;">
+                        <div style="font-size:0.5rem;color:#666;">Défense</div>
+                        <div style="font-weight:700;color:#2ecc71;" id="tacDef">4</div>
+                    </div>
+                    <div style="text-align:center;padding:5px;background:rgba(255,255,255,0.02);border-radius:4px;">
+                        <div style="font-size:0.5rem;color:#666;">Milieu</div>
+                        <div style="font-weight:700;color:#f39c12;" id="tacMid">3</div>
+                    </div>
+                    <div style="text-align:center;padding:5px;background:rgba(255,255,255,0.02);border-radius:4px;">
+                        <div style="font-size:0.5rem;color:#666;">Attaque</div>
+                        <div style="font-weight:700;color:#e74c3c;" id="tacAtt">3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-exchange-alt"></i> Changer formation</h3>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:5px;">
+                <button class="btn-action" onclick="changerFormation('4-3-3','4','3','3')">4-3-3</button>
+                <button class="btn-action" onclick="changerFormation('4-4-2','4','4','2')">4-4-2</button>
+                <button class="btn-action" onclick="changerFormation('3-5-2','3','5','2')">3-5-2</button>
+                <button class="btn-action" onclick="changerFormation('5-3-2','5','3','2')">5-3-2</button>
+                <button class="btn-action" onclick="changerFormation('4-2-3-1','4','5','1')">4-2-3-1</button>
+                <button class="btn-action" onclick="changerFormation('3-4-3','3','4','3')">3-4-3</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-flag"></i> Style de jeu</h3>
+            <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:5px;">
+                <button class="btn-action" onclick="changerStyle('Attaque')">⚔️ Attaque</button>
+                <button class="btn-action" onclick="changerStyle('Défense')">🛡️ Défense</button>
+                <button class="btn-action" onclick="changerStyle('Équilibré')">⚖️ Équilibré</button>
+                <button class="btn-action" onclick="changerStyle('Contre')">🏃 Contre-attaque</button>
+            </div>
+            <div style="text-align:center;margin-top:8px;font-size:0.7rem;color:#aaa;">
+                Style actuel: <span id="currentStyle" style="color:#FFD700;font-weight:700;">Équilibré</span>
             </div>
         </div>
     </div>
@@ -355,37 +473,69 @@
         </div>
         <div class="card">
             <h3><i class="fas fa-arrow-down"></i> Acheter</h3>
-            <div id="buyList"><div class="loader">Recherche de joueurs...</div></div>
-        </div>
-    </div>
-
-    <!-- ===== TAB MATCHS ===== -->
-    <div class="tab-content" id="tab-matchs">
-        <div class="card">
-            <h3><i class="fas fa-history"></i> Historique</h3>
-            <div id="matchHistory"><div class="loader">Aucun match joué</div></div>
+            <div id="buyList"><div class="loader">Recherche...</div></div>
         </div>
         <div class="card">
-            <h3><i class="fas fa-chart-simple"></i> Résumé</h3>
-            <div id="matchSummary"></div>
-        </div>
-    </div>
-
-    <!-- ===== TAB STATS ===== -->
-    <div class="tab-content" id="tab-stats">
-        <div class="card">
-            <h3><i class="fas fa-chart-bar"></i> Statistiques</h3>
-            <div class="stats-grid" id="statsGrid">
-                <div class="stat-box"><div class="value" id="statWins">0</div><div class="label">Victoires</div></div>
-                <div class="stat-box"><div class="value" id="statDraws">0</div><div class="label">Nuls</div></div>
-                <div class="stat-box"><div class="value" id="statLosses">0</div><div class="label">Défaites</div></div>
-                <div class="stat-box"><div class="value" id="statGoalsFor">0</div><div class="label">Buts marqués</div></div>
-                <div class="stat-box"><div class="value" id="statGoalsAgainst">0</div><div class="label">Buts encaissés</div></div>
-                <div class="stat-box"><div class="value" id="statMatches">0</div><div class="label">Matchs joués</div></div>
+            <h3><i class="fas fa-coins"></i> Finances</h3>
+            <div id="financeInfo">
+                <div class="transfer-item"><span>Budget</span><span id="financeBudget">50 M€</span></div>
+                <div class="transfer-item"><span>Revenus mensuels</span><span id="financeRevenue">2.5 M€</span></div>
+                <div class="transfer-item"><span>Dépenses mensuelles</span><span id="financeExpenses">1.8 M€</span></div>
+                <div class="transfer-item"><span>Salaires</span><span id="financeSalaries">1.2 M€</span></div>
             </div>
         </div>
-        <button class="btn-action btn-danger" onclick="resetData()">
-            <i class="fas fa-trash"></i> Réinitialiser
+    </div>
+
+    <!-- ===== TAB INFRA ===== -->
+    <div class="tab-content" id="tab-infra">
+        <div class="card">
+            <h3><i class="fas fa-home"></i> Stade</h3>
+            <div id="stadeInfo">
+                <div class="infra-item"><span class="name">🏟️ Stade Municipal</span><span class="level">⭐⭐</span></div>
+                <div class="infra-item"><span>Capacité</span><span>15 000 places</span></div>
+                <div class="infra-item"><span>État</span><span style="color:#2ecc71;">Bon</span></div>
+                <button class="btn-action btn-full" onclick="ameliorerInfra('stade')">Améliorer stade (5 M€)</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-building"></i> Centre d'entraînement</h3>
+            <div id="trainingCenter">
+                <div class="infra-item"><span class="name">🏋️ Centre d'entraînement</span><span class="level">⭐</span></div>
+                <div class="infra-item"><span>Niveau</span><span>1</span></div>
+                <button class="btn-action btn-full" onclick="ameliorerInfra('training')">Améliorer centre (3 M€)</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3><i class="fas fa-user-tie"></i> Staff</h3>
+            <div id="staffInfo">
+                <div class="infra-item"><span class="name">👨‍🏫 Entraîneur principal</span><span style="color:#2ecc71;">⭐⭐</span></div>
+                <div class="infra-item"><span>👨‍⚕️ Staff médical</span><span style="color:#f39c12;">⭐</span></div>
+                <div class="infra-item"><span>🔍 Scouts</span><span style="color:#f39c12;">⭐</span></div>
+                <button class="btn-action btn-full" onclick="ameliorerInfra('staff')">Recruter staff (2 M€)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TAB CLASSEMENT ===== -->
+    <div class="tab-content" id="tab-classement">
+        <div class="card">
+            <h3><i class="fas fa-trophy"></i> Classement</h3>
+            <div id="rankingContent">
+                <div class="loader"><div class="spinner"></div>Chargement...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TAB NEWS ===== -->
+    <div class="tab-content" id="tab-news">
+        <div class="card">
+            <h3><i class="fas fa-newspaper"></i> Actualités</h3>
+            <div id="newsContent">
+                <div class="loader">Chargement des news...</div>
+            </div>
+        </div>
+        <button class="btn-action btn-full" onclick="genererNews()">
+            <i class="fas fa-sync"></i> Actualiser les news
         </button>
     </div>
 
@@ -404,7 +554,12 @@ let teamData = {
     joueurs: [],
     stats: { victoires: 0, defaites: 0, nuls: 0, buts_marques: 0, buts_encaisses: 0, matchs: 0 },
     matchs: [],
-    classement: []
+    classement: [],
+    formation: "4-3-3",
+    style: "Équilibré",
+    infra: { stade: 2, training: 1, staff: 1 },
+    news: [],
+    training: { jours: 0, intensite: 70 }
 };
 
 // ============================================
@@ -412,73 +567,78 @@ let teamData = {
 // ============================================
 function init() {
     chargerDonnees();
+    genererNews();
     afficherEquipe();
     afficherStats();
     afficherMatchs();
     afficherClassement();
     afficherTransferts();
+    afficherFormation();
+    afficherInfra();
+    afficherHealth();
+    afficherProgress();
     setupTabs();
     autoSave();
+    updateHeader();
 }
 
 // ============================================
-// CHARGEMENT DES DONNÉES
+// CHARGEMENT DONNÉES
 // ============================================
 function chargerDonnees() {
     try {
-        // Charger depuis sessionStorage
         const saved = sessionStorage.getItem('fmtk_team_data');
         if (saved) {
             const parsed = JSON.parse(saved);
             teamData = { ...teamData, ...parsed };
-            console.log('✅ Données chargées:', teamData.club);
         }
-        
-        // Si pas de joueurs, générer
         if (!teamData.joueurs || teamData.joueurs.length === 0) {
             genererJoueurs();
         }
-        
-        // Si pas de classement, générer
         if (teamData.classement.length === 0) {
             genererClassement();
         }
-        
-        document.getElementById('clubName').textContent = teamData.club || 'Mon Club';
-        document.getElementById('clubBudget').textContent = teamData.budget + ' M€';
-        
+        if (teamData.news.length === 0) {
+            genererNews();
+        }
     } catch(e) {
-        console.error('❌ Erreur chargement:', e);
+        console.error('Erreur:', e);
         genererJoueurs();
     }
 }
 
 // ============================================
-// GÉNÉRATION DES JOUEURS
+// GÉNÉRATION JOUEURS
 // ============================================
 function genererJoueurs() {
     const postes = ["Gardien", "Défenseur", "Défenseur", "Défenseur", "Milieu", "Milieu", "Milieu", "Attaquant", "Attaquant", "Attaquant"];
-    const noms = ["Martin", "Bernard", "Dubois", "Thomas", "Robert", "Richard", "Petit", "Durand", "Leroy", "Moreau", 
-                  "Simon", "Laurent", "Michel", "Garcia", "David", "Bertrand", "Roux", "Vincent", "Fournier", "Morel",
-                  "Lambert", "Faure", "Riviere", "Dupont", "Benoit", "Nicolas", "Grondin", "Renard", "Noel", "Meyer"];
-    
+    const noms = ["Martin","Bernard","Dubois","Thomas","Robert","Richard","Petit","Durand","Leroy","Moreau",
+                  "Simon","Laurent","Michel","Garcia","David","Bertrand","Roux","Vincent","Fournier","Morel"];
     const joueurs = [];
     for (let i = 0; i < 22; i++) {
         const poste = postes[i % postes.length];
-        const note = Math.floor(Math.random() * 25) + 65;
+        const note = Math.floor(Math.random() * 20) + 68;
         const age = Math.floor(Math.random() * 15) + 18;
+        const forme = Math.floor(Math.random() * 25) + 70;
         joueurs.push({
-            nom: noms[i % noms.length] + (i > 20 ? " Jr" : ""),
+            nom: noms[i % noms.length] + (i > 18 ? " Jr" : ""),
             age: age,
             poste: poste,
             note: note,
             numero: i + 1,
-            vitesse: Math.floor(Math.random() * 25) + 65,
-            tir: Math.floor(Math.random() * 25) + 55,
-            passe: Math.floor(Math.random() * 25) + 60,
-            dribble: Math.floor(Math.random() * 25) + 60,
-            forme: Math.floor(Math.random() * 30) + 65,
-            moral: Math.floor(Math.random() * 30) + 65
+            vitesse: Math.floor(Math.random() * 20) + 68,
+            tir: Math.floor(Math.random() * 20) + 58,
+            passe: Math.floor(Math.random() * 20) + 62,
+            dribble: Math.floor(Math.random() * 20) + 62,
+            forme: forme,
+            moral: Math.floor(Math.random() * 25) + 70,
+            blessure: false,
+            buts: 0,
+            passes_dec: 0,
+            cartons_jaunes: 0,
+            cartons_rouges: 0,
+            matchs_joues: 0,
+            progression: Math.floor(Math.random() * 15) + 5
         });
     }
     teamData.joueurs = joueurs;
@@ -486,60 +646,11 @@ function genererJoueurs() {
 }
 
 // ============================================
-// GÉNÉRATION DU CLASSEMENT
-// ============================================
-function genererClassement() {
-    const equipes = [
-        "FC Barcelone", "Real Madrid", "Bayern Munich", "PSG", "Manchester City",
-        "Liverpool", "AC Milan", "Juventus", "Ajax", "Benfica",
-        "Porto", "Dortmund", "Atlético", "Chelsea", "Arsenal"
-    ];
-    
-    // Ajouter l'équipe du joueur
-    const allTeams = [teamData.club || "Mon Club", ...equipes];
-    
-    teamData.classement = allTeams.map((nom, i) => ({
-        nom: nom,
-        joues: 0,
-        victoires: 0,
-        nuls: 0,
-        defaites: 0,
-        buts_marques: 0,
-        buts_encaisses: 0,
-        points: 0
-    }));
-    
-    // Simuler quelques matchs
-    for (let i = 0; i < teamData.classement.length; i++) {
-        for (let j = i+1; j < teamData.classement.length; j++) {
-            if (Math.random() < 0.3) {
-                const b1 = Math.floor(Math.random() * 4);
-                const b2 = Math.floor(Math.random() * 4);
-                const e1 = teamData.classement[i];
-                const e2 = teamData.classement[j];
-                e1.joues += 1;
-                e2.joues += 1;
-                e1.buts_marques += b1;
-                e1.buts_encaisses += b2;
-                e2.buts_marques += b2;
-                e2.buts_encaisses += b1;
-                if (b1 > b2) { e1.victoires += 1; e1.points += 3; e2.defaites += 1; }
-                else if (b2 > b1) { e2.victoires += 1; e2.points += 3; e1.defaites += 1; }
-                else { e1.nuls += 1; e2.nuls += 1; e1.points += 1; e2.points += 1; }
-            }
-        }
-    }
-    
-    // Trier
-    teamData.classement.sort((a,b) => b.points - a.points);
-}
-
-// ============================================
-// AFFICHAGE ÉQUIPE
+// AFFICHAGES
 // ============================================
 function afficherEquipe() {
     const list = document.getElementById('playerList');
-    document.getElementById('playerCount').textContent = teamData.joueurs.length;
+    document.getElementById('playerCount').textContent = teamData.joueurs.length + ' joueurs';
     
     if (!teamData.joueurs || teamData.joueurs.length === 0) {
         list.innerHTML = '<div class="loader">Aucun joueur</div>';
@@ -552,12 +663,15 @@ function afficherEquipe() {
         const badgeClass = j.poste === 'Gardien' ? 'badge-gardien' :
                           j.poste === 'Défenseur' ? 'badge-defense' :
                           j.poste === 'Attaquant' ? 'badge-attaque' : 'badge-milieu';
+        const formeClass = j.forme > 75 ? 'forme-bonne' : j.forme > 55 ? 'forme-moyenne' : 'forme-mauvaise';
+        const blessure = j.blessure ? ' <span class="badge badge-blesse">🩹 Blessé</span>' : '';
         html += `
             <div class="player-item">
-                <span class="name">#${j.numero} ${j.nom}</span>
+                <span class="name">#${j.numero} ${j.nom}${blessure}</span>
                 <span>
                     <span class="badge ${badgeClass}">${j.poste}</span>
                     <span class="age">${j.age} ans</span>
+                    <span class="player-forme ${formeClass}"></span>
                     <span class="note">${Math.round(j.note)}</span>
                 </span>
             </div>
@@ -566,9 +680,24 @@ function afficherEquipe() {
     list.innerHTML = html;
 }
 
-// ============================================
-// AFFICHAGE STATS
-// ============================================
+function afficherHealth() {
+    const container = document.getElementById('healthStatus');
+    const blesses = teamData.joueurs.filter(j => j.blessure);
+    let html = '';
+    if (blesses.length > 0) {
+        html += `<div style="color:#e74c3c;font-weight:700;font-size:0.8rem;">🩹 ${blesses.length} joueurs blessés</div>`;
+        blesses.forEach(j => {
+            html += `<div class="player-item"><span>${j.nom}</span><span style="color:#e74c3c;">Blessé</span></div>`;
+        });
+    } else {
+        html = `<div style="color:#2ecc71;font-size:0.8rem;">✅ Tous les joueurs sont en forme</div>`;
+    }
+    const formeMoy = teamData.joueurs.reduce((s,j) => s + j.forme, 0) / teamData.joueurs.length;
+    html += `<div class="player-item"><span>💪 Forme moyenne</span><span>${Math.round(formeMoy)}%</span></div>`;
+    html += `<div class="player-item"><span>🧠 Moral moyen</span><span>${Math.round(teamData.joueurs.reduce((s,j) => s + j.moral, 0) / teamData.joueurs.length)}%</span></div>`;
+    container.innerHTML = html;
+}
+
 function afficherStats() {
     const s = teamData.stats;
     document.getElementById('statWins').textContent = s.victoires || 0;
@@ -579,19 +708,15 @@ function afficherStats() {
     document.getElementById('statMatches').textContent = s.matchs || 0;
 }
 
-// ============================================
-// AFFICHAGE MATCHS
-// ============================================
 function afficherMatchs() {
     const container = document.getElementById('matchHistory');
     if (!teamData.matchs || teamData.matchs.length === 0) {
         container.innerHTML = '<div class="loader">Aucun match joué</div>';
         return;
     }
-    
     let html = '';
-    const sorted = [...teamData.matchs].reverse();
-    sorted.slice(0, 20).forEach(m => {
+    const sorted = [...teamData.matchs].reverse().slice(0, 15);
+    sorted.forEach(m => {
         const resultClass = m.resultat === 'Victoire' ? 'resultat-victoire' :
                            m.resultat === 'Défaite' ? 'resultat-defaite' : 'resultat-nul';
         html += `
@@ -607,32 +732,24 @@ function afficherMatchs() {
     container.innerHTML = html;
 }
 
-// ============================================
-// AFFICHAGE CLASSEMENT
-// ============================================
 function afficherClassement() {
     const container = document.getElementById('rankingContent');
     if (!teamData.classement || teamData.classement.length === 0) {
         container.innerHTML = '<div class="loader">Aucun classement</div>';
         return;
     }
-    
     let html = `
         <div class="ranking-item ranking-header">
-            <span>#</span>
-            <span>Équipe</span>
-            <span>J</span>
-            <span>Pts</span>
+            <span>#</span><span>Équipe</span><span>J</span><span>Pts</span>
         </div>
     `;
-    
-    teamData.classement.slice(0, 10).forEach((e, i) => {
+    teamData.classement.slice(0, 12).forEach((e, i) => {
         const isPlayer = e.nom === teamData.club;
         html += `
-            <div class="ranking-item" style="${isPlayer ? 'background:rgba(255,215,0,0.05);border-radius:4px;' : ''}">
+            <div class="ranking-item ${isPlayer ? 'highlight' : ''}">
                 <span class="pos">${i+1}</span>
                 <span class="team">${isPlayer ? '⭐ ' : ''}${e.nom}</span>
-                <span class="games">${e.joues}</span>
+                <span>${e.joues}</span>
                 <span class="pts">${e.points}</span>
             </div>
         `;
@@ -640,9 +757,6 @@ function afficherClassement() {
     container.innerHTML = html;
 }
 
-// ============================================
-// AFFICHAGE TRANSFERTS
-// ============================================
 function afficherTransferts() {
     // Vente
     const sellList = document.getElementById('sellList');
@@ -650,13 +764,13 @@ function afficherTransferts() {
         sellList.innerHTML = '<div class="loader">Aucun joueur</div>';
     } else {
         let html = '';
-        const vendables = [...teamData.joueurs].sort((a,b) => b.note - a.note).slice(0, 8);
+        const vendables = [...teamData.joueurs].sort((a,b) => b.note - a.note).slice(0, 6);
         vendables.forEach(j => {
-            const prix = Math.floor(j.note * 0.4 + 5);
+            const prix = Math.floor(j.note * 0.35 + 3);
             html += `
                 <div class="transfer-item">
                     <span>${j.nom} (${Math.round(j.note)})</span>
-                    <span>${prix} M€ <button class="btn-transfer" onclick="vendreJoueur('${j.nom}')">Vendre</button></span>
+                    <span>${prix} M€ <button class="btn-action" onclick="vendreJoueur('${j.nom}')">Vendre</button></span>
                 </div>
             `;
         });
@@ -665,38 +779,71 @@ function afficherTransferts() {
     
     // Achat
     const buyList = document.getElementById('buyList');
-    const noms = ["Mbappé", "Haaland", "Vini Jr", "Bellingham", "Musiala", "Wirtz", "Rice", "Saka", "Pedri", "Gavi"];
+    const noms = ["Mbappé","Haaland","Vini Jr","Bellingham","Musiala","Wirtz","Rice","Saka","Pedri","Gavi","Foden","Kane"];
     let html = '';
     for (let i = 0; i < 6; i++) {
         const nom = noms[i % noms.length] + " " + (i+1);
-        const note = Math.floor(Math.random() * 15) + 78;
-        const prix = Math.floor(note * 0.5 + 10);
-        const poste = ["Attaquant", "Milieu", "Défenseur"][Math.floor(Math.random() * 3)];
+        const note = Math.floor(Math.random() * 12) + 78;
+        const prix = Math.floor(note * 0.4 + 8);
+        const poste = ["Attaquant","Milieu","Défenseur"][Math.floor(Math.random() * 3)];
         html += `
             <div class="transfer-item">
                 <span>${nom} (${note}) - ${poste}</span>
-                <span>${prix} M€ <button class="btn-transfer" onclick="acheterJoueur('${nom}', ${prix}, '${poste}', ${note})">Acheter</button></span>
+                <span>${prix} M€ <button class="btn-action" onclick="acheterJoueur('${nom}', ${prix}, '${poste}', ${note})">Acheter</button></span>
             </div>
         `;
     }
     buyList.innerHTML = html;
 }
 
+function afficherFormation() {
+    document.getElementById('currentFormation').textContent = teamData.formation || '4-3-3';
+    const parts = (teamData.formation || '4-3-3').split('-');
+    document.getElementById('tacDef').textContent = parts[0] || '4';
+    document.getElementById('tacMid').textContent = parts[1] || '3';
+    document.getElementById('tacAtt').textContent = parts[2] || '3';
+    document.getElementById('currentStyle').textContent = teamData.style || 'Équilibré';
+}
+
+function afficherInfra() {
+    const i = teamData.infra || { stade: 2, training: 1, staff: 1 };
+    document.querySelector('#stadeInfo .level').textContent = '⭐'.repeat(i.stade) + '☆'.repeat(5-i.stade);
+    document.querySelector('#trainingCenter .level').textContent = '⭐'.repeat(i.training) + '☆'.repeat(5-i.training);
+    document.querySelector('#staffInfo .infra-item span:last-child').textContent = '⭐'.repeat(i.staff) + '☆'.repeat(5-i.staff);
+}
+
+function afficherProgress() {
+    const container = document.getElementById('playerProgress');
+    const sorted = [...teamData.joueurs].sort((a,b) => b.progression - a.progression).slice(0, 8);
+    let html = '';
+    sorted.forEach(j => {
+        html += `
+            <div class="training-item">
+                <span class="name">${j.nom}</span>
+                <div class="progress-bar"><div class="fill" style="width:${j.progression}%;"></div></div>
+                <span>${j.progression}%</span>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+}
+
 // ============================================
-// TRANSFERTS
+// ACTIONS
 // ============================================
 function vendreJoueur(nom) {
     const idx = teamData.joueurs.findIndex(j => j.nom === nom);
     if (idx === -1) return;
     const joueur = teamData.joueurs[idx];
-    const prix = Math.floor(joueur.note * 0.4 + 5);
+    const prix = Math.floor(joueur.note * 0.35 + 3);
     teamData.budget += prix;
     teamData.joueurs.splice(idx, 1);
     showToast(`✅ ${nom} vendu pour ${prix} M€ !`, 'success');
     sauvegarder();
     afficherEquipe();
     afficherTransferts();
-    document.getElementById('clubBudget').textContent = teamData.budget + ' M€';
+    updateHeader();
+    genererNews();
 }
 
 function acheterJoueur(nom, prix, poste, note) {
@@ -716,35 +863,35 @@ function acheterJoueur(nom, prix, poste, note) {
         passe: Math.floor(Math.random() * 20) + 65,
         dribble: Math.floor(Math.random() * 20) + 65,
         forme: 80,
-        moral: 80
+        moral: 80,
+        blessure: false,
+        buts: 0,
+        passes_dec: 0,
+        cartons_jaunes: 0,
+        cartons_rouges: 0,
+        matchs_joues: 0,
+        progression: Math.floor(Math.random() * 15) + 5
     });
     showToast(`✅ ${nom} rejoint votre équipe !`, 'success');
     sauvegarder();
     afficherEquipe();
     afficherTransferts();
-    document.getElementById('clubBudget').textContent = teamData.budget + ' M€';
+    updateHeader();
+    genererNews();
 }
 
-// ============================================
-// SIMULATION DE MATCH
-// ============================================
 function simulerMatch() {
-    // Adversaire aléatoire
-    const adversaires = ["FC Barcelone", "Real Madrid", "Bayern Munich", "PSG", "Manchester City", "Liverpool", "AC Milan", "Juventus", "Ajax", "Benfica"];
+    const adversaires = ["FC Barcelone","Real Madrid","Bayern Munich","PSG","Manchester City","Liverpool","AC Milan","Juventus","Ajax","Benfica","Atlético","Dortmund"];
     const adversaire = adversaires[Math.floor(Math.random() * adversaires.length)];
     
-    // Force de l'équipe
     const force = teamData.joueurs.reduce((s, j) => s + j.note, 0) / teamData.joueurs.length;
-    const forceAdversaire = Math.floor(Math.random() * 15) + 75;
+    const forceAdv = Math.floor(Math.random() * 15) + 72;
+    const avantage = force / (force + forceAdv);
     
-    // Résultat
-    const avantage = force / (force + forceAdversaire);
     const buts1 = Math.round(Math.random() * 3 + avantage * 2);
     const buts2 = Math.round(Math.random() * 3 + (1 - avantage) * 1.5);
-    
     const resultat = buts1 > buts2 ? 'Victoire' : buts2 > buts1 ? 'Défaite' : 'Nul';
     
-    // Mettre à jour les stats
     teamData.stats.matchs = (teamData.stats.matchs || 0) + 1;
     if (resultat === 'Victoire') teamData.stats.victoires = (teamData.stats.victoires || 0) + 1;
     else if (resultat === 'Défaite') teamData.stats.defaites = (teamData.stats.defaites || 0) + 1;
@@ -752,88 +899,203 @@ function simulerMatch() {
     teamData.stats.buts_marques = (teamData.stats.buts_marques || 0) + buts1;
     teamData.stats.buts_encaisses = (teamData.stats.buts_encaisses || 0) + buts2;
     
-    // Ajouter à l'historique
-    const match = {
-        adversaire: adversaire,
-        score: `${buts1} - ${buts2}`,
-        resultat: resultat,
-        date: new Date().toLocaleDateString('fr-FR')
-    };
+    const match = { adversaire, score: `${buts1} - ${buts2}`, resultat, date: new Date().toLocaleDateString('fr-FR') };
     if (!teamData.matchs) teamData.matchs = [];
     teamData.matchs.push(match);
     
     // Progression des joueurs
     teamData.joueurs.forEach(j => {
-        const progression = Math.random() * 2 - 0.5;
-        j.note = Math.min(99, Math.max(40, j.note + progression));
-        j.forme = Math.min(99, Math.max(40, j.forme + (Math.random() * 4 - 2)));
+        const prog = (Math.random() * 2 - 0.3);
+        j.note = Math.min(99, Math.max(40, j.note + prog));
+        j.forme = Math.min(99, Math.max(40, j.forme + (Math.random() * 4 - 1.5)));
+        j.progression = Math.min(100, j.progression + (Math.random() * 3));
+        j.matchs_joues += 1;
+        if (Math.random() < 0.1) j.blessure = true;
+        if (Math.random() < 0.05) j.blessure = false;
     });
     
-    // Mettre à jour le classement
     mettreAJourClassement(adversaire, buts1, buts2);
-    
-    // Sauvegarder
     sauvegarder();
-    
-    // Afficher
     showToast(`⚽ ${match.adversaire} ${match.score} - ${match.resultat} !`, 'info');
     afficherEquipe();
     afficherStats();
     afficherMatchs();
     afficherClassement();
-    document.getElementById('clubRank').textContent = getRank();
+    afficherHealth();
+    afficherProgress();
+    updateHeader();
+    genererNews();
+}
+
+function simulerMatchsMultiples() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => simulerMatch(), i * 500);
+    }
+    showToast('⚽ 5 matchs en cours de simulation...', 'info');
+}
+
+function changerFormation(name, def, mid, att) {
+    teamData.formation = name;
+    document.getElementById('currentFormation').textContent = name;
+    document.getElementById('tacDef').textContent = def;
+    document.getElementById('tacMid').textContent = mid;
+    document.getElementById('tacAtt').textContent = att;
+    showToast(`📋 Formation changée en ${name}`, 'success');
+    sauvegarder();
+    genererNews();
+}
+
+function changerStyle(style) {
+    teamData.style = style;
+    document.getElementById('currentStyle').textContent = style;
+    showToast(`🎯 Style de jeu: ${style}`, 'success');
+    sauvegarder();
+}
+
+function ameliorerInfra(type) {
+    const couts = { stade: 5, training: 3, staff: 2 };
+    const cout = couts[type] || 3;
+    if (teamData.budget < cout) {
+        showToast(`❌ Budget insuffisant ! ${cout} M€ nécessaire`, 'error');
+        return;
+    }
+    teamData.budget -= cout;
+    if (type === 'stade') teamData.infra.stade = Math.min(5, teamData.infra.stade + 1);
+    else if (type === 'training') teamData.infra.training = Math.min(5, teamData.infra.training + 1);
+    else if (type === 'staff') teamData.infra.staff = Math.min(5, teamData.infra.staff + 1);
+    showToast(`✅ ${type} amélioré !`, 'success');
+    afficherInfra();
+    updateHeader();
+    sauvegarder();
+    genererNews();
+}
+
+function lancerEntrainement() {
+    showToast('🎯 Séance d\'entraînement lancée !', 'info');
+    teamData.joueurs.forEach(j => {
+        j.progression = Math.min(100, j.progression + (Math.random() * 5 + 1));
+        j.forme = Math.min(99, Math.max(40, j.forme + (Math.random() * 3)));
+        j.moral = Math.min(99, Math.max(40, j.moral + (Math.random() * 3)));
+    });
+    afficherProgress();
+    sauvegarder();
 }
 
 // ============================================
 // CLASSEMENT
 // ============================================
+function genererClassement() {
+    const equipes = [teamData.club, "FC Barcelone","Real Madrid","Bayern Munich","PSG","Manchester City","Liverpool","AC Milan","Juventus","Ajax","Benfica","Porto","Dortmund","Atlético","Chelsea","Arsenal"];
+    teamData.classement = equipes.map(nom => ({
+        nom, joues: 0, victoires: 0, nuls: 0, defaites: 0, buts_marques: 0, buts_encaisses: 0, points: 0
+    }));
+    
+    for (let i = 0; i < teamData.classement.length; i++) {
+        for (let j = i+1; j < teamData.classement.length; j++) {
+            if (Math.random() < 0.3) {
+                const b1 = Math.floor(Math.random() * 4);
+                const b2 = Math.floor(Math.random() * 4);
+                const e1 = teamData.classement[i];
+                const e2 = teamData.classement[j];
+                e1.joues += 1; e2.joues += 1;
+                e1.buts_marques += b1; e1.buts_encaisses += b2;
+                e2.buts_marques += b2; e2.buts_encaisses += b1;
+                if (b1 > b2) { e1.victoires += 1; e1.points += 3; e2.defaites += 1; }
+                else if (b2 > b1) { e2.victoires += 1; e2.points += 3; e1.defaites += 1; }
+                else { e1.nuls += 1; e2.nuls += 1; e1.points += 1; e2.points += 1; }
+            }
+        }
+    }
+    teamData.classement.sort((a,b) => b.points - a.points);
+}
+
 function mettreAJourClassement(adversaire, buts1, buts2) {
-    // Trouver ou créer l'adversaire dans le classement
     let adv = teamData.classement.find(e => e.nom === adversaire);
     if (!adv) {
         adv = { nom: adversaire, joues: 0, victoires: 0, nuls: 0, defaites: 0, buts_marques: 0, buts_encaisses: 0, points: 0 };
         teamData.classement.push(adv);
     }
-    
-    // Trouver l'équipe du joueur
     let player = teamData.classement.find(e => e.nom === teamData.club);
     if (!player) {
         player = { nom: teamData.club, joues: 0, victoires: 0, nuls: 0, defaites: 0, buts_marques: 0, buts_encaisses: 0, points: 0 };
         teamData.classement.push(player);
     }
-    
-    player.joues += 1;
-    adv.joues += 1;
-    player.buts_marques += buts1;
-    player.buts_encaisses += buts2;
-    adv.buts_marques += buts2;
-    adv.buts_encaisses += buts1;
-    
-    if (buts1 > buts2) {
-        player.victoires += 1;
-        player.points += 3;
-        adv.defaites += 1;
-    } else if (buts2 > buts1) {
-        player.defaites += 1;
-        adv.victoires += 1;
-        adv.points += 3;
-    } else {
-        player.nuls += 1;
-        adv.nuls += 1;
-        player.points += 1;
-        adv.points += 1;
-    }
-    
+    player.joues += 1; adv.joues += 1;
+    player.buts_marques += buts1; player.buts_encaisses += buts2;
+    adv.buts_marques += buts2; adv.buts_encaisses += buts1;
+    if (buts1 > buts2) { player.victoires += 1; player.points += 3; adv.defaites += 1; }
+    else if (buts2 > buts1) { player.defaites += 1; adv.victoires += 1; adv.points += 3; }
+    else { player.nuls += 1; adv.nuls += 1; player.points += 1; adv.points += 1; }
     teamData.classement.sort((a,b) => b.points - a.points);
 }
 
-function getRank() {
-    const idx = teamData.classement.findIndex(e => e.nom === teamData.club);
-    return idx !== -1 ? `#${idx + 1}` : '#?';
+// ============================================
+// NEWS
+// ============================================
+function genererNews() {
+    const newsTemplates = [
+        { title: "🏆 Victoire importante !", content: "L'équipe a réalisé une belle performance ce week-end." },
+        { title: "📝 Nouveau contrat signé", content: "Un jeune talent rejoint le centre de formation." },
+        { title: "🏥 Retour de blessure", content: "Un joueur clé est de retour à l'entraînement." },
+        { title: "📈 Progression record", content: "Un joueur affiche une progression exceptionnelle." },
+        { title: "💰 Offre de transfert", content: "Un club étranger s'intéresse à notre meilleur joueur." },
+        { title: "🏟️ Rénovation du stade", content: "Des travaux sont prévus pour moderniser l'infrastructure." },
+        { title: "⚽ Match amical", content: "Un match amical est organisé contre un club de renom." },
+        { title: "🌟 Nouveau record", content: "Le club bat son record de spectateurs." },
+        { title: "📊 Analyse tactique", content: "L'entraîneur ajuste la tactique pour le prochain match." },
+        { title: "🎯 Objectif saison", content: "Le club vise le top 3 cette saison." }
+    ];
+    
+    const newNews = [];
+    for (let i = 0; i < 5; i++) {
+        const tpl = newsTemplates[Math.floor(Math.random() * newsTemplates.length)];
+        const date = new Date();
+        date.setDate(date.getDate() - Math.floor(Math.random() * 7));
+        newNews.push({
+            title: tpl.title,
+            content: tpl.content,
+            date: date.toLocaleDateString('fr-FR')
+        });
+    }
+    teamData.news = newNews;
+    afficherNews();
+    sauvegarder();
+}
+
+function afficherNews() {
+    const container = document.getElementById('newsContent');
+    if (!teamData.news || teamData.news.length === 0) {
+        container.innerHTML = '<div class="loader">Aucune actualité</div>';
+        return;
+    }
+    let html = '';
+    teamData.news.forEach(n => {
+        html += `
+            <div class="news-item">
+                <div class="title">${n.title}</div>
+                <div class="date">${n.date}</div>
+                <div class="content">${n.content}</div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
 }
 
 // ============================================
-// ONGLETS
+// HEADER
+// ============================================
+function updateHeader() {
+    document.getElementById('clubName').textContent = teamData.club || 'Mon Club';
+    document.getElementById('clubBudget').textContent = teamData.budget + ' M€';
+    const idx = teamData.classement.findIndex(e => e.nom === teamData.club);
+    document.getElementById('clubRank').textContent = idx !== -1 ? `#${idx + 1}` : '#?';
+    const formeMoy = teamData.joueurs.reduce((s,j) => s + j.forme, 0) / teamData.joueurs.length;
+    document.getElementById('clubForme').textContent = Math.round(formeMoy) + '%';
+    document.getElementById('financeBudget').textContent = teamData.budget + ' M€';
+}
+
+// ============================================
+// TABS
 // ============================================
 function setupTabs() {
     document.querySelectorAll('.tab').forEach(tab => {
@@ -848,43 +1110,27 @@ function setupTabs() {
 }
 
 // ============================================
-// SAUVEGARDE AUTOMATIQUE
+// SAUVEGARDE
 // ============================================
 function sauvegarder() {
     try {
         sessionStorage.setItem('fmtk_team_data', JSON.stringify(teamData));
-    } catch(e) {
-        console.error('❌ Erreur sauvegarde:', e);
-    }
+    } catch(e) { console.error('Erreur sauvegarde:', e); }
 }
 
 function autoSave() {
-    setInterval(() => {
-        sauvegarder();
-    }, 30000); // Toutes les 30 secondes
+    setInterval(() => sauvegarder(), 30000);
 }
 
 // ============================================
-// TOAST NOTIFICATION
+// TOAST
 // ============================================
 function showToast(message, type = 'info') {
     const toast = document.getElementById('toast');
     toast.textContent = message;
     toast.className = 'toast ' + type + ' show';
     clearTimeout(toast._timeout);
-    toast._timeout = setTimeout(() => {
-        toast.classList.remove('show');
-    }, 3000);
-}
-
-// ============================================
-// RÉINITIALISATION
-// ============================================
-function resetData() {
-    if (confirm('⚠️ Réinitialiser toutes les données ?')) {
-        sessionStorage.removeItem('fmtk_team_data');
-        location.reload();
-    }
+    toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 // ============================================
