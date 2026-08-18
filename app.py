@@ -282,3 +282,36 @@ def save_team():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+# ===== SAUVEGARDE AUTOMATIQUE =====
+@app.route('/api/save', methods=['POST'])
+def save_data():
+    """Sauvegarde les données de l'utilisateur"""
+    try:
+        data = request.json
+        pseudo = data.get('pseudo', 'anonymous')
+        player_data = data.get('data', {})
+        
+        # Sauvegarder dans un fichier .FMTK
+        filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(player_data, f, ensure_ascii=False, indent=2)
+        
+        return jsonify({'success': True, 'message': 'Sauvegarde automatique effectuée'})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/load/<pseudo>')
+def load_data(pseudo):
+    """Charge les données d'un utilisateur"""
+    try:
+        filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        if not os.path.exists(filepath):
+            return jsonify({'success': False, 'message': 'Aucune sauvegarde trouvée'}), 404
+        
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        return jsonify({'success': True, 'data': data})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
