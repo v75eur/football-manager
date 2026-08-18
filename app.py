@@ -17,12 +17,14 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 os.makedirs(DATA_DIR, exist_ok=True)
 
+print(f"📁 DATA_DIR: {DATA_DIR}")
+
 # ===== BACKUP MANAGER =====
 try:
     from backend.backup_manager import BackupManager
     backup_manager = BackupManager(repo_name='v75eur/football-manager-backups')
     USE_GITHUB_BACKUP = True
-    print("✅ BackupManager chargé - Sauvegarde sur GitHub")
+    print("✅ BackupManager chargé")
 except Exception as e:
     USE_GITHUB_BACKUP = False
     print(f"⚠️ BackupManager non disponible: {e}")
@@ -48,6 +50,41 @@ def equipe_creer():
 def serve_data(filename):
     return send_from_directory(DATA_DIR, filename)
 
+# ===== API VERIFY =====
+@app.route('/api/verify', methods=['POST'])
+def verify_file():
+    try:
+        if 'file' not in request.files:
+            return jsonify({'success': False, 'message': 'Aucun fichier envoyé'}), 400
+        
+        file = request.files['file']
+        if file.filename == '':
+            return jsonify({'success': False, 'message': 'Fichier vide'}), 400
+        
+        # Lire le contenu du fichier
+        content = file.read().decode('utf-8')
+        data = json.loads(content)
+        
+        # Vérifier les champs obligatoires
+        if 'pseudo' not in data or 'player_id' not in data:
+            return jsonify({'success': False, 'message': 'Fichier invalide (champs manquants)'}), 400
+        
+        # Vérifier la version
+        if data.get('version') != '1.0':
+            return jsonify({'success': False, 'message': 'Version non compatible'}), 400
+        
+        return jsonify({
+            'success': True,
+            'message': 'Fichier valide',
+            'pseudo': data.get('pseudo'),
+            'player_id': data.get('player_id')
+        })
+        
+    except json.JSONDecodeError:
+        return jsonify({'success': False, 'message': 'Fichier JSON invalide'}), 400
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
+
 # ===== API REGISTER =====
 @app.route('/api/register', methods=['POST'])
 def register():
@@ -67,11 +104,10 @@ def register():
 
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
         
-        # Vérifier si le pseudo existe déjà
         if os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
 
-        # Vérifier email unique dans les fichiers locaux
+        # Vérifier email unique
         for filename in os.listdir(DATA_DIR):
             if filename.endswith('.FMTK'):
                 try:
@@ -105,17 +141,17 @@ def register():
             }
         }
 
-        # ===== SAUVEGARDE LOCALE =====
+        # Sauvegarde locale
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
 
-        # ===== SAUVEGARDE SUR GITHUB (BackupManager) =====
+        # Sauvegarde GitHub
         if USE_GITHUB_BACKUP:
             try:
                 backup_manager.backup_player(pseudo, player_data)
-                print(f"✅ Fichier sauvegardé sur GitHub: {pseudo}.FMTK")
+                print(f"✅ Sauvegardé sur GitHub: {pseudo}.FMTK")
             except Exception as e:
-                print(f"⚠️ Erreur sauvegarde GitHub: {e}")
+                print(f"⚠️ Erreur GitHub: {e}")
 
         return jsonify({
             'success': True,
@@ -140,15 +176,6 @@ def login():
             return jsonify({'success': False, 'message': 'Pseudo et mot de passe requis'}), 400
 
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
-        
-        # Si le fichier local n'existe pas, essayer de le récupérer depuis GitHub
-        if not os.path.exists(filepath) and USE_GITHUB_BACKUP:
-            try:
-                # Récupérer depuis GitHub (à implémenter dans BackupManager)
-                pass
-            except:
-                pass
-
         if not os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Compte inexistant'}), 404
 
