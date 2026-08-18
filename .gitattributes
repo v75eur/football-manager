@@ -1,1 +1,2 @@
 data/players/all_players_complete.json filter=lfs diff=lfs merge=lfs -text
+*.FMTK filter=lfs diff=lfs merge=lfs -text
