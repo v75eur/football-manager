@@ -527,7 +527,7 @@
         </p>
 
         <div class="row">
-            <button class="btn-popup success" onclick="downloadAndClose()">
+            <button class="btn-popup success" onclick="downloadWithPopup()">
                 <i class="fas fa-download"></i> Télécharger
             </button>
             <button class="btn-popup secondary" onclick="closePopupDownload()">
@@ -1027,3 +1027,64 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+<!-- ===== POPUP TÉLÉCHARGEMENT EN COURS ===== -->
+<div class="popup-overlay" id="popupDownloading">
+    <div class="popup-box">
+        <div class="icon info">⏳</div>
+        <h2>Téléchargement en cours...</h2>
+        <div class="fmtk-loader" style="display:flex;position:relative;background:transparent;padding:10px 0;">
+            <div class="spinner" style="width:40px;height:40px;"></div>
+        </div>
+        <p style="color:#aaa;">Votre fichier .FMTK est en cours de préparation...</p>
+    </div>
+</div>
+<script>
+// ===== POPUP TÉLÉCHARGEMENT =====
+function showDownloadingPopup() {
+    document.getElementById('popupDownloading').classList.add('active');
+}
+
+function hideDownloadingPopup() {
+    document.getElementById('popupDownloading').classList.remove('active');
+}
+
+// ===== POPUP SUCCÈS AVEC TÉLÉCHARGEMENT =====
+function showSuccessWithDownload(filename) {
+    // Afficher le popup de téléchargement
+    showPopupDownload(filename);
+}
+
+// ===== TÉLÉCHARGER AVEC POPUP =====
+function downloadWithPopup() {
+    const pseudo = document.getElementById('registerPseudo').value.trim();
+    if (!pseudo) {
+        showPopup('⚠️', 'Erreur', 'Pseudo non trouvé', 'error');
+        return;
+    }
+    
+    // Afficher popup de téléchargement
+    showDownloadingPopup();
+    
+    // Forcer le téléchargement
+    const downloadUrl = `/download/${pseudo}`;
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `${pseudo}.FMTK`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Cacher popup de téléchargement
+    setTimeout(() => {
+        hideDownloadingPopup();
+        // Afficher popup de succès
+        showPopup('✅', 'Téléchargement terminé !', 'Votre fichier .FMTK a été téléchargé avec succès.', 'success');
+        // Fermer la popup de téléchargement
+        closePopupDownload();
+        // Rediriger vers l'accueil
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 2000);
+    }, 1500);
+}
+</script>

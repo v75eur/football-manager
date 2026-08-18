@@ -1040,3 +1040,93 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+<!-- ===== POPUP TÉLÉCHARGEMENT ===== -->
+<div class="popup-overlay" id="popupDownloading">
+    <div class="popup-box">
+        <div class="icon info">⏳</div>
+        <h2>Téléchargement en cours...</h2>
+        <div style="display:flex;justify-content:center;padding:20px;">
+            <div class="spinner" style="width:40px;height:40px;border:4px solid rgba(255,215,0,0.1);border-top-color:#FFD700;border-radius:50%;animation:spin 1s linear infinite;"></div>
+        </div>
+        <p style="color:#aaa;">Votre fichier .FMTK est en cours de préparation...</p>
+    </div>
+</div>
+
+<!-- ===== POPUP SAUVEGARDE ===== -->
+<div class="popup-overlay" id="popupSave">
+    <div class="popup-box">
+        <div class="icon success">💾</div>
+        <h2>Sauvegarde effectuée !</h2>
+        <p>Votre progression a été sauvegardée avec succès.</p>
+        <button class="btn-popup info" onclick="closePopupSave()">OK</button>
+    </div>
+</div>
+
+<script>
+// ===== POPUP TÉLÉCHARGEMENT =====
+function showDownloadingPopup() {
+    document.getElementById('popupDownloading').classList.add('active');
+}
+
+function hideDownloadingPopup() {
+    document.getElementById('popupDownloading').classList.remove('active');
+}
+
+function closePopupSave() {
+    document.getElementById('popupSave').classList.remove('active');
+}
+
+function showPopupSave() {
+    document.getElementById('popupSave').classList.add('active');
+}
+
+// ===== TÉLÉCHARGER AVEC POPUP =====
+function downloadFMTKWithPopup() {
+    const pseudo = playerData.pseudo;
+    if (!pseudo) {
+        showPopup('⚠️', 'Erreur', 'Pseudo non trouvé', 'error');
+        return;
+    }
+    
+    showDownloadingPopup();
+    
+    const downloadUrl = `/download/${pseudo}`;
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `${pseudo}.FMTK`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setTimeout(() => {
+        hideDownloadingPopup();
+        showPopup('✅', 'Téléchargement terminé !', 'Votre fichier .FMTK a été téléchargé avec succès.', 'success');
+    }, 1500);
+}
+
+// Remplacer la fonction downloadFMTK
+function downloadFMTK() {
+    downloadFMTKWithPopup();
+}
+
+// ===== SAUVEGARDER AVEC POPUP =====
+function saveWithPopup() {
+    const saved = localStorage.getItem('fm_session_data');
+    if (!saved) return;
+    
+    try {
+        const playerData = JSON.parse(saved);
+        fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                pseudo: playerData.pseudo, 
+                data: playerData 
+            })
+        }).then(() => {
+            showPopupSave();
+            setTimeout(() => closePopupSave(), 2000);
+        }).catch(() => {});
+    } catch(e) {}
+}
+</script>
