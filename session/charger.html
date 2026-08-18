@@ -2,170 +2,187 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charger ma session - FMTK-v1.26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        html, body {
-            width:100%; height:100%;
-            font-family:'Rajdhani',sans-serif;
-            background:#0a1a0a; color:#fff;
-            overflow-y: auto !important;
-            overflow-x: auto !important;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url('/accueil/OIP-1393549177.jpg') center/cover no-repeat;
-            opacity: 0.08;
-            z-index: -1;
-        }
-        .container {
-            width:100%;
-            min-height:100vh;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-            background: rgba(10,30,10,0.5);
-            backdrop-filter: blur(10px);
-        }
-        .upload-card {
-            max-width:500px;
-            width:100%;
-            background:rgba(10,30,10,0.85);
-            backdrop-filter:blur(20px);
-            border-radius:25px;
-            border:1px solid rgba(255,215,0,0.08);
-            padding:35px 30px 30px;
-            text-align:center;
-            box-shadow:0 20px 60px rgba(0,0,0,0.8);
-        }
-        .logo { font-family:'Orbitron',monospace; font-size:2.2rem; font-weight:900; color:#FFD700; }
-        .logo-sub { font-size:0.7rem; color:#7aaa7a; letter-spacing:6px; text-transform:uppercase; margin-bottom:15px; }
-        .upload-icon { font-size:3.5rem; color:#FFD700; margin-bottom:10px; }
-        h2 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#fff; margin-bottom:5px; }
-        h2 span { color:#FFD700; }
-        .sub-text { color:#8aaa8a; font-size:0.9rem; line-height:1.6; margin-bottom:15px; }
-        .upload-area {
-            border:2px dashed rgba(255,215,0,0.2);
-            border-radius:15px;
-            padding:25px 15px;
-            cursor:pointer;
-            transition:all 0.3s ease;
-            background:rgba(255,255,255,0.02);
-            margin:10px 0;
-        }
-        .upload-area:hover { border-color:rgba(255,215,0,0.4); background:rgba(255,215,0,0.05); }
-        .upload-area .icon { font-size:2.5rem; color:#5a7a5a; }
-        .upload-area .text { color:#8aaa8a; font-size:0.85rem; }
-        .upload-area .text strong { color:#FFD700; }
-        .file-info { display:none; color:#2ecc71; font-size:0.9rem; margin-top:8px; padding:8px; background:rgba(46,204,113,0.05); border-radius:8px; }
-        .file-info i { margin-right:8px; }
-        .btn-upload {
-            width:100%; padding:14px; border:none; border-radius:12px;
-            background:linear-gradient(135deg, #FFD700, #f5a623);
-            color:#0a0a1a; font-family:'Orbitron',monospace; font-size:0.8rem; font-weight:700;
-            text-transform:uppercase; cursor:pointer; transition:all 0.3s ease; margin-top:15px;
-            display:flex; align-items:center; justify-content:center; gap:8px;
-        }
-        .btn-upload:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,215,0,0.2); }
-        .btn-upload:disabled { opacity:0.4; cursor:not-allowed; transform:none !important; }
-        .btn-upload .spinner { display:none; width:18px; height:18px; border:3px solid rgba(10,10,26,0.2); border-top-color:#0a0a1a; border-radius:50%; animation:spin 0.8s linear infinite; }
-        .btn-upload.loading .spinner { display:inline-block; }
-        .btn-upload.loading .btn-text { display:none; }
-        .btn-back { display:inline-block; margin-top:12px; padding:10px 20px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; color:#7a9a7a; text-decoration:none; font-size:0.8rem; transition:all 0.3s ease; }
-        .btn-back:hover { background:rgba(255,255,255,0.1); color:#fff; }
-        .info-box { background:rgba(255,215,0,0.05); border-left:3px solid #FFD700; padding:12px 15px; border-radius:8px; margin:12px 0; text-align:left; }
-        .info-box p { color:#aaa; font-size:0.8rem; margin:4px 0; }
-        .info-box i { color:#FFD700; margin-right:8px; width:18px; }
-        .popup-overlay {
-            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center;
-            padding:20px; backdrop-filter:blur(10px);
-        }
+        html, body { width:100%; height:100%; font-family:'Rajdhani',sans-serif; background:#0a1a0a; color:#fff; overflow-y:auto; overflow-x:auto; }
+        body::before { content:''; position:fixed; top:0; left:0; width:100%; height:100%; background:url('/accueil/OIP-1393549177.jpg') center/cover no-repeat; opacity:0.08; z-index:-1; }
+        .container { width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:20px; }
+        .card { max-width:500px; width:100%; background:rgba(10,30,10,0.85); backdrop-filter:blur(20px); border-radius:25px; border:1px solid rgba(255,215,0,0.08); padding:35px 30px; box-shadow:0 20px 60px rgba(0,0,0,0.8); }
+        .logo { font-family:'Orbitron',monospace; font-size:1.8rem; font-weight:900; color:#FFD700; text-align:center; }
+        .logo-sub { font-size:0.6rem; color:#7aaa7a; letter-spacing:6px; text-transform:uppercase; text-align:center; margin-bottom:15px; }
+        h1 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#FFD700; text-align:center; margin-bottom:5px; }
+        .subtitle { color:#8aaa8a; font-size:0.8rem; text-align:center; margin-bottom:20px; }
+        .drop-zone { border:2px dashed rgba(255,215,0,0.2); border-radius:15px; padding:40px 20px; text-align:center; cursor:pointer; transition:all 0.3s; background:rgba(255,255,255,0.02); margin-bottom:20px; }
+        .drop-zone:hover { border-color:#FFD700; background:rgba(255,215,0,0.03); }
+        .drop-zone.dragover { border-color:#FFD700; background:rgba(255,215,0,0.05); }
+        .drop-zone .icon { font-size:3rem; color:#FFD700; margin-bottom:10px; }
+        .drop-zone p { color:#aaa; font-size:0.9rem; }
+        .drop-zone .browse { color:#FFD700; font-weight:600; cursor:pointer; }
+        .file-info { display:none; background:rgba(255,215,0,0.05); border-radius:10px; padding:15px; margin:15px 0; border-left:3px solid #FFD700; }
+        .file-info.active { display:block; }
+        .file-info .name { color:#fff; font-weight:600; }
+        .file-info .size { color:#8aaa8a; font-size:0.8rem; }
+        .btn-submit { width:100%; padding:14px; background:linear-gradient(135deg,#FFD700,#f5a623); border:none; border-radius:12px; color:#0a0a1a; font-family:'Orbitron',monospace; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
+        .btn-submit:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(255,215,0,0.2); }
+        .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+        .popup-overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(10px); }
         .popup-overlay.active { display:flex; }
-        .popup-box {
-            background:#1a2e1a; border:2px solid rgba(255,215,0,0.2); border-radius:20px;
-            padding:35px 30px; max-width:450px; width:100%; text-align:center;
-            box-shadow:0 40px 80px rgba(0,0,0,0.8); animation:popupIn 0.5s ease;
-        }
+        .popup-box { background:#1a2e1a; border:2px solid rgba(255,215,0,0.2); border-radius:20px; padding:35px 30px; max-width:450px; width:100%; box-shadow:0 40px 80px rgba(0,0,0,0.8); animation:popupIn 0.4s ease; }
         @keyframes popupIn { from { transform:scale(0.8); opacity:0; } to { transform:scale(1); opacity:1; } }
-        .popup-box .icon { font-size:3rem; margin-bottom:10px; }
-        .popup-box .icon.success { color:#2ecc71; }
-        .popup-box .icon.error { color:#e74c3c; }
-        .popup-box .icon.info { color:#FFD700; }
-        .popup-box h2 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#FFD700; margin-bottom:8px; }
-        .popup-box p { color:#aaa; font-size:0.9rem; line-height:1.6; margin-bottom:15px; }
-        .popup-box .btn-popup { padding:12px 30px; border:none; border-radius:10px; font-family:'Orbitron',monospace; font-size:0.8rem; font-weight:700; cursor:pointer; transition:all 0.3s; }
-        .popup-box .btn-popup:hover { transform:scale(1.05); box-shadow:0 8px 30px rgba(255,215,0,0.3); }
-        .fmtk-loader {
-            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-            background:rgba(0,0,0,0.92); z-index:99998; align-items:center; justify-content:center;
-            flex-direction:column; backdrop-filter:blur(8px);
-        }
-        .fmtk-loader.active { display:flex; }
-        .fmtk-loader .spinner { width:70px; height:70px; border:5px solid rgba(255,215,0,0.1); border-top-color:#FFD700; border-radius:50%; animation:spin 1s linear infinite; margin-bottom:20px; }
-        .fmtk-loader .text { font-family:'Orbitron',monospace; font-size:1.5rem; color:#FFD700; letter-spacing:4px; animation:pulse 1.5s ease-in-out infinite; }
-        .fmtk-loader .sub { color:#7aaa7a; font-size:0.9rem; margin-top:10px; letter-spacing:2px; }
-        @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.5; } }
-        @keyframes spin { to { transform:rotate(360deg); } }
+        .popup-box .icon { font-size:3rem; margin-bottom:10px; text-align:center; }
+        .popup-box h2 { font-family:'Orbitron',monospace; font-size:1.1rem; color:#FFD700; text-align:center; margin-bottom:8px; }
+        .popup-box p { color:#aaa; font-size:0.9rem; line-height:1.6; text-align:center; }
+        .popup-box .btn-popup { padding:12px 25px; border:none; border-radius:10px; font-family:'Orbitron',monospace; font-size:0.7rem; font-weight:700; cursor:pointer; transition:all 0.3s; width:100%; margin-top:10px; }
+        .popup-box .btn-popup.info { background:linear-gradient(135deg,#FFD700,#f5a623); color:#0a0a1a; }
+        .popup-box .btn-popup.success { background:linear-gradient(135deg,#2ecc71,#27ae60); color:#fff; }
+        .popup-box .btn-popup.danger { background:linear-gradient(135deg,#e74c3c,#c0392b); color:#fff; }
     </style>
 </head>
 <body>
+<div class="container">
+    <div class="card">
+        <div class="logo">⚽ FMTK</div>
+        <div class="logo-sub">v1.26 • Football Manager</div>
+        <h1>📂 CHARGER MA SESSION</h1>
+        <p class="subtitle">Importez votre fichier .FMTK pour continuer</p>
 
-<div class="fmtk-loader" id="fmtkLoader">
-    <div class="spinner"></div>
-    <div class="text">📂 FMTK</div>
-    <div class="sub">Chargement de votre session...</div>
-</div>
+        <div class="drop-zone" id="dropZone">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <p>Glissez-déposez votre fichier <strong>.FMTK</strong> ici</p>
+            <p style="font-size:0.8rem;color:#666;margin-top:5px;">ou <span class="browse" onclick="document.getElementById('fileInput').click()">parcourez</span></p>
+            <input type="file" id="fileInput" accept=".FMTK" style="display:none;">
+        </div>
 
-<div class="popup-overlay" id="popup">
-    <div class="popup-box">
-        <div class="icon" id="popupIcon">✅</div>
-        <h2 id="popupTitle">Succès</h2>
-        <p id="popupMessage">Votre session a été chargée !</p>
-        <button class="btn-popup" onclick="closePopup()" style="background:linear-gradient(135deg,#FFD700,#f5a623);color:#0a0a1a;">OK</button>
+        <div class="file-info" id="fileInfo">
+            <div class="name" id="fileName">fichier.FMTK</div>
+            <div class="size" id="fileSize">0 KB</div>
+            <div style="margin-top:8px;font-size:0.8rem;color:#8aaa8a;">
+                <span id="filePseudo">Pseudo: -</span> | 
+                <span id="fileStatus">Statut: Non vérifié</span>
+            </div>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" disabled onclick="chargerSession()">
+            <i class="fas fa-upload"></i> CHARGER MA SESSION
+        </button>
+
+        <div style="text-align:center;margin-top:15px;">
+            <a href="/" style="color:#7aaa7a;text-decoration:none;font-size:0.8rem;">
+                <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            </a>
+        </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="upload-card">
-        <div class="logo">⚽ FMTK</div>
-        <div class="logo-sub">v1.26</div>
-        <div class="upload-icon"><i class="fas fa-upload"></i></div>
-        <h2>Charger ma <span>session</span></h2>
-        <p class="sub-text">Upload votre fichier <strong style="color:#FFD700;">.FMTK</strong> pour reprendre votre partie</p>
-
-        <div class="info-box">
-            <p><i class="fas fa-info-circle"></i> Fichier généré lors de votre inscription</p>
-            <p><i class="fas fa-file"></i> Format accepté : <strong style="color:#FFD700;">.FMTK</strong></p>
-            <p><i class="fas fa-shield-alt"></i> Fichier sécurisé avec signature numérique</p>
-        </div>
-
-        <div class="upload-area" id="dropZone">
-            <div class="icon"><i class="fas fa-file-upload"></i></div>
-            <div class="text"><strong>Cliquez ici</strong> ou glissez votre fichier .FMTK<br><span style="font-size:0.75rem;color:#5a7a5a;">Format accepté : .FMTK</span></div>
-            <div class="file-info" id="fileInfo"><i class="fas fa-check-circle"></i> <span id="fileName">fichier.FMTK</span></div>
-            <input type="file" id="fileInput" accept=".FMTK,.json" style="display:none;">
-        </div>
-
-        <button class="btn-upload" id="uploadBtn" disabled>
-            <span class="spinner"></span>
-            <span class="btn-text"><i class="fas fa-play"></i> Charger ma session</span>
-        </button>
-
-        <a href="/" class="btn-back"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+<!-- POPUP -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="icon" id="popupIcon">✅</div>
+        <h2 id="popupTitle">Succès !</h2>
+        <p id="popupMessage">Message</p>
+        <button class="btn-popup info" onclick="closePopup()">OK</button>
     </div>
 </div>
 
 <script>
-function showPopup(icon, title, message, type = 'info') {
-    document.getElementById('popupIcon').className = `icon ${type}`;
+let selectedFile = null;
+let fileData = null;
+
+// ===== DROP ZONE =====
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+
+dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.classList.add('dragover');
+});
+
+dropZone.addEventListener('dragleave', () => {
+    dropZone.classList.remove('dragover');
+});
+
+dropZone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        handleFile(files[0]);
+    }
+});
+
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        handleFile(e.target.files[0]);
+    }
+});
+
+// ===== HANDLE FILE =====
+async function handleFile(file) {
+    const ext = file.name.split('.').pop().toLowerCase();
+    if (ext !== 'fmtk') {
+        showPopup('⚠️', 'Format invalide', 'Utilisez un fichier .FMTK');
+        return;
+    }
+
+    try {
+        // Lire le fichier
+        const text = await file.text();
+        const data = JSON.parse(text);
+        
+        // Vérifier les champs obligatoires
+        if (!data.pseudo || !data.player_id) {
+            showPopup('❌', 'Fichier invalide', 'Le fichier ne contient pas les informations nécessaires');
+            return;
+        }
+        
+        selectedFile = file;
+        fileData = data;
+        
+        // Afficher les infos
+        document.getElementById('fileName').textContent = file.name;
+        document.getElementById('fileSize').textContent = (file.size / 1024).toFixed(1) + ' KB';
+        document.getElementById('filePseudo').textContent = 'Pseudo: ' + data.pseudo;
+        document.getElementById('fileStatus').textContent = 'Statut: ✅ Valide';
+        document.getElementById('fileStatus').style.color = '#2ecc71';
+        document.getElementById('fileInfo').classList.add('active');
+        document.getElementById('submitBtn').disabled = false;
+        
+    } catch(e) {
+        showPopup('❌', 'Erreur', 'Impossible de lire le fichier: ' + e.message);
+    }
+}
+
+// ===== CHARGER SESSION =====
+function chargerSession() {
+    if (!selectedFile || !fileData) {
+        showPopup('⚠️', 'Erreur', 'Aucun fichier valide sélectionné');
+        return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CHARGEMENT...';
+
+    // Sauvegarder les données dans sessionStorage pour les utiliser après redirection
+    try {
+        sessionStorage.setItem('fmtk_session_data', JSON.stringify(fileData));
+        sessionStorage.setItem('fmtk_session_file', selectedFile.name);
+    } catch(e) {
+        console.warn('Impossible de sauvegarder dans sessionStorage', e);
+    }
+
+    // Rediriger vers la page de création d'équipe
+    setTimeout(() => {
+        window.location.href = `/equipe/creer?pseudo=${encodeURIComponent(fileData.pseudo)}&player_id=${encodeURIComponent(fileData.player_id)}`;
+    }, 500);
+}
+
+// ===== POPUP =====
+function showPopup(icon, title, message) {
     document.getElementById('popupIcon').textContent = icon;
     document.getElementById('popupTitle').textContent = title;
     document.getElementById('popupMessage').textContent = message;
@@ -176,80 +193,11 @@ function closePopup() {
     document.getElementById('popup').classList.remove('active');
 }
 
-function showLoader(text, sub) {
-    const loader = document.getElementById('fmtkLoader');
-    loader.querySelector('.text').textContent = text || '📂 FMTK';
-    loader.querySelector('.sub').textContent = sub || 'Chargement de votre session...';
-    loader.classList.add('active');
-}
-
-function hideLoader() {
-    document.getElementById('fmtkLoader').classList.remove('active');
-}
-
-const dropZone = document.getElementById('dropZone');
-const fileInput = document.getElementById('fileInput');
-const uploadBtn = document.getElementById('uploadBtn');
-const fileInfo = document.getElementById('fileInfo');
-const fileName = document.getElementById('fileName');
-let selectedFile = null;
-let fileContent = null;
-
-dropZone.addEventListener('click', () => fileInput.click());
-dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.style.borderColor = '#FFD700'; });
-dropZone.addEventListener('dragleave', () => { dropZone.style.borderColor = 'rgba(255,215,0,0.2)'; });
-dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.style.borderColor = 'rgba(255,215,0,0.2)'; if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]); });
-fileInput.addEventListener('change', e => { if (e.target.files.length) handleFile(e.target.files[0]); });
-
-async function handleFile(file) {
-    const ext = file.name.split('.').pop().toLowerCase();
-    if (ext !== 'fmtk' && ext !== 'json') {
-        showPopup('⚠️', 'Format invalide', 'Utilisez un fichier .FMTK', 'error');
-        return;
+// Cliquer sur le drop zone pour ouvrir le file input
+dropZone.addEventListener('click', () => {
+    if (!selectedFile) {
+        fileInput.click();
     }
-
-    // Vérifier la signature
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-        const response = await fetch('/api/verify', { method: 'POST', body: formData });
-        const result = await response.json();
-
-        if (!result.success) {
-            showPopup('❌', 'Fichier invalide', result.message || 'Fichier corrompu ou modifié', 'error');
-            return;
-        }
-
-        const content = result.player;
-        selectedFile = file;
-        fileContent = content;
-        fileName.textContent = file.name;
-        fileInfo.style.display = 'block';
-        dropZone.querySelector('.text').style.display = 'none';
-        dropZone.querySelector('.icon').style.display = 'none';
-        uploadBtn.disabled = false;
-        showPopup('✅', 'Fichier valide !', `Bienvenue ${content.pseudo}`, 'success');
-
-    } catch(e) {
-        showPopup('❌', 'Erreur', 'Impossible de vérifier le fichier', 'error');
-    }
-}
-
-uploadBtn.addEventListener('click', () => {
-    if (!selectedFile || !fileContent) return;
-    showLoader('📂 FMTK', 'Chargement de votre session...');
-    setTimeout(() => {
-        hideLoader();
-        showPopup('✅', 'Session chargée !', `Bienvenue ${fileContent.pseudo} !`, 'success');
-        setTimeout(() => {
-            if (fileContent.equipe && fileContent.equipe.nom && fileContent.equipe.nom !== '') {
-                window.location.href = '/dashboard.html';
-            } else {
-                window.location.href = '/equipe/creer';
-            }
-        }, 1500);
-    }, 1500);
 });
 </script>
 </body>
