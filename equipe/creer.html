@@ -60,10 +60,161 @@
                 <div class="form-group">
                     <label>🏴 Pays</label>
                     <select id="clubPays" onchange="updateClubs()">
-                        <optgroup label="🌍 AFRIQUE (CAF)"><option value="Bénin">🇧🇯 Bénin</option><option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option><option value="Sénégal">🇸🇳 Sénégal</option><option value="Cameroun">🇨🇲 Cameroun</option><option value="Nigéria">🇳🇬 Nigéria</option><option value="Ghana">🇬🇭 Ghana</option><option value="Maroc">🇲🇦 Maroc</option><option value="Tunisie">🇹🇳 Tunisie</option><option value="Algérie">🇩🇿 Algérie</option><option value="Égypte">🇪🇬 Égypte</option><option value="Afrique du Sud">🇿🇦 Afrique du Sud</option></optgroup>
-                        <optgroup label="🌍 EUROPE (UEFA)"><option value="France">🇫🇷 France</option><option value="Espagne">🇪🇸 Espagne</option><option value="Angleterre">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre</option><option value="Allemagne">🇩🇪 Allemagne</option><option value="Italie">🇮🇹 Italie</option><option value="Portugal">🇵🇹 Portugal</option><option value="Pays-Bas">🇳🇱 Pays-Bas</option><option value="Belgique">🇧🇪 Belgique</option><option value="Suisse">🇨🇭 Suisse</option><option value="Turquie">🇹🇷 Turquie</option></optgroup>
-                        <optgroup label="🌍 AMÉRIQUE"><option value="Brésil">🇧🇷 Brésil</option><option value="Argentine">🇦🇷 Argentine</option><option value="Mexique">🇲🇽 Mexique</option><option value="États-Unis">🇺🇸 États-Unis</option></optgroup>
-                        <optgroup label="🌍 ASIE"><option value="Arabie Saoudite">🇸🇦 Arabie Saoudite</option><option value="Japon">🇯🇵 Japon</option><option value="Corée du Sud">🇰🇷 Corée du Sud</option></optgroup>
+                        <optgroup label="🌍 AFRIQUE (CAF)">
+                            <option value="Afrique du Sud">🇿🇦 Afrique du Sud</option>
+                            <option value="Algérie">🇩🇿 Algérie</option>
+                            <option value="Angola">🇦🇴 Angola</option>
+                            <option value="Bénin">🇧🇯 Bénin</option>
+                            <option value="Botswana">🇧🇼 Botswana</option>
+                            <option value="Burkina Faso">🇧🇫 Burkina Faso</option>
+                            <option value="Burundi">🇧🇮 Burundi</option>
+                            <option value="Cameroun">🇨🇲 Cameroun</option>
+                            <option value="Cap-Vert">🇨🇻 Cap-Vert</option>
+                            <option value="Centrafrique">🇨🇫 Centrafrique</option>
+                            <option value="Congo">🇨🇬 Congo</option>
+                            <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
+                            <option value="Égypte">🇪🇬 Égypte</option>
+                            <option value="Éthiopie">🇪🇹 Éthiopie</option>
+                            <option value="Gabon">🇬🇦 Gabon</option>
+                            <option value="Gambie">🇬🇲 Gambie</option>
+                            <option value="Ghana">🇬🇭 Ghana</option>
+                            <option value="Guinée">🇬🇳 Guinée</option>
+                            <option value="Guinée équatoriale">🇬🇶 Guinée équatoriale</option>
+                            <option value="Kenya">🇰🇪 Kenya</option>
+                            <option value="Liberia">🇱🇷 Liberia</option>
+                            <option value="Libye">🇱🇾 Libye</option>
+                            <option value="Madagascar">🇲🇬 Madagascar</option>
+                            <option value="Malawi">🇲🇼 Malawi</option>
+                            <option value="Mali">🇲🇱 Mali</option>
+                            <option value="Maroc">🇲🇦 Maroc</option>
+                            <option value="Mauritanie">🇲🇷 Mauritanie</option>
+                            <option value="Mozambique">🇲🇿 Mozambique</option>
+                            <option value="Namibie">🇳🇦 Namibie</option>
+                            <option value="Niger">🇳🇪 Niger</option>
+                            <option value="Nigéria">🇳🇬 Nigéria</option>
+                            <option value="Ouganda">🇺🇬 Ouganda</option>
+                            <option value="RDC">🇨🇩 RDC</option>
+                            <option value="Rwanda">🇷🇼 Rwanda</option>
+                            <option value="Sao Tomé">🇸🇹 Sao Tomé</option>
+                            <option value="Sénégal">🇸🇳 Sénégal</option>
+                            <option value="Seychelles">🇸🇨 Seychelles</option>
+                            <option value="Sierra Leone">🇸🇱 Sierra Leone</option>
+                            <option value="Somalie">🇸🇴 Somalie</option>
+                            <option value="Soudan">🇸🇩 Soudan</option>
+                            <option value="Soudan du Sud">🇸🇸 Soudan du Sud</option>
+                            <option value="Tanzanie">🇹🇿 Tanzanie</option>
+                            <option value="Tchad">🇹🇩 Tchad</option>
+                            <option value="Togo">🇹🇬 Togo</option>
+                            <option value="Tunisie">🇹🇳 Tunisie</option>
+                            <option value="Zambie">🇿🇲 Zambie</option>
+                            <option value="Zimbabwe">🇿🇼 Zimbabwe</option>
+                        </optgroup>
+                        <optgroup label="🌍 EUROPE (UEFA)">
+                            <option value="Albanie">🇦🇱 Albanie</option>
+                            <option value="Allemagne">🇩🇪 Allemagne</option>
+                            <option value="Andorre">🇦🇩 Andorre</option>
+                            <option value="Angleterre">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Angleterre</option>
+                            <option value="Autriche">🇦🇹 Autriche</option>
+                            <option value="Belgique">🇧🇪 Belgique</option>
+                            <option value="Bosnie">🇧🇦 Bosnie</option>
+                            <option value="Bulgarie">🇧🇬 Bulgarie</option>
+                            <option value="Chypre">🇨🇾 Chypre</option>
+                            <option value="Croatie">🇭🇷 Croatie</option>
+                            <option value="Danemark">🇩🇰 Danemark</option>
+                            <option value="Écosse">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Écosse</option>
+                            <option value="Espagne">🇪🇸 Espagne</option>
+                            <option value="Estonie">🇪🇪 Estonie</option>
+                            <option value="Finlande">🇫🇮 Finlande</option>
+                            <option value="France">🇫🇷 France</option>
+                            <option value="Galles">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Galles</option>
+                            <option value="Grèce">🇬🇷 Grèce</option>
+                            <option value="Hongrie">🇭🇺 Hongrie</option>
+                            <option value="Irlande">🇮🇪 Irlande</option>
+                            <option value="Islande">🇮🇸 Islande</option>
+                            <option value="Italie">🇮🇹 Italie</option>
+                            <option value="Kazakhstan">🇰🇿 Kazakhstan</option>
+                            <option value="Lituanie">🇱🇹 Lituanie</option>
+                            <option value="Luxembourg">🇱🇺 Luxembourg</option>
+                            <option value="Macédoine">🇲🇰 Macédoine</option>
+                            <option value="Malte">🇲🇹 Malte</option>
+                            <option value="Moldavie">🇲🇩 Moldavie</option>
+                            <option value="Monténégro">🇲🇪 Monténégro</option>
+                            <option value="Norvège">🇳🇴 Norvège</option>
+                            <option value="Pays-Bas">🇳🇱 Pays-Bas</option>
+                            <option value="Pologne">🇵🇱 Pologne</option>
+                            <option value="Portugal">🇵🇹 Portugal</option>
+                            <option value="République tchèque">🇨🇿 République tchèque</option>
+                            <option value="Roumanie">🇷🇴 Roumanie</option>
+                            <option value="Russie">🇷🇺 Russie</option>
+                            <option value="Serbie">🇷🇸 Serbie</option>
+                            <option value="Slovaquie">🇸🇰 Slovaquie</option>
+                            <option value="Slovénie">🇸🇮 Slovénie</option>
+                            <option value="Suède">🇸🇪 Suède</option>
+                            <option value="Suisse">🇨🇭 Suisse</option>
+                            <option value="Turquie">🇹🇷 Turquie</option>
+                            <option value="Ukraine">🇺🇦 Ukraine</option>
+                        </optgroup>
+                        <optgroup label="🌍 AMÉRIQUE DU SUD (CONMEBOL)">
+                            <option value="Argentine">🇦🇷 Argentine</option>
+                            <option value="Bolivie">🇧🇴 Bolivie</option>
+                            <option value="Brésil">🇧🇷 Brésil</option>
+                            <option value="Chili">🇨🇱 Chili</option>
+                            <option value="Colombie">🇨🇴 Colombie</option>
+                            <option value="Équateur">🇪🇨 Équateur</option>
+                            <option value="Paraguay">🇵🇾 Paraguay</option>
+                            <option value="Pérou">🇵🇪 Pérou</option>
+                            <option value="Uruguay">🇺🇾 Uruguay</option>
+                            <option value="Venezuela">🇻🇪 Venezuela</option>
+                        </optgroup>
+                        <optgroup label="🌍 AMÉRIQUE DU NORD (CONCACAF)">
+                            <option value="Canada">🇨🇦 Canada</option>
+                            <option value="Costa Rica">🇨🇷 Costa Rica</option>
+                            <option value="Cuba">🇨🇺 Cuba</option>
+                            <option value="États-Unis">🇺🇸 États-Unis</option>
+                            <option value="Guatemala">🇬🇹 Guatemala</option>
+                            <option value="Haïti">🇭🇹 Haïti</option>
+                            <option value="Honduras">🇭🇳 Honduras</option>
+                            <option value="Jamaïque">🇯🇲 Jamaïque</option>
+                            <option value="Mexique">🇲🇽 Mexique</option>
+                            <option value="Nicaragua">🇳🇮 Nicaragua</option>
+                            <option value="Panama">🇵🇦 Panama</option>
+                            <option value="Salvador">🇸🇻 Salvador</option>
+                            <option value="Trinité-et-Tobago">🇹🇹 Trinité-et-Tobago</option>
+                        </optgroup>
+                        <optgroup label="🌍 ASIE (AFC)">
+                            <option value="Arabie Saoudite">🇸🇦 Arabie Saoudite</option>
+                            <option value="Australie">🇦🇺 Australie</option>
+                            <option value="Bahreïn">🇧🇭 Bahreïn</option>
+                            <option value="Chine">🇨🇳 Chine</option>
+                            <option value="Corée du Sud">🇰🇷 Corée du Sud</option>
+                            <option value="Émirats Arabes Unis">🇦🇪 Émirats Arabes Unis</option>
+                            <option value="Inde">🇮🇳 Inde</option>
+                            <option value="Indonésie">🇮🇩 Indonésie</option>
+                            <option value="Iran">🇮🇷 Iran</option>
+                            <option value="Irak">🇮🇶 Irak</option>
+                            <option value="Japon">🇯🇵 Japon</option>
+                            <option value="Jordanie">🇯🇴 Jordanie</option>
+                            <option value="Koweït">🇰🇼 Koweït</option>
+                            <option value="Liban">🇱🇧 Liban</option>
+                            <option value="Malaisie">🇲🇾 Malaisie</option>
+                            <option value="Oman">🇴🇲 Oman</option>
+                            <option value="Palestine">🇵🇸 Palestine</option>
+                            <option value="Philippines">🇵🇭 Philippines</option>
+                            <option value="Qatar">🇶🇦 Qatar</option>
+                            <option value="Singapour">🇸🇬 Singapour</option>
+                            <option value="Syrie">🇸🇾 Syrie</option>
+                            <option value="Thaïlande">🇹🇭 Thaïlande</option>
+                            <option value="Viêt Nam">🇻🇳 Viêt Nam</option>
+                        </optgroup>
+                        <optgroup label="🌍 OCÉANIE (OFC)">
+                            <option value="Fidji">🇫🇯 Fidji</option>
+                            <option value="Nouvelle-Zélande">🇳🇿 Nouvelle-Zélande</option>
+                            <option value="Papouasie">🇵🇬 Papouasie</option>
+                            <option value="Samoa">🇼🇸 Samoa</option>
+                            <option value="Tahiti">🇵🇫 Tahiti</option>
+                            <option value="Tonga">🇹🇴 Tonga</option>
+                            <option value="Vanuatu">🇻🇺 Vanuatu</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="form-group">
@@ -85,58 +236,182 @@
             </form>
         </div>
     </div>
+
     <script>
+        // ===== CLUBS PAR PAYS (TOUS LES PAYS) =====
         const CLUBS_DATA = {
-            "Bénin": {"D1": ["AS Cotonou","ASPAC FC","Buffles FC","Dragons FC","JS Pobè"],"D2": ["ASVO","Ayema FC","Loto FC","JAC","Soleil FC B"]},
-            "Côte d'Ivoire": {"D1": ["ASEC Mimosas","Africa Sports","Stade d'Abidjan","SOA","CO Korhogo"],"D2": ["San Pédro","Bassam","Bouaké","Tanda","Denguélé"]},
-            "Sénégal": {"D1": ["Dakar Sacré-Cœur","Jaraaf","Teungueth","AS Pikine","Casa Sports"],"D2": ["Diambars","Mbour","Guédiawaye","Stade de Mbour","Niarry Tally"]},
-            "France": {"D1": ["PSG","Marseille","Lyon","Monaco","Lille"],"D2": ["Nice","Rennes","Lens","Strasbourg","Montpellier"]},
-            "Espagne": {"D1": ["Real Madrid","Barcelona","Atletico Madrid","Sevilla","Real Sociedad"],"D2": ["Villarreal","Betis","Valencia","Bilbao","Girona"]},
-            "Angleterre": {"D1": ["Manchester City","Arsenal","Liverpool","Chelsea","Manchester United"],"D2": ["Tottenham","Newcastle","Aston Villa","West Ham","Brighton"]},
-            "Allemagne": {"D1": ["Bayern Munich","Dortmund","RB Leipzig","Leverkusen","Stuttgart"],"D2": ["Bochum","Heidenheim","Werder Bremen","Augsburg","Union Berlin"]},
-            "Italie": {"D1": ["Inter Milan","AC Milan","Juventus","Atalanta","Napoli"],"D2": ["Roma","Lazio","Fiorentina","Bologna","Torino"]},
-            "Brésil": {"D1": ["Flamengo","Palmeiras","Atlético Mineiro","Fluminense","Corinthians"],"D2": ["Internacional","Grêmio","São Paulo","Bahia","Ceará"]},
-            "Argentine": {"D1": ["River Plate","Boca Juniors","Vélez","San Lorenzo","Racing"],"D2": ["Independiente","Lanús","Talleres","Defensa y Justicia","Huracán"]},
-            "Maroc": {"D1": ["Raja Casablanca","Wydad Casablanca","AS FAR","RS Berkane","Moghreb Tétouan"],"D2": ["Hassania Agadir","Olympic Safi","FUS Rabat","Difaâ El Jadida","Renaissance Zemamra"]},
-            "Tunisie": {"D1": ["Espérance Tunis","Étoile du Sahel","Club Africain","US Monastir","CS Sfaxien"],"D2": ["US Ben Guerdane","Olympique Béja","Stade Tunisien","AS Soliman","Club Bizertin"]},
-            "Algérie": {"D1": ["USM Alger","MC Alger","CR Belouizdad","ES Sétif","JS Kabylie"],"D2": ["USM Blida","NA Hussein Dey","ASO Chlef","RC Relizane","MC Oran B"]},
-            "Égypte": {"D1": ["Al Ahly","Zamalek","Pyramids FC","Al Masry","Smouha"],"D2": ["ENPPI","Ceramica Cleopatra","El Gouna","Ismaily","Arab Contractors"]},
-            "Afrique du Sud": {"D1": ["Mamelodi Sundowns","Orlando Pirates","Kaizer Chiefs","SuperSport United","Cape Town City"],"D2": ["Stellenbosch FC","Polokwane City","Sekhukhune United","Royal AM","TS Galaxy"]},
-            "Nigéria": {"D1": ["Enyimba","Rivers United","Kano Pillars","Plateau United","Akwa United"],"D2": ["Lobi Stars","Sunshine Stars","Gombe United","Niger Tornadoes","Wikki Tourists"]},
-            "Ghana": {"D1": ["Hearts of Oak","Asante Kotoko","Medeama","Bechem United","Berekum Chelsea"],"D2": ["Dreams FC","Great Olympics","Legon Cities","Real Tamale","Karela United"]},
-            "Cameroun": {"D1": ["Coton Sport","Canon Yaoundé","Tonnerre Yaoundé","Union Douala","AS Fortuna"],"D2": ["Bamboutos","New Star","Fovu Club","YOSA","Panthère"]},
-            "Pays-Bas": {"D1": ["PSV","Ajax","Feyenoord","Twente","AZ"],"D2": ["Utrecht","Sparta","Heerenveen","Go Ahead Eagles","NEC"]},
-            "Belgique": {"D1": ["Club Brugge","Anderlecht","Genk","Gent","Standard Liège"],"D2": ["Mechelen","Cercle Brugge","Charleroi","OH Leuven","Union SG"]},
-            "Portugal": {"D1": ["Benfica","Porto","Sporting","Braga","Guimarães"],"D2": ["Gil Vicente","Famalicão","Arouca","Boa Vista","Moreirense"]},
-            "Suisse": {"D1": ["Young Boys","Basel","Servette","Luzern","St. Gallen"],"D2": ["Zürich","Grasshopper","Lugano","Winterthur","Lausanne"]},
-            "Turquie": {"D1": ["Galatasaray","Fenerbahçe","Beşiktaş","Trabzonspor","Başakşehir"],"D2": ["Sivasspor","Konyaspor","Alanyaspor","Antalyaspor","Adana Demirspor"]},
-            "Mexique": {"D1": ["América","Chivas","Tigres","Monterrey","Pumas"],"D2": ["Cruz Azul","Santos","Pachuca","Atlas","Necaxa"]},
-            "États-Unis": {"D1": ["LA Galaxy","Inter Miami","Seattle Sounders","LAFC","Columbus"],"D2": ["Atlanta","NYCFC","Portland","Austin","Cincinnati"]},
-            "Arabie Saoudite": {"D1": ["Al Hilal","Al Nassr","Al Ahli","Al Ittihad","Al Shabab"],"D2": ["Al Fateh","Al Ettifaq","Al Raed","Al Wehda","Al Khaleej"]},
-            "Japon": {"D1": ["Kawasaki","Yokohama F. Marinos","Kobe","Sanfrecce","Urawa"],"D2": ["Nagoya","Grampus","Avispa Fukuoka","Kashima","Jubilo"]},
-            "Corée du Sud": {"D1": ["Ulsan","Jeonbuk","Pohang","Gwangju","Incheon"],"D2": ["Daegu","Suwon","Seoul","Jeju","Daejeon"]}
+            // ===== AFRIQUE (CAF) =====
+            "Afrique du Sud": {"D1": ["Mamelodi Sundowns","Orlando Pirates","Kaizer Chiefs","SuperSport United","Cape Town City","Stellenbosch FC","Polokwane City","Sekhukhune United","Royal AM","TS Galaxy"],"D2": ["Cape Town Spurs","Maritzburg United","Richards Bay","Pretoria Callies","JDR Stars","Upington City","Milano United","Hungry Lions","All Stars","Black Leopards"]},
+            "Algérie": {"D1": ["USM Alger","MC Alger","CR Belouizdad","ES Sétif","JS Kabylie","CS Constantine","USM Blida","NA Hussein Dey","ASO Chlef","MC Oran"],"D2": ["RC Relizane","JSM Skikda","CA Bordj Bou Arreridj","USM Annaba","ASM Oran","MO Béjaïa","US Biskra","WA Tlemcen","CRB Aïn Fakroun","IB Lakhdaria"]},
+            "Angola": {"D1": ["Petro de Luanda","1º de Agosto","Sagrada Esperança","Wiliete","Bravos do Maquis","Interclube","Desportivo Huíla","Recreativo do Libolo","Académica","Cuando Cubango"],"D2": ["Benfica Lubango","ASA","Ferroviário Huambo","Politécnica","Progresso","Saurimo","Santa Rita","Ngola","Recreativo da Caála","Sporting Cabinda"]},
+            "Bénin": {"D1": ["AS Cotonou","ASPAC FC","Buffles FC","Dragons FC","JS Pobè","Soleil FC","ASVO","Ayema FC","Loto FC","JAC"],"D2": ["AS Loto","AS Cotonou B","ASPAC B","Buffles B","Dragons B","JS Pobè B","Soleil B","ASVO B","Ayema B","Loto B"]},
+            "Botswana": {"D1": ["Jwaneng Galaxy","Gaborone United","Orapa United","Township Rollers","Security Systems","Mogoditshane Fighters","Extention Gunners","Police XI","Prisons XI","Nico United"],"D2": ["Mochudi Centre Chiefs","Tafic","Soweto","BR Highlanders","Notwane","Gaborone","BDF XI","Lobtrans","Mogoditshane","Basketball"]},
+            "Burkina Faso": {"D1": ["AS Douanes","USFA","RAHIMO","SC Majestic","Vitesse FC","Real du Faso","ASFA Yennenga","Salitas FC","AS Sonabel","CFFEB"],"D2": ["ASF Bobo","ASEC Koudougou","Banfora","Bobo","Flambeau","FASO","Kaya","Naba","Ouagadougou","Yatenga"]},
+            "Burundi": {"D1": ["Flambeau du Centre","Vital'O","Le Messager","Olympic Star","Inter Star","Kayanza","Rukinzo","Magara","Iganga","Bujumbura"],"D2": ["Dynamik","Aigle Noir","AS Inter","AS Kigoma","Atlético","Espoir","Olympic","Rusa","Soca","Vital"]},
+            "Cameroun": {"D1": ["Coton Sport","Canon Yaoundé","Tonnerre Yaoundé","Union Douala","AS Fortuna","Bamboutos","New Star","Fovu Club","YOSA","Panthère"],"D2": ["Aigle Royal","Astres","Dynamo","Stade","PWD","Racing","USM","Volcan","YAFO","Zamal"]},
+            "Cap-Vert": {"D1": ["CS Mindelense","Sporting Clube da Praia","Batuque","Académica do Fogo","Spartak d'Aguadinha","Simão","Sol","SC Atlético","Santo","Vulcânico"],"D2": ["Desportivo","Estrela","Flamengo","Gabela","Operário","Palmeira","Santa","Sporting","Vila","Xavier"]},
+            "Congo": {"D1": ["AS Vita Club","TP Mazembe","DCMP","Motema Pembe","Renaissance","Sanga Balende","Groupe Bazano","Manika","Tshinkunku","OC Bukavu"],"D2": ["Bumbu","Congo","Etoile","Faucons","Kinshasa","Lubumbashi","Mbandaka","Pointe-Noire","Tshikapa","Ville"]},
+            "Côte d'Ivoire": {"D1": ["ASEC Mimosas","Africa Sports","Stade d'Abidjan","SOA","CO Korhogo","San Pédro","Bassam","Bouaké","Tanda","Denguélé"],"D2": ["ASEC B","Africa B","Stade B","SOA B","Korhogo B","San Pédro B","Bassam B","Bouaké B","Tanda B","Denguélé B"]},
+            "Égypte": {"D1": ["Al Ahly","Zamalek","Pyramids FC","Al Masry","Smouha","ENPPI","Ceramica Cleopatra","El Gouna","Ismaily","Arab Contractors"],"D2": ["Al Ahly B","Zamalek B","Pyramids B","Al Masry B","Smouha B","ENPPI B","Ceramica B","Gouna B","Ismaily B","Contractors B"]},
+            "Éthiopie": {"D1": ["Saint-George","Ethiopian Coffee","Fasil Kenema","Wolkite City","Adama City","Bahir Dar City","Jimma","Hawassa","Mekelle","Arba Minch"],"D2": ["Saint-George B","Coffee B","Fasil B","Wolkite B","Adama B","Bahir Dar B","Jimma B","Hawassa B","Mekelle B","Arba Minch B"]},
+            "Gabon": {"D1": ["AS Mangasport","AS Gabès","AS Stade Mandji","Cercle Mbéri","CS Sfax","FC 105","Olympique","Stade","US Bitam","Ust Oyam"],"D2": ["AS Gabès B","Cercle B","FC 105 B","Libreville","Mandji","Mbéri","Oyem","Port-Gentil","Stade B","Tchibanga"]},
+            "Gambie": {"D1": ["Gambia Ports Authority","Real de Banjul","Brikama United","Gamtel","Armed Forces","Gachibowli","Jarra","Marimoo","Sere Kunda","Talingding"],"D2": ["Aviation","Banjul","Brikama","GBA B","Gamtel B","Marimoo B","Real B","Sere Kunda B","Tallinding B","Toubab"]},
+            "Ghana": {"D1": ["Hearts of Oak","Asante Kotoko","Medeama","Bechem United","Berekum Chelsea","Dreams FC","Great Olympics","Legon Cities","Real Tamale","Karela United"],"D2": ["Hearts of Oak B","Asante Kotoko B","Medeama B","Bechem B","Chelsea B","Dreams B","Olympics B","Legon B","Tamale B","Karela B"]},
+            "Guinée": {"D1": ["Horoya AC","Milo FC","Ashanti GB","Wakriya AC","Fello Star","Kaloum Star","Siguiri","Kankan","Labé","N'Zérékoré"],"D2": ["Horoya B","Milo B","Ashanti B","Wakriya B","Fello B","Kaloum B","Siguiri B","Kankan B","Labé B","N'Zérékoré B"]},
+            "Guinée équatoriale": {"D1": ["Deportivo Niefang","Leones Vegetarianos","Atlético Semu","Kano","Akones","Sonatel","Real","Bata","Malabo","Mongomo"],"D2": ["Deportivo B","Leones B","Semu B","Kano B","Akones B","Sonatel B","Real B","Bata B","Malabo B","Mongomo B"]},
+            "Kenya": {"D1": ["Gor Mahia","AFC Leopards","Tusker","Bandari","KCB","Mathare United","Ulinzi Stars","Kariobangi Sharks","Wazito","Posta Rangers"],"D2": ["Gor Mahia B","Leopards B","Tusker B","Bandari B","KCB B","Mathare B","Ulinzi B","Kariobangi B","Wazito B","Posta B"]},
+            "Liberia": {"D1": ["LPRC Oilers","Mighty Barrolle","Invincible Eleven","Nimba United","Liberian Police","Sable","Seneca","Barrack","Kakata","Monrovia"],"D2": ["LPRC B","Barrolle B","IE B","Nimba B","Police B","Sable B","Seneca B","Barrack B","Kakata B","Monrovia B"]},
+            "Libye": {"D1": ["Al Ahli Tripoli","Al Ittihad","Al Madina","Al Nasr","Al Tahaddy","Al Ahli Benghazi","Al Hilal","Al Khaleej","Al Najma","Al Shati"],"D2": ["Ahli Tripoli B","Ittihad B","Madina B","Nasr B","Tahaddy B","Ahli Benghazi B","Hilal B","Khaleej B","Najma B","Shati B"]},
+            "Madagascar": {"D1": ["AS Adema","Fosa Juniors","CNaPS Sports","USJF Ravinala","AS Fortior","Tana","Morondava","Fianarantsoa","Toamasina","Mahajanga"],"D2": ["Adema B","Fosa B","CNaPS B","USJF B","Fortior B","Tana B","Morondava B","Fianarantsoa B","Toamasina B","Mahajanga B"]},
+            "Malawi": {"D1": ["Nyasa Big Bullets","Mighty Wanderers","Silver Strikers","Blue Eagles","Civo United","Karonga United","Moyale Barracks","Nkhotakota","Kamuzu Barracks","Sable Farming"],"D2": ["Bullets B","Wanderers B","Silver B","Eagles B","Civo B","Karonga B","Moyale B","Nkhotakota B","Kamuzu B","Sable B"]},
+            "Mali": {"D1": ["Stade Malien","Djoliba AC","AS Réal Bamako","CO Bamako","AS Bakaridjan","US Bougouba","AS Korofina","Onze Créateurs","FC Diarra","Binga FC"],"D2": ["Stade B","Djoliba B","Réal B","CO B","Bakaridjan B","Bougouba B","Korofina B","Onze B","Diarra B","Binga B"]},
+            "Maroc": {"D1": ["Raja Casablanca","Wydad Casablanca","AS FAR","RS Berkane","Moghreb Tétouan","Hassania Agadir","Olympic Safi","FUS Rabat","Difaâ El Jadida","Renaissance Zemamra"],"D2": ["Raja B","Wydad B","ASFAR B","Berkane B","Tétouan B","Agadir B","Safi B","FUS B","Difaâ B","Zemamra B"]},
+            "Mauritanie": {"D1": ["FC Nouadhibou","ASC Tevragh-Zeïna","ASAC Concorde","ACS Ksar","Medine","Kaédi","Nouakchott","Tidjikja","Zouérate","Atar"],"D2": ["Nouadhibou B","Tevragh B","Concorde B","Ksar B","Medine B","Kaédi B","Nouakchott B","Tidjikja B","Zouérate B","Atar B"]},
+            "Mozambique": {"D1": ["Ferroviário Maputo","Costa do Sol","Ferroviário Nampula","Ferroviário Beira","Têxtil do Punguè","Chingale","Matchedje","Nacala","São Paulo","União"],"D2": ["Ferroviário Maputo B","Costa do Sol B","Nampula B","Beira B","Têxtil B","Chingale B","Matchedje B","Nacala B","São Paulo B","União B"]},
+            "Namibie": {"D1": ["African Stars","Unam","Orlando Pirates Namibie","Civics","Tura Magic","Mighty Gunners","Blue Waters","Eleven Arrows","Black Africa","Tigers"],"D2": ["African Stars B","Unam B","Orlando B","Civics B","Magic B","Gunners B","Waters B","Arrows B","Africa B","Tigers B"]},
+            "Niger": {"D1": ["ASFAN","AS GNN","AS Niamey","AFC","Gendarmerie","Douanes","Police","Sahel","Zarmakoye","Zinder"],"D2": ["ASFAN B","GNN B","Niamey B","AFC B","Gendarmerie B","Douanes B","Police B","Sahel B","Zarmakoye B","Zinder B"]},
+            "Nigéria": {"D1": ["Enyimba","Rivers United","Kano Pillars","Plateau United","Akwa United","Lobi Stars","Sunshine Stars","Gombe United","Niger Tornadoes","Wikki Tourists"],"D2": ["Enyimba B","Rivers B","Kano B","Plateau B","Akwa B","Lobi B","Sunshine B","Gombe B","Tornadoes B","Wikki B"]},
+            "Ouganda": {"D1": ["Vipers","KCCA","Express","SC Villa","URA","Wakiso Giants","BUL","Busoga United","Gaddafi","Onduparaka"],"D2": ["Vipers B","KCCA B","Express B","SC Villa B","URA B","Wakiso B","BUL B","Busoga B","Gaddafi B","Onduparaka B"]},
+            "RDC": {"D1": ["TP Mazembe","AS Vita Club","DCMP","Motema Pembe","Renaissance","Sanga Balende","Groupe Bazano","Manika","Tshinkunku","OC Bukavu"],"D2": ["Mazembe B","Vita B","DCMP B","Motema B","Renaissance B","Sanga B","Bazano B","Manika B","Tshinkunku B","Bukavu B"]},
+            "Rwanda": {"D1": ["APR","Rayon Sports","Police","Musanze","Mukura","Etincelles","Kiyovu","Gorilla","AS Kigali","Rwamagana"],"D2": ["APR B","Rayon B","Police B","Musanze B","Mukura B","Etincelles B","Kiyovu B","Gorilla B","Kigali B","Rwamagana B"]},
+            "Sao Tomé": {"D1": ["Andorinha","Boa Vista","Inter Bom-Bom","Juve","Militar","Os Operários","Príncipe","Santos","Trindade","UDR"],"D2": ["Andorinha B","Boa Vista B","Inter B","Juve B","Militar B","Operários B","Príncipe B","Santos B","Trindade B","UDR B"]},
+            "Sénégal": {"D1": ["Dakar Sacré-Cœur","Jaraaf","Teungueth","AS Pikine","Casa Sports","Diambars","Mbour","Guédiawaye","Stade de Mbour","Niarry Tally"],"D2": ["Sacré-Cœur B","Jaraaf B","Teungueth B","Pikine B","Casa B","Diambars B","Mbour B","Guédiawaye B","Stade B","Niarry B"]},
+            "Seychelles": {"D1": ["St Michel","St Louis","La Passe","Red Star","Anse Réunion","Bel Air","Côte d'Or","Forest","Praslin","Victoria"],"D2": ["St Michel B","St Louis B","La Passe B","Red Star B","Anse B","Bel Air B","Côte d'Or B","Forest B","Praslin B","Victoria B"]},
+            "Sierra Leone": {"D1": ["Bo Rangers","East End Lions","Mighty Blackpool","FC Kallon","Freetown City","Diamond Stars","Kamboi Eagles","Central Parade","Ports Authority","SLIFA"],"D2": ["Bo Rangers B","East End B","Blackpool B","Kallon B","Freetown B","Diamond B","Kamboi B","Parade B","Ports B","SLIFA B"]},
+            "Somalie": {"D1": ["Heegan","Jeune","Fiorentina","Elman","Jamhuuriya","Mogadishu","Banadir","Horseed","Jazeera","Kismaayo"],"D2": ["Heegan B","Jeune B","Fiorentina B","Elman B","Jamhuuriya B","Mogadishu B","Banadir B","Horseed B","Jazeera B","Kismaayo B"]},
+            "Soudan": {"D1": ["Al Hilal Omdurman","Al Merrikh","Al Ahli Khartoum","Al Rabta","Al Hilal Kadougli","Al Ahli Wad Madani","Al Ittihad","Al Khartoum","Al Moudher","Al Nil"],"D2": ["Hilal Omdurman B","Merrikh B","Ahli Khartoum B","Rabta B","Hilal Kadougli B","Ahli Wad Madani B","Ittihad B","Khartoum B","Moudher B","Nil B"]},
+            "Soudan du Sud": {"D1": ["Al Hilal Juba","Al Merrikh Juba","Atlabara","Malakia","Munuki","Rock City","Savana","Star","Tigers","Wau"],"D2": ["Hilal Juba B","Merrikh Juba B","Atlabara B","Malakia B","Munuki B","Rock City B","Savana B","Star B","Tigers B","Wau B"]},
+            "Tanzanie": {"D1": ["Young Africans","Simba SC","Azam FC","Coastal Union","Mbeya City","Kagera Sugar","Mtwara","Polisi","Tanzania Prisons","Maji Maji"],"D2": ["Yangas B","Simba B","Azam B","Coastal B","Mbeya B","Kagera B","Mtwara B","Polisi B","Prisons B","Maji B"]},
+            "Tchad": {"D1": ["AS CotonTchad","Renaissance","Elect-Sport","Gazelle","Postel","Tours","Abéché","Moundou","Mongo","Sarh"],"D2": ["CotonTchad B","Renaissance B","Elect B","Gazelle B","Postel B","Tours B","Abéché B","Moundou B","Mongo B","Sarh B"]},
+            "Togo": {"D1": ["AS Togo Port","Sara FC","Koroki","Unisport","Dyco","ASKO","Gomido","Maranatha","Anges FC","Gbohloe-su"],"D2": ["Togo Port B","Sara B","Koroki B","Unisport B","Dyco B","ASKO B","Gomido B","Maranatha B","Anges B","Gbohloe B"]},
+            "Tunisie": {"D1": ["Espérance Tunis","Étoile du Sahel","Club Africain","US Monastir","CS Sfaxien","US Ben Guerdane","Olympique Béja","Stade Tunisien","AS Soliman","Club Bizertin"],"D2": ["Espérance B","Étoile B","Africain B","Monastir B","Sfaxien B","Ben Guerdane B","Béja B","Stade B","Soliman B","Bizertin B"]},
+            "Zambie": {"D1": ["Zanaco","Nkana","Power Dynamos","Green Buffaloes","ZESCO United","Forest Rangers","Kabwe Warriors","Mufulira Wanderers","Konkola","Nkwazi"],"D2": ["Zanaco B","Nkana B","Power B","Buffaloes B","ZESCO B","Forest B","Kabwe B","Wanderers B","Konkola B","Nkwazi B"]},
+            "Zimbabwe": {"D1": ["Dynamos","Highlanders","CAPS United","FC Platinum","Ngezi Platinum","Triangle United","Chicken Inn","Bulawayo Chiefs","Herentals","Yadah"],"D2": ["Dynamos B","Highlanders B","CAPS B","Platinum B","Ngezi B","Triangle B","Chicken B","Bulawayo B","Herentals B","Yadah B"]},
+
+            // ===== EUROPE (UEFA) =====
+            "Allemagne": {"D1": ["Bayern Munich","Dortmund","RB Leipzig","Leverkusen","Stuttgart","Eintracht Frankfurt","Wolfsburg","Gladbach","Bochum","Heidenheim","Werder Bremen","Augsburg"],"D2": ["Union Berlin","Köln","Hamburg","Fortuna","Karlsruhe","St Pauli","Hannover","Nürnberg","Paderborn","Darmstadt","Elversberg","Osnabrück"]},
+            "Angleterre": {"D1": ["Manchester City","Arsenal","Liverpool","Chelsea","Manchester United","Tottenham","Newcastle","Aston Villa","West Ham","Brighton","Wolves","Crystal Palace"],"D2": ["Leeds","Sheffield United","Sunderland","West Brom","Blackburn","Watford","Middlesbrough","Bristol City","Coventry","Norwich","Plymouth","Swansea"]},
+            "Autriche": {"D1": ["Red Bull Salzburg","Rapid Vienna","Austria Vienna","Sturm Graz","Wolfsberger","LASK","Ried","Admira","Hartberg","Altach","WSG Tirol","Klagenfurt"],"D2": ["St. Pölten","Kapfenberg","Floridsdorfer","Amstetten","Bischofshofen","Dornbirn","Leoben","Liefering","Pinkafeld","Ritzing","Schwaz","Vienna"]},
+            "Belgique": {"D1": ["Club Brugge","Anderlecht","Genk","Gent","Standard Liège","Mechelen","Cercle Brugge","Charleroi","OH Leuven","Union SG","Dender","Westerlo"],"D2": ["Beerschot","Lommel","Seraing","Patro","RFC Liège","Zulte Waregem","Lierse","Francs Borains","Eupen","Vise","Molene","Mouscron"]},
+            "Bulgarie": {"D1": ["Ludogorets","CSKA Sofia","Levski Sofia","Botev Plovdiv","Cherno More","Slavia Sofia","Lokomotiv Plovdiv","Arda","Beroe","Spartak Varna","Pirin","Etar"],"D2": ["CSKA 1948","Dobrudzha","Dunav","Haskovo","Krumovgrad","Ludogorets II","Marek","Montana","OFK Pirin","Septemvri","Sportist","Strumska"]},
+            "Chypre": {"D1": ["APOEL","Omonia","AEL","Anorthosis","Apollon","AEK Larnaca","Pafos","Nea Salamis","Karmiotissa","Achna","Ayia Napa","Doxa"],"D2": ["AEZ","Akritas","Alki","Anagennisi","ASIL","Ermis","Ethnikos","MEAP","Othellos","Paralimni","Ypsonas","Zakakiou"]},
+            "Croatie": {"D1": ["Dinamo Zagreb","Hajduk Split","Rijeka","Osijek","Slaven Belupo","Istra 1961","Gorica","Lokomotiva","Šibenik","Varaždin","Inker","HNK"],"D2": ["Dugopolje","Vukovar","Bjelovar","Cibalia","Koprivnica","Marsonia","Pula","Rudeš","Solin","Solin","Zadar","Zagreb"]},
+            "Danemark": {"D1": ["Copenhagen","Brøndby","Midtjylland","AGF","Randers","Nordsjælland","Lyngby","Vejle","Horsens","SønderjyskE","Silkeborg","Viborg"],"D2": ["Esbjerg","Hobro","Fredericia","Hvidovre","Kolding","Næstved","Roskilde","Skive","Thisted","Vendsyssel","Aalborg","Brabrand"]},
+            "Écosse": {"D1": ["Celtic","Rangers","Hearts","Hibernian","Aberdeen","Kilmarnock","Dundee","St Mirren","Ross County","Livingston","St Johnstone","Motherwell"],"D2": ["Dundee United","Partick Thistle","Ayr United","Dunfermline","Morton","Queen's Park","Raith Rovers","Cove Rangers","Hamilton","Inverness","Falkirk","Airdrieonians"]},
+            "Espagne": {"D1": ["Real Madrid","Barcelona","Atletico Madrid","Sevilla","Real Sociedad","Villarreal","Betis","Valencia","Bilbao","Girona","Osasuna","Getafe"],"D2": ["Levante","Eibar","Sporting Gijón","Tenerife","Leganés","Racing","Saragosse","Almería","Cartagena","Burgos","Espanyol","Huesca"]},
+            "Finlande": {"D1": ["HJK","KuPS","SJK","Inter Turku","Ilves","Honka","Lahti","Haka","AC Oulu","Mariehamn","EIF","Jaro"],"D2": ["Gnistan","KäPa","Tampere","Espoo","HyPS","JJK","OPS","Pallokerho","SalPa","SiPS","TPV","ViVe"]},
+            "France": {"D1": ["PSG","Marseille","Lyon","Monaco","Lille","Nice","Rennes","Lens","Strasbourg","Montpellier","Nantes","Toulouse"],"D2": ["Bordeaux","Saint-Étienne","Metz","Le Havre","Auxerre","Sochaux","Guingamp","Annecy","Laval","Bastia","Paris FC","Clermont"]},
+            "Grèce": {"D1": ["Olympiacos","Panathinaikos","AEK Athens","PAOK","Aris","Panetolikos","Volos","Ionikos","Lamia","OFI","Atromitos","Kifisia"],"D2": ["Larissa","Apollon","Chania","Diagoras","Kalamata","Niki","PAS Giannina","Panthrakikos","Proodeftiki","Thessaloniki","Veria","Xanthi"]},
+            "Hongrie": {"D1": ["Ferencváros","MOL Vidi","Puskás Akadémia","Debrecen","Kecskemét","Mezőkövesd","Paks","Zalaegerszeg","Diósgyőr","Újpest","Kisvárda","MTK"],"D2": ["Békéscsaba","Budafoki","Csákvár","Dunaújváros","Eger","Gyirmót","Haladás","Kozármisleny","Nyíregyháza","Siófok","Szentlőrinc","Tiszakécske"]},
+            "Irlande": {"D1": ["Shamrock Rovers","Dundalk","St Patrick's Athletic","Derry City","Sligo Rovers","Bohemians","Waterford","Shelbourne","Drogheda","Longford","Cork City","Finn Harps"],"D2": ["Bray Wanderers","Athlone","Cobh Ramblers","Galway United","Kerry","Treaty United","Wexford","Finn Harps B","Longford B","Cork B","Dundalk B","Shelbourne B"]},
+            "Islande": {"D1": ["Valur","Víkingur Reykjavík","Breiðablik","FH","Stjarnan","KR","Keflavík","Akureyri","Fylkir","HK","Þór","KA"],"D2": ["Afturelding","Fjölnir","Grindavík","Hafnarfjörður","Hamar","Höttur","Kórdrengir","Leiknir","Njarðvík","Reykjavík","Selfoss","Vestri"]},
+            "Italie": {"D1": ["Inter Milan","AC Milan","Juventus","Atalanta","Napoli","Roma","Lazio","Fiorentina","Bologna","Torino","Genoa","Udinese"],"D2": ["Palermo","Bari","Sampdoria","Spezia","Como","Cremonese","Parma","Cesena","Reggiana","Ascoli","Frosinone","Ternana"]},
+            "Kazakhstan": {"D1": ["Astana","Kairat","Tobol","Ordabasy","Aktobe","Shakhter","Kyzylzhar","Atyrau","Zhetysu","Kaisar","Taraz","Ekibastuz"],"D2": ["Altai","Arys","Baykonur","Caspiy","Ile","Kuanysh","Kyran","Maktaaral","Nur","Ortal","Sunkar","Zhetysu B"]},
+            "Lituanie": {"D1": ["Žalgiris","Riteriai","Dainava","Hegelmann","Sūduva","Panevėžys","Kauno Žalgiris","Banga","Cibas","Gargždai","Jonava","Neptūnas"],"D2": ["Babrungas","Be1","Fortuna","Klaipėda","Kruoja","Marijampolė","Marijampolė City","Šiauliai","Šilutė","Tauras","Utenis","Vilnius"]},
+            "Luxembourg": {"D1": ["F91 Dudelange","Swift Hesperange","Racing Luxembourg","Progrès Niederkorn","Differdange 03","Fola Esch","Etelbruck","Union Luxembourg","Victoria Rosport","Hostert","Wiltz","Mondorf"],"D2": ["Aris","Bettembourg","Escher","Grevenmacher","Jeunesse Esch","Käerjeng","Mertert","Munsbach","Niederkorn","Rodingen","Schengen","UNA Strassen"]},
+            "Macédoine": {"D1": ["Shkupi","Struga","Sileks","Bregalnica","FK Makedonija","Pobeda","Rabotnički","Vardar","Pelister","Belasica","Tikveš","Osogovo"],"D2": ["Besa","Borec","Drita","Fortuna","Gostivar","Kamenica","Kozuf","Lokomotiva","Novaci","Ohrid","Skopje","Teteks"]},
+            "Malte": {"D1": ["Floriana","Ħamrun Spartans","Birkirkara","Gżira United","Mosta","Balzan","Sliema Wanderers","Hibernians","Marsaxlokk","Gudja United","Pietà","Valletta"],"D2": ["Attard","Birzebbuga","Dingli","Fgura","Kalkara","Kirkop","Luqa","Mqabba","Msida","Naxxar","St. Andrews","Tarxien"]},
+            "Moldavie": {"D1": ["Sheriff","Petrocub","Milsami","Zimbru","Dacia","Speranța","Sfântul Gheorghe","Florești","Bălți","Strășeni","Cahul","Cimișlia"],"D2": ["Edineț","Glodeni","Nisporeni","Orhei","Rezina","Rîșcani","Singerei","Soroca","Ungheni","Vadul lui Vodă","Varnița","Văsieni"]},
+            "Monténégro": {"D1": ["Budućnost","Sutjeska","Dečić","Petrovac","Mladost","Jezero","Rudar","Podgorica","Zeta","Iskra","Berane","Mornar"],"D2": ["Bijelo Polje","Danilovgrad","Drezga","Grbalj","Gusinje","Hajduk","Ibar","Komovi","Lovćen","Mojkovac","Pljevlja","Rožaje"]},
+            "Norvège": {"D1": ["Rosenborg","Molde","Bodø/Glimt","Viking","Brann","Lillestrøm","Strømsgodset","Vålerenga","Sarpsborg","HamKam","Stabæk","Kristiansund"],"D2": ["Fredrikstad","Kongsvinger","Mjøndalen","Raufoss","Sogndal","Start","Åsane","Aalesund","Egersund","Hødd","Moss","Sandnes"]},
+            "Pays-Bas": {"D1": ["PSV","Ajax","Feyenoord","Twente","AZ","Utrecht","Sparta","Heerenveen","Go Ahead Eagles","NEC","Willem II","Fortuna"],"D2": ["Volendam","De Graafschap","Den Bosch","Dordrecht","Eindhoven","Emmen","Jong Ajax","Jong PSV","Jong Utrecht","Roda","Telstar","Venlo"]},
+            "Pologne": {"D1": ["Legia Warsaw","Lech Poznań","Raków","Pogoń Szczecin","Piast Gliwice","Śląsk Wrocław","Cracovia","Górnik Zabrze","Radomiak","Widzew","Zagłębie Lubin","Korona"],"D2": ["Arka Gdynia","Bruks","Chrobry","GKS Katowice","KSZO","Lechia Gdańsk","ŁKS Łódź","Miedź Legnica","Odra","Podbeskidzie","Sandecja","Tychy"]},
+            "Portugal": {"D1": ["Benfica","Porto","Sporting","Braga","Guimarães","Gil Vicente","Famalicão","Arouca","Boa Vista","Estrela","Moreirense","Vizela"],"D2": ["Leixões","Paços","Oliveirense","Marítimo","Académico","Tondela","Mafra","Länk","Feirense","Vilaverdense","Alverca","Porto B"]},
+            "République tchèque": {"D1": ["Slavia Prague","Sparta Prague","Viktoria Plzeň","Jablonec","Slovan Liberec","Baník Ostrava","Mladá Boleslav","Sigma Olomouc","Hradec Králové","Teplice","Pardubice","Zlín"],"D2": ["Dukla Prague","Vysočina","Táborsko","Bohumín","Chrudim","Karlovy Vary","Líšeň","Opava","Příbram","Sokolov","Ústí nad Labem","Varnsdorf"]},
+            "Roumanie": {"D1": ["FCSB","CFR Cluj","Universitatea Craiova","Rapid București","Sepsi OSK","Farul Constanța","Petrolul Ploiești","UTA Arad","Hermannstadt","Voluntari","U Cluj","Botoșani"],"D2": ["CSM Reșița","Gloria Bistrița","Argeș","Chindia","Mioveni","Oțelul Galați","Poli Timișoara","Slatina","Tărlungeni","Unirea Slobozia","Viitorul","Zalău"]},
+            "Russie": {"D1": ["Zenit","CSKA Moscow","Spartak Moscow","Dynamo Moscow","Lokomotiv Moscow","Krasnodar","Rostov","Akhmat Grozny","Krylia Sovetov","Orenburg","Fakel Voronezh","Ural"],"D2": ["Torpedo Moscow","Khimki","Rubin Kazan","Alania","SKA Khabarovsk","Shinnik","Neftekhimik","Tyumen","Yenisey","Volgar","Baltika","Metallurg"]},
+            "Serbie": {"D1": ["Crvena Zvezda","Partizan","TSC","Vojvodina","Čukarički","Radnički","Novi Pazar","Napredak","Mladost","Radnik","Železničar","Javor"],"D2": ["Borac","Dubocica","Indjija","Kolubara","Macva","Metalac","Novi Sad","OFK Beograd","Rad","Smederevo","Zlatibor","Zvezdara"]},
+            "Slovaquie": {"D1": ["Slovan Bratislava","Dunajská Streda","Spartak Trnava","Žilina","Trenčín","Ružomberok","Banská Bystrica","Zemplín Michalovce","Skalica","Podbrezová","Nitra","Zlaté Moravce"],"D2": ["Humenné","Košice","Liptovský Mikuláš","Malženice","Myjava","Nové Mesto","Pohronie","Prešov","Púchov","Rimavská Sobota","Spišská Nová Ves","Žiar nad Hronom"]},
+            "Slovénie": {"D1": ["Olimpija Ljubljana","Maribor","Celje","Mura","Domžale","Bravo","Koper","Radomlje","Krka","Rogaška","Aluminij","Tabor"],"D2": ["Beltinci","Bilje","Dekani","Dravograd","Fužinar","Gorica","Ilirija","Jadran","Krško","Ljutomer","Rudar","Triglav"]},
+            "Suède": {"D1": ["Malmö","AIK","Djurgården","Hammarby","Elfsborg","Häcken","Kalmar","IFK Göteborg","Mjällby","Varberg","Sirius","Degerfors"],"D2": ["Gais","Örebro","Helsingborg","Brommapojkarna","Landskrona","Trelleborg","Utsiktens","Skövde","Gefle","Västerås","Örgryte","Brage"]},
+            "Suisse": {"D1": ["Young Boys","Basel","Servette","Luzern","St. Gallen","Zürich","Grasshopper","Lugano","Winterthur","Lausanne","Sion","Yverdon"],"D2": ["Aarau","Bellinzona","Baden","Kriens","Neuchâtel","Schaffhausen","Thun","Vaduz","Wil","Zofingen","Lancy","Cham"]},
+            "Turquie": {"D1": ["Galatasaray","Fenerbahçe","Beşiktaş","Trabzonspor","Başakşehir","Sivasspor","Konyaspor","Alanyaspor","Antalyaspor","Adana Demirspor","Gaziantep","Hatayspor"],"D2": ["Rizespor","Samsunspor","Bodrumspor","Bandırmaspor","Boluspor","Bursaspor","Çorum","Erzurumspor","Gençlerbirliği","Giresunspor","Kocaelispor","Yeni Malatyaspor"]},
+            "Ukraine": {"D1": ["Shakhtar Donetsk","Dynamo Kyiv","Dnipro","Zorya","Vorskla","Oleksandriya","Polissya","Kolos","Chornomorets","Veres","Lviv","Minai"],"D2": ["Brovary","Bukovyna","Chernihiv","Epitsentr","FSC Mariupol","Karpaty","Kremin","Metalist","Nyva","Podillya","Prykarpattia","Volyn"]},
+
+            // ===== AMÉRIQUE DU SUD (CONMEBOL) =====
+            "Argentine": {"D1": ["River Plate","Boca Juniors","Vélez","San Lorenzo","Racing","Independiente","Lanús","Talleres","Defensa y Justicia","Huracán","Atlético Tucumán","Central"],"D2": ["Gimnasia","Estudiantes","Almagro","Quilmes","Temperley","Almirante","Brown","Ferro","Morón","San Martín","All Boys","Arsenal"]},
+            "Bolivie": {"D1": ["Bolívar","The Strongest","Oriente Petrolero","Blooming","San José","Guabirá","Real Santa Cruz","Real Potosí","Wilstermann","Nacional Potosí","Independiente","Aurora"],"D2": ["Libertad","Municipal","Oruro","Potosí","Reyes","San Antonio","Sucre","Tarija","Trinidad","Unión","Vinto","Wilstermann B"]},
+            "Brésil": {"D1": ["Flamengo","Palmeiras","Atlético Mineiro","Fluminense","Corinthians","Internacional","Grêmio","São Paulo","Bahia","Ceará","Fortaleza","Cruzeiro"],"D2": ["Vasco","Santos","Coritiba","Avai","América","Sport","Chapecoense","Tombense","Vitória","CRB","ABC","Sampaio"]},
+            "Chili": {"D1": ["Colo-Colo","Universidad de Chile","Universidad Católica","Audax Italiano","Everton","O'Higgins","Palestino","Coquimbo Unido","Huachipato","Ñublense","Deportes Iquique","Curicó Unido"],"D2": ["Antofagasta","Cobreloa","Deportes La Serena","Iberia","La Cruz","Magallanes","Puerto Montt","Rangers","San Luis","Santiago Wanderers","Temuco","Unión San Felipe"]},
+            "Colombie": {"D1": ["Atlético Nacional","Millonarios","América de Cali","Santa Fe","Junior","Cali","Medellín","Tolima","Pereira","Huila","Bucaramanga","Deportes Quindío"],"D2": ["Boca Juniors","Orsomarso","Cúcuta","Real Cartagena","Leones","Unión Magdalena","Quindío","Tigres","Barranquilla","Valledupar","Atlético B","Huila B"]},
+            "Équateur": {"D1": ["LDU Quito","Barcelona SC","Emelec","Independiente del Valle","Aucas","Deportivo Cuenca","Mushuc Runa","Orense","Técnico Universitario","Libertad","Gualaceo","Delfín"],"D2": ["América","Atlético Santo Domingo","CD Olmedo","Chacaritas","Durazno","El Nacional","Imbabura","Manta","Portoviejo","Río Aguarico","Santa Rita","Tulcán"]},
+            "Paraguay": {"D1": ["Olimpia","Cerro Porteño","Libertad","Sportivo Luqueño","Guaraní","Nacional","Sol de América","Guaireña","Tacuary","Sportivo Ameliano","Resistencia","12 de Octubre"],"D2": ["Caacupé","Carapeguá","Concepción","Fernando de la Mora","Independiente","Itauguá","Martín Ledesma","Ovetense","Pilcomayo","Presidente Hayes","Santani","Villa Hayes"]},
+            "Pérou": {"D1": ["Alianza Lima","Universitario","Sporting Cristal","Melgar","Cienciano","Cusco","Binacional","Mannucci","Unión Comercio","Deportivo Municipal","Cantolao","ADT"],"D2": ["Atlético Grau","Chavelines","Deportivo Coopsol","Huancayo","Juan Pablo II","Los Chankas","Pirata","San Marcos","Unión Huaral","UTC","Villa","Wanchaq"]},
+            "Uruguay": {"D1": ["Peñarol","Nacional","Liverpool Montevideo","Cerro","Defensor Sporting","Wanderers","River Plate Montevideo","Racing Montevideo","Plaza Colonia","Fénix","La Luz","Maldonado"],"D2": ["Albion","Atenas","Bella Vista","Central Español","Cerro Largo","Juventud","Miramar","Progreso","Rampla Juniors","Rocha","Sud América","Villa Española"]},
+            "Venezuela": {"D1": ["Caracas FC","Deportivo Táchira","Mineros","Monagas","Zamora","Deportivo La Guaira","Estudiantes","Portuguesa","Academia Puerto Cabello","Carabobo","UCV","Metropolitanos"],"D2": ["Atlético Falcón","Ciudad Vinotinto","Cumaná","Dvo Lara","Guárico","Heroes","Llaneros","Margarita","Nueva Esparta","Tinaquillo","Trujillo","Yaracuy"]},
+
+            // ===== AMÉRIQUE DU NORD (CONCACAF) =====
+            "Canada": {"D1": ["Toronto FC","Vancouver Whitecaps","Montreal Impact","Cavalry FC","Forge FC","Pacific FC","York United","Atlético Ottawa","Valour FC","HFX Wanderers","Edmonton","FCE"],"D2": ["Blainville","FC Laval","Guelph","Hamilton","Kingston","London","Mississauga","Ottawa South","Scarborough","Thunder Bay","Windsor","Woodbridge"]},
+            "Costa Rica": {"D1": ["Saprissa","Alajuelense","Herediano","Cartaginés","San Carlos","Pérez Zeledón","Puntarenas","Sporting San José","Guadalupe","Santa Ana","Liberia","Río"],"D2": ["Aserrí","Cariari","Corredores","Coto Brus","Golfito","Hatillo","Nicoya","Palmares","Pococí","Siquirres","Turrialba","Upala"]},
+            "États-Unis": {"D1": ["LA Galaxy","Inter Miami","Seattle Sounders","LAFC","Columbus","Atlanta","NYCFC","Portland","Austin","Cincinnati","Nashville","Toronto"],"D2": ["Louisville","Sacramento","Tampa Bay","Pittsburgh","Indy","San Antonio","New Mexico","OKC","Rising","Birmingham","Memphis","Monterey"]},
+            "Guatemala": {"D1": ["Comunicaciones","Municipal","Antigua GFC","Xelajú","Guastatoya","Malacateco","Iztapa","Cobán Imperial","Mixco","Nueva Santa Rosa","San Pedro","Juventud"],"D2": ["Amatitlán","Chinautla","Chiquimula","Escuintla","Flores","Huehuetenango","Jalapa","Jutiapa","Quetzaltenango","Retalhuleu","Salamá","Sololá"]},
+            "Haïti": {"D1": ["Don Bosco","Racing Club Haïtien","Cavaly","America","Arcahaie","Baltimore","Capoise","FICA","Ouanaminthe","Tempête","Triomphe","Violette"],"D2": ["Aigle Noir","AS Sud-Est","Bonne Fin","Bothelo","Chaîne","Dérac","Éclair","Grand Goâve","Jeunesse Sportive","Kraze","Petit-Goâve","Roulado"]},
+            "Honduras": {"D1": ["Olimpia","Motagua","Marathón","Real España","Vida","Lobos UPNFM","Victoria","Honduras Progreso","Juticalpa","Olancho","Tela","Yoro"],"D2": ["Atlético Choloma","Boca Juniors","Comayagua","Danlí","El Paraíso","Gracias","La Ceiba","La Paz","Nacaome","Ocotepeque","Santa Bárbara","Trujillo"]},
+            "Jamaïque": {"D1": ["Portmore United","Cavalier","Mount Pleasant","Waterhouse","Arnett Gardens","Humble Lions","Molynes","Tivoli Gardens","Dunbeholden","Vere United","Chapleton","Montego Bay"],"D2": ["Albion","Browns Town","Clarendon","Falmouth","Green Pond","Lucea","Mandeville","May Pen","Old Harbour","Saint Ann","Santa Cruz","Spanish Town"]},
+            "Mexique": {"D1": ["América","Chivas","Tigres","Monterrey","Pumas","Cruz Azul","Santos","Pachuca","Atlas","Necaxa","Juárez","Querétaro"],"D2": ["Atlante","León","Celaya","Tampico","Mineros","Venados","Cimarrones","Alebrijes","Dorados","Cancún","Tepatitlán","Atl. Morelia"]},
+            "Nicaragua": {"D1": ["Real Estelí","Diriangén","Managua","Deportivo Ocotal","Juventus","Municipal Jalapa","Carazo","Chinandega","Granada","León","Masaya","Rivas"],"D2": ["Acoyapa","Bluefields","Boa","Bocay","Chontales","El Rama","Jinotega","Lago","Matagalpa","Nueva Segovia","Puesto","Sumo"]},
+            "Panama": {"D1": ["Tauro","Árabe Unido","Independiente","Chorrillo","Plaza Amador","San Francisco","Alianza","Universitario","Atlético Chiriquí","Herrera","Panamá City","Veraguas"],"D2": ["Aguadulce","Bocas del Toro","Chepo","Colón","Costa del Este","Darién","El Copé","Llano","Los Santos","Parita","Pedasi","Portobelo"]},
+            "Salvador": {"D1": ["Alianza","FAS","Águila","Santa Tecla","Jocoro","Isidro Metapán","Chalatenango","San Salvador","Cuscatlán","Fuerte San Francisco","Luis Ángel Firpo","Once Deportivo"],"D2": ["Ahuachapán","Cabañas","Chalchuapa","Cojutepeque","Ilopango","La Unión","Metapán","Sensuntepeque","Sonsonate","Suchitoto","Zacatecoluca","Zaragoza"]},
+            "Trinité-et-Tobago": {"D1": ["Police FC","San Juan Jabloteh","W Connection","Defence Force","Club Sando","Caledonia","Marabella","Morvant","Point Fortin","St. Ann's Rangers","Petrotrin","Chaguanas"],"D2": ["Arima","Biche","DeBé","Diego Martin","Fyzabad","Gulf View","La Horquetta","Laventille","Malabar","Mayaro","Penal","Siparia"]},
+
+            // ===== ASIE (AFC) =====
+            "Arabie Saoudite": {"D1": ["Al Hilal","Al Nassr","Al Ahli","Al Ittihad","Al Shabab","Al Fateh","Al Ettifaq","Al Raed","Al Wehda","Al Khaleej","Al Riyadh","Al Najma"],"D2": ["Al Adalh","Al Ansar","Al Batin","Al Diriyah","Al Faisaly","Al Hazem","Al Jabalain","Al Jeel","Al Kholood","Al Muzahimiyya","Al Orubah","Al Sahel"]},
+            "Australie": {"D1": ["Sydney FC","Melbourne Victory","Melbourne City","Brisbane","Adelaide","Perth","Newcastle","Wellington","Central Coast","Western Sydney","Macarthur","Gold Coast"],"D2": ["Marconi","South Melbourne","Heidelberg","Hume City","Avondale","Campbelltown","Blacktown","Manly","Sutherland","Bonnyrigg","Fremantle","Brisbane City"]},
+            "Chine": {"D1": ["Shanghai Port","Guangzhou","Beijing Guoan","Shandong","Shenzhen","Zhejiang","Wuhan","Tianjin","Changchun","Hebei","Dalian","Yanbian"],"D2": ["Sichuan","Hangzhou","Nanjing","Qingdao","Xi'an","Chongqing","Guangxi","Hunan","Fujian","Jiangxi","Anhui","Yunnan"]},
+            "Corée du Sud": {"D1": ["Ulsan","Jeonbuk","Pohang","Gwangju","Incheon","Daegu","Suwon","Seoul","Jeju","Daejeon","Gangwon","Munhwa"],"D2": ["Busan","Ansan","Cheonan","Chungnam","Seongnam","Bucheon","Anyang","Gimpo","Gyeongnam","Hwasun","Pocheon","Chungbuk"]},
+            "Émirats Arabes Unis": {"D1": ["Al Ain","Al Wahda","Al Jazira","Sharjah","Shabab Al Ahli","Al Nasr","Al Bataeh","Ajman","Emirates","Hatta","Dibba","Khorfakkan"],"D2": ["Abu Dhabi","Al Dhafra","Al Fujairah","Al Ittihad","Al Urooba","Arada","Dibba Al Hisn","Dibba Fujairah","Ras Al Khaimah","Repton","Umm Al Quwain","Yas"]},
+            "Inde": {"D1": ["Mohun Bagan","East Bengal","Bengaluru","Mumbai City","ATK Mohun Bagan","Chennaiyin","Hyderabad","Kerala Blasters","NorthEast United","Odisha","Jamshedpur","Goa"],"D2": ["Aizawl","Chennai City","Churchill Brothers","Gokulam Kerala","Indian Arrows","Kenkre","Neroca","Pune City","Real Kashmir","Sudeva","Traktor","Vels"]},
+            "Indonésie": {"D1": ["Bali United","Persija Jakarta","Persib Bandung","Arema","Borneo","Madura United","PSS Sleman","PSIS Semarang","PSM Makassar","Barito Putera","Persik Kediri","Persita Tangerang"],"D2": ["Bhayangkara","Deltras","Gresik","Kalteng Putra","Kota","Malang","Perseru","Persewar","Persiraja","PSS","Sidoarjo","Sragen"]},
+            "Iran": {"D1": ["Persepolis","Esteghlal","Sepahan","Tractor","Foolad","Gol Gohar","Aluminium","Zob Ahan","Mes Rafsanjan","Nassaji","Havadar","Paykan"],"D2": ["Arman Gohar","Atrak","Baderan","Chooka","Darya","Fajr Sepasi","Khooshe","Kimia","Machine Sazi","Naft Masjed Soleyman","Shahin","Shahrdari"]},
+            "Irak": {"D1": ["Al Quwa Al Jawiya","Al Zawraa","Al Shorta","Erbil","Duhok","Naft","Al Talaba","Al Najaf","Al Karkh","Al Mina'a","Al Sulaikh","Zakho"],"D2": ["Al Amanah","Al Diwaniya","Al Husseinyah","Al Kahrabaa","Al Khutoot","Al Maysan","Al Naft","Al Ramadi","Al Sawa","Al Sinjar","Al Thawra","Salahaddin"]},
+            "Japon": {"D1": ["Kawasaki","Yokohama F. Marinos","Kobe","Sanfrecce","Urawa","Nagoya","Grampus","Avispa Fukuoka","Kashima","Jubilo","Nagoja","Gamba"],"D2": ["JEF United","Cerezo","Ventforet","Iwata","Sagan","Tokyo Verdy","Mito","Oita","Machida","Fujieda","Renofa","Blaublitz"]},
+            "Jordanie": {"D1": ["Al Faisaly","Al Wehdat","Al Hussein","Shabab Al Ordon","Ramtha","Al Ahli","Al Salt","Moghayer Al Sarhan","Sahab","Ma'an","Blama","Jabal"],"D2": ["Al Arabi","Al Buqa'a","Al Jazeera","Al Karmel","Al Mahatta","Al Qastal","Al Tafila","Amman","Balqa","Jerash","Karak","Madaba"]},
+            "Koweït": {"D1": ["Kuwait SC","Qadsia","Al Arabi","Al Salmiya","Al Fahaheel","Al Shabab","Al Jahra","Al Naser","Kazma","Tadamun","Al Sulaibikhat","Burgan"],"D2": ["Al Hawalli","Al Mubarak","Al Qaisumah","Al Rai","Al Sahel","Al Wafra","Jahra","Mubarak","Rumaythiya","Salem","Salmi","Yarmouk"]},
+            "Liban": {"D1": ["Nejmeh","Ansar","Ahed","Safa","Shabab Sahel","Tadamon Sour","Tripoli","Bourj","Akhaa Ahli","Racing","Riyada","Wadi"],"D2": ["Aley","Beirut","Bekaa","Bint Jbeil","Jdeideh","Jounieh","Marj","Nabatieh","Qab Elias","Sidon","Tyre","Zahle"]},
+            "Malaisie": {"D1": ["JDT","Selangor","Kedah","Sri Pahang","Terengganu","Kuala Lumpur","Sabah","Penang","Perak","Negri Sembilan","PDRM","Melaka"],"D2": ["Kuching","Sarawak","Tawau","Kota Kinabalu","Miri","Sandakan","Lahad Datu","Tawau","Sibu","Bintulu","Mukah","Balingian"]},
+            "Oman": {"D1": ["Dhofar","Al Seeb","Al Nahda","Al Musannah","Fanja","Al Rustaq","Al Suwaiq","Sohar","Sur","Ibri","Nizwa","Bahla"],"D2": ["Al Ittihad","Al Shabab","Al Wusta","Barka","Dank","Khaburah","Liva","Mudhaibi","Muscat","Samail","Shinas","Yanqul"]},
+            "Palestine": {"D1": ["Hilal Al Quds","Shabab Al Khaleel","Markaz Balata","Thaqafi Tulkarem","Shabab Al Am'ari","Al Bireh","Ahli Al Khalil","Jabal Al Mukaber","Silwan","Beit Hanoun","Gaza","Khan Yunis"],"D2": ["Al Awda","Al Majd","Al Ram","Betunia","Dheisheh","Faisal","Hizma","Nazareth","Qalandia","Ramallah","Sur Baher","Taybeh"]},
+            "Philippines": {"D1": ["Ceres","Kaya","United City","Azkals","Stallion","Mendiola","Maharlika","Cagayan","Davao","Iloilo","Manila","Negros"],"D2": ["Bacolod","Bukidnon","Cebu","Cotabato","General Santos","Isabela","Laguna","Pampanga","Quezon","Rizal","Zamboanga","Zulu"]},
+            "Qatar": {"D1": ["Al Sadd","Al Duhail","Al Rayyan","Al Arabi","Qatar SC","Al Gharafa","Al Wakrah","Umm Salal","Al Ahli","Al Shahaniya","Al Khor","Al Sailiya"],"D2": ["Al Bidda","Al Kharaitiyat","Al Mesaimeer","Al Nasr","Al Waab","Markhiya","Muaither","Simaisma","Doha","Lusail","Pearl","West Bay"]},
+            "Singapour": {"D1": ["Lion City Sailors","Tampines Rovers","Albirex Niigata","Hougang United","Balestier Khalsa","Geylang International","Young Lions","DPMM","Jurong","Kembangan","Sengkang","Woodlands"],"D2": ["Admiralty","Ang Mo Kio","Bedok","Bishan","Bukit Batok","Bukit Merah","Changi","Clementi","Ghim Moh","Kallang","Pasir Ris","Toa Payoh"]},
+            "Syrie": {"D1": ["Al Jaish","Al Wahda","Tishreen","Hutteen","Al Karama","Al Ittihad","Al Futuwa","Al Shorta","Nawair","Jableh","Afrin","Al Yarmouk"],"D2": ["Al Haramel","Al Muhafaza","Al Qardaha","Al Qusayr","Al Rastan","Al Salam","Baniyas","Damascus","Deir Ezzor","Hama","Homs","Idlib"]},
+            "Thaïlande": {"D1": ["Buriram United","Muangthong United","Chiangrai United","Bangkok United","Port FC","Ratchaburi","Nongbua Pitchaya","PT Prachuap","Sukhothai","Chonburi","Nakhon Ratchasima","Khon Kaen"],"D2": ["Ayutthaya","Chainat","Chiangmai","Kasetsart","Krabi","Lamphun","Loei","Nakhon Sawan","Phitsanulok","Phuket","Rayong","Trang"]},
+            "Viêt Nam": {"D1": ["Hanoi FC","Ho Chi Minh City","Viettel","Thanh Hóa","Binh Dinh","Quang Nam","Nam Dinh","Hong Linh Ha Tinh","Binh Duong","Khanh Hoa","Sai Gon","Da Nang"],"D2": ["An Giang","Ba Ria","Binh Thuan","Ca Mau","Cần Thơ","Dak Lak","Dong Thap","Long An","Phu Tho","Quang Ngai","Tay Ninh","Vinh Long"]},
+
+            // ===== OCÉANIE (OFC) =====
+            "Fidji": {"D1": ["Suva","Rewa","Ba","Labasa","Nadi","Lautoka","Navua","Tavua","Tailevu","Nadroga","Bua","Ra"],"D2": ["Dreketi","Koro","Macuata","Naitasiri","Nasinu","Nausori","Rakiraki","Savusavu","Taveuni","Vunisea","Wai","Yasawa"]},
+            "Nouvelle-Zélande": {"D1": ["Auckland City","Wellington Olympic","Eastern Suburbs","Auckland United","Western Springs","Birkenhead","Hamilton Wanderers","Canterbury","Dunedin","Nelson","Tasman","Southland"],"D2": ["Auckland City B","Olympic B","Eastern B","Auckland United B","Springs B","Birkenhead B","Hamilton B","Canterbury B","Dunedin B","Nelson B","Tasman B","Southland B"]},
+            "Papouasie-Nouvelle-Guinée": {"D1": ["Hekari United","Morobe Wawens","Madang","Mount Hagen","Besta","Bougainville","Chimbu","Enga","Goroka","Kimbe","Lae","Rabaul"],"D2": ["Alotau","Daru","Kavieng","Kiunga","Kundiawa","Manus","Mendi","Popondetta","Tari","Vanimo","Wabag","Wewak"]},
+            "Samoa": {"D1": ["Lupe o le Soaga","Vaivase Tai","Kiwi","Central United","Moataa","Sogi","Addis","A'ana","Fasitoo","Lepea","Salelologa","Vailima"],"D2": ["Apia","Faleasiu","Falefa","Faleolo","Fasi","Lalomanu","Lotofaga","Manono","Mulifanua","Safata","Saleaaumua","Sapapalii"]},
+            "Tahiti": {"D1": ["Pirae","Tefana","Dragon","Central Sport","Olympique","Jeunes Teitipaa","Tahiti","Arue","Faaa","Mahina","Papara","Papeete"],"D2": ["Air Force","Belle Vue","Boulevard","Fare","Hau","Haumana","Mahina","Mataiea","Moorea","Paea","Punaauia","Tiarei"]},
+            "Tonga": {"D1": ["Veitongo","Mala'e","Nuku'alofa","Lavengatonga","Sia'atoutai","Tofoa","Atele","Bua","Hihifo","Houma","Kolomotu'a","Tongatapu"],"D2": ["Fua'amotu","Haafuluhao","Ha'asini","Kolofou","Koulo","Makaunga","Pangai","Saini","Sangone","Talafo'ou","Taoa","Vaini"]},
+            "Vanuatu": {"D1": ["Amicale","Ifira Black Bird","Tafea","Shepherds United","Mauriki","Seveners","Tupuji","Vila","Yatel","Luganville","Port Vila","Santo"],"D2": ["Aore","Arorua","Bush Wizards","Erakor","Emua","Erakor","Galili","Lonorore","Mele","Nokom","Tahi","Wiawi"]}
         };
 
         function updateClubs() {
             const pays = document.getElementById('clubPays').value;
             const division = document.getElementById('clubDivisionSelect').value;
-            const clubs = CLUBS_DATA[pays]?.[division] || [];
+            const clubs = CLUBS_DATA[pays]?.[division] || generateFakeClubs(pays, division);
             const select = document.getElementById('clubSelect');
             select.innerHTML = '';
-            if (clubs.length === 0) {
+            clubs.forEach(club => {
                 const option = document.createElement('option');
-                option.value = 'FC ' + pays;
-                option.textContent = 'FC ' + pays;
+                option.value = club;
+                option.textContent = club;
                 select.appendChild(option);
-            } else {
-                clubs.forEach(club => {
-                    const option = document.createElement('option');
-                    option.value = club;
-                    option.textContent = club;
-                    select.appendChild(option);
-                });
-            }
+            });
             updatePreview();
+        }
+
+        function generateFakeClubs(pays, division) {
+            const suffixes = ["FC", "AS", "US", "ES", "SC", "AC", "JS"];
+            const clubs = [];
+            const city = pays.substring(0, 6);
+            for (let i = 0; i < 8; i++) {
+                const suffix = suffixes[i % suffixes.length];
+                clubs.push(`${suffix} ${city} ${division === 'D1' ? 'United' : 'City'}`);
+            }
+            return clubs;
         }
 
         function updatePreview() {
