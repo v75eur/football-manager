@@ -25,7 +25,6 @@
             border-color:#FFD700; outline:none; box-shadow:0 0 20px rgba(255,215,0,0.05);
         }
         .form-group select option { background:#1a2e1a; color:#fff; }
-        .form-group select option:disabled { color:#555; }
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
         .btn-submit {
             width:100%; padding:14px; background:linear-gradient(135deg,#FFD700,#f5a623); border:none;
@@ -226,9 +225,10 @@
                 <div class="form-group">
                     <label><i class="fas fa-trophy"></i> Division</label>
                     <select id="divisionSelect" onchange="updateClubs()">
-                        <option value="D1">🏆 Division 1</option>
-                        <option value="D2">🏅 Division 2</option>
-                        <option value="D3">🎯 Division 3</option>
+                        <option value="Division 1">🏆 Division 1</option>
+                        <option value="Division 2">🏅 Division 2</option>
+                        <option value="Division 3">🎯 Division 3</option>
+                        <option value="all">🌍 Toutes les divisions</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -343,7 +343,7 @@ function generateLogoDesign(clubName) {
     };
 }
 
-// ===== BASE DE DONNÉES DES CLUBS (pour les logos et infos) =====
+// ===== BASE DE DONNÉES DES CLUBS =====
 const CLUB_DATABASE = {
     "Real Madrid": { budget: 1200000000, stars: 5, stadium: "Santiago Bernabéu", capacity: 81044, colors: ["#FFFFFF", "#003366"] },
     "Barcelona": { budget: 980000000, stars: 5, stadium: "Camp Nou", capacity: 99354, colors: ["#003366", "#A50044"] },
@@ -436,7 +436,6 @@ function getClubInfo(clubName) {
 
 // ===== CHARGER LES CLUBS =====
 let allClubsData = {};
-let allClubsList = [];
 
 async function loadClubsData() {
     const spinner = document.getElementById('loadingSpinner');
@@ -510,21 +509,8 @@ function updateClubs() {
     for (const [continent, countries] of Object.entries(allClubsData)) {
         if (countries[country]) {
             for (const [div, clubList] of Object.entries(countries[country])) {
-                // Vérifier si la division correspond
-                if (div === division || div === 'Division 1' || div === 'Division 2' || div === 'Division 3') {
-                    for (const club of clubList) {
-                        clubs.push({ name: club, division: div });
-                    }
-                }
-            }
-        }
-    }
-    
-    // Si le pays n'a pas de division spécifique, afficher tous les clubs
-    if (clubs.length === 0) {
-        for (const [continent, countries] of Object.entries(allClubsData)) {
-            if (countries[country]) {
-                for (const [div, clubList] of Object.entries(countries[country])) {
+                // Vérifier si la division correspond OU si "all" est sélectionné
+                if (division === 'all' || div === division) {
                     for (const club of clubList) {
                         clubs.push({ name: club, division: div });
                     }
@@ -542,20 +528,18 @@ function updateClubs() {
     clubSelect.disabled = false;
     clubs.sort((a, b) => a.name.localeCompare(b.name));
     
-    // Ajouter les clubs au select
     for (const club of clubs) {
         const option = document.createElement('option');
         option.value = club.name;
         const info = getClubInfo(club.name);
         const stars = '⭐'.repeat(info.stars) + '☆'.repeat(5 - info.stars);
-        option.textContent = `${club.name} - ${stars}`;
+        const divLabel = club.division.replace('Division ', 'D');
+        option.textContent = `${club.name} - ${stars} [${divLabel}]`;
         clubSelect.appendChild(option);
     }
     
-    // Ajouter l'événement de changement
     clubSelect.addEventListener('change', updatePreview);
     
-    // Sélectionner le premier club par défaut
     if (clubSelect.options.length > 1) {
         clubSelect.selectedIndex = 1;
         updatePreview();
@@ -578,12 +562,10 @@ function updatePreview() {
     
     const info = getClubInfo(club);
     const stars = '⭐'.repeat(info.stars) + '☆'.repeat(5 - info.stars);
-    const divNames = {'D1': '🏆 Division 1', 'D2': '🏅 Division 2', 'D3': '🎯 Division 3'};
+    const divNames = {'Division 1': '🏆 Division 1', 'Division 2': '🏅 Division 2', 'Division 3': '🎯 Division 3'};
     
-    // Générer le logo coloré
     const logoDesign = generateLogoDesign(club);
     
-    // Mettre à jour le logo
     const logoElement = document.getElementById('clubLogo');
     const logoInitials = document.getElementById('logoInitials');
     
@@ -593,7 +575,6 @@ function updatePreview() {
     logoElement.style.background = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`;
     logoElement.style.boxShadow = `0 0 40px ${logoDesign.glow}`;
     
-    // Initiales
     const initials = club.split(' ').map(w => w[0]).join('').substring(0, 3).toUpperCase();
     logoInitials.textContent = initials;
     logoInitials.style.color = '#FFFFFF';
@@ -601,17 +582,15 @@ function updatePreview() {
     logoInitials.style.fontWeight = '900';
     logoInitials.style.textShadow = '0 2px 20px rgba(0,0,0,0.5)';
     
-    // Informations
     document.getElementById('previewClubName').textContent = club;
     document.getElementById('previewCountry').textContent = '🌍 ' + country;
     document.getElementById('previewStars').textContent = stars;
     document.getElementById('previewStadium').textContent = '🏟️ ' + info.stadium + ' (' + info.capacity.toLocaleString() + ' places)';
     document.getElementById('previewBudget').textContent = '💰 ' + (info.budget / 1000000).toFixed(0) + ' M€';
     document.getElementById('statCapacity').textContent = info.capacity.toLocaleString();
-    document.getElementById('statDivision').textContent = divNames[division] || division;
+    document.getElementById('statDivision').textContent = divNames[division] || division || 'Division 1';
     document.getElementById('statPlayers').textContent = '25';
     
-    // Couleurs
     if (info.colors && info.colors.length >= 2) {
         document.getElementById('color1').style.background = info.colors[0];
         document.getElementById('color2').style.background = info.colors[1];
