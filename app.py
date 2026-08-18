@@ -77,14 +77,10 @@ def register():
         if len(password) < 6:
             return jsonify({'success': False, 'message': 'Mot de passe trop court (6 caractères min)'}), 400
 
-        # Chemin du fichier .FMTK
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
-        
-        # Vérifier si le pseudo existe déjà
         if os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
 
-        # Créer les données du joueur
         player_data = {
             'version': '1.0',
             'pseudo': pseudo,
@@ -116,7 +112,6 @@ def register():
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
 
-        # Vérifier que le fichier a bien été créé
         if not os.path.exists(filepath):
             raise Exception("Le fichier n'a pas pu être créé")
 
