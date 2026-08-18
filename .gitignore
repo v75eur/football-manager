@@ -1,6 +1,8 @@
 *.pyc
 __pycache__/
-*.log
-.DS_Store
-data/
-*.FM
+*.FMTK
+.fernet_key
+*.backup
+*.backup.*
+accueil/*.backup*
+app.py.backup*
