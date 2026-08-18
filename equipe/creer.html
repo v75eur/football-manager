@@ -10,302 +10,481 @@
         * { margin:0; padding:0; box-sizing:border-box; }
         html, body { width:100%; min-height:100vh; font-family:'Rajdhani',sans-serif; background:#0a1a0a; color:#fff; overflow-y:auto !important; overflow-x:auto !important; }
         .container { display:flex; align-items:center; justify-content:center; min-height:100vh; padding:15px; background:linear-gradient(180deg,#0a2a0a 0%,#0d1f0d 100%); }
-        .card { max-width:650px; width:100%; background:rgba(10,30,10,0.85); backdrop-filter:blur(20px); border-radius:25px; border:1px solid rgba(255,215,0,0.08); padding:30px 25px; box-shadow:0 20px 60px rgba(0,0,0,0.8); }
+        .card { max-width:750px; width:100%; background:rgba(10,30,10,0.85); backdrop-filter:blur(20px); border-radius:25px; border:1px solid rgba(255,215,0,0.08); padding:30px 25px; box-shadow:0 20px 60px rgba(0,0,0,0.8); }
         .logo { font-family:'Orbitron',monospace; font-size:1.8rem; font-weight:900; color:#FFD700; text-align:center; }
         .logo-sub { font-size:0.6rem; color:#7aaa7a; letter-spacing:6px; text-transform:uppercase; text-align:center; margin-bottom:15px; }
         h1 { font-family:'Orbitron',monospace; font-size:1.2rem; color:#FFD700; text-align:center; margin-bottom:5px; }
         .subtitle { color:#8aaa8a; font-size:0.8rem; text-align:center; margin-bottom:15px; }
-        .form-group { margin-bottom:12px; }
-        .form-group label { display:block; color:#8aaa8a; font-size:0.75rem; margin-bottom:4px; font-weight:600; }
-        .form-group input, .form-group select { width:100%; padding:12px 14px; background:rgba(255,255,255,0.05); border:1.5px solid rgba(255,255,255,0.06); border-radius:10px; color:#fff; font-size:0.9rem; outline:none; transition:border-color 0.3s; font-family:'Rajdhani',sans-serif; }
-        .form-group input:focus, .form-group select:focus { border-color:rgba(255,215,0,0.3); background:rgba(255,255,255,0.08); }
-        .form-group input::placeholder { color:#5a7a5a; }
+        .form-group { margin-bottom:15px; }
+        .form-group label { display:block; color:#8aaa8a; font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px; }
+        .form-group input, .form-group select {
+            width:100%; padding:10px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08);
+            border-radius:10px; color:#fff; font-size:0.9rem; transition:all 0.3s; font-family:'Rajdhani',sans-serif;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color:#FFD700; outline:none; box-shadow:0 0 20px rgba(255,215,0,0.05);
+        }
         .form-group select option { background:#1a2e1a; color:#fff; }
-        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-        .btn-submit { width:100%; padding:14px; border:none; border-radius:12px; background:linear-gradient(135deg,#FFD700,#f5a623); color:#0a0a1a; font-family:'Orbitron',monospace; font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; cursor:pointer; transition:all 0.3s; margin-top:10px; }
-        .btn-submit:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(255,215,0,0.2); }
-        .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none !important; }
-        .spinner { display:inline-block; width:18px; height:18px; border:3px solid rgba(10,10,26,0.2); border-top-color:#0a0a1a; border-radius:50%; animation:spin 0.8s linear infinite; vertical-align:middle; margin-right:8px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+        .btn-submit {
+            width:100%; padding:14px; background:linear-gradient(135deg,#FFD700,#f5a623); border:none;
+            border-radius:12px; color:#0a0a1a; font-family:'Orbitron',monospace; font-size:0.8rem; font-weight:700;
+            cursor:pointer; transition:all 0.3s; margin-top:10px;
+        }
+        .btn-submit:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(255,215,0,0.2); }
+        .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+        .preview-card { 
+            margin-top:20px; background:rgba(255,215,0,0.03); border:1px solid rgba(255,215,0,0.05);
+            border-radius:12px; padding:15px; display:none;
+        }
+        .preview-card.active { display:block; }
+        .preview-card h3 { color:#FFD700; font-family:'Orbitron',monospace; font-size:0.8rem; margin-bottom:10px; }
+        .preview-item { display:flex; justify-content:space-between; padding:4px 0; color:#aaa; font-size:0.85rem; border-bottom:1px solid rgba(255,255,255,0.03); }
+        .preview-item span:last-child { color:#fff; font-weight:600; }
+        .preview-budget { color:#2ecc71; font-weight:700; font-size:1.1rem; }
+        .preview-budget.small { color:#f39c12; }
+        .preview-stars { color:#FFD700; letter-spacing:2px; }
+        .loading-spinner { display:none; text-align:center; padding:20px; }
+        .loading-spinner.active { display:block; }
+        .spinner { width:30px; height:30px; border:3px solid rgba(255,215,0,0.1); border-top-color:#FFD700; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto; }
         @keyframes spin { to { transform:rotate(360deg); } }
-        .info-box { background:rgba(255,215,0,0.05); border-left:3px solid #FFD700; padding:10px 14px; border-radius:8px; margin-bottom:12px; }
-        .info-box p { color:#8aaa8a; font-size:0.75rem; margin:3px 0; }
-        .info-box i { color:#FFD700; margin-right:6px; }
-        .preview-club { background:rgba(255,255,255,0.02); border-radius:12px; padding:15px; margin-bottom:15px; border:1px solid rgba(255,255,255,0.05); text-align:center; }
-        .preview-club .name { font-size:1.3rem; font-weight:700; color:#FFD700; }
-        .preview-club .details { color:#8aaa8a; font-size:0.8rem; margin-top:4px; }
-        .preview-club .details i { margin:0 6px; }
-        @media (max-width:480px) { .card { padding:20px 15px; } .form-row { grid-template-columns:1fr; } .logo { font-size:1.5rem; } h1 { font-size:1rem; } }
+        .badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.6rem; font-weight:700; }
+        .badge-d1 { background:#2ecc71; color:#fff; }
+        .badge-d2 { background:#3498db; color:#fff; }
+        .badge-d3 { background:#f39c12; color:#fff; }
+        .club-list { max-height:200px; overflow-y:auto; }
+        .club-list::-webkit-scrollbar { width:4px; }
+        .club-list::-webkit-scrollbar-track { background:rgba(255,255,255,0.05); }
+        .club-list::-webkit-scrollbar-thumb { background:#FFD700; border-radius:4px; }
+        @media (max-width:600px) { .form-row { grid-template-columns:1fr; } .card { padding:20px 15px; } }
+        
+        .popup-overlay {
+            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.85); z-index:99999; align-items:center; justify-content:center;
+            padding:20px; backdrop-filter:blur(10px);
+        }
+        .popup-overlay.active { display:flex; }
+        .popup-box {
+            background:#1a2e1a; border:2px solid rgba(255,215,0,0.2); border-radius:20px;
+            padding:35px 30px; max-width:450px; width:100%; box-shadow:0 40px 80px rgba(0,0,0,0.8);
+            animation:popupIn 0.4s ease;
+        }
+        @keyframes popupIn { from { transform:scale(0.8); opacity:0; } to { transform:scale(1); opacity:1; } }
+        .popup-box .icon { font-size:3rem; margin-bottom:10px; text-align:center; }
+        .popup-box h2 { font-family:'Orbitron',monospace; font-size:1.1rem; color:#FFD700; text-align:center; margin-bottom:8px; }
+        .popup-box p { color:#aaa; font-size:0.9rem; line-height:1.6; text-align:center; }
+        .popup-box .btn-popup { padding:12px 25px; border:none; border-radius:10px; font-family:'Orbitron',monospace; font-size:0.7rem; font-weight:700; cursor:pointer; transition:all 0.3s; width:100%; margin-top:10px; }
+        .popup-box .btn-popup.info { background:linear-gradient(135deg,#FFD700,#f5a623); color:#0a0a1a; }
+        .popup-box .btn-popup.success { background:linear-gradient(135deg,#2ecc71,#27ae60); color:#fff; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="logo">⚽ FMTK</div>
-            <div class="logo-sub">v1.26</div>
-            <h1>🏟️ Créer mon équipe</h1>
-            <p class="subtitle">Choisissez votre pays, votre division et votre club</p>
-            <div class="info-box">
-                <p><i class="fas fa-users"></i> Votre équipe aura <strong>25 joueurs</strong> avec des stats détaillées</p>
-                <p><i class="fas fa-coins"></i> Budget de départ : <strong>50 000 000 €</strong></p>
+
+<div class="container">
+    <div class="card">
+        <div class="logo">⚽ FMTK</div>
+        <div class="logo-sub">v1.26 • Football Manager</div>
+        <h1>🏆 CRÉER MON ÉQUIPE</h1>
+        <p class="subtitle">Choisissez votre club, budget et stade</p>
+
+        <form id="teamForm">
+            <div class="form-group">
+                <label><i class="fas fa-flag"></i> Pays du club</label>
+                <select id="countrySelect" required>
+                    <option value="">🌍 Chargement des pays...</option>
+                </select>
             </div>
-            <div class="preview-club" id="previewClub">
-                <div class="name" id="previewName">⚽ Mon Club</div>
-                <div class="details"><i class="fas fa-flag"></i> <span id="previewPays">Pays</span> <i class="fas fa-trophy"></i> <span id="previewDivision">Division</span> <i class="fas fa-home"></i> <span id="previewStade">Stade</span></div>
+
+            <div class="form-group">
+                <label><i class="fas fa-futbol"></i> Club</label>
+                <select id="clubSelect" required disabled>
+                    <option value="">📌 Sélectionnez d'abord un pays</option>
+                </select>
             </div>
-            <form id="clubForm" onsubmit="saveClub(event)">
+
+            <div class="form-row">
                 <div class="form-group">
-                    <label>🧑‍✈️ Nom du coach</label>
-                    <input type="text" id="coachNom" placeholder="Votre pseudo" required>
+                    <label><i class="fas fa-tag"></i> Nom de l'équipe</label>
+                    <input type="text" id="teamName" placeholder="Ex: FC Barcelone" required>
                 </div>
                 <div class="form-group">
-                    <label>🏴 Pays</label>
-                    <select id="clubPays" onchange="updateClubs()">
-                        <!-- Pays chargés dynamiquement -->
+                    <label><i class="fas fa-palette"></i> Couleurs</label>
+                    <input type="text" id="teamColors" placeholder="#FFD700 / #003366" value="#FFD700 / #003366">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-building"></i> Stade</label>
+                    <input type="text" id="stadium" placeholder="Nom du stade">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-users"></i> Division</label>
+                    <select id="divisionSelect">
+                        <option value="D1">🏆 Division 1</option>
+                        <option value="D2">🏅 Division 2</option>
+                        <option value="D3">🎯 Division 3</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label>🏆 Division</label>
-                    <select id="clubDivisionSelect" onchange="updateClubs()">
-                        <option value="D1">Division 1</option>
-                        <option value="D2">Division 2</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>🏷️ Club</label>
-                    <select id="clubSelect"></select>
-                </div>
-                <div class="form-group">
-                    <label>🏟️ Stade</label>
-                    <input type="text" id="clubStade" placeholder="Camp Nou" value="Camp Nou">
-                </div>
-                <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-check"></i> Créer mon équipe</button>
-            </form>
+            </div>
+
+            <div class="preview-card" id="previewCard">
+                <h3>📋 APERÇU DE L'ÉQUIPE</h3>
+                <div id="previewContent"></div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+                <i class="fas fa-save"></i> CRÉER MON ÉQUIPE
+            </button>
+        </form>
+
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p style="color:#8aaa8a;margin-top:10px;font-size:0.8rem;">Chargement des clubs...</p>
         </div>
     </div>
+</div>
 
-    <script>
-        // ===== CHARGER LES CLUBS DEPUIS LE FICHIER JSON =====
-        let allClubsData = {};
+<!-- ===== POPUP ===== -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <div class="icon" id="popupIcon">✅</div>
+        <h2 id="popupTitle">Succès !</h2>
+        <p id="popupMessage">Votre équipe a été créée.</p>
+        <button class="btn-popup info" onclick="closePopup()">OK</button>
+    </div>
+</div>
 
-        async function loadClubsData() {
-            try {
-                const response = await fetch('/data/clubs_complete.json');
-                const data = await response.json();
-                allClubsData = data;
-                populateCountries();
-            } catch(e) {
-                console.error('Erreur chargement clubs:', e);
-                // Fallback
-                allClubsData = {
-                    "Europe": {
-                        "France": {"Ligue 1": ["PSG", "Marseille", "Lyon"]},
-                        "Espagne": {"La Liga": ["Barcelona", "Real Madrid"]}
-                    }
-                };
-                populateCountries();
-            }
-        }
-
-        function populateCountries() {
-            const select = document.getElementById('clubPays');
-            select.innerHTML = '';
-            
-            for (const [continent, countries] of Object.entries(allClubsData)) {
-                const optgroup = document.createElement('optgroup');
-                optgroup.label = `🌍 ${continent}`;
-                
-                for (const country of Object.keys(countries)) {
-                    const option = document.createElement('option');
-                    option.value = country;
-                    option.textContent = country;
-                    optgroup.appendChild(option);
-                }
-                select.appendChild(optgroup);
-            }
-            
-            // Sélectionner le premier pays par défaut
-            const firstContinent = Object.keys(allClubsData)[0];
-            if (firstContinent) {
-                const firstCountry = Object.keys(allClubsData[firstContinent] || {})[0];
-                if (firstCountry) {
-                    select.value = firstCountry;
-                }
-            }
-            updateClubs();
-        }
-
-        function updateClubs() {
-            const pays = document.getElementById('clubPays').value;
-            const division = document.getElementById('clubDivisionSelect').value;
-            const select = document.getElementById('clubSelect');
-            select.innerHTML = '';
-            
-            let clubs = [];
-            
-            // Chercher les clubs pour ce pays et cette division
-            for (const [continent, countries] of Object.entries(allClubsData)) {
-                if (countries[pays]) {
-                    // Si division = D1, prendre la première ligue, D2 la deuxième
-                    const ligues = Object.keys(countries[pays]);
-                    if (division === 'D1' && ligues.length > 0) {
-                        clubs = countries[pays][ligues[0]] || [];
-                    } else if (division === 'D2' && ligues.length > 1) {
-                        clubs = countries[pays][ligues[1]] || [];
-                    } else if (division === 'D2' && ligues.length === 1) {
-                        // Si pas de D2, générer des clubs fictifs
-                        clubs = generateFakeClubs(pays, 'D2');
-                    }
-                    break;
-                }
-            }
-            
-            if (clubs.length === 0) {
-                clubs = generateFakeClubs(pays, division);
-            }
-            
-            clubs.forEach(club => {
-                const option = document.createElement('option');
-                option.value = club;
-                option.textContent = club;
-                select.appendChild(option);
-            });
-            
-            updatePreview();
-        }
-
-        function generateFakeClubs(pays, division) {
-            const suffixes = ["FC", "AS", "US", "ES", "SC", "AC", "JS"];
-            const clubs = [];
-            const city = pays.substring(0, 6);
-            for (let i = 0; i < 8; i++) {
-                const suffix = suffixes[i % suffixes.length];
-                clubs.push(`${suffix} ${city} ${division === 'D1' ? 'United' : 'City'}`);
-            }
-            return clubs;
-        }
-
-        function updatePreview() {
-            const club = document.getElementById('clubSelect').value;
-            const pays = document.getElementById('clubPays').value;
-            const division = document.getElementById('clubDivisionSelect').value;
-            const stade = document.getElementById('clubStade').value || 'Stade';
-            const coach = document.getElementById('coachNom').value || 'Coach';
-            document.getElementById('previewName').textContent = '⚽ ' + club;
-            document.getElementById('previewPays').textContent = pays;
-            document.getElementById('previewDivision').textContent = division;
-            document.getElementById('previewStade').textContent = stade;
-        }
-
-        document.getElementById('clubPays').addEventListener('change', updateClubs);
-        document.getElementById('clubDivisionSelect').addEventListener('change', updateClubs);
-        document.getElementById('clubSelect').addEventListener('change', updatePreview);
-        document.getElementById('clubStade').addEventListener('input', updatePreview);
-        document.getElementById('coachNom').addEventListener('input', updatePreview);
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const saved = localStorage.getItem('fm_session_data');
-            if (saved) {
-                try {
-                    const data = JSON.parse(saved);
-                    if (data.pseudo) document.getElementById('coachNom').value = data.pseudo;
-                } catch(e) {}
-            }
-            loadClubsData();
-        });
-
-        async function saveClub(event) {
-            event.preventDefault();
-            const btn = document.getElementById('submitBtn');
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span> Création en cours...';
-
-            const coach = document.getElementById('coachNom').value.trim();
-            const club = document.getElementById('clubSelect').value;
-            const pays = document.getElementById('clubPays').value;
-            const division = document.getElementById('clubDivisionSelect').value;
-            const stade = document.getElementById('clubStade').value.trim();
-
-            if (!coach) {
-                alert('⚠️ Veuillez entrer votre nom de coach');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon équipe';
-                return;
-            }
-
-            try {
-                const saved = localStorage.getItem('fm_session_data');
-                let playerData = saved ? JSON.parse(saved) : {};
-                playerData.pseudo = coach;
-                playerData.equipe = { nom: club, pays: pays, division: division || 'Ligue 1', stade: stade || 'Mon Stade', budget: 50000000, joueurs: [] };
-
-                const response = await fetch('/api/generate_players', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pays: pays, club: club, nombre: 25 })
-                });
-                const result = await response.json();
-                if (result.success) {
-                    playerData.equipe.joueurs = result.players;
-                } else {
-                    playerData.equipe.joueurs = generateLocalPlayers(pays, club, 25);
-                }
-
-                localStorage.setItem('fm_session_data', JSON.stringify(playerData));
-                await fetch('/api/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pseudo: playerData.pseudo, data: playerData }) });
-
-                btn.innerHTML = '✅ Équipe créée !';
-                setTimeout(() => { window.location.href = '/dashboard.html'; }, 1000);
-            } catch(e) {
-                alert('❌ Erreur lors de la création de l\'équipe');
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon équipe';
-            }
-        }
-
-        function generateLocalPlayers(pays, club, nombre) {
-            const postes = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'];
-            const noms = {'France': ['Martin','Bernard','Dubois','Petit','Garcia'],'Espagne': ['García','Rodríguez','González','Martínez','López'],'Angleterre': ['Smith','Jones','Williams','Taylor','Davies'],'Allemagne': ['Müller','Schmidt','Schneider','Fischer','Weber'],'Italie': ['Rossi','Russo','Ferrari','Esposito','Bianchi'],'Brésil': ['Silva','Santos','Oliveira','Pereira','Souza'],'Argentine': ['González','García','Fernández','López','Martínez']};
-            const prenoms = {'France': ['Jean','Pierre','Paul','Jacques','Antoine'],'Espagne': ['Antonio','José','Manuel','Javier','Francisco'],'Angleterre': ['James','John','William','George','Henry'],'Allemagne': ['Hans','Peter','Klaus','Dieter','Uwe'],'Italie': ['Marco','Alessandro','Francesco','Luca','Matteo'],'Brésil': ['André','Carlos','José','Luiz','Paulo'],'Argentine': ['Juan','Carlos','José','Luis','Diego']};
-            const paysNoms = noms[pays] || noms['France'];
-            const paysPrenoms = prenoms[pays] || prenoms['France'];
-            const joueurs = [];
-            for (let i = 0; i < nombre; i++) {
-                const nom = paysNoms[i % paysNoms.length];
-                const prenom = paysPrenoms[i % paysPrenoms.length];
-                const note = Math.floor(Math.random() * 50) + 40;
-                const age = Math.floor(Math.random() * 10) + 16;
-                joueurs.push({ id: 'joueur_' + i, prenom: prenom, nom: nom, age: age, poste: postes[i % postes.length], note: note, valeur: note * 100000, attributs: { vitesse: Math.floor(Math.random() * 50) + 40, tir: Math.floor(Math.random() * 50) + 30, passe: Math.floor(Math.random() * 50) + 30, defense: Math.floor(Math.random() * 50) + 30, physique: Math.floor(Math.random() * 50) + 40 } });
-            }
-            return joueurs;
-        }
-    </script>
-</body>
-</html>
 <script>
-// ===== RÉCUPÉRER LES DONNÉES DE SESSION =====
-document.addEventListener('DOMContentLoaded', function() {
-    // Récupérer depuis l'URL
-    const params = new URLSearchParams(window.location.search);
-    const pseudo = params.get('pseudo');
-    const playerId = params.get('player_id');
+// ===== BASE DE DONNÉES DES CLUBS AVEC BUDGETS ET STADES =====
+const CLUB_DATABASE = {
+    // EUROPE - TOP CLUBS (5 étoiles)
+    "Real Madrid": { budget: 1200000000, stars: 5, stadium: "Santiago Bernabéu", capacity: 81044 },
+    "Barcelona": { budget: 980000000, stars: 5, stadium: "Camp Nou", capacity: 99354 },
+    "Bayern Munich": { budget: 950000000, stars: 5, stadium: "Allianz Arena", capacity: 75000 },
+    "Manchester City": { budget: 1100000000, stars: 5, stadium: "Etihad Stadium", capacity: 53400 },
+    "Liverpool": { budget: 880000000, stars: 5, stadium: "Anfield", capacity: 53394 },
+    "PSG": { budget: 1050000000, stars: 5, stadium: "Parc des Princes", capacity: 47929 },
+    "Chelsea": { budget: 850000000, stars: 5, stadium: "Stamford Bridge", capacity: 41600 },
+    "Juventus": { budget: 780000000, stars: 5, stadium: "Allianz Stadium", capacity: 41507 },
+    "AC Milan": { budget: 720000000, stars: 5, stadium: "San Siro", capacity: 80018 },
+    "Inter Milan": { budget: 700000000, stars: 5, stadium: "San Siro", capacity: 80018 },
     
-    // Récupérer depuis sessionStorage
+    // GRANDS CLUBS (4 étoiles)
+    "Arsenal": { budget: 650000000, stars: 4, stadium: "Emirates Stadium", capacity: 60704 },
+    "Tottenham": { budget: 580000000, stars: 4, stadium: "Tottenham Hotspur Stadium", capacity: 62850 },
+    "Atlético Madrid": { budget: 550000000, stars: 4, stadium: "Metropolitano", capacity: 68456 },
+    "Borussia Dortmund": { budget: 520000000, stars: 4, stadium: "Signal Iduna Park", capacity: 81365 },
+    "Marseille": { budget: 480000000, stars: 4, stadium: "Orange Vélodrome", capacity: 67394 },
+    "Al-Hilal": { budget: 650000000, stars: 4, stadium: "King Fahd Stadium", capacity: 68752 },
+    "Al-Nassr": { budget: 600000000, stars: 4, stadium: "King Saud University Stadium", capacity: 25000 },
+    "Al-Ittihad": { budget: 580000000, stars: 4, stadium: "King Abdullah Sports City", capacity: 62345 },
+    "Benfica": { budget: 450000000, stars: 4, stadium: "Estádio da Luz", capacity: 64642 },
+    "Porto": { budget: 420000000, stars: 4, stadium: "Estádio do Dragão", capacity: 50033 },
+    "Ajax": { budget: 400000000, stars: 4, stadium: "Johan Cruyff Arena", capacity: 54990 },
+    "Feyenoord": { budget: 380000000, stars: 4, stadium: "De Kuip", capacity: 51177 },
+    "Galatasaray": { budget: 420000000, stars: 4, stadium: "Rams Park", capacity: 52652 },
+    "Fenerbahçe": { budget: 400000000, stars: 4, stadium: "Şükrü Saracoğlu", capacity: 50509 },
+    "Beşiktaş": { budget: 380000000, stars: 4, stadium: "Vodafone Park", capacity: 41903 },
+    "Zenit": { budget: 450000000, stars: 4, stadium: "Gazprom Arena", capacity: 67800 },
+    
+    // MOYENS CLUBS (3 étoiles)
+    "Lyon": { budget: 320000000, stars: 3, stadium: "Groupama Stadium", capacity: 59186 },
+    "Monaco": { budget: 300000000, stars: 3, stadium: "Stade Louis II", capacity: 18523 },
+    "Lille": { budget: 280000000, stars: 3, stadium: "Stade Pierre-Mauroy", capacity: 50186 },
+    "Rennes": { budget: 250000000, stars: 3, stadium: "Roazhon Park", capacity: 29778 },
+    "Nice": { budget: 230000000, stars: 3, stadium: "Allianz Riviera", capacity: 35624 },
+    "Lens": { budget: 210000000, stars: 3, stadium: "Stade Bollaert-Delelis", capacity: 38223 },
+    "Strasbourg": { budget: 180000000, stars: 3, stadium: "Stade de la Meinau", capacity: 29100 },
+    "Bordeaux": { budget: 160000000, stars: 3, stadium: "Matmut Atlantique", capacity: 42115 },
+    "Saint-Étienne": { budget: 150000000, stars: 3, stadium: "Stade Geoffroy-Guichard", capacity: 41965 },
+    "Rennes": { budget: 140000000, stars: 3, stadium: "Roazhon Park", capacity: 29778 },
+    "Nantes": { budget: 130000000, stars: 3, stadium: "Stade de la Beaujoire", capacity: 35200 },
+    "Reims": { budget: 120000000, stars: 3, stadium: "Stade Auguste-Delaune", capacity: 21700 },
+    "Montpellier": { budget: 115000000, stars: 3, stadium: "Stade de la Mosson", capacity: 32900 },
+    "Toulouse": { budget: 110000000, stars: 3, stadium: "Stadium Municipal", capacity: 33150 },
+    "Brest": { budget: 100000000, stars: 3, stadium: "Stade Francis-Le Blé", capacity: 15000 },
+    "Clermont": { budget: 90000000, stars: 3, stadium: "Stade Gabriel-Montpied", capacity: 11700 },
+    
+    // PETITS CLUBS (2 étoiles)
+    "AS Cotonou": { budget: 80000000, stars: 2, stadium: "Stade Charles de Gaulle", capacity: 15000 },
+    "JS Pobè": { budget: 60000000, stars: 2, stadium: "Stade de Pobè", capacity: 5000 },
+    "Mambas Noires": { budget: 50000000, stars: 2, stadium: "Stade de l'Amitié", capacity: 8000 },
+    "Béké FC": { budget: 45000000, stars: 2, stadium: "Stade de Béké", capacity: 6000 },
+    "Dynamo Abomey": { budget: 40000000, stars: 2, stadium: "Stade d'Abomey", capacity: 7000 },
+    "Tonnerre": { budget: 35000000, stars: 2, stadium: "Stade Tonnerre", capacity: 5000 },
+    "Porto-Novo": { budget: 30000000, stars: 2, stadium: "Stade de Porto-Novo", capacity: 12000 },
+    "Soleil FC": { budget: 25000000, stars: 2, stadium: "Stade Soleil", capacity: 4000 },
+    "Police FC": { budget: 20000000, stars: 2, stadium: "Stade Police", capacity: 3000 },
+    "Aspac FC": { budget: 18000000, stars: 2, stadium: "Stade Aspac", capacity: 2000 },
+    
+    // DIVISION 2 (1 étoile)
+    "Adjinakou": { budget: 12000000, stars: 1, stadium: "Stade Adjinakou", capacity: 1500 },
+    "Agonlin": { budget: 10000000, stars: 1, stadium: "Stade Agonlin", capacity: 1200 },
+    "Cotonou FC": { budget: 8000000, stars: 1, stadium: "Stade Cotonou", capacity: 1000 },
+    "Ouidah": { budget: 6000000, stars: 1, stadium: "Stade Ouidah", capacity: 800 },
+    "Dassa": { budget: 5000000, stars: 1, stadium: "Stade Dassa", capacity: 500 },
+    "Kandi": { budget: 4000000, stars: 1, stadium: "Stade Kandi", capacity: 400 },
+    "Natitingou": { budget: 3000000, stars: 1, stadium: "Stade Natitingou", capacity: 300 },
+    "Djougou": { budget: 2000000, stars: 1, stadium: "Stade Djougou", capacity: 200 }
+};
+
+// ===== FONCTION POUR OBTENIR LES INFOS D'UN CLUB =====
+function getClubInfo(clubName) {
+    if (CLUB_DATABASE[clubName]) {
+        return CLUB_DATABASE[clubName];
+    }
+    // Générer des infos réalistes pour un club inconnu
+    const randomBudget = Math.floor(Math.random() * 90000000) + 10000000;
+    const stars = Math.floor(Math.random() * 3) + 1;
+    const capacities = [1000, 2000, 3000, 5000, 8000, 10000, 15000, 20000];
+    const capacity = capacities[Math.floor(Math.random() * capacities.length)];
+    const stadiums = [
+        `Stade ${clubName.split(' ').pop()}`,
+        `${clubName} Arena`,
+        `Parc des ${clubName.split(' ').pop()}s`,
+        `Stade Municipal de ${clubName.split(' ').pop()}`
+    ];
+    return {
+        budget: randomBudget,
+        stars: stars,
+        stadium: stadiums[Math.floor(Math.random() * stadiums.length)],
+        capacity: capacity
+    };
+}
+
+// ===== CHARGER LES CLUBS DEPUIS LE FICHIER JSON =====
+let allClubsData = {};
+
+async function loadClubsData() {
+    const spinner = document.getElementById('loadingSpinner');
+    spinner.classList.add('active');
+    
+    try {
+        const response = await fetch('/data/clubs_complete.json');
+        if (!response.ok) throw new Error('Fichier non trouvé');
+        allClubsData = await response.json();
+        populateCountries();
+    } catch(e) {
+        console.error('Erreur:', e);
+        showPopup('❌', 'Erreur', 'Impossible de charger les clubs');
+    } finally {
+        spinner.classList.remove('active');
+    }
+}
+
+function populateCountries() {
+    const countrySelect = document.getElementById('countrySelect');
+    countrySelect.innerHTML = '<option value="">🌍 Sélectionnez un pays</option>';
+    
+    // Grouper par continent
+    const continents = {
+        '🇪🇺 Europe': [],
+        '🌍 Afrique': [],
+        '🌏 Asie': [],
+        '🌎 Amérique': [],
+        '🌊 Océanie': []
+    };
+    
+    for (const [continent, countries] of Object.entries(allClubsData)) {
+        const emoji = continent === 'UEFA' ? '🇪🇺' :
+                     continent === 'CAF' ? '🌍' :
+                     continent === 'AFC' ? '🌏' :
+                     continent === 'CONMEBOL' || continent === 'CONCACAF' ? '🌎' : '🌊';
+        const label = continent === 'UEFA' ? 'Europe' :
+                     continent === 'CAF' ? 'Afrique' :
+                     continent === 'AFC' ? 'Asie' :
+                     continent === 'CONMEBOL' ? 'Amérique du Sud' :
+                     continent === 'CONCACAF' ? 'Amérique du Nord' : 'Océanie';
+        
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = `${emoji} ${label}`;
+        
+        for (const country of Object.keys(countries).sort()) {
+            const option = document.createElement('option');
+            option.value = country;
+            option.textContent = country;
+            optgroup.appendChild(option);
+        }
+        countrySelect.appendChild(optgroup);
+    }
+    
+    countrySelect.addEventListener('change', updateClubs);
+    countrySelect.value = 'Bénin';
+    updateClubs();
+}
+
+function updateClubs() {
+    const country = document.getElementById('countrySelect').value;
+    const clubSelect = document.getElementById('clubSelect');
+    const previewCard = document.getElementById('previewCard');
+    const previewContent = document.getElementById('previewContent');
+    
+    clubSelect.innerHTML = '<option value="">📌 Sélectionnez un club</option>';
+    clubSelect.disabled = true;
+    previewCard.classList.remove('active');
+    
+    if (!country || !allClubsData) return;
+    
+    let found = false;
+    const clubs = [];
+    
+    for (const [continent, countries] of Object.entries(allClubsData)) {
+        if (countries[country]) {
+            for (const [division, clubList] of Object.entries(countries[country])) {
+                for (const club of clubList) {
+                    clubs.push({ name: club, division: division });
+                    found = true;
+                }
+            }
+        }
+    }
+    
+    if (!found) {
+        clubSelect.innerHTML = '<option value="">⚠️ Aucun club trouvé</option>';
+        clubSelect.disabled = true;
+        return;
+    }
+    
+    clubSelect.disabled = false;
+    clubs.sort((a, b) => a.name.localeCompare(b.name));
+    
+    const divNames = {'D1': '🏆 Division 1', 'D2': '🏅 Division 2', 'D3': '🎯 Division 3'};
+    
+    for (const club of clubs) {
+        const option = document.createElement('option');
+        option.value = club.name;
+        const info = getClubInfo(club.name);
+        const stars = '⭐'.repeat(info.stars) + '☆'.repeat(5 - info.stars);
+        option.textContent = `${club.name} - ${stars} ${(info.budget / 1000000).toFixed(0)}M€`;
+        option.dataset.division = club.division;
+        clubSelect.appendChild(option);
+    }
+    
+    clubSelect.addEventListener('change', updatePreview);
+    document.getElementById('teamName').addEventListener('input', updatePreview);
+    document.getElementById('divisionSelect').addEventListener('change', updatePreview);
+    
+    if (clubSelect.options.length > 1) {
+        clubSelect.selectedIndex = 1;
+        updatePreview();
+    }
+}
+
+function updatePreview() {
+    const club = document.getElementById('clubSelect').value;
+    const teamName = document.getElementById('teamName').value || 'Nom de l\'équipe';
+    const division = document.getElementById('divisionSelect').value;
+    const colors = document.getElementById('teamColors').value || '#FFD700 / #003366';
+    const country = document.getElementById('countrySelect').value;
+    
+    const previewCard = document.getElementById('previewCard');
+    const previewContent = document.getElementById('previewContent');
+    
+    if (!club || club === '📌 Sélectionnez un club') {
+        previewCard.classList.remove('active');
+        return;
+    }
+    
+    previewCard.classList.add('active');
+    
+    const info = getClubInfo(club);
+    const stars = '⭐'.repeat(info.stars) + '☆'.repeat(5 - info.stars);
+    const divNames = {'D1': '🏆 Division 1', 'D2': '🏅 Division 2', 'D3': '🎯 Division 3'};
+    const budgetDisplay = (info.budget / 1000000).toFixed(0);
+    const budgetClass = info.budget > 500000000 ? '' : 'small';
+    
+    // Déterminer le stade
+    let stadium = document.getElementById('stadium').value;
+    if (!stadium || stadium === '') {
+        stadium = info.stadium || `${club} Stadium`;
+    }
+    
+    previewContent.innerHTML = `
+        <div class="preview-item"><span>🏷️ Nom</span><span>${teamName}</span></div>
+        <div class="preview-item"><span>🌍 Pays</span><span>${country}</span></div>
+        <div class="preview-item"><span>⚽ Club</span><span>${club}</span></div>
+        <div class="preview-item"><span>⭐ Niveau</span><span class="preview-stars">${stars}</span></div>
+        <div class="preview-item"><span>💰 Budget</span><span class="preview-budget ${budgetClass}">${budgetDisplay} M€</span></div>
+        <div class="preview-item"><span>🏅 Division</span><span>${divNames[division] || division}</span></div>
+        <div class="preview-item"><span>🏟️ Stade</span><span>${stadium} (${info.capacity || '?'} places)</span></div>
+        <div class="preview-item"><span>🎨 Couleurs</span><span>${colors}</span></div>
+        <div class="preview-item" style="border-bottom:none;padding-top:8px;margin-top:4px;border-top:1px solid rgba(255,215,0,0.1);">
+            <span style="color:#FFD700;">⚡ Effectif</span>
+            <span style="color:#2ecc71;">25 joueurs</span>
+        </div>
+    `;
+    
+    // Mettre à jour le stade si vide
+    if (!document.getElementById('stadium').value) {
+        document.getElementById('stadium').value = stadium;
+    }
+}
+
+// ===== SOUMISSION =====
+document.getElementById('teamForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CRÉATION...';
+    
+    const club = document.getElementById('clubSelect').value;
+    const info = getClubInfo(club);
+    const data = {
+        nom: document.getElementById('teamName').value,
+        pays: document.getElementById('countrySelect').value,
+        club: club,
+        division: document.getElementById('divisionSelect').value,
+        stade: document.getElementById('stadium').value || info.stadium,
+        couleurs: document.getElementById('teamColors').value,
+        budget: info.budget,
+        stars: info.stars,
+        capacity: info.capacity
+    };
+    
+    try {
+        // Sauvegarder dans sessionStorage
+        sessionStorage.setItem('fmtk_team_data', JSON.stringify(data));
+        showPopup('✅', 'Équipe créée !', `Votre équipe ${data.nom} est prête avec un budget de ${(data.budget/1000000).toFixed(0)} M€ !`);
+        setTimeout(() => {
+            window.location.href = '/dashboard';
+        }, 2000);
+    } catch(e) {
+        showPopup('❌', 'Erreur', 'Impossible de créer l\'équipe: ' + e.message);
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save"></i> CRÉER MON ÉQUIPE';
+    }
+});
+
+// ===== POPUP =====
+function showPopup(icon, title, message) {
+    document.getElementById('popupIcon').textContent = icon;
+    document.getElementById('popupTitle').textContent = title;
+    document.getElementById('popupMessage').textContent = message;
+    document.getElementById('popup').classList.add('active');
+}
+
+function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer les données de session
     try {
         const sessionData = sessionStorage.getItem('fmtk_session_data');
         if (sessionData) {
             const data = JSON.parse(sessionData);
             if (data && data.pseudo) {
-                document.getElementById('coachNom').value = data.pseudo;
-                console.log('✅ Données de session chargées:', data.pseudo);
+                document.getElementById('teamName').value = data.pseudo + ' FC';
             }
         }
-    } catch(e) {
-        console.warn('Impossible de charger sessionStorage', e);
-    }
+    } catch(e) {}
     
-    // Remplir le pseudo
-    if (pseudo) {
-        document.getElementById('coachNom').value = pseudo;
-    }
+    loadClubsData();
 });
 </script>
+</body>
+</html>
