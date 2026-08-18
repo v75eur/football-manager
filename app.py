@@ -11,7 +11,6 @@ app.secret_key = 'dev-secret-key-change-in-production'
 CORS(app)
 
 # ===== DOSSIER DATA =====
-# Utiliser le chemin absolu
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 os.makedirs(DATA_DIR, exist_ok=True)
@@ -45,8 +44,6 @@ def serve_data(filename):
 def register():
     try:
         data = request.json
-        print(f"📥 Register: {data}")
-        
         pseudo = data.get('pseudo', '').strip()
         email = data.get('email', '').strip()
         whatsapp = data.get('whatsapp', '').strip()
@@ -60,12 +57,9 @@ def register():
             return jsonify({'success': False, 'message': 'Mot de passe trop court (6 caractères min)'}), 400
 
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
-        print(f"📁 Chemin: {filepath}")
-        
         if os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
 
-        # Vérifier email unique
         for filename in os.listdir(DATA_DIR):
             if filename.endswith('.FMTK'):
                 try:
@@ -75,8 +69,8 @@ def register():
                             return jsonify({'success': False, 'message': 'Cet email est déjà utilisé'}), 400
                         if existing.get('whatsapp') == whatsapp and whatsapp:
                             return jsonify({'success': False, 'message': 'Ce numéro WhatsApp est déjà utilisé'}), 400
-                except Exception as e:
-                    print(f"⚠️ Erreur lecture {filename}: {e}")
+                except:
+                    pass
 
         player_data = {
             'version': '1.0',
@@ -95,25 +89,14 @@ def register():
                 'stade': '',
                 'couleurs': '#FFD700 / #003366',
                 'joueurs': [],
-                'stats': {
-                    'matchs': 0, 'victoires': 0, 'defaites': 0,
-                    'nuls': 0, 'buts_marques': 0, 'buts_encaisses': 0
-                },
-                'transferts': {
-                    'budget': 50000000,
-                    'joueurs_achetes': [],
-                    'joueurs_vendus': []
-                },
-                'tactique': {
-                    'formation': '4-3-3'
-                }
+                'stats': {'matchs': 0, 'victoires': 0, 'defaites': 0, 'nuls': 0, 'buts_marques': 0, 'buts_encaisses': 0},
+                'transferts': {'budget': 50000000, 'joueurs_achetes': [], 'joueurs_vendus': []},
+                'tactique': {'formation': '4-3-3'}
             }
         }
 
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(player_data, f, indent=2, ensure_ascii=False)
-        
-        print(f"✅ Fichier créé: {filepath}")
 
         return jsonify({
             'success': True,
@@ -123,7 +106,7 @@ def register():
         })
 
     except Exception as e:
-        print(f"❌ Erreur register: {e}")
+        print(f"❌ Erreur: {e}")
         return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
 
 # ===== API LOGIN =====
@@ -131,8 +114,6 @@ def register():
 def login():
     try:
         data = request.json
-        print(f"📥 Login: {data}")
-        
         pseudo = data.get('pseudo', '').strip()
         password = data.get('password', '').strip()
 
@@ -140,12 +121,7 @@ def login():
             return jsonify({'success': False, 'message': 'Pseudo et mot de passe requis'}), 400
 
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
-        print(f"📁 Login chemin: {filepath}")
-        
         if not os.path.exists(filepath):
-            print(f"❌ Fichier non trouvé: {filepath}")
-            # Lister les fichiers disponibles
-            print(f"📁 Fichiers disponibles: {os.listdir(DATA_DIR)}")
             return jsonify({'success': False, 'message': 'Compte inexistant'}), 404
 
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -167,7 +143,6 @@ def login():
         })
 
     except Exception as e:
-        print(f"❌ Erreur login: {e}")
         return jsonify({'success': False, 'message': f'Erreur: {str(e)}'}), 500
 
 # ===== DOWNLOAD =====
@@ -181,15 +156,6 @@ def download_file(pseudo):
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
 
-# ===== LISTER LES FICHIERS (debug) =====
-@app.route('/api/list-files')
-def list_files():
-    try:
-        files = os.listdir(DATA_DIR)
-        return jsonify({'success': True, 'files': files})
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)})
-
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=False)
