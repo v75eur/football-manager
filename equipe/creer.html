@@ -34,6 +34,7 @@
         .btn-submit:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(255,215,0,0.2); }
         .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
         
+        /* ===== LOGO STYLES ===== */
         .club-preview {
             background:rgba(255,215,0,0.03);
             border:1px solid rgba(255,215,0,0.08);
@@ -51,8 +52,8 @@
             margin-bottom:15px;
         }
         .club-logo {
-            width:80px;
-            height:80px;
+            width:100px;
+            height:100px;
             border-radius:50%;
             display:flex;
             align-items:center;
@@ -61,27 +62,49 @@
             font-weight:900;
             color:#fff;
             flex-shrink:0;
-            border:3px solid rgba(255,215,0,0.2);
-            background:linear-gradient(135deg,#1a2e1a,#0a1a0a);
             position:relative;
             overflow:hidden;
-            box-shadow:0 0 30px rgba(255,215,0,0.1);
+            box-shadow:0 0 40px rgba(0,0,0,0.5);
+            transition:transform 0.3s;
         }
-        .club-logo .logo-emoji {
-            font-size:2.8rem;
-            line-height:1;
+        .club-logo:hover {
+            transform:scale(1.05);
         }
         .club-logo .logo-initials {
-            font-size:2rem;
+            font-size:2.2rem;
             font-weight:900;
-            color:#FFD700;
-            text-shadow:0 0 20px rgba(255,215,0,0.3);
+            text-shadow:0 2px 10px rgba(0,0,0,0.3);
+            z-index:2;
+            position:relative;
         }
-        .club-logo .logo-img {
+        .club-logo .logo-bg {
+            position:absolute;
+            top:0;
+            left:0;
             width:100%;
             height:100%;
-            object-fit:contain;
+            background:linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+            z-index:1;
+        }
+        .club-logo .logo-ring {
+            position:absolute;
+            top:-5px;
+            left:-5px;
+            width:110px;
+            height:110px;
             border-radius:50%;
+            border:3px solid rgba(255,255,255,0.15);
+            z-index:0;
+        }
+        .club-logo .logo-ring2 {
+            position:absolute;
+            top:-12px;
+            left:-12px;
+            width:124px;
+            height:124px;
+            border-radius:50%;
+            border:2px solid rgba(255,215,0,0.1);
+            z-index:0;
         }
         .club-info h2 {
             font-family:'Orbitron',monospace;
@@ -145,7 +168,13 @@
         .spinner { width:30px; height:30px; border:3px solid rgba(255,215,0,0.1); border-top-color:#FFD700; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto; }
         @keyframes spin { to { transform:rotate(360deg); } }
         
-        @media (max-width:600px) { .form-row { grid-template-columns:1fr; } .club-preview-header { flex-direction:column; text-align:center; } .card { padding:20px 15px; } }
+        @media (max-width:600px) { 
+            .form-row { grid-template-columns:1fr; } 
+            .club-preview-header { flex-direction:column; text-align:center; } 
+            .card { padding:20px 15px; }
+            .club-logo { width:80px; height:80px; }
+            .club-logo .logo-initials { font-size:1.8rem; }
+        }
         
         .popup-overlay {
             display:none; position:fixed; top:0; left:0; width:100%; height:100%;
@@ -208,8 +237,11 @@
 
             <div class="club-preview" id="clubPreview">
                 <div class="club-preview-header">
-                    <div class="club-logo" id="clubLogo">
-                        <span class="logo-emoji" id="logoEmoji">⚽</span>
+                    <div class="club-logo" id="clubLogo" style="background:linear-gradient(135deg, #1a2e1a, #0a1a0a);">
+                        <div class="logo-ring"></div>
+                        <div class="logo-ring2"></div>
+                        <div class="logo-bg"></div>
+                        <span class="logo-initials" id="logoInitials">⚽</span>
                     </div>
                     <div class="club-info">
                         <h2 id="previewClubName">Club</h2>
@@ -264,25 +296,53 @@
 </div>
 
 <script>
-// ===== LOGOS POUR TOUS LES CLUBS =====
-function generateLogo(clubName) {
-    // Si le nom est vide
-    if (!clubName) return "⚽";
-    
-    // Extraire la première lettre de chaque mot
+// ===== GÉNÉRATEUR DE LOGOS COLORÉS =====
+const COLOR_PALETTE = [
+    '#E74C3C', '#3498DB', '#2ECC71', '#F39C12', '#9B59B6',
+    '#1ABC9C', '#E67E22', '#C0392B', '#2980B9', '#27AE60',
+    '#8E44AD', '#16A085', '#D35400', '#2C3E50', '#7F8C8D',
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7',
+    '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E9',
+    '#F1948A', '#82E0AA', '#F8C471', '#73C6B6', '#AF7AC5'
+];
+
+function generateLogoDesign(clubName) {
+    // Extraire les initiales
     const words = clubName.split(' ');
     let initials = '';
+    const skipWords = ['FC', 'AS', 'US', 'JS', 'ES', 'CS', 'SC', 'AC', 'SD', 'UD', 'RC', 'OC', 'CA', 'de', 'la', 'du', 'des'];
+    
     for (const word of words) {
-        if (word.length > 0 && word !== 'FC' && word !== 'AS' && word !== 'US' && word !== 'JS') {
-            initials += word[0];
+        if (word.length > 0 && !skipWords.includes(word.toUpperCase())) {
+            initials += word[0].toUpperCase();
         }
     }
+    
     if (initials.length === 0) {
         initials = clubName.substring(0, 2).toUpperCase();
     }
-    if (initials.length > 3) initials = initials.substring(0, 3);
+    if (initials.length > 3) {
+        initials = initials.substring(0, 3);
+    }
     
-    return initials.toUpperCase();
+    // Choisir une couleur primaire et secondaire
+    const colorIndex = Math.floor(Math.random() * COLOR_PALETTE.length);
+    const primaryColor = COLOR_PALETTE[colorIndex];
+    const secondaryColor = COLOR_PALETTE[(colorIndex + 5) % COLOR_PALETTE.length];
+    
+    // Créer un dégradé
+    const gradient = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`;
+    
+    // Ajouter un effet de brillance
+    const glow = `${primaryColor}33`;
+    
+    return {
+        initials: initials,
+        primaryColor: primaryColor,
+        secondaryColor: secondaryColor,
+        gradient: gradient,
+        glow: glow
+    };
 }
 
 // ===== BASE DE DONNÉES DES CLUBS =====
@@ -374,13 +434,25 @@ function getClubInfo(clubName) {
         ["#FDE100", "#003366"], ["#800000", "#FFFFFF"]
     ];
     const randomColors = colors[Math.floor(Math.random() * colors.length)];
+    // Générer un logo avec initiales
+    const words = clubName.split(' ');
+    let initials = '';
+    const skip = ['FC', 'AS', 'US', 'JS', 'ES', 'CS', 'SC', 'AC', 'SD', 'UD', 'RC', 'OC', 'CA'];
+    for (const word of words) {
+        if (word.length > 0 && !skip.includes(word.toUpperCase())) {
+            initials += word[0].toUpperCase();
+        }
+    }
+    if (initials.length === 0) initials = clubName.substring(0, 2).toUpperCase();
+    if (initials.length > 3) initials = initials.substring(0, 3);
+    
     return {
         budget: randomBudget,
         stars: stars,
         stadium: stadiums[Math.floor(Math.random() * stadiums.length)],
         capacity: capacity,
         colors: randomColors,
-        logo: generateLogo(clubName)
+        logo: initials
     };
 }
 
@@ -504,10 +576,29 @@ function updatePreview() {
     const stars = '⭐'.repeat(info.stars) + '☆'.repeat(5 - info.stars);
     const divNames = {'D1': '🏆 Division 1', 'D2': '🏅 Division 2', 'D3': '🎯 Division 3'};
     
-    // Logo
-    const logoText = info.logo || generateLogo(club);
-    document.getElementById('logoEmoji').textContent = logoText;
+    // Générer le logo coloré
+    const logoDesign = generateLogoDesign(club);
     
+    // Mettre à jour le logo
+    const logoElement = document.getElementById('clubLogo');
+    const logoInitials = document.getElementById('logoInitials');
+    
+    // Appliquer les couleurs
+    const primaryColor = logoDesign.primaryColor;
+    const secondaryColor = logoDesign.secondaryColor;
+    
+    // Dégradé pour le fond du logo
+    logoElement.style.background = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`;
+    logoElement.style.boxShadow = `0 0 40px ${logoDesign.glow}`;
+    
+    // Mettre les initiales
+    logoInitials.textContent = info.logo || logoDesign.initials;
+    logoInitials.style.color = '#FFFFFF';
+    logoInitials.style.fontSize = '2.5rem';
+    logoInitials.style.fontWeight = '900';
+    logoInitials.style.textShadow = '0 2px 20px rgba(0,0,0,0.5)';
+    
+    // Mettre à jour les informations
     document.getElementById('previewClubName').textContent = club;
     document.getElementById('previewCountry').textContent = '🌍 ' + country;
     document.getElementById('previewStars').textContent = stars;
@@ -522,8 +613,8 @@ function updatePreview() {
         document.getElementById('color1').style.background = info.colors[0];
         document.getElementById('color2').style.background = info.colors[1];
     } else {
-        document.getElementById('color1').style.background = '#FFD700';
-        document.getElementById('color2').style.background = '#003366';
+        document.getElementById('color1').style.background = primaryColor;
+        document.getElementById('color2').style.background = secondaryColor;
     }
 }
 
@@ -548,6 +639,8 @@ document.getElementById('teamForm').addEventListener('submit', async function(e)
     }
     
     const info = getClubInfo(club);
+    const logoDesign = generateLogoDesign(club);
+    
     const data = {
         coach: coach,
         pays: country,
@@ -558,7 +651,12 @@ document.getElementById('teamForm').addEventListener('submit', async function(e)
         stars: info.stars,
         capacity: info.capacity,
         colors: info.colors || ['#FFD700', '#003366'],
-        logo: info.logo || generateLogo(club)
+        logo: info.logo || logoDesign.initials,
+        logoColors: {
+            primary: logoDesign.primaryColor,
+            secondary: logoDesign.secondaryColor,
+            gradient: logoDesign.gradient
+        }
     };
     
     try {
