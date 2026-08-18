@@ -59,7 +59,7 @@ def list_players():
         return jsonify({'error': str(e)}), 500
 
 # ============================================
-# API : INSCRIPTION (avec sauvegarde forcée)
+# API : INSCRIPTION (avec vérifications)
 # ============================================
 @app.route('/api/register', methods=['POST'])
 def register():
@@ -77,10 +77,23 @@ def register():
         if len(password) < 6:
             return jsonify({'success': False, 'message': 'Mot de passe trop court (6 caractères min)'}), 400
 
+        # ===== VÉRIFIER SI LE PSEUDO EXISTE =====
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
         if os.path.exists(filepath):
-            return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
+            return jsonify({'success': False, 'message': 'Ce pseudo est déjà utilisé'}), 400
 
+        # ===== VÉRIFIER SI EMAIL OU WHATSAPP EXISTE DÉJÀ =====
+        for filename in os.listdir(DATA_DIR):
+            if filename.endswith('.FMTK'):
+                existing_path = os.path.join(DATA_DIR, filename)
+                with open(existing_path, 'r') as f:
+                    existing_data = json.load(f)
+                    if existing_data.get('email') == email:
+                        return jsonify({'success': False, 'message': 'Cet email est déjà utilisé'}), 400
+                    if existing_data.get('whatsapp') == whatsapp and whatsapp:
+                        return jsonify({'success': False, 'message': 'Ce numéro WhatsApp est déjà utilisé'}), 400
+
+        # ===== CRÉER LE JOUEUR =====
         player_data = {
             'version': '1.0',
             'pseudo': pseudo,
@@ -108,7 +121,7 @@ def register():
             'session': {'games_played': 0, 'win_rate': 0}
         }
 
-        # ===== SAUVEGARDE OBLIGATOIRE =====
+        # ===== SAUVEGARDER =====
         with open(filepath, 'w') as f:
             json.dump(player_data, f, indent=2)
 
