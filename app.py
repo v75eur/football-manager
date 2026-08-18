@@ -315,3 +315,67 @@ def load_data(pseudo):
         return jsonify({'success': True, 'data': data})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+
+# ===== SAUVEGARDE SERVEUR =====
+@app.route('/api/save-game', methods=['POST'])
+def save_game():
+    """Sauvegarde complète du jeu sur le serveur"""
+    try:
+        data = request.json
+        pseudo = data.get('pseudo', 'anonymous')
+        game_data = data.get('data', {})
+        
+        # Ajouter la date de sauvegarde
+        game_data['last_save'] = datetime.now().isoformat()
+        game_data['version'] = '1.26'
+        
+        filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        with open(filepath, 'w', encoding='utf-8') as f:
+            json.dump(game_data, f, ensure_ascii=False, indent=2)
+        
+        return jsonify({
+            'success': True,
+            'message': 'Sauvegarde réussie',
+            'date': game_data['last_save']
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/load-game/<pseudo>')
+def load_game(pseudo):
+    """Charge une sauvegarde depuis le serveur"""
+    try:
+        filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        if not os.path.exists(filepath):
+            return jsonify({'success': False, 'message': 'Aucune sauvegarde trouvée'}), 404
+        
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        return jsonify({
+            'success': True,
+            'data': data,
+            'date': data.get('last_save', 'Inconnue')
+        })
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
+
+@app.route('/api/save-list')
+def save_list():
+    """Liste toutes les sauvegardes disponibles"""
+    try:
+        files = []
+        for filename in os.listdir(DATA_DIR):
+            if filename.endswith('.FMTK'):
+                filepath = os.path.join(DATA_DIR, filename)
+                with open(filepath, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    files.append({
+                        'pseudo': data.get('pseudo', filename.replace('.FMTK', '')),
+                        'date': data.get('last_save', ''),
+                        'club': data.get('club', ''),
+                        'size': os.path.getsize(filepath)
+                    })
+        return jsonify({'success': True, 'files': files})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500

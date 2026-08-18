@@ -1140,3 +1140,92 @@ document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
+<!-- Ajouter les nouvelles sections -->
+<script>
+// ===== NOUVELLES FONCTIONS =====
+
+// Charger les vrais joueurs depuis le serveur
+async function loadRealPlayers() {
+    try {
+        const response = await fetch('/api/players/MonClub');
+        if (response.ok) {
+            const data = await response.json();
+            if (data.success && data.players) {
+                teamData.joueurs = data.players;
+                sauvegarder();
+                afficherEquipe();
+                showToast('✅ Joueurs réels chargés !', 'success');
+            }
+        }
+    } catch(e) {
+        console.error('Erreur chargement joueurs:', e);
+    }
+}
+
+// Sauvegarde sur le serveur
+async function saveToServer() {
+    const pseudo = prompt('Entrez votre pseudo pour la sauvegarde:', 'coach');
+    if (!pseudo) return;
+    
+    showToast('💾 Sauvegarde en cours...', 'info');
+    try {
+        const response = await fetch('/api/save-game', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                pseudo: pseudo,
+                data: teamData
+            })
+        });
+        const result = await response.json();
+        if (result.success) {
+            showToast('✅ Sauvegarde réussie !', 'success');
+        } else {
+            showToast('❌ Erreur: ' + result.message, 'error');
+        }
+    } catch(e) {
+        showToast('❌ Erreur de sauvegarde', 'error');
+    }
+}
+
+// Charger depuis le serveur
+async function loadFromServer() {
+    const pseudo = prompt('Entrez votre pseudo pour charger:', 'coach');
+    if (!pseudo) return;
+    
+    showToast('⏳ Chargement...', 'info');
+    try {
+        const response = await fetch(`/api/load-game/${pseudo}`);
+        const result = await response.json();
+        if (result.success) {
+            teamData = { ...teamData, ...result.data };
+            sauvegarder();
+            afficherEquipe();
+            afficherStats();
+            afficherMatchs();
+            afficherClassement();
+            afficherTransferts();
+            afficherFormation();
+            afficherInfra();
+            afficherHealth();
+            afficherProgress();
+            updateHeader();
+            showToast('✅ Sauvegarde chargée !', 'success');
+        } else {
+            showToast('❌ Aucune sauvegarde trouvée', 'error');
+        }
+    } catch(e) {
+        showToast('❌ Erreur de chargement', 'error');
+    }
+}
+
+// Ajouter les boutons dans le header
+document.querySelector('.header .info').innerHTML += `
+    <button class="btn-action" onclick="saveToServer()" style="padding:3px 8px;font-size:0.5rem;">
+        💾 Sauvegarder
+    </button>
+    <button class="btn-action" onclick="loadFromServer()" style="padding:3px 8px;font-size:0.5rem;">
+        📂 Charger
+    </button>
+`;
+</script>
