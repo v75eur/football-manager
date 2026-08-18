@@ -5,18 +5,27 @@ import uuid
 import hashlib
 from datetime import datetime
 from flask_cors import CORS
+import sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 app = Flask(__name__, static_folder='.')
 app.secret_key = 'dev-secret-key-change-in-production'
 CORS(app)
 
-# ===== DOSSIER DATA =====
+# ===== DOSSIER DATA LOCAL =====
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 os.makedirs(DATA_DIR, exist_ok=True)
 
-print(f"📁 DATA_DIR: {DATA_DIR}")
-print(f"📁 Contenu: {os.listdir(DATA_DIR) if os.path.exists(DATA_DIR) else 'vide'}")
+# ===== BACKUP MANAGER =====
+try:
+    from backend.backup_manager import BackupManager
+    backup_manager = BackupManager(repo_name='v75eur/football-manager-backups')
+    USE_GITHUB_BACKUP = True
+    print("✅ BackupManager chargé - Sauvegarde sur GitHub")
+except Exception as e:
+    USE_GITHUB_BACKUP = False
+    print(f"⚠️ BackupManager non disponible: {e}")
 
 # ===== ROUTES PRINCIPALES =====
 @app.route('/')
@@ -57,18 +66,19 @@ def register():
             return jsonify({'success': False, 'message': 'Mot de passe trop court (6 caractères min)'}), 400
 
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        
+        # Vérifier si le pseudo existe déjà
         if os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Ce pseudo existe déjà'}), 400
 
+        # Vérifier email unique dans les fichiers locaux
         for filename in os.listdir(DATA_DIR):
             if filename.endswith('.FMTK'):
                 try:
-                    with open(os.path.join(DATA_DIR, filename), 'r', encoding='utf-8') as f:
+                    with open(os.path.join(DATA_DIR, filename), 'r') as f:
                         existing = json.load(f)
                         if existing.get('email') == email:
                             return jsonify({'success': False, 'message': 'Cet email est déjà utilisé'}), 400
-                        if existing.get('whatsapp') == whatsapp and whatsapp:
-                            return jsonify({'success': False, 'message': 'Ce numéro WhatsApp est déjà utilisé'}), 400
                 except:
                     pass
 
@@ -95,8 +105,17 @@ def register():
             }
         }
 
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(player_data, f, indent=2, ensure_ascii=False)
+        # ===== SAUVEGARDE LOCALE =====
+        with open(filepath, 'w') as f:
+            json.dump(player_data, f, indent=2)
+
+        # ===== SAUVEGARDE SUR GITHUB (BackupManager) =====
+        if USE_GITHUB_BACKUP:
+            try:
+                backup_manager.backup_player(pseudo, player_data)
+                print(f"✅ Fichier sauvegardé sur GitHub: {pseudo}.FMTK")
+            except Exception as e:
+                print(f"⚠️ Erreur sauvegarde GitHub: {e}")
 
         return jsonify({
             'success': True,
@@ -121,10 +140,19 @@ def login():
             return jsonify({'success': False, 'message': 'Pseudo et mot de passe requis'}), 400
 
         filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        
+        # Si le fichier local n'existe pas, essayer de le récupérer depuis GitHub
+        if not os.path.exists(filepath) and USE_GITHUB_BACKUP:
+            try:
+                # Récupérer depuis GitHub (à implémenter dans BackupManager)
+                pass
+            except:
+                pass
+
         if not os.path.exists(filepath):
             return jsonify({'success': False, 'message': 'Compte inexistant'}), 404
 
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, 'r') as f:
             player_data = json.load(f)
 
         hashed = hashlib.sha256(password.encode()).hexdigest()
@@ -132,8 +160,8 @@ def login():
             return jsonify({'success': False, 'message': 'Mot de passe incorrect'}), 401
 
         player_data['last_login'] = datetime.now().isoformat()
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(player_data, f, indent=2, ensure_ascii=False)
+        with open(filepath, 'w') as f:
+            json.dump(player_data, f, indent=2)
 
         return jsonify({
             'success': True,
