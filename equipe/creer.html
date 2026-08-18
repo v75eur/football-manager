@@ -25,6 +25,7 @@
             border-color:#FFD700; outline:none; box-shadow:0 0 20px rgba(255,215,0,0.05);
         }
         .form-group select option { background:#1a2e1a; color:#fff; }
+        .form-group select option:disabled { color:#555; }
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
         .btn-submit {
             width:100%; padding:14px; background:linear-gradient(135deg,#FFD700,#f5a623); border:none;
@@ -34,7 +35,6 @@
         .btn-submit:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(255,215,0,0.2); }
         .btn-submit:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
         
-        /* ===== LOGO STYLES ===== */
         .club-preview {
             background:rgba(255,215,0,0.03);
             border:1px solid rgba(255,215,0,0.08);
@@ -67,9 +67,7 @@
             box-shadow:0 0 40px rgba(0,0,0,0.5);
             transition:transform 0.3s;
         }
-        .club-logo:hover {
-            transform:scale(1.05);
-        }
+        .club-logo:hover { transform:scale(1.05); }
         .club-logo .logo-initials {
             font-size:2.2rem;
             font-weight:900;
@@ -79,29 +77,23 @@
         }
         .club-logo .logo-bg {
             position:absolute;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
+            top:0; left:0;
+            width:100%; height:100%;
             background:linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
             z-index:1;
         }
         .club-logo .logo-ring {
             position:absolute;
-            top:-5px;
-            left:-5px;
-            width:110px;
-            height:110px;
+            top:-5px; left:-5px;
+            width:110px; height:110px;
             border-radius:50%;
             border:3px solid rgba(255,255,255,0.15);
             z-index:0;
         }
         .club-logo .logo-ring2 {
             position:absolute;
-            top:-12px;
-            left:-12px;
-            width:124px;
-            height:124px;
+            top:-12px; left:-12px;
+            width:124px; height:124px;
             border-radius:50%;
             border:2px solid rgba(255,215,0,0.1);
             z-index:0;
@@ -168,6 +160,18 @@
         .spinner { width:30px; height:30px; border:3px solid rgba(255,215,0,0.1); border-top-color:#FFD700; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto; }
         @keyframes spin { to { transform:rotate(360deg); } }
         
+        .badge-division {
+            display:inline-block;
+            padding:2px 10px;
+            border-radius:10px;
+            font-size:0.6rem;
+            font-weight:700;
+            text-transform:uppercase;
+        }
+        .badge-d1 { background:#2ecc71; color:#fff; }
+        .badge-d2 { background:#3498db; color:#fff; }
+        .badge-d3 { background:#f39c12; color:#fff; }
+        
         @media (max-width:600px) { 
             .form-row { grid-template-columns:1fr; } 
             .club-preview-header { flex-direction:column; text-align:center; } 
@@ -220,17 +224,17 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label><i class="fas fa-futbol"></i> Club</label>
-                    <select id="clubSelect" required disabled>
-                        <option value="">📌 Sélectionnez d'abord un pays</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label><i class="fas fa-trophy"></i> Division</label>
-                    <select id="divisionSelect">
+                    <select id="divisionSelect" onchange="updateClubs()">
                         <option value="D1">🏆 Division 1</option>
                         <option value="D2">🏅 Division 2</option>
                         <option value="D3">🎯 Division 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-futbol"></i> Club</label>
+                    <select id="clubSelect" required disabled>
+                        <option value="">📌 Sélectionnez d'abord un pays</option>
                     </select>
                 </div>
             </div>
@@ -307,7 +311,6 @@ const COLOR_PALETTE = [
 ];
 
 function generateLogoDesign(clubName) {
-    // Extraire les initiales
     const words = clubName.split(' ');
     let initials = '';
     const skipWords = ['FC', 'AS', 'US', 'JS', 'ES', 'CS', 'SC', 'AC', 'SD', 'UD', 'RC', 'OC', 'CA', 'de', 'la', 'du', 'des'];
@@ -325,15 +328,10 @@ function generateLogoDesign(clubName) {
         initials = initials.substring(0, 3);
     }
     
-    // Choisir une couleur primaire et secondaire
     const colorIndex = Math.floor(Math.random() * COLOR_PALETTE.length);
     const primaryColor = COLOR_PALETTE[colorIndex];
     const secondaryColor = COLOR_PALETTE[(colorIndex + 5) % COLOR_PALETTE.length];
-    
-    // Créer un dégradé
     const gradient = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`;
-    
-    // Ajouter un effet de brillance
     const glow = `${primaryColor}33`;
     
     return {
@@ -345,80 +343,73 @@ function generateLogoDesign(clubName) {
     };
 }
 
-// ===== BASE DE DONNÉES DES CLUBS =====
+// ===== BASE DE DONNÉES DES CLUBS (pour les logos et infos) =====
 const CLUB_DATABASE = {
-    // EUROPE - TOP CLUBS
-    "Real Madrid": { budget: 1200000000, stars: 5, stadium: "Santiago Bernabéu", capacity: 81044, colors: ["#FFFFFF", "#003366"], logo: "RM" },
-    "Barcelona": { budget: 980000000, stars: 5, stadium: "Camp Nou", capacity: 99354, colors: ["#003366", "#A50044"], logo: "FCB" },
-    "Bayern Munich": { budget: 950000000, stars: 5, stadium: "Allianz Arena", capacity: 75000, colors: ["#DC052D", "#0066B2"], logo: "FCB" },
-    "Manchester City": { budget: 1100000000, stars: 5, stadium: "Etihad Stadium", capacity: 53400, colors: ["#6CABDD", "#1C2F5C"], logo: "MCFC" },
-    "Liverpool": { budget: 880000000, stars: 5, stadium: "Anfield", capacity: 53394, colors: ["#C8102E", "#00A650"], logo: "LFC" },
-    "PSG": { budget: 1050000000, stars: 5, stadium: "Parc des Princes", capacity: 47929, colors: ["#003366", "#C8102E"], logo: "PSG" },
-    "Chelsea": { budget: 850000000, stars: 5, stadium: "Stamford Bridge", capacity: 41600, colors: ["#034694", "#FFFFFF"], logo: "CFC" },
-    "Juventus": { budget: 780000000, stars: 5, stadium: "Allianz Stadium", capacity: 41507, colors: ["#000000", "#FFFFFF"], logo: "JUV" },
-    "AC Milan": { budget: 720000000, stars: 5, stadium: "San Siro", capacity: 80018, colors: ["#FB0B0B", "#000000"], logo: "ACM" },
-    "Inter Milan": { budget: 700000000, stars: 5, stadium: "San Siro", capacity: 80018, colors: ["#003366", "#000000"], logo: "INT" },
-    "Arsenal": { budget: 650000000, stars: 4, stadium: "Emirates Stadium", capacity: 60704, colors: ["#EF0107", "#FFFFFF"], logo: "AFC" },
-    "Tottenham": { budget: 580000000, stars: 4, stadium: "Tottenham Hotspur Stadium", capacity: 62850, colors: ["#FFFFFF", "#132257"], logo: "THFC" },
-    "Atlético Madrid": { budget: 550000000, stars: 4, stadium: "Metropolitano", capacity: 68456, colors: ["#D20E19", "#003366"], logo: "ATM" },
-    "Borussia Dortmund": { budget: 520000000, stars: 4, stadium: "Signal Iduna Park", capacity: 81365, colors: ["#FDE100", "#000000"], logo: "BVB" },
-    "Marseille": { budget: 480000000, stars: 4, stadium: "Orange Vélodrome", capacity: 67394, colors: ["#FFFFFF", "#0066CC"], logo: "OM" },
-    "Al-Hilal": { budget: 650000000, stars: 4, stadium: "King Fahd Stadium", capacity: 68752, colors: ["#003366", "#FFFFFF"], logo: "ALH" },
-    "Al-Nassr": { budget: 600000000, stars: 4, stadium: "King Saud University Stadium", capacity: 25000, colors: ["#FDE100", "#003366"], logo: "ALN" },
-    "Al-Ittihad": { budget: 580000000, stars: 4, stadium: "King Abdullah Sports City", capacity: 62345, colors: ["#000000", "#FDE100"], logo: "ALI" },
-    "Benfica": { budget: 450000000, stars: 4, stadium: "Estádio da Luz", capacity: 64642, colors: ["#FF0000", "#FFFFFF"], logo: "SLB" },
-    "Porto": { budget: 420000000, stars: 4, stadium: "Estádio do Dragão", capacity: 50033, colors: ["#003366", "#FF0000"], logo: "FCP" },
-    "Ajax": { budget: 400000000, stars: 4, stadium: "Johan Cruyff Arena", capacity: 54990, colors: ["#FF0000", "#FFFFFF"], logo: "AFC" },
-    "Feyenoord": { budget: 380000000, stars: 4, stadium: "De Kuip", capacity: 51177, colors: ["#FF0000", "#FFFFFF"], logo: "FEY" },
-    "Galatasaray": { budget: 420000000, stars: 4, stadium: "Rams Park", capacity: 52652, colors: ["#FDE100", "#CC0000"], logo: "GS" },
-    "Fenerbahçe": { budget: 400000000, stars: 4, stadium: "Şükrü Saracoğlu", capacity: 50509, colors: ["#003366", "#FDE100"], logo: "FB" },
-    "Beşiktaş": { budget: 380000000, stars: 4, stadium: "Vodafone Park", capacity: 41903, colors: ["#000000", "#FFFFFF"], logo: "BJK" },
-    "Zenit": { budget: 450000000, stars: 4, stadium: "Gazprom Arena", capacity: 67800, colors: ["#003366", "#00A650"], logo: "ZEN" },
-    "Lyon": { budget: 320000000, stars: 3, stadium: "Groupama Stadium", capacity: 59186, colors: ["#003366", "#FFFFFF"], logo: "OL" },
-    "Monaco": { budget: 300000000, stars: 3, stadium: "Stade Louis II", capacity: 18523, colors: ["#FF0000", "#FFFFFF"], logo: "ASM" },
-    "Lille": { budget: 280000000, stars: 3, stadium: "Stade Pierre-Mauroy", capacity: 50186, colors: ["#DC052D", "#003366"], logo: "LOSC" },
-    "Rennes": { budget: 250000000, stars: 3, stadium: "Roazhon Park", capacity: 29778, colors: ["#FF0000", "#000000"], logo: "SR" },
-    "Nice": { budget: 230000000, stars: 3, stadium: "Allianz Riviera", capacity: 35624, colors: ["#FF0000", "#000000"], logo: "OGCN" },
-    "Lens": { budget: 210000000, stars: 3, stadium: "Stade Bollaert-Delelis", capacity: 38223, colors: ["#FF0000", "#FDE100"], logo: "RCL" },
-    "Bordeaux": { budget: 160000000, stars: 3, stadium: "Matmut Atlantique", capacity: 42115, colors: ["#003366", "#FFFFFF"], logo: "FCGB" },
-    "Saint-Étienne": { budget: 150000000, stars: 3, stadium: "Stade Geoffroy-Guichard", capacity: 41965, colors: ["#00A650", "#FFFFFF"], logo: "ASSE" },
-    "Nantes": { budget: 130000000, stars: 3, stadium: "Stade de la Beaujoire", capacity: 35200, colors: ["#FDE100", "#00A650"], logo: "FCN" },
-    "Strasbourg": { budget: 180000000, stars: 3, stadium: "Stade de la Meinau", capacity: 29100, colors: ["#003366", "#FFFFFF"], logo: "RCS" },
-    "Reims": { budget: 120000000, stars: 3, stadium: "Stade Auguste-Delaune", capacity: 21700, colors: ["#FF0000", "#FFFFFF"], logo: "SDR" },
-    "Montpellier": { budget: 115000000, stars: 3, stadium: "Stade de la Mosson", capacity: 32900, colors: ["#003366", "#FF6600"], logo: "MHSC" },
-    "Toulouse": { budget: 110000000, stars: 3, stadium: "Stadium Municipal", capacity: 33150, colors: ["#800000", "#FFFFFF"], logo: "TFC" },
-    "Brest": { budget: 100000000, stars: 3, stadium: "Stade Francis-Le Blé", capacity: 15000, colors: ["#FF0000", "#FFFFFF"], logo: "SB29" },
-    "Clermont": { budget: 90000000, stars: 3, stadium: "Stade Gabriel-Montpied", capacity: 11700, colors: ["#003366", "#FF0000"], logo: "CFC" },
-    
-    // BENIN
-    "AS Cotonou": { budget: 80000000, stars: 2, stadium: "Stade Charles de Gaulle", capacity: 15000, colors: ["#FFD700", "#003366"], logo: "ASC" },
-    "JS Pobè": { budget: 60000000, stars: 2, stadium: "Stade de Pobè", capacity: 5000, colors: ["#00A650", "#FFFFFF"], logo: "JSP" },
-    "Mambas Noires": { budget: 50000000, stars: 2, stadium: "Stade de l'Amitié", capacity: 8000, colors: ["#000000", "#FF0000"], logo: "MN" },
-    "Béké FC": { budget: 45000000, stars: 2, stadium: "Stade de Béké", capacity: 6000, colors: ["#FF6600", "#003366"], logo: "BFC" },
-    "Dynamo Abomey": { budget: 40000000, stars: 2, stadium: "Stade d'Abomey", capacity: 7000, colors: ["#FF0000", "#000000"], logo: "DA" },
-    "Tonnerre": { budget: 35000000, stars: 2, stadium: "Stade Tonnerre", capacity: 5000, colors: ["#FDE100", "#003366"], logo: "TFC" },
-    "Porto-Novo": { budget: 30000000, stars: 2, stadium: "Stade de Porto-Novo", capacity: 12000, colors: ["#003366", "#FFFFFF"], logo: "PN" },
-    "Soleil FC": { budget: 25000000, stars: 2, stadium: "Stade Soleil", capacity: 4000, colors: ["#FF6600", "#FDE100"], logo: "SFC" },
-    "Police FC": { budget: 20000000, stars: 2, stadium: "Stade Police", capacity: 3000, colors: ["#003366", "#FFFFFF"], logo: "PFC" },
-    "Aspac FC": { budget: 18000000, stars: 2, stadium: "Stade Aspac", capacity: 2000, colors: ["#FF0000", "#FFFFFF"], logo: "AFC" },
-    
-    // DIVISION 2 BENIN
-    "Adjinakou": { budget: 12000000, stars: 1, stadium: "Stade Adjinakou", capacity: 1500, colors: ["#00A650", "#FF6600"], logo: "ADJ" },
-    "Agonlin": { budget: 10000000, stars: 1, stadium: "Stade Agonlin", capacity: 1200, colors: ["#003366", "#FF0000"], logo: "AGO" },
-    "Cotonou FC": { budget: 8000000, stars: 1, stadium: "Stade Cotonou", capacity: 1000, colors: ["#FFD700", "#000000"], logo: "CFC" },
-    "Ouidah": { budget: 6000000, stars: 1, stadium: "Stade Ouidah", capacity: 800, colors: ["#FFFFFF", "#003366"], logo: "OU" },
-    "Dassa": { budget: 5000000, stars: 1, stadium: "Stade Dassa", capacity: 500, colors: ["#FF6600", "#003366"], logo: "DAS" },
-    "Kandi": { budget: 4000000, stars: 1, stadium: "Stade Kandi", capacity: 400, colors: ["#FF0000", "#FFFFFF"], logo: "KAN" },
-    "Natitingou": { budget: 3000000, stars: 1, stadium: "Stade Natitingou", capacity: 300, colors: ["#00A650", "#003366"], logo: "NAT" },
-    "Djougou": { budget: 2000000, stars: 1, stadium: "Stade Djougou", capacity: 200, colors: ["#FDE100", "#000000"], logo: "DJO" }
+    "Real Madrid": { budget: 1200000000, stars: 5, stadium: "Santiago Bernabéu", capacity: 81044, colors: ["#FFFFFF", "#003366"] },
+    "Barcelona": { budget: 980000000, stars: 5, stadium: "Camp Nou", capacity: 99354, colors: ["#003366", "#A50044"] },
+    "Bayern Munich": { budget: 950000000, stars: 5, stadium: "Allianz Arena", capacity: 75000, colors: ["#DC052D", "#0066B2"] },
+    "Manchester City": { budget: 1100000000, stars: 5, stadium: "Etihad Stadium", capacity: 53400, colors: ["#6CABDD", "#1C2F5C"] },
+    "Liverpool": { budget: 880000000, stars: 5, stadium: "Anfield", capacity: 53394, colors: ["#C8102E", "#00A650"] },
+    "PSG": { budget: 1050000000, stars: 5, stadium: "Parc des Princes", capacity: 47929, colors: ["#003366", "#C8102E"] },
+    "Chelsea": { budget: 850000000, stars: 5, stadium: "Stamford Bridge", capacity: 41600, colors: ["#034694", "#FFFFFF"] },
+    "Juventus": { budget: 780000000, stars: 5, stadium: "Allianz Stadium", capacity: 41507, colors: ["#000000", "#FFFFFF"] },
+    "AC Milan": { budget: 720000000, stars: 5, stadium: "San Siro", capacity: 80018, colors: ["#FB0B0B", "#000000"] },
+    "Inter Milan": { budget: 700000000, stars: 5, stadium: "San Siro", capacity: 80018, colors: ["#003366", "#000000"] },
+    "Arsenal": { budget: 650000000, stars: 4, stadium: "Emirates Stadium", capacity: 60704, colors: ["#EF0107", "#FFFFFF"] },
+    "Tottenham": { budget: 580000000, stars: 4, stadium: "Tottenham Hotspur Stadium", capacity: 62850, colors: ["#FFFFFF", "#132257"] },
+    "Atlético Madrid": { budget: 550000000, stars: 4, stadium: "Metropolitano", capacity: 68456, colors: ["#D20E19", "#003366"] },
+    "Borussia Dortmund": { budget: 520000000, stars: 4, stadium: "Signal Iduna Park", capacity: 81365, colors: ["#FDE100", "#000000"] },
+    "Marseille": { budget: 480000000, stars: 4, stadium: "Orange Vélodrome", capacity: 67394, colors: ["#FFFFFF", "#0066CC"] },
+    "Al-Hilal": { budget: 650000000, stars: 4, stadium: "King Fahd Stadium", capacity: 68752, colors: ["#003366", "#FFFFFF"] },
+    "Al-Nassr": { budget: 600000000, stars: 4, stadium: "King Saud University Stadium", capacity: 25000, colors: ["#FDE100", "#003366"] },
+    "Al-Ittihad": { budget: 580000000, stars: 4, stadium: "King Abdullah Sports City", capacity: 62345, colors: ["#000000", "#FDE100"] },
+    "Benfica": { budget: 450000000, stars: 4, stadium: "Estádio da Luz", capacity: 64642, colors: ["#FF0000", "#FFFFFF"] },
+    "Porto": { budget: 420000000, stars: 4, stadium: "Estádio do Dragão", capacity: 50033, colors: ["#003366", "#FF0000"] },
+    "Ajax": { budget: 400000000, stars: 4, stadium: "Johan Cruyff Arena", capacity: 54990, colors: ["#FF0000", "#FFFFFF"] },
+    "Feyenoord": { budget: 380000000, stars: 4, stadium: "De Kuip", capacity: 51177, colors: ["#FF0000", "#FFFFFF"] },
+    "Galatasaray": { budget: 420000000, stars: 4, stadium: "Rams Park", capacity: 52652, colors: ["#FDE100", "#CC0000"] },
+    "Fenerbahçe": { budget: 400000000, stars: 4, stadium: "Şükrü Saracoğlu", capacity: 50509, colors: ["#003366", "#FDE100"] },
+    "Beşiktaş": { budget: 380000000, stars: 4, stadium: "Vodafone Park", capacity: 41903, colors: ["#000000", "#FFFFFF"] },
+    "Zenit": { budget: 450000000, stars: 4, stadium: "Gazprom Arena", capacity: 67800, colors: ["#003366", "#00A650"] },
+    "Lyon": { budget: 320000000, stars: 3, stadium: "Groupama Stadium", capacity: 59186, colors: ["#003366", "#FFFFFF"] },
+    "Monaco": { budget: 300000000, stars: 3, stadium: "Stade Louis II", capacity: 18523, colors: ["#FF0000", "#FFFFFF"] },
+    "Lille": { budget: 280000000, stars: 3, stadium: "Stade Pierre-Mauroy", capacity: 50186, colors: ["#DC052D", "#003366"] },
+    "Rennes": { budget: 250000000, stars: 3, stadium: "Roazhon Park", capacity: 29778, colors: ["#FF0000", "#000000"] },
+    "Nice": { budget: 230000000, stars: 3, stadium: "Allianz Riviera", capacity: 35624, colors: ["#FF0000", "#000000"] },
+    "Lens": { budget: 210000000, stars: 3, stadium: "Stade Bollaert-Delelis", capacity: 38223, colors: ["#FF0000", "#FDE100"] },
+    "Bordeaux": { budget: 160000000, stars: 3, stadium: "Matmut Atlantique", capacity: 42115, colors: ["#003366", "#FFFFFF"] },
+    "Saint-Étienne": { budget: 150000000, stars: 3, stadium: "Stade Geoffroy-Guichard", capacity: 41965, colors: ["#00A650", "#FFFFFF"] },
+    "Nantes": { budget: 130000000, stars: 3, stadium: "Stade de la Beaujoire", capacity: 35200, colors: ["#FDE100", "#00A650"] },
+    "Strasbourg": { budget: 180000000, stars: 3, stadium: "Stade de la Meinau", capacity: 29100, colors: ["#003366", "#FFFFFF"] },
+    "Reims": { budget: 120000000, stars: 3, stadium: "Stade Auguste-Delaune", capacity: 21700, colors: ["#FF0000", "#FFFFFF"] },
+    "Montpellier": { budget: 115000000, stars: 3, stadium: "Stade de la Mosson", capacity: 32900, colors: ["#003366", "#FF6600"] },
+    "Toulouse": { budget: 110000000, stars: 3, stadium: "Stadium Municipal", capacity: 33150, colors: ["#800000", "#FFFFFF"] },
+    "Brest": { budget: 100000000, stars: 3, stadium: "Stade Francis-Le Blé", capacity: 15000, colors: ["#FF0000", "#FFFFFF"] },
+    "Clermont": { budget: 90000000, stars: 3, stadium: "Stade Gabriel-Montpied", capacity: 11700, colors: ["#003366", "#FF0000"] },
+    "AS Cotonou": { budget: 80000000, stars: 2, stadium: "Stade Charles de Gaulle", capacity: 15000, colors: ["#FFD700", "#003366"] },
+    "JS Pobè": { budget: 60000000, stars: 2, stadium: "Stade de Pobè", capacity: 5000, colors: ["#00A650", "#FFFFFF"] },
+    "Mambas Noires": { budget: 50000000, stars: 2, stadium: "Stade de l'Amitié", capacity: 8000, colors: ["#000000", "#FF0000"] },
+    "Béké FC": { budget: 45000000, stars: 2, stadium: "Stade de Béké", capacity: 6000, colors: ["#FF6600", "#003366"] },
+    "Dynamo Abomey": { budget: 40000000, stars: 2, stadium: "Stade d'Abomey", capacity: 7000, colors: ["#FF0000", "#000000"] },
+    "Tonnerre": { budget: 35000000, stars: 2, stadium: "Stade Tonnerre", capacity: 5000, colors: ["#FDE100", "#003366"] },
+    "Porto-Novo": { budget: 30000000, stars: 2, stadium: "Stade de Porto-Novo", capacity: 12000, colors: ["#003366", "#FFFFFF"] },
+    "Soleil FC": { budget: 25000000, stars: 2, stadium: "Stade Soleil", capacity: 4000, colors: ["#FF6600", "#FDE100"] },
+    "Police FC": { budget: 20000000, stars: 2, stadium: "Stade Police", capacity: 3000, colors: ["#003366", "#FFFFFF"] },
+    "Aspac FC": { budget: 18000000, stars: 2, stadium: "Stade Aspac", capacity: 2000, colors: ["#FF0000", "#FFFFFF"] },
+    "Adjinakou": { budget: 12000000, stars: 1, stadium: "Stade Adjinakou", capacity: 1500, colors: ["#00A650", "#FF6600"] },
+    "Agonlin": { budget: 10000000, stars: 1, stadium: "Stade Agonlin", capacity: 1200, colors: ["#003366", "#FF0000"] },
+    "Cotonou FC": { budget: 8000000, stars: 1, stadium: "Stade Cotonou", capacity: 1000, colors: ["#FFD700", "#000000"] },
+    "Ouidah": { budget: 6000000, stars: 1, stadium: "Stade Ouidah", capacity: 800, colors: ["#FFFFFF", "#003366"] },
+    "Dassa": { budget: 5000000, stars: 1, stadium: "Stade Dassa", capacity: 500, colors: ["#FF6600", "#003366"] },
+    "Kandi": { budget: 4000000, stars: 1, stadium: "Stade Kandi", capacity: 400, colors: ["#FF0000", "#FFFFFF"] },
+    "Natitingou": { budget: 3000000, stars: 1, stadium: "Stade Natitingou", capacity: 300, colors: ["#00A650", "#003366"] },
+    "Djougou": { budget: 2000000, stars: 1, stadium: "Stade Djougou", capacity: 200, colors: ["#FDE100", "#000000"] }
 };
 
-// ===== FONCTIONS =====
 function getClubInfo(clubName) {
     if (CLUB_DATABASE[clubName]) {
         return CLUB_DATABASE[clubName];
     }
-    // Générer des infos pour un club inconnu
     const randomBudget = Math.floor(Math.random() * 80000000) + 5000000;
     const stars = Math.floor(Math.random() * 3) + 1;
     const capacities = [1000, 2000, 3000, 5000, 8000, 10000, 15000];
@@ -434,30 +425,18 @@ function getClubInfo(clubName) {
         ["#FDE100", "#003366"], ["#800000", "#FFFFFF"]
     ];
     const randomColors = colors[Math.floor(Math.random() * colors.length)];
-    // Générer un logo avec initiales
-    const words = clubName.split(' ');
-    let initials = '';
-    const skip = ['FC', 'AS', 'US', 'JS', 'ES', 'CS', 'SC', 'AC', 'SD', 'UD', 'RC', 'OC', 'CA'];
-    for (const word of words) {
-        if (word.length > 0 && !skip.includes(word.toUpperCase())) {
-            initials += word[0].toUpperCase();
-        }
-    }
-    if (initials.length === 0) initials = clubName.substring(0, 2).toUpperCase();
-    if (initials.length > 3) initials = initials.substring(0, 3);
-    
     return {
         budget: randomBudget,
         stars: stars,
         stadium: stadiums[Math.floor(Math.random() * stadiums.length)],
         capacity: capacity,
-        colors: randomColors,
-        logo: initials
+        colors: randomColors
     };
 }
 
 // ===== CHARGER LES CLUBS =====
 let allClubsData = {};
+let allClubsList = [];
 
 async function loadClubsData() {
     const spinner = document.getElementById('loadingSpinner');
@@ -494,7 +473,8 @@ function populateCountries() {
         const optgroup = document.createElement('optgroup');
         optgroup.label = label;
         
-        for (const country of Object.keys(countries).sort()) {
+        const countryList = Object.keys(countries).sort();
+        for (const country of countryList) {
             const option = document.createElement('option');
             option.value = country;
             option.textContent = country;
@@ -503,15 +483,20 @@ function populateCountries() {
         countrySelect.appendChild(optgroup);
     }
     
-    countrySelect.addEventListener('change', updateClubs);
+    countrySelect.addEventListener('change', function() {
+        updateClubs();
+    });
+    
+    // Sélectionner Bénin par défaut
     if (allClubsData.CAF && allClubsData.CAF['Bénin']) {
         countrySelect.value = 'Bénin';
+        updateClubs();
     }
-    updateClubs();
 }
 
 function updateClubs() {
     const country = document.getElementById('countrySelect').value;
+    const division = document.getElementById('divisionSelect').value;
     const clubSelect = document.getElementById('clubSelect');
     
     clubSelect.innerHTML = '<option value="">📌 Sélectionnez un club</option>';
@@ -520,19 +505,36 @@ function updateClubs() {
     
     if (!country || !allClubsData) return;
     
-    const clubs = [];
+    // Récupérer les clubs du pays
+    let clubs = [];
     for (const [continent, countries] of Object.entries(allClubsData)) {
         if (countries[country]) {
-            for (const [division, clubList] of Object.entries(countries[country])) {
-                for (const club of clubList) {
-                    clubs.push({ name: club, division: division });
+            for (const [div, clubList] of Object.entries(countries[country])) {
+                // Vérifier si la division correspond
+                if (div === division || div === 'Division 1' || div === 'Division 2' || div === 'Division 3') {
+                    for (const club of clubList) {
+                        clubs.push({ name: club, division: div });
+                    }
+                }
+            }
+        }
+    }
+    
+    // Si le pays n'a pas de division spécifique, afficher tous les clubs
+    if (clubs.length === 0) {
+        for (const [continent, countries] of Object.entries(allClubsData)) {
+            if (countries[country]) {
+                for (const [div, clubList] of Object.entries(countries[country])) {
+                    for (const club of clubList) {
+                        clubs.push({ name: club, division: div });
+                    }
                 }
             }
         }
     }
     
     if (clubs.length === 0) {
-        clubSelect.innerHTML = '<option value="">⚠️ Aucun club trouvé</option>';
+        clubSelect.innerHTML = '<option value="">⚠️ Aucun club trouvé pour ce pays</option>';
         clubSelect.disabled = true;
         return;
     }
@@ -540,6 +542,7 @@ function updateClubs() {
     clubSelect.disabled = false;
     clubs.sort((a, b) => a.name.localeCompare(b.name));
     
+    // Ajouter les clubs au select
     for (const club of clubs) {
         const option = document.createElement('option');
         option.value = club.name;
@@ -549,9 +552,10 @@ function updateClubs() {
         clubSelect.appendChild(option);
     }
     
+    // Ajouter l'événement de changement
     clubSelect.addEventListener('change', updatePreview);
-    document.getElementById('divisionSelect').addEventListener('change', updatePreview);
     
+    // Sélectionner le premier club par défaut
     if (clubSelect.options.length > 1) {
         clubSelect.selectedIndex = 1;
         updatePreview();
@@ -565,7 +569,7 @@ function updatePreview() {
     
     const preview = document.getElementById('clubPreview');
     
-    if (!club || club === '📌 Sélectionnez un club') {
+    if (!club || club === '📌 Sélectionnez un club' || club === '⚠️ Aucun club trouvé pour ce pays') {
         preview.classList.remove('active');
         return;
     }
@@ -583,22 +587,21 @@ function updatePreview() {
     const logoElement = document.getElementById('clubLogo');
     const logoInitials = document.getElementById('logoInitials');
     
-    // Appliquer les couleurs
     const primaryColor = logoDesign.primaryColor;
     const secondaryColor = logoDesign.secondaryColor;
     
-    // Dégradé pour le fond du logo
     logoElement.style.background = `linear-gradient(135deg, ${primaryColor}, ${secondaryColor})`;
     logoElement.style.boxShadow = `0 0 40px ${logoDesign.glow}`;
     
-    // Mettre les initiales
-    logoInitials.textContent = info.logo || logoDesign.initials;
+    // Initiales
+    const initials = club.split(' ').map(w => w[0]).join('').substring(0, 3).toUpperCase();
+    logoInitials.textContent = initials;
     logoInitials.style.color = '#FFFFFF';
     logoInitials.style.fontSize = '2.5rem';
     logoInitials.style.fontWeight = '900';
     logoInitials.style.textShadow = '0 2px 20px rgba(0,0,0,0.5)';
     
-    // Mettre à jour les informations
+    // Informations
     document.getElementById('previewClubName').textContent = club;
     document.getElementById('previewCountry').textContent = '🌍 ' + country;
     document.getElementById('previewStars').textContent = stars;
@@ -638,6 +641,13 @@ document.getElementById('teamForm').addEventListener('submit', async function(e)
         return;
     }
     
+    if (!club || club === '📌 Sélectionnez un club' || club === '⚠️ Aucun club trouvé pour ce pays') {
+        showPopup('⚠️', 'Erreur', 'Veuillez sélectionner un club');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-check"></i> PRENDRE LES RÊNES';
+        return;
+    }
+    
     const info = getClubInfo(club);
     const logoDesign = generateLogoDesign(club);
     
@@ -651,11 +661,10 @@ document.getElementById('teamForm').addEventListener('submit', async function(e)
         stars: info.stars,
         capacity: info.capacity,
         colors: info.colors || ['#FFD700', '#003366'],
-        logo: info.logo || logoDesign.initials,
+        logo: logoDesign.initials,
         logoColors: {
             primary: logoDesign.primaryColor,
-            secondary: logoDesign.secondaryColor,
-            gradient: logoDesign.gradient
+            secondary: logoDesign.secondaryColor
         }
     };
     
