@@ -379,3 +379,25 @@ def save_list():
         return jsonify({'success': True, 'files': files})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+
+# ===== CHARGER LES VRAIS JOUEURS =====
+REAL_PLAYERS_DATA = {}
+try:
+    with open('data/players/real_players.json', 'r', encoding='utf-8') as f:
+        REAL_PLAYERS_DATA = json.load(f)
+    total = sum(len(p) for p in REAL_PLAYERS_DATA.values())
+    print(f"✅ {len(REAL_PLAYERS_DATA)} clubs avec {total} vrais joueurs chargés")
+except Exception as e:
+    print(f"⚠️ Erreur chargement vrais joueurs: {e}")
+
+@app.route('/api/real-players/<club>')
+def get_real_players(club):
+    """Récupère les vrais joueurs d'un club"""
+    if club in REAL_PLAYERS_DATA:
+        return jsonify({'success': True, 'players': REAL_PLAYERS_DATA[club]})
+    return jsonify({'success': False, 'message': 'Club non trouvé'}), 404
+
+@app.route('/api/all-real-players')
+def get_all_real_players():
+    """Récupère tous les vrais joueurs"""
+    return jsonify({'success': True, 'clubs': REAL_PLAYERS_DATA})
