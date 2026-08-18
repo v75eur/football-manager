@@ -1,0 +1,2284 @@
+{
+  "UEFA": {
+    "Albanie": {
+      "Division 1": [
+        "KF Tirana",
+        "KF Partizani",
+        "KF Vllaznia",
+        "KF Skënderbeu"
+      ],
+      "Division 2": [
+        "KF Bylis",
+        "KF Apolonia",
+        "KF Luftëtari"
+      ]
+    },
+    "Allemagne": {
+      "Division 1": [
+        "Bayern Munich",
+        "Borussia Dortmund",
+        "RB Leipzig",
+        "Bayer Leverkusen",
+        "Borussia Mönchengladbach",
+        "Eintracht Frankfurt",
+        "VfL Wolfsburg",
+        "TSG Hoffenheim",
+        "SC Freiburg",
+        "VfB Stuttgart",
+        "FC Augsburg",
+        "Mainz 05",
+        "Werder Bremen",
+        "FC Köln",
+        "Union Berlin",
+        "Hertha BSC",
+        "Schalke 04",
+        "Nürnberg"
+      ],
+      "Division 2": [
+        "Hamburger SV",
+        "Fortuna Düsseldorf",
+        "Paderborn",
+        "Karlsruher SC",
+        "Darmstadt 98",
+        "Holstein Kiel",
+        "St. Pauli",
+        "Hannover 96",
+        "Greuther Fürth",
+        "Magdeburg",
+        "Kaiserslautern"
+      ]
+    },
+    "Angleterre": {
+      "Division 1": [
+        "Manchester City",
+        "Arsenal",
+        "Liverpool",
+        "Chelsea",
+        "Manchester United",
+        "Tottenham",
+        "Newcastle",
+        "Aston Villa",
+        "Brighton",
+        "West Ham",
+        "Crystal Palace",
+        "Fulham",
+        "Wolves",
+        "Everton",
+        "Nottingham Forest",
+        "Brentford",
+        "Bournemouth"
+      ],
+      "Division 2": [
+        "Leicester City",
+        "Leeds United",
+        "Southampton",
+        "Middlesbrough",
+        "West Brom",
+        "Norwich City",
+        "Watford",
+        "Sunderland",
+        "Coventry City",
+        "Preston"
+      ]
+    },
+    "Autriche": {
+      "Division 1": [
+        "Red Bull Salzburg",
+        "Sturm Graz",
+        "Rapid Wien",
+        "Austria Wien"
+      ],
+      "Division 2": [
+        "SKN St. Pölten",
+        "Floridsdorfer AC",
+        "Kapfenberger SV"
+      ]
+    },
+    "Belgique": {
+      "Division 1": [
+        "Royal Antwerp",
+        "Genk",
+        "Union SG",
+        "Club Brugge",
+        "Anderlecht",
+        "Standard Liège",
+        "Gent",
+        "KV Mechelen"
+      ],
+      "Division 2": [
+        "SK Beveren",
+        "Zulte Waregem",
+        "Lierse",
+        "Patro Eisden"
+      ]
+    },
+    "Bulgarie": {
+      "Division 1": [
+        "Ludogorets",
+        "CSKA Sofia",
+        "Levski Sofia",
+        "Botev Plovdiv"
+      ],
+      "Division 2": [
+        "Dunav Ruse",
+        "Dobrudzha",
+        "Montana"
+      ]
+    },
+    "Croatie": {
+      "Division 1": [
+        "Dinamo Zagreb",
+        "Hajduk Split",
+        "Rijeka",
+        "Osijek"
+      ],
+      "Division 2": [
+        "Šibenik",
+        "Cibalia",
+        "Orijent"
+      ]
+    },
+    "Danemark": {
+      "Division 1": [
+        "Copenhague",
+        "Midtjylland",
+        "Brøndby",
+        "Nordsjælland"
+      ],
+      "Division 2": [
+        "Esbjerg",
+        "Fredericia",
+        "SønderjyskE"
+      ]
+    },
+    "Écosse": {
+      "Division 1": [
+        "Celtic",
+        "Rangers",
+        "Aberdeen",
+        "Hearts"
+      ],
+      "Division 2": [
+        "Dundee United",
+        "Inverness CT",
+        "Partick Thistle"
+      ]
+    },
+    "Espagne": {
+      "Division 1": [
+        "Real Madrid",
+        "Barcelona",
+        "Atlético Madrid",
+        "Real Sociedad",
+        "Athletic Bilbao",
+        "Girona",
+        "Villarreal",
+        "Betis",
+        "Osasuna",
+        "Mallorca",
+        "Getafe",
+        "Valencia",
+        "Sevilla",
+        "Celta Vigo",
+        "Alavés",
+        "Las Palmas"
+      ],
+      "Division 2": [
+        "Leganés",
+        "Espanyol",
+        "Real Oviedo",
+        "Real Zaragoza",
+        "Sporting Gijón",
+        "Elche",
+        "Levante",
+        "Tenerife",
+        "Eibar"
+      ]
+    },
+    "France": {
+      "Division 1": [
+        "PSG",
+        "Monaco",
+        "Lyon",
+        "Marseille",
+        "Lille",
+        "Rennes",
+        "Nice",
+        "Reims",
+        "Montpellier",
+        "Lens",
+        "Toulouse",
+        "Nantes",
+        "Brest",
+        "Strasbourg",
+        "Lorient",
+        "Clermont"
+      ],
+      "Division 2": [
+        "AJ Auxerre",
+        "Angers",
+        "Bastia",
+        "Caen",
+        "Laval",
+        "Grenoble",
+        "Pau",
+        "Rodez",
+        "Amiens"
+      ]
+    },
+    "Grèce": {
+      "Division 1": [
+        "Olympiakos",
+        "Panathinaikos",
+        "PAOK",
+        "AEK Athènes"
+      ],
+      "Division 2": [
+        "Levadiakos",
+        "Kalamata",
+        "Ionikos"
+      ]
+    },
+    "Italie": {
+      "Division 1": [
+        "Juventus",
+        "AC Milan",
+        "Inter Milan",
+        "Roma",
+        "Napoli",
+        "Lazio",
+        "Atalanta",
+        "Fiorentina",
+        "Bologna",
+        "Torino",
+        "Monza",
+        "Genoa",
+        "Sassuolo",
+        "Udinese",
+        "Empoli",
+        "Lecce"
+      ],
+      "Division 2": [
+        "Parme",
+        "Sampdoria",
+        "Pisa",
+        "Bari",
+        "Cremonese",
+        "Como",
+        "Catanzaro",
+        "Palermo",
+        "Modena"
+      ]
+    },
+    "Pays-Bas": {
+      "Division 1": [
+        "Ajax",
+        "PSV",
+        "Feyenoord",
+        "AZ Alkmaar",
+        "Twente",
+        "Utrecht",
+        "NEC",
+        "Heerenveen"
+      ],
+      "Division 2": [
+        "Jong Ajax",
+        "Jong PSV",
+        "Cambuur",
+        "De Graafschap",
+        "ADO Den Haag"
+      ]
+    },
+    "Portugal": {
+      "Division 1": [
+        "Benfica",
+        "Porto",
+        "Sporting CP",
+        "Braga",
+        "Vitoria Guimarães",
+        "Rio Ave",
+        "Arouca",
+        "Boavista"
+      ],
+      "Division 2": [
+        "Santa Clara",
+        "Nacional",
+        "Marítimo",
+        "Leixões",
+        "Tondela"
+      ]
+    },
+    "Suisse": {
+      "Division 1": [
+        "Bâle",
+        "Young Boys",
+        "Zürich",
+        "Lugano",
+        "Servette",
+        "Sion"
+      ],
+      "Division 2": [
+        "Aarau",
+        "Vaduz",
+        "Wil",
+        "Thun"
+      ]
+    },
+    "Turquie": {
+      "Division 1": [
+        "Galatasaray",
+        "Fenerbahçe",
+        "Beşiktaş",
+        "Trabzonspor",
+        "Adana Demirspor",
+        "Istanbul Başakşehir",
+        "Kasımpaşa",
+        "Alanyaspor"
+      ],
+      "Division 2": [
+        "Sakaryaspor",
+        "Kocaelispor",
+        "Erzurumspor",
+        "Göztepe",
+        "Bodrumspor"
+      ]
+    },
+    "Ukraine": {
+      "Division 1": [
+        "Dynamo Kyiv",
+        "Shakhtar Donetsk",
+        "Dnipro",
+        "Metalist"
+      ],
+      "Division 2": [
+        "Chornomorets",
+        "Vorskla",
+        "Zorya"
+      ]
+    },
+    "Russie": {
+      "Division 1": [
+        "Zenit",
+        "CSKA Moscou",
+        "Spartak Moscou",
+        "Lokomotiv Moscou"
+      ],
+      "Division 2": [
+        "Krasnodar",
+        "Rostov",
+        "Dynamo Moscou"
+      ]
+    },
+    "Pologne": {
+      "Division 1": [
+        "Legia Varsovie",
+        "Lech Poznań",
+        "Wisła Cracovie",
+        "Slask Wroclaw"
+      ],
+      "Division 2": [
+        "Górnik Zabrze",
+        "Zagłębie Lubin",
+        "Piast Gliwice"
+      ]
+    }
+  },
+  "CAF": {
+    "Algérie": {
+      "Division 1": [
+        "CR Belouizdad",
+        "JS Kabylie",
+        "MC Alger",
+        "USM Alger",
+        "ESS Sétif"
+      ],
+      "Division 2": [
+        "ASM Oran",
+        "GC Mascara",
+        "MC Saïda"
+      ]
+    },
+    "Angola": {
+      "Division 1": [
+        "Petro Luanda",
+        "Primeiro Agosto",
+        "Sagrada Esperança"
+      ],
+      "Division 2": [
+        "Recreativo",
+        "Libolo",
+        "Luanda City"
+      ]
+    },
+    "Bénin": {
+      "Division 1": [
+        "AS Cotonou",
+        "JS Pobè",
+        "Mambas Noires",
+        "Béké FC",
+        "Dynamo Abomey"
+      ],
+      "Division 2": [
+        "Adjinakou",
+        "Agonlin",
+        "Avrankou",
+        "Bopa"
+      ]
+    },
+    "Botswana": {
+      "Division 1": [
+        "Township Rollers",
+        "Gaborone United",
+        "Mochudi Centre Chiefs"
+      ],
+      "Division 2": [
+        "Nico United",
+        "Tafic",
+        "Uniao Flamengo"
+      ]
+    },
+    "Burkina Faso": {
+      "Division 1": [
+        "AS Douanes",
+        "Étoile Filante",
+        "Rahimo FC",
+        "Salitas"
+      ],
+      "Division 2": [
+        "ASF Bobo",
+        "Kadiogo",
+        "Majestic"
+      ]
+    },
+    "Burundi": {
+      "Division 1": [
+        "Vital'O",
+        "Le Messager",
+        "Aigle Noir"
+      ],
+      "Division 2": [
+        "Bujumbura City",
+        "Flambeau",
+        "Inter"
+      ]
+    },
+    "Cameroun": {
+      "Division 1": [
+        "Cotonsport",
+        "Canon Yaoundé",
+        "Union Douala",
+        "Astra"
+      ],
+      "Division 2": [
+        "Eding Sport",
+        "Avion Academy",
+        "Bamboutos"
+      ]
+    },
+    "Cap-Vert": {
+      "Division 1": [
+        "CS Mindelense",
+        "Sporting Praia",
+        "Académica"
+      ],
+      "Division 2": [
+        "Batuque",
+        "Inter",
+        "Travadores"
+      ]
+    },
+    "Comores": {
+      "Division 1": [
+        "Volcan Club",
+        "US Zilimadjou",
+        "Fomboni"
+      ],
+      "Division 2": [
+        "Etoile",
+        "Ngazidja",
+        "Wakili"
+      ]
+    },
+    "Congo": {
+      "Division 1": [
+        "AS Vita Club",
+        "DCMP",
+        "SC Roland",
+        "JS Kinshasa"
+      ],
+      "Division 2": [
+        "JSM",
+        "OCS",
+        "RCK"
+      ]
+    },
+    "Côte d'Ivoire": {
+      "Division 1": [
+        "ASEC Mimosas",
+        "Africa Sports",
+        "Maniema",
+        "Séwé Sport"
+      ],
+      "Division 2": [
+        "COSA",
+        "Bassam",
+        "Tanda",
+        "Agnibilékrou"
+      ]
+    },
+    "Djibouti": {
+      "Division 1": [
+        "AS Port",
+        "Arta Solar",
+        "Djibouti City"
+      ],
+      "Division 2": [
+        "Balbala",
+        "Gendarmerie",
+        "Police"
+      ]
+    },
+    "Égypte": {
+      "Division 1": [
+        "Al Ahly",
+        "Zamalek",
+        "Pyramids FC",
+        "El Gouna",
+        "Ismaily"
+      ],
+      "Division 2": [
+        "Abu Qair",
+        "Al Nasr",
+        "Al Qanat"
+      ]
+    },
+    "Érythrée": {
+      "Division 1": [
+        "Red Sea FC",
+        "Adulis Club",
+        "Asmara Brewery"
+      ],
+      "Division 2": [
+        "Denden",
+        "Mekelle",
+        "Tigray"
+      ]
+    },
+    "Éthiopie": {
+      "Division 1": [
+        "Saint George",
+        "Ethiopian Coffee",
+        "Adama City"
+      ],
+      "Division 2": [
+        "Awassa",
+        "Debub",
+        "Arba Minch"
+      ]
+    },
+    "Gabon": {
+      "Division 1": [
+        "AS Mangasport",
+        "CF Mounana",
+        "US Bitam"
+      ],
+      "Division 2": [
+        "Ndjé",
+        "Oyem",
+        "Port-Gentil"
+      ]
+    },
+    "Gambie": {
+      "Division 1": [
+        "Gamtel",
+        "Bakau United",
+        "Brikama United"
+      ],
+      "Division 2": [
+        "Fortress",
+        "Police",
+        "Real de Banjul"
+      ]
+    },
+    "Ghana": {
+      "Division 1": [
+        "Asante Kotoko",
+        "Hearts of Oak",
+        "Aduana Stars",
+        "Medeama"
+      ],
+      "Division 2": [
+        "Great Olympics",
+        "New Edubiase",
+        "Nsoatreman"
+      ]
+    },
+    "Guinée": {
+      "Division 1": [
+        "Horoya AC",
+        "AS Kaloum",
+        "Fello Star",
+        "CI Kamsar"
+      ],
+      "Division 2": [
+        "AS Pelé",
+        "Eléphant",
+        "Loubha"
+      ]
+    },
+    "Guinée-Bissau": {
+      "Division 1": [
+        "Sporting Bissau",
+        "Benfica Bissau",
+        "UDR"
+      ],
+      "Division 2": [
+        "Bissau City",
+        "Mansoa",
+        "Tombali"
+      ]
+    },
+    "Guinée équatoriale": {
+      "Division 1": [
+        "Deportivo Mongomo",
+        "Leones Vegetarianos",
+        "Canon"
+      ],
+      "Division 2": [
+        "Malabo",
+        "Bata",
+        "Ebebiyin"
+      ]
+    },
+    "Kenya": {
+      "Division 1": [
+        "Gor Mahia",
+        "AFC Leopards",
+        "Bandari",
+        "KCB"
+      ],
+      "Division 2": [
+        "Kitale",
+        "Muhoroni",
+        "Nairobi City"
+      ]
+    },
+    "Lesotho": {
+      "Division 1": [
+        "Bantu",
+        "Lioli",
+        "Matlama"
+      ],
+      "Division 2": [
+        "Kick4Life",
+        "LDF",
+        "Maseru"
+      ]
+    },
+    "Liberia": {
+      "Division 1": [
+        "LPRC Oilers",
+        "Mighty Barrolle",
+        "Invincible Eleven"
+      ],
+      "Division 2": [
+        "Brewerville",
+        "Congo",
+        "Ganta"
+      ]
+    },
+    "Libye": {
+      "Division 1": [
+        "Al Ahli Tripoli",
+        "Al Ittihad",
+        "Al Hilal"
+      ],
+      "Division 2": [
+        "Al Madina",
+        "Al Sweihli",
+        "Olympique"
+      ]
+    },
+    "Madagascar": {
+      "Division 1": [
+        "CNaPS Sport",
+        "Fosa Juniors",
+        "AS Adema"
+      ],
+      "Division 2": [
+        "Antananarivo",
+        "Toamasina",
+        "Mahajanga"
+      ]
+    },
+    "Malawi": {
+      "Division 1": [
+        "Big Bullets",
+        "Silver Strikers",
+        "Mighty Wanderers"
+      ],
+      "Division 2": [
+        "Civo",
+        "ESCOM",
+        "Karonga"
+      ]
+    },
+    "Mali": {
+      "Division 1": [
+        "Stade Malien",
+        "Djoliba",
+        "AS Real",
+        "Onze Créateurs"
+      ],
+      "Division 2": [
+        "Bamako",
+        "Kayes",
+        "Ségou"
+      ]
+    },
+    "Maroc": {
+      "Division 1": [
+        "Wydad AC",
+        "Raja Casablanca",
+        "AS FAR",
+        "FUS Rabat"
+      ],
+      "Division 2": [
+        "RCOZ",
+        "CRA",
+        "JSK",
+        "KACM"
+      ]
+    },
+    "Mauritanie": {
+      "Division 1": [
+        "FC Nouadhibou",
+        "ACS Ksar",
+        "Tevragh-Zeina"
+      ],
+      "Division 2": [
+        "Garde",
+        "Kankossa",
+        "Nouakchott"
+      ]
+    },
+    "Maurice": {
+      "Division 1": [
+        "Cercle de Joachim",
+        "AS Port-Louis",
+        "Pamplemousses"
+      ],
+      "Division 2": [
+        "Flic-en-Flac",
+        "Mahebourg",
+        "Quatre Bornes"
+      ]
+    },
+    "Mozambique": {
+      "Division 1": [
+        "Ferroviário Maputo",
+        "Costa do Sol",
+        "Maxaquene"
+      ],
+      "Division 2": [
+        "Chingale",
+        "Nampula",
+        "Tete"
+      ]
+    },
+    "Namibie": {
+      "Division 1": [
+        "African Stars",
+        "Black Africa",
+        "Citizens"
+      ],
+      "Division 2": [
+        "Blue Waters",
+        "Eleven Arrows",
+        "Orlando"
+      ]
+    },
+    "Niger": {
+      "Division 1": [
+        "AS GNN",
+        "USGN",
+        "Olympique Niamey"
+      ],
+      "Division 2": [
+        "Douanes",
+        "Sonidep",
+        "Zinder"
+      ]
+    },
+    "Nigeria": {
+      "Division 1": [
+        "Enyimba",
+        "Rivers United",
+        "Remo Stars",
+        "Shooting Stars"
+      ],
+      "Division 2": [
+        "Bendel Insurance",
+        "El-Kanemi",
+        "Heartland"
+      ]
+    },
+    "Ouganda": {
+      "Division 1": [
+        "Vipers",
+        "KCCA",
+        "SC Villa",
+        "Express"
+      ],
+      "Division 2": [
+        "Gaddafi",
+        "Mbarara",
+        "UPDF"
+      ]
+    },
+    "RDC": {
+      "Division 1": [
+        "TP Mazembe",
+        "AS Vita Club",
+        "DCMP",
+        "SC Roland"
+      ],
+      "Division 2": [
+        "JSM",
+        "OCS",
+        "RCK",
+        "SCOM"
+      ]
+    },
+    "Rwanda": {
+      "Division 1": [
+        "APR",
+        "Rayon Sports",
+        "Police",
+        "Mukura"
+      ],
+      "Division 2": [
+        "Bugesera",
+        "Etincelles",
+        "Musanze"
+      ]
+    },
+    "Sao Tomé-et-Principe": {
+      "Division 1": [
+        "GD Sundy",
+        "FC Porto",
+        "UBA"
+      ],
+      "Division 2": [
+        "Aliança",
+        "Futebol",
+        "Santana"
+      ]
+    },
+    "Sénégal": {
+      "Division 1": [
+        "AS Pikine",
+        "Génération Foot",
+        "Teungueth FC",
+        "Dakar UC"
+      ],
+      "Division 2": [
+        "ASEC",
+        "CNEPS",
+        "Demba",
+        "Du Duc"
+      ]
+    },
+    "Seychelles": {
+      "Division 1": [
+        "La Passe",
+        "St Michel",
+        "Anse Réunion"
+      ],
+      "Division 2": [
+        "Bel Air",
+        "Cascade",
+        "Mahe"
+      ]
+    },
+    "Sierra Leone": {
+      "Division 1": [
+        "East End Lions",
+        "Mighty Blackpool",
+        "Kamboi Eagles"
+      ],
+      "Division 2": [
+        "Bai Bureh",
+        "Ports Authority",
+        "Wellington"
+      ]
+    },
+    "Somalie": {
+      "Division 1": [
+        "Mogadishu City",
+        "Jeene",
+        "Heegan"
+      ],
+      "Division 2": [
+        "Banaadir",
+        "Horseed",
+        "Sahan"
+      ]
+    },
+    "Soudan": {
+      "Division 1": [
+        "Al Hilal",
+        "Al Merrikh",
+        "Al Ahli Khartoum"
+      ],
+      "Division 2": [
+        "Al Rabta",
+        "Khartoum",
+        "Wad Madani"
+      ]
+    },
+    "Soudan du Sud": {
+      "Division 1": [
+        "Al Hilal Juba",
+        "Rainbow",
+        "South Sudan United"
+      ],
+      "Division 2": [
+        "Aweil",
+        "Bor",
+        "Malakal"
+      ]
+    },
+    "Tanzanie": {
+      "Division 1": [
+        "Simba",
+        "Young Africans",
+        "Azam FC"
+      ],
+      "Division 2": [
+        "Coastal Union",
+        "Kagera",
+        "Mbao"
+      ]
+    },
+    "Tchad": {
+      "Division 1": [
+        "AS CotonTchad",
+        "Gazelle",
+        "Renaissance"
+      ],
+      "Division 2": [
+        "Moundou",
+        "Sarh",
+        "Abeche"
+      ]
+    },
+    "Togo": {
+      "Division 1": [
+        "ASKO Kara",
+        "Semassi",
+        "Togolais",
+        "Gomido"
+      ],
+      "Division 2": [
+        "Agaza",
+        "Doumbé",
+        "Espoir",
+        "Kara"
+      ]
+    },
+    "Tunisie": {
+      "Division 1": [
+        "Espérance Tunis",
+        "Étoile Sahel",
+        "Club Africain",
+        "CS Sfaxien"
+      ],
+      "Division 2": [
+        "AS Marsa",
+        "AS Rejiche",
+        "AS Tataouine"
+      ]
+    },
+    "Zambie": {
+      "Division 1": [
+        "Zanaco",
+        "Power Dynamos",
+        "Nkana",
+        "Green Buffaloes"
+      ],
+      "Division 2": [
+        "Kabwe",
+        "Mufulira",
+        "Ndola"
+      ]
+    },
+    "Zimbabwe": {
+      "Division 1": [
+        "Dynamos",
+        "Highlanders",
+        "CAPS United",
+        "FC Platinum"
+      ],
+      "Division 2": [
+        "Black Rhinos",
+        "Buffaloes",
+        "Hwange"
+      ]
+    }
+  },
+  "AFC": {
+    "Afghanistan": {
+      "Division 1": [
+        "Toofan Harirood",
+        "De Spin Ghar Bazan",
+        "Oqaban"
+      ],
+      "Division 2": [
+        "Kabul",
+        "Mazar",
+        "Kandahar"
+      ]
+    },
+    "Arabie Saoudite": {
+      "Division 1": [
+        "Al-Hilal",
+        "Al-Nassr",
+        "Al-Ittihad",
+        "Al-Ahli",
+        "Al-Shabab",
+        "Al-Taawoun",
+        "Damac",
+        "Al-Fayha",
+        "Al-Raed",
+        "Al-Okhdood",
+        "Al-Ettifaq",
+        "Al-Tai"
+      ],
+      "Division 2": [
+        "Al-Jabalain",
+        "Al-Najma",
+        "Al-Orobah",
+        "Al-Qadsiah",
+        "Al-Kholood",
+        "Al-Batin",
+        "Hajer",
+        "Ohod"
+      ]
+    },
+    "Arménie": {
+      "Division 1": [
+        "Pyunik",
+        "Ararat",
+        "Shirak",
+        "Alashkert"
+      ],
+      "Division 2": [
+        "Gandzasar",
+        "Lori",
+        "Urartu"
+      ]
+    },
+    "Australie": {
+      "Division 1": [
+        "Melbourne City",
+        "Sydney FC",
+        "Western Sydney",
+        "Central Coast",
+        "Newcastle Jets",
+        "Adelaide United",
+        "Brisbane Roar",
+        "Perth Glory"
+      ],
+      "Division 2": [
+        "Canberra United",
+        "Gold Coast",
+        "South Melbourne",
+        "Wollongong"
+      ]
+    },
+    "Azerbaïdjan": {
+      "Division 1": [
+        "Qarabag",
+        "Neftchi",
+        "Sabah",
+        "Sumgayit"
+      ],
+      "Division 2": [
+        "Shamakhi",
+        "Kapaz",
+        "Zira"
+      ]
+    },
+    "Bahreïn": {
+      "Division 1": [
+        "Muharraq",
+        "Riffa",
+        "Al-Ahli Manama",
+        "Al-Najma"
+      ],
+      "Division 2": [
+        "Budaiya",
+        "East Riffa",
+        "Sitra"
+      ]
+    },
+    "Bangladesh": {
+      "Division 1": [
+        "Dhaka Abahani",
+        "Dhaka Mohammedan",
+        "Rahmatganj"
+      ],
+      "Division 2": [
+        "Arambagh",
+        "Brothers Union",
+        "Chittagong"
+      ]
+    },
+    "Bhoutan": {
+      "Division 1": [
+        "Transport United",
+        "Paro",
+        "Tertons"
+      ],
+      "Division 2": [
+        "Druk United",
+        "Thimphu City",
+        "Ugyen"
+      ]
+    },
+    "Birmanie": {
+      "Division 1": [
+        "Yangon United",
+        "Shan United",
+        "Ayeyawady United"
+      ],
+      "Division 2": [
+        "Rakhine",
+        "Zwekapin",
+        "Chin"
+      ]
+    },
+    "Brunei": {
+      "Division 1": [
+        "DPMM",
+        "Kota Ranger",
+        "Kasuka"
+      ],
+      "Division 2": [
+        "Indera",
+        "IKLS",
+        "MS ABDB"
+      ]
+    },
+    "Cambodge": {
+      "Division 1": [
+        "Boeung Ket",
+        "Phnom Penh Crown",
+        "Nagaworld"
+      ],
+      "Division 2": [
+        "National Defense",
+        "Kirivong",
+        "Soltilo Angkor"
+      ]
+    },
+    "Chine": {
+      "Division 1": [
+        "Shanghai Port",
+        "Shandong Taishan",
+        "Guangzhou FC",
+        "Beijing Guoan",
+        "Chengdu Rongcheng",
+        "Wuhan Three Towns",
+        "Zhejiang",
+        "Meizhou Hakka"
+      ],
+      "Division 2": [
+        "Qingdao Hainiu",
+        "Sichuan Jiuniu",
+        "Nanjing City",
+        "Guangxi Pingguo",
+        "Suzhou Dongwu"
+      ]
+    },
+    "Chypre": {
+      "Division 1": [
+        "APOEL",
+        "Omonia",
+        "AEL",
+        "Anorthosis"
+      ],
+      "Division 2": [
+        "Doxa",
+        "Ermis",
+        "Nea Salamina"
+      ]
+    },
+    "Corée du Nord": {
+      "Division 1": [
+        "April 25",
+        "Pyongyang",
+        "Kigwancha"
+      ],
+      "Division 2": [
+        "Chongchong",
+        "Hwaebul",
+        "Rimyongsu"
+      ]
+    },
+    "Corée du Sud": {
+      "Division 1": [
+        "Ulsan Hyundai",
+        "Jeonbuk Motors",
+        "Pohang Steelers",
+        "Gwangju FC",
+        "Daegu FC",
+        "Incheon United",
+        "Jeju United",
+        "Suwon Samsung"
+      ],
+      "Division 2": [
+        "Seongnam FC",
+        "Busan IPark",
+        "Gimcheon Sangmu",
+        "Ansan Greeners"
+      ]
+    },
+    "Émirats Arabes Unis": {
+      "Division 1": [
+        "Al-Ain",
+        "Al-Wahda",
+        "Al-Nasr",
+        "Shabab Al-Ahli",
+        "Al-Jazira",
+        "Sharjah"
+      ],
+      "Division 2": [
+        "Al-Dhaid",
+        "Al-Hamriyah",
+        "Al-Rams",
+        "Dibba"
+      ]
+    },
+    "Géorgie": {
+      "Division 1": [
+        "Dinamo Tbilisi",
+        "Batumi",
+        "Torpedo Kutaisi"
+      ],
+      "Division 2": [
+        "Gagra",
+        "Samtredia",
+        "Telavi"
+      ]
+    },
+    "Hong Kong": {
+      "Division 1": [
+        "Kitchee",
+        "Lee Man",
+        "Eastern",
+        "Tai Po"
+      ],
+      "Division 2": [
+        "HK Rangers",
+        "Resources Capital",
+        "Wing Yee"
+      ]
+    },
+    "Inde": {
+      "Division 1": [
+        "ATK Mohun Bagan",
+        "Bengaluru",
+        "Mumbai City",
+        "Chennaiyin",
+        "Kerala Blasters",
+        "Odisha",
+        "Hyderabad"
+      ],
+      "Division 2": [
+        "Gokulam Kerala",
+        "Punjab",
+        "Rajasthan",
+        "Sudeva"
+      ]
+    },
+    "Indonésie": {
+      "Division 1": [
+        "Bali United",
+        "Persib",
+        "Persija",
+        "Arema",
+        "PSIS Semarang",
+        "Borneo"
+      ],
+      "Division 2": [
+        "Persis Solo",
+        "RANS Nusantara",
+        "Dewa United",
+        "PSS Sleman"
+      ]
+    },
+    "Irak": {
+      "Division 1": [
+        "Al-Shorta",
+        "Al-Quwa Al-Jawiya",
+        "Al-Zawraa",
+        "Erbil"
+      ],
+      "Division 2": [
+        "Al-Karkh",
+        "Al-Talaba",
+        "Naft",
+        "Zakho"
+      ]
+    },
+    "Iran": {
+      "Division 1": [
+        "Persepolis",
+        "Esteghlal",
+        "Sepahan",
+        "Tractors",
+        "Foolad",
+        "Gol Gohar"
+      ],
+      "Division 2": [
+        "Pars Jam",
+        "Shahr Khodro",
+        "Saipa",
+        "Khoosheh Talaee"
+      ]
+    },
+    "Israël": {
+      "Division 1": [
+        "Maccabi Tel Aviv",
+        "Maccabi Haifa",
+        "Beitar Jerusalem",
+        "Hapoel Be'er Sheva"
+      ],
+      "Division 2": [
+        "Bnei Sakhnin",
+        "Hapoel Haifa",
+        "Maccabi Netanya"
+      ]
+    },
+    "Japon": {
+      "Division 1": [
+        "Vissel Kobe",
+        "Yokohama F. Marinos",
+        "Sanfrecce Hiroshima",
+        "Kawasaki Frontale",
+        "Nagoya Grampus",
+        "Urawa Red Diamonds",
+        "Kashima Antlers",
+        "Cerezo Osaka"
+      ],
+      "Division 2": [
+        "JEF United",
+        "Ventforet Kofu",
+        "Oita Trinita",
+        "Fagiano Okayama",
+        "Tokyo Verdy",
+        "Mito Hollyhock",
+        "Montedio Yamagata"
+      ]
+    },
+    "Jordanie": {
+      "Division 1": [
+        "Al-Faisaly",
+        "Al-Wehdat",
+        "Al-Hussein",
+        "Sahab"
+      ],
+      "Division 2": [
+        "Ma'an",
+        "Moghayer Al-Sarhan",
+        "Ramtha"
+      ]
+    },
+    "Kazakhstan": {
+      "Division 1": [
+        "Astana",
+        "Kairat",
+        "Tobol",
+        "Ordabasy"
+      ],
+      "Division 2": [
+        "Aktobe",
+        "Kyzylzhar",
+        "Shakhter"
+      ]
+    },
+    "Kirghizistan": {
+      "Division 1": [
+        "Dordoi Bishkek",
+        "Alay Osh",
+        "Abdysh-Ata"
+      ],
+      "Division 2": [
+        "Kara Balta",
+        "Neftchi Kochkor",
+        "FC Bishkek"
+      ]
+    },
+    "Koweït": {
+      "Division 1": [
+        "Al-Kuwait",
+        "Al-Arabi",
+        "Al-Qadsia",
+        "Kazma"
+      ],
+      "Division 2": [
+        "Al-Fahaheel",
+        "Al-Salmiya",
+        "Khaitan"
+      ]
+    },
+    "Laos": {
+      "Division 1": [
+        "Lao Army",
+        "Lao Toyota",
+        "Master 7"
+      ],
+      "Division 2": [
+        "Champasak",
+        "Luang Prabang",
+        "Vientiane"
+      ]
+    },
+    "Liban": {
+      "Division 1": [
+        "Al-Ahed",
+        "Safa",
+        "Shabab Al-Sahel",
+        "Tadamon Sour"
+      ],
+      "Division 2": [
+        "Al-Ansar",
+        "Chabibet",
+        "Racing"
+      ]
+    },
+    "Macao": {
+      "Division 1": [
+        "Chao Pak Kei",
+        "Monte Carlo",
+        "Benfica Macau"
+      ],
+      "Division 2": [
+        "Hoi Fan",
+        "Ka I",
+        "Sporting Macau"
+      ]
+    },
+    "Malaisie": {
+      "Division 1": [
+        "Johor Darul Ta'zim",
+        "Kedah",
+        "Selangor",
+        "Pahang"
+      ],
+      "Division 2": [
+        "Kelantan",
+        "Melaka",
+        "Negeri Sembilan"
+      ]
+    },
+    "Maldives": {
+      "Division 1": [
+        "New Radiant",
+        "Maziya",
+        "TC Sports",
+        "Club Valencia"
+      ],
+      "Division 2": [
+        "Eagles",
+        "Reds",
+        "Sunrise"
+      ]
+    },
+    "Mongolie": {
+      "Division 1": [
+        "Khan-Uul",
+        "Ulaanbaatar City",
+        "Deren"
+      ],
+      "Division 2": [
+        "Bayanzurkh",
+        "Bishrelt",
+        "Khoromkhon"
+      ]
+    },
+    "Népal": {
+      "Division 1": [
+        "Manang Marshyangdi",
+        "Three Star",
+        "Nepal Army",
+        "Nepal Police"
+      ],
+      "Division 2": [
+        "APF",
+        "Biratnagar",
+        "Machhindra"
+      ]
+    },
+    "Oman": {
+      "Division 1": [
+        "Al-Seeb",
+        "Saham",
+        "Al-Nahda",
+        "Dhofar"
+      ],
+      "Division 2": [
+        "Al-Mudhaibi",
+        "Al-Rustaq",
+        "Oman Club"
+      ]
+    },
+    "Ouzbékistan": {
+      "Division 1": [
+        "Pakhtakor",
+        "Nasaf",
+        "Bunyodkor",
+        "Lokomotiv Tashkent"
+      ],
+      "Division 2": [
+        "AGMK",
+        "Metallurg",
+        "Navbahor"
+      ]
+    },
+    "Pakistan": {
+      "Division 1": [
+        "Karachi United",
+        "Islamabad United",
+        "Lahore Qalandars"
+      ],
+      "Division 2": [
+        "Peshawar",
+        "Quetta",
+        "Rawalpindi"
+      ]
+    },
+    "Palestine": {
+      "Division 1": [
+        "Shabab Al-Khalil",
+        "Hilal Al-Quds",
+        "Ahli Al-Khalil"
+      ],
+      "Division 2": [
+        "Al-Bireh",
+        "Tubas",
+        "Balata"
+      ]
+    },
+    "Philippines": {
+      "Division 1": [
+        "United City",
+        "Kaya",
+        "Ceres-Negros",
+        "Stallion"
+      ],
+      "Division 2": [
+        "ADT",
+        "Mendiola",
+        "PFL"
+      ]
+    },
+    "Qatar": {
+      "Division 1": [
+        "Al-Duhail",
+        "Al-Sadd",
+        "Al-Rayyan",
+        "Al-Gharafa",
+        "Al-Arabi",
+        "Al-Wakrah"
+      ],
+      "Division 2": [
+        "Al-Bidda",
+        "Al-Kharaitiyat",
+        "Al-Mesaimeer",
+        "Al-Sailiya"
+      ]
+    },
+    "Singapour": {
+      "Division 1": [
+        "Lion City Sailors",
+        "Albirex Niigata",
+        "Tampines Rovers",
+        "Balestier Khalsa"
+      ],
+      "Division 2": [
+        "Geylang",
+        "Hougang",
+        "Tanah Merah"
+      ]
+    },
+    "Sri Lanka": {
+      "Division 1": [
+        "Blue Star",
+        "Colombo FC",
+        "Negombo",
+        "Renown SC"
+      ],
+      "Division 2": [
+        "Ratnam",
+        "Saunders",
+        "Up Country"
+      ]
+    },
+    "Syrie": {
+      "Division 1": [
+        "Al-Jaish",
+        "Al-Wahda",
+        "Al-Ittihad",
+        "Tishreen"
+      ],
+      "Division 2": [
+        "Hottin",
+        "Karama",
+        "Majd"
+      ]
+    },
+    "Tadjikistan": {
+      "Division 1": [
+        "Istiklol",
+        "Khatlon",
+        "Panjshir",
+        "Ravshan"
+      ],
+      "Division 2": [
+        "Dushanbe",
+        "Khujand",
+        "Vakhsh"
+      ]
+    },
+    "Taïwan": {
+      "Division 1": [
+        "Taipower",
+        "Taiwan Steel",
+        "Leopard Cat",
+        "Ming Chuan"
+      ],
+      "Division 2": [
+        "AC Taipei",
+        "Hualien",
+        "Tainan"
+      ]
+    },
+    "Thaïlande": {
+      "Division 1": [
+        "Buriram United",
+        "Muangthong United",
+        "Bangkok United",
+        "Port FC",
+        "Chiangrai United",
+        "BG Pathum"
+      ],
+      "Division 2": [
+        "Nakhon Ratchasima",
+        "Police Tero",
+        "Rayong",
+        "Sukhothai"
+      ]
+    },
+    "Turkménistan": {
+      "Division 1": [
+        "Altyn Asyr",
+        "Merv",
+        "Ashgabat",
+        "Nebitçi"
+      ],
+      "Division 2": [
+        "Ahal",
+        "Balkan",
+        "Kopetdag"
+      ]
+    },
+    "Viêt Nam": {
+      "Division 1": [
+        "Hanoi FC",
+        "Viettel",
+        "Becamex Binh Duong",
+        "Da Nang"
+      ],
+      "Division 2": [
+        "Can Tho",
+        "Long An",
+        "Quang Nam"
+      ]
+    },
+    "Yémen": {
+      "Division 1": [
+        "Al-Ahli Sanaa",
+        "Al-Wehda",
+        "Al-Saqr",
+        "Shabab Ibb"
+      ],
+      "Division 2": [
+        "Aden",
+        "Hodeida",
+        "Taiz"
+      ]
+    }
+  },
+  "CONMEBOL": {
+    "Argentine": {
+      "Division 1": [
+        "River Plate",
+        "Boca Juniors",
+        "Vélez Sarsfield",
+        "Racing Club",
+        "Newell's Old Boys",
+        "Belgrano",
+        "Talleres",
+        "Defensa y Justicia",
+        "Lanús",
+        "Independiente"
+      ],
+      "Division 2": [
+        "San Martín",
+        "Instituto",
+        "Ferro Carril",
+        "Chacarita"
+      ]
+    },
+    "Bolivie": {
+      "Division 1": [
+        "Bolívar",
+        "The Strongest",
+        "Oriente Petrolero",
+        "San José"
+      ],
+      "Division 2": [
+        "Always Ready",
+        "Aurora",
+        "Blooming"
+      ]
+    },
+    "Brésil": {
+      "Division 1": [
+        "Palmeiras",
+        "Flamengo",
+        "Atlético Mineiro",
+        "Grêmio",
+        "Fluminense",
+        "Corinthians",
+        "Internacional",
+        "São Paulo",
+        "Santos",
+        "Cruzeiro",
+        "Botafogo",
+        "Athletico Paranaense",
+        "Vasco da Gama",
+        "Bahia",
+        "Cuiabá",
+        "Goiás",
+        "Coritiba"
+      ],
+      "Division 2": [
+        "Vitória",
+        "Sport Recife",
+        "Novorizontino",
+        "Vila Nova",
+        "Atlético Goianiense",
+        "Ponte Preta"
+      ]
+    },
+    "Chili": {
+      "Division 1": [
+        "Colo-Colo",
+        "Universidad de Chile",
+        "Universidad Católica",
+        "Palestino"
+      ],
+      "Division 2": [
+        "Audax Italiano",
+        "Cobreloa",
+        "Coquimbo"
+      ]
+    },
+    "Colombie": {
+      "Division 1": [
+        "Atlético Nacional",
+        "Millonarios",
+        "América de Cali",
+        "Santa Fe",
+        "Junior",
+        "Deportivo Cali",
+        "Deportes Tolima",
+        "Independiente Medellín"
+      ],
+      "Division 2": [
+        "Barranquilla",
+        "Bogotá",
+        "Cortuluá",
+        "Deportes Quindío"
+      ]
+    },
+    "Équateur": {
+      "Division 1": [
+        "Independiente del Valle",
+        "Barcelona SC",
+        "LDU Quito",
+        "Emelec"
+      ],
+      "Division 2": [
+        "Aucas",
+        "El Nacional",
+        "Técnico Universitario"
+      ]
+    },
+    "Guyana": {
+      "Division 1": [
+        "Fruta Conquerors",
+        "Western Tigers",
+        "Guyana Defence Force"
+      ],
+      "Division 2": [
+        "Buxton",
+        "Santos",
+        "Victoria"
+      ]
+    },
+    "Paraguay": {
+      "Division 1": [
+        "Olimpia",
+        "Cerro Porteño",
+        "Libertad",
+        "Sportivo Luqueño"
+      ],
+      "Division 2": [
+        "Guaraní",
+        "Nacional",
+        "Sportivo Ameliano"
+      ]
+    },
+    "Pérou": {
+      "Division 1": [
+        "Universitario",
+        "Alianza Lima",
+        "Sporting Cristal",
+        "Melgar"
+      ],
+      "Division 2": [
+        "Cienciano",
+        "UTC Cajamarca",
+        "Sport Huancayo"
+      ]
+    },
+    "Suriname": {
+      "Division 1": [
+        "Robinhood",
+        "Transvaal",
+        "Voorwaarts",
+        "Walking Bout"
+      ],
+      "Division 2": [
+        "Leo Victor",
+        "Nacional",
+        "SVB"
+      ]
+    },
+    "Uruguay": {
+      "Division 1": [
+        "Peñarol",
+        "Nacional",
+        "Liverpool",
+        "Deportivo Maldonado"
+      ],
+      "Division 2": [
+        "Atenas",
+        "Cerro",
+        "Juventud",
+        "Sud América"
+      ]
+    },
+    "Venezuela": {
+      "Division 1": [
+        "Caracas",
+        "Deportivo Táchira",
+        "Monagas",
+        "Estudiantes Mérida"
+      ],
+      "Division 2": [
+        "Deportivo La Guaira",
+        "Metropolitanos",
+        "Zulia"
+      ]
+    }
+  },
+  "CONCACAF": {
+    "Antigua-et-Barbuda": {
+      "Division 1": [
+        "Greenbay Hoppers",
+        "Old Road",
+        "Cedar Grove"
+      ],
+      "Division 2": [
+        "Liberta",
+        "Potters",
+        "All Saints"
+      ]
+    },
+    "Bahamas": {
+      "Division 1": [
+        "Western Warriors",
+        "Cavaliers",
+        "Bears"
+      ],
+      "Division 2": [
+        "Dynamos",
+        "Mavericks",
+        "United"
+      ]
+    },
+    "Barbade": {
+      "Division 1": [
+        "Weymouth Wales",
+        "UWI Blackbirds",
+        "Paradise"
+      ],
+      "Division 2": [
+        "Beltra",
+        "Brittons Hill",
+        "Ellerton"
+      ]
+    },
+    "Belize": {
+      "Division 1": [
+        "Belmopan Bandits",
+        "Verdes",
+        "Police United"
+      ],
+      "Division 2": [
+        "Corozal",
+        "Orange Walk",
+        "San Pedro"
+      ]
+    },
+    "Canada": {
+      "Division 1": [
+        "Toronto FC",
+        "Montreal Impact",
+        "Vancouver Whitecaps",
+        "Ottawa Fury"
+      ],
+      "Division 2": [
+        "Calgary",
+        "Edmonton",
+        "Hamilton",
+        "York United"
+      ]
+    },
+    "Costa Rica": {
+      "Division 1": [
+        "Saprissa",
+        "Alajuelense",
+        "Herediano",
+        "Cartaginés"
+      ],
+      "Division 2": [
+        "Limón",
+        "Puntarenas",
+        "San Carlos"
+      ]
+    },
+    "Cuba": {
+      "Division 1": [
+        "La Habana",
+        "Santiago",
+        "Villa Clara",
+        "Camagüey"
+      ],
+      "Division 2": [
+        "Holguín",
+        "Matanzas",
+        "Pinar del Río"
+      ]
+    },
+    "Dominique": {
+      "Division 1": [
+        "Dublanc",
+        "Bath Estate",
+        "Portsmouth"
+      ],
+      "Division 2": [
+        "Mahaut",
+        "Marigot",
+        "Roseau"
+      ]
+    },
+    "États-Unis": {
+      "Division 1": [
+        "Inter Miami",
+        "LA Galaxy",
+        "LAFC",
+        "New York Red Bulls",
+        "Atlanta United",
+        "Seattle Sounders",
+        "Portland Timbers",
+        "Orlando City",
+        "Columbus Crew",
+        "New England Revolution",
+        "Austin FC",
+        "Houston Dynamo",
+        "San Jose Earthquakes",
+        "FC Dallas",
+        "Chicago Fire",
+        "St. Louis City"
+      ],
+      "Division 2": [
+        "Sacramento Republic",
+        "Phoenix Rising",
+        "San Antonio FC",
+        "Tampa Bay Rowdies",
+        "Memphis 901",
+        "Birmingham Legion",
+        "Louisville City",
+        "Pittsburgh Riverhounds"
+      ]
+    },
+    "Grenade": {
+      "Division 1": [
+        "St. George's",
+        "Gouyave",
+        "Queen's Park"
+      ],
+      "Division 2": [
+        "Grenada FC",
+        "Mount Riches",
+        "Tivoli"
+      ]
+    },
+    "Guatemala": {
+      "Division 1": [
+        "Comunicaciones",
+        "Municipal",
+        "Xelajú",
+        "Antigua"
+      ],
+      "Division 2": [
+        "Cobán",
+        "Guastatoya",
+        "Malacateco"
+      ]
+    },
+    "Haïti": {
+      "Division 1": [
+        "Violette",
+        "Cavaly",
+        "Arcahaie",
+        "Capoise"
+      ],
+      "Division 2": [
+        "Baltimore",
+        "Don Bosco",
+        "Racing"
+      ]
+    },
+    "Honduras": {
+      "Division 1": [
+        "Olimpia",
+        "Motagua",
+        "Marathón",
+        "Real España"
+      ],
+      "Division 2": [
+        "Vida",
+        "Platense",
+        "UPNFM"
+      ]
+    },
+    "Jamaïque": {
+      "Division 1": [
+        "Waterhouse",
+        "Portmore United",
+        "Cavalier",
+        "Mount Pleasant"
+      ],
+      "Division 2": [
+        "Arnett Gardens",
+        "Humble Lions",
+        "Tivoli Gardens"
+      ]
+    },
+    "Mexique": {
+      "Division 1": [
+        "América",
+        "Guadalajara",
+        "Tigres",
+        "Monterrey",
+        "Santos Laguna",
+        "Pachuca",
+        "Atlas",
+        "Cruz Azul",
+        "Pumas",
+        "Necaxa",
+        "Juárez",
+        "León"
+      ],
+      "Division 2": [
+        "Aguascalientes",
+        "Cancún",
+        "Celaya",
+        "Correcaminos",
+        "Durango"
+      ]
+    },
+    "Nicaragua": {
+      "Division 1": [
+        "Real Estelí",
+        "Managua",
+        "Juventus",
+        "Walter Ferretti"
+      ],
+      "Division 2": [
+        "Chinandega",
+        "Masaya",
+        "Ocotal"
+      ]
+    },
+    "Panama": {
+      "Division 1": [
+        "Plaza Amador",
+        "Tauro",
+        "Árabe Unido",
+        "San Francisco"
+      ],
+      "Division 2": [
+        "Atlántico",
+        "Independiente",
+        "Tercera"
+      ]
+    },
+    "République Dominicaine": {
+      "Division 1": [
+        "Águilas",
+        "Cibao",
+        "Moca",
+        "San Cristóbal"
+      ],
+      "Division 2": [
+        "Bonao",
+        "La Romana",
+        "Santiago"
+      ]
+    },
+    "Salvador": {
+      "Division 1": [
+        "Alianza",
+        "FAS",
+        "Águila",
+        "Metapán"
+      ],
+      "Division 2": [
+        "Chalatenango",
+        "Santa Tecla",
+        "Sonsonate"
+      ]
+    },
+    "Trinité-et-Tobago": {
+      "Division 1": [
+        "W Connection",
+        "Defence Force",
+        "Police FC",
+        "San Juan Jabloteh"
+      ],
+      "Division 2": [
+        "Central",
+        "La Horquetta",
+        "Point Fortin"
+      ]
+    }
+  },
+  "OFC": {
+    "Australie": {
+      "Division 1": [
+        "Melbourne City",
+        "Sydney FC",
+        "Western Sydney",
+        "Central Coast"
+      ],
+      "Division 2": [
+        "Canberra",
+        "Gold Coast",
+        "South Melbourne"
+      ]
+    },
+    "Fidji": {
+      "Division 1": [
+        "Rewa",
+        "Labasa",
+        "Ba",
+        "Nadi"
+      ],
+      "Division 2": [
+        "Lautoka",
+        "Navua",
+        "Suva"
+      ]
+    },
+    "Nouvelle-Zélande": {
+      "Division 1": [
+        "Auckland City",
+        "Wellington Phoenix",
+        "Team Wellington",
+        "Canterbury United"
+      ],
+      "Division 2": [
+        "Bay Olympic",
+        "Cashmere Technical",
+        "Christchurch United"
+      ]
+    },
+    "Papouasie-Nouvelle-Guinée": {
+      "Division 1": [
+        "PRK Hekari",
+        "Madang",
+        "Lae City"
+      ],
+      "Division 2": [
+        "Goroka",
+        "Mount Hagen",
+        "Port Moresby"
+      ]
+    },
+    "Samoa": {
+      "Division 1": [
+        "Kiwi",
+        "Vaitele",
+        "Moata'a"
+      ],
+      "Division 2": [
+        "Apia",
+        "Faleasiu",
+        "Leone"
+      ]
+    },
+    "Tonga": {
+      "Division 1": [
+        "Atele",
+        "Ha'apai",
+        "Vava'u"
+      ],
+      "Division 2": [
+        "Nuku'alofa",
+        "Tongatapu",
+        "Utulau"
+      ]
+    },
+    "Vanuatu": {
+      "Division 1": [
+        "Amicale",
+        "Tafea",
+        "Erakor Golden Star"
+      ],
+      "Division 2": [
+        "Luganville",
+        "Port Vila",
+        "Santo"
+      ]
+    }
+  }
+}
