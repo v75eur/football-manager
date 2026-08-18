@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Créer mon club - FMTK-v1.26</title>
+    <title>Créer mon équipe - FMTK-v1.26</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -142,6 +142,26 @@
         }
         .info-box i { color:#FFD700; margin-right:6px; }
 
+        .preview-club {
+            background:rgba(255,255,255,0.02);
+            border-radius:12px;
+            padding:15px;
+            margin-bottom:15px;
+            border:1px solid rgba(255,255,255,0.05);
+            text-align:center;
+        }
+        .preview-club .name {
+            font-size:1.3rem;
+            font-weight:700;
+            color:#FFD700;
+        }
+        .preview-club .details {
+            color:#8aaa8a;
+            font-size:0.8rem;
+            margin-top:4px;
+        }
+        .preview-club .details i { margin:0 6px; }
+
         @media (max-width:480px) {
             .card { padding:20px 15px; }
             .form-row { grid-template-columns:1fr; }
@@ -155,12 +175,21 @@
         <div class="card">
             <div class="logo">⚽ FMTK</div>
             <div class="logo-sub">v1.26</div>
-            <h1>🏟️ Créer mon club</h1>
-            <p class="subtitle">Choisissez votre club parmi les vrais clubs du monde</p>
+            <h1>🏟️ Créer mon équipe</h1>
+            <p class="subtitle">Choisissez votre club et personnalisez votre équipe</p>
 
             <div class="info-box">
-                <p><i class="fas fa-users"></i> Votre club aura <strong>25 joueurs</strong> avec des stats détaillées</p>
+                <p><i class="fas fa-users"></i> Votre équipe aura <strong>25 joueurs</strong> avec des stats détaillées</p>
                 <p><i class="fas fa-coins"></i> Budget de départ : <strong>50 000 000 €</strong></p>
+            </div>
+
+            <div class="preview-club" id="previewClub">
+                <div class="name" id="previewName">⚽ Mon Club</div>
+                <div class="details">
+                    <i class="fas fa-flag"></i> <span id="previewPays">Pays</span>
+                    <i class="fas fa-trophy"></i> <span id="previewDivision">Division</span>
+                    <i class="fas fa-home"></i> <span id="previewStade">Stade</span>
+                </div>
             </div>
 
             <form id="clubForm" onsubmit="saveClub(event)">
@@ -195,124 +224,47 @@
                             <option value="Dragons FC">🇧🇯 Dragons FC</option>
                             <option value="JS Pobè">🇧🇯 JS Pobè</option>
                             <option value="Soleil FC">🇧🇯 Soleil FC</option>
-                            <option value="AS Togo Port">🇹🇬 AS Togo Port</option>
-                            <option value="Sara FC">🇹🇬 Sara FC</option>
-                            <option value="Coton Sport">🇨🇲 Coton Sport</option>
-                            <option value="Canon Yaoundé">🇨🇲 Canon Yaoundé</option>
-                            <option value="Enyimba">🇳🇬 Enyimba</option>
-                            <option value="Rivers United">🇳🇬 Rivers United</option>
-                            <option value="Hearts of Oak">🇬🇭 Hearts of Oak</option>
-                            <option value="Asante Kotoko">🇬🇭 Asante Kotoko</option>
-                            <option value="AS Douanes">🇧🇫 AS Douanes</option>
-                            <option value="USFA">🇧🇫 USFA</option>
                         </optgroup>
-
-                        <!-- Europe -->
                         <optgroup label="🌍 Europe">
-                            <!-- France -->
                             <option value="PSG">🇫🇷 Paris Saint-Germain</option>
                             <option value="Marseille">🇫🇷 Olympique Marseille</option>
                             <option value="Lyon">🇫🇷 Olympique Lyonnais</option>
                             <option value="Monaco">🇫🇷 AS Monaco</option>
-                            <option value="Lille">🇫🇷 LOSC Lille</option>
-                            <option value="Nice">🇫🇷 OGC Nice</option>
-                            <option value="Rennes">🇫🇷 Stade Rennais</option>
-                            <option value="Lens">🇫🇷 RC Lens</option>
-                            <option value="Strasbourg">🇫🇷 RC Strasbourg</option>
-                            <option value="Bordeaux">🇫🇷 Girondins Bordeaux</option>
-                            <!-- Espagne -->
                             <option value="Barcelona">🇪🇸 FC Barcelona</option>
                             <option value="Real Madrid">🇪🇸 Real Madrid</option>
                             <option value="Atletico Madrid">🇪🇸 Atlético Madrid</option>
-                            <option value="Sevilla">🇪🇸 Sevilla FC</option>
-                            <option value="Real Sociedad">🇪🇸 Real Sociedad</option>
-                            <option value="Villarreal">🇪🇸 Villarreal</option>
-                            <option value="Betis">🇪🇸 Real Betis</option>
-                            <option value="Valencia">🇪🇸 Valencia CF</option>
-                            <option value="Bilbao">🇪🇸 Athletic Bilbao</option>
-                            <!-- Angleterre -->
                             <option value="Manchester City">🇬🇧 Manchester City</option>
                             <option value="Manchester United">🇬🇧 Manchester United</option>
                             <option value="Liverpool">🇬🇧 Liverpool FC</option>
                             <option value="Arsenal">🇬🇧 Arsenal FC</option>
                             <option value="Chelsea">🇬🇧 Chelsea FC</option>
-                            <option value="Tottenham">🇬🇧 Tottenham Hotspur</option>
-                            <option value="Newcastle">🇬🇧 Newcastle United</option>
-                            <option value="Aston Villa">🇬🇧 Aston Villa</option>
-                            <option value="West Ham">🇬🇧 West Ham United</option>
-                            <option value="Leeds">🇬🇧 Leeds United</option>
-                            <!-- Allemagne -->
                             <option value="Bayern Munich">🇩🇪 Bayern Munich</option>
                             <option value="Dortmund">🇩🇪 Borussia Dortmund</option>
-                            <option value="RB Leipzig">🇩🇪 RB Leipzig</option>
-                            <option value="Leverkusen">🇩🇪 Bayer Leverkusen</option>
-                            <option value="Stuttgart">🇩🇪 VfB Stuttgart</option>
-                            <option value="Eintracht">🇩🇪 Eintracht Frankfurt</option>
-                            <option value="Wolfsburg">🇩🇪 VfL Wolfsburg</option>
-                            <option value="Gladbach">🇩🇪 Borussia Mönchengladbach</option>
-                            <option value="Werder">🇩🇪 Werder Bremen</option>
-                            <!-- Italie -->
                             <option value="Juventus">🇮🇹 Juventus</option>
                             <option value="AC Milan">🇮🇹 AC Milan</option>
                             <option value="Inter Milan">🇮🇹 Inter Milan</option>
-                            <option value="Roma">🇮🇹 AS Roma</option>
-                            <option value="Napoli">🇮🇹 SSC Napoli</option>
-                            <option value="Lazio">🇮🇹 SS Lazio</option>
-                            <option value="Atalanta">🇮🇹 Atalanta</option>
-                            <option value="Fiorentina">🇮🇹 Fiorentina</option>
-                            <option value="Bologna">🇮🇹 Bologna</option>
-                            <!-- Portugal -->
                             <option value="Benfica">🇵🇹 Benfica</option>
                             <option value="Porto">🇵🇹 FC Porto</option>
-                            <option value="Sporting">🇵🇹 Sporting CP</option>
-                            <option value="Braga">🇵🇹 SC Braga</option>
-                            <!-- Pays-Bas -->
                             <option value="Ajax">🇳🇱 Ajax Amsterdam</option>
                             <option value="PSV">🇳🇱 PSV Eindhoven</option>
-                            <option value="Feyenoord">🇳🇱 Feyenoord</option>
-                            <!-- Belgique -->
                             <option value="Club Brugge">🇧🇪 Club Brugge</option>
                             <option value="Anderlecht">🇧🇪 RSC Anderlecht</option>
-                            <option value="Genk">🇧🇪 KRC Genk</option>
-                            <option value="Gent">🇧🇪 KAA Gent</option>
                         </optgroup>
-
-                        <!-- Amérique -->
                         <optgroup label="🌍 Amérique">
                             <option value="Flamengo">🇧🇷 Flamengo</option>
                             <option value="Palmeiras">🇧🇷 Palmeiras</option>
-                            <option value="Atlético Mineiro">🇧🇷 Atlético Mineiro</option>
-                            <option value="Fluminense">🇧🇷 Fluminense</option>
-                            <option value="Corinthians">🇧🇷 Corinthians</option>
-                            <option value="São Paulo">🇧🇷 São Paulo</option>
                             <option value="River Plate">🇦🇷 River Plate</option>
                             <option value="Boca Juniors">🇦🇷 Boca Juniors</option>
-                            <option value="Racing">🇦🇷 Racing Club</option>
-                            <option value="San Lorenzo">🇦🇷 San Lorenzo</option>
                             <option value="América">🇲🇽 Club América</option>
-                            <option value="Chivas">🇲🇽 Chivas Guadalajara</option>
-                            <option value="Tigres">🇲🇽 Tigres UANL</option>
-                            <option value="Monterrey">🇲🇽 CF Monterrey</option>
                             <option value="LA Galaxy">🇺🇸 LA Galaxy</option>
                             <option value="Inter Miami">🇺🇸 Inter Miami</option>
-                            <option value="Seattle">🇺🇸 Seattle Sounders</option>
-                            <option value="LAFC">🇺🇸 LAFC</option>
                         </optgroup>
-
-                        <!-- Asie -->
                         <optgroup label="🌍 Asie">
                             <option value="Al Hilal">🇸🇦 Al Hilal</option>
                             <option value="Al Nassr">🇸🇦 Al Nassr</option>
-                            <option value="Al Ahli">🇸🇦 Al Ahli</option>
-                            <option value="Al Ittihad">🇸🇦 Al Ittihad</option>
                             <option value="Urawa Reds">🇯🇵 Urawa Reds</option>
-                            <option value="Kawasaki">🇯🇵 Kawasaki Frontale</option>
-                            <option value="Yokohama F. Marinos">🇯🇵 Yokohama F. Marinos</option>
                             <option value="Jeonbuk">🇰🇷 Jeonbuk Hyundai</option>
-                            <option value="Ulsan">🇰🇷 Ulsan Hyundai</option>
                             <option value="Shanghai Port">🇨🇳 Shanghai Port</option>
-                            <option value="Guangzhou">🇨🇳 Guangzhou FC</option>
-                            <option value="Beijing">🇨🇳 Beijing Guoan</option>
                         </optgroup>
                     </select>
                 </div>
@@ -332,7 +284,6 @@
                             <option value="Brésil">🇧🇷 Brésil</option>
                             <option value="Argentine">🇦🇷 Argentine</option>
                             <option value="Mexique">🇲🇽 Mexique</option>
-                            <option value="États-Unis">🇺🇸 États-Unis</option>
                             <option value="Bénin">🇧🇯 Bénin</option>
                             <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
                             <option value="Sénégal">🇸🇳 Sénégal</option>
@@ -345,8 +296,6 @@
                             <option value="Afrique du Sud">🇿🇦 Afrique du Sud</option>
                             <option value="RDC">🇨🇩 RDC</option>
                             <option value="Mali">🇲🇱 Mali</option>
-                            <option value="Burkina Faso">🇧🇫 Burkina Faso</option>
-                            <option value="Togo">🇹🇬 Togo</option>
                             <option value="Arabie Saoudite">🇸🇦 Arabie Saoudite</option>
                             <option value="Japon">🇯🇵 Japon</option>
                             <option value="Corée du Sud">🇰🇷 Corée du Sud</option>
@@ -361,17 +310,53 @@
 
                 <div class="form-group">
                     <label>🏟️ Stade</label>
-                    <input type="text" id="clubStade" placeholder="Stade de l'Amitié" value="Stade de l'Amitié">
+                    <input type="text" id="clubStade" placeholder="Camp Nou" value="Camp Nou">
                 </div>
 
                 <button type="submit" class="btn-submit" id="submitBtn">
-                    <i class="fas fa-check"></i> Créer mon club
+                    <i class="fas fa-check"></i> Créer mon équipe
                 </button>
             </form>
         </div>
     </div>
 
     <script>
+        // ===== PRÉVISUALISATION EN DIRECT =====
+        function updatePreview() {
+            const club = document.getElementById('clubSelect').value;
+            const pays = document.getElementById('clubPays').value;
+            const division = document.getElementById('clubDivision').value || 'Ligue 1';
+            const stade = document.getElementById('clubStade').value || 'Stade';
+            const coach = document.getElementById('coachNom').value || 'Coach';
+
+            document.getElementById('previewName').textContent = `⚽ ${club}`;
+            document.getElementById('previewPays').textContent = pays;
+            document.getElementById('previewDivision').textContent = division;
+            document.getElementById('previewStade').textContent = stade;
+        }
+
+        document.getElementById('clubSelect').addEventListener('change', updatePreview);
+        document.getElementById('clubPays').addEventListener('change', updatePreview);
+        document.getElementById('clubDivision').addEventListener('input', updatePreview);
+        document.getElementById('clubStade').addEventListener('input', updatePreview);
+        document.getElementById('coachNom').addEventListener('input', updatePreview);
+
+        // ===== INIT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupérer le pseudo depuis la session
+            const saved = localStorage.getItem('fm_session_data');
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    if (data.pseudo) {
+                        document.getElementById('coachNom').value = data.pseudo;
+                    }
+                } catch(e) {}
+            }
+            updatePreview();
+        });
+
+        // ===== SAUVEGARDER =====
         async function saveClub(event) {
             event.preventDefault();
 
@@ -388,7 +373,7 @@
             if (!coach) {
                 alert('⚠️ Veuillez entrer votre nom de coach');
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon club';
+                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon équipe';
                 return;
             }
 
@@ -406,6 +391,7 @@
                     joueurs: []
                 };
 
+                // Générer 25 joueurs pour l'équipe
                 const response = await fetch('/api/generate_players', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -420,9 +406,11 @@
                 if (result.success) {
                     playerData.equipe.joueurs = result.players;
                 } else {
+                    // Fallback local
                     playerData.equipe.joueurs = generateLocalPlayers(pays, club, 25);
                 }
 
+                // Sauvegarder
                 localStorage.setItem('fm_session_data', JSON.stringify(playerData));
 
                 await fetch('/api/save', {
@@ -434,16 +422,16 @@
                     })
                 });
 
-                btn.innerHTML = '✅ Club créé !';
+                btn.innerHTML = '✅ Équipe créée !';
                 setTimeout(() => {
                     window.location.href = '/dashboard.html';
                 }, 1000);
 
             } catch(e) {
                 console.error(e);
-                alert('❌ Erreur lors de la création du club');
+                alert('❌ Erreur lors de la création de l\'équipe');
                 btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon club';
+                btn.innerHTML = '<i class="fas fa-check"></i> Créer mon équipe';
             }
         }
 
