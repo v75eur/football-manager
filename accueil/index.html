@@ -856,11 +856,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 </html>
 
-<!-- ===== ENGRENAGE ADMIN (bas de page) ===== -->
-<div style="position:fixed;bottom:10px;right:10px;z-index:9999;">
-    <button onclick="openAdminPanel()" style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:50%;width:40px;height:40px;color:#666;cursor:pointer;transition:all 0.3s;font-size:1.2rem;" 
-            onmouseover="this.style.borderColor='#FFD700';this.style.color='#FFD700';" 
-            onmouseout="this.style.borderColor='rgba(255,215,0,0.1)';this.style.color='#666';">
+<!-- ===== ENGRENAGE ADMIN (discrètement caché) ===== -->
+<div style="position:fixed;bottom:8px;right:8px;z-index:9999;opacity:0.15;transition:opacity 0.3s;" 
+     onmouseover="this.style.opacity=1" 
+     onmouseout="this.style.opacity=0.15">
+    <button onclick="openAdminPanel()" style="background:transparent;border:none;border-radius:50%;width:28px;height:28px;color:#666;cursor:pointer;font-size:0.9rem;padding:0;line-height:1;">
         <i class="fas fa-cog"></i>
     </button>
 </div>
@@ -921,3 +921,41 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
+
+<!-- ===== ENGRENAGE ULTRA DISCRET ===== -->
+<style>
+.admin-gear {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    z-index: 9999;
+    opacity: 0.08;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.admin-gear:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+.admin-gear button {
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 0.7rem;
+    padding: 2px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-gear button:hover {
+    color: #FFD700;
+}
+</style>
+
+<div class="admin-gear" onclick="openAdminPanel()">
+    <button><i class="fas fa-cog"></i></button>
+</div>
