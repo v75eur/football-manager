@@ -192,3 +192,12 @@ def search_players(query):
     except:
         pass
     return results
+
+# ===== PAGE DE GESTION DES SAUVEGARDES =====
+@app.route('/saves')
+def saves_manager():
+    """Page de gestion des sauvegardes"""
+    try:
+        return send_file('saves_manager.html')
+    except Exception as e:
+        return f"Erreur: {e}", 404
