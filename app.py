@@ -114,3 +114,39 @@ def download_file(pseudo):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
+
+# ===== API JOUEURS =====
+@app.route('/api/players/<pseudo>')
+def get_player_data(pseudo):
+    """Récupère toutes les données d'un joueur pour le popup"""
+    try:
+        filepath = os.path.join(DATA_DIR, f"{pseudo}.FMTK")
+        if not os.path.exists(filepath):
+            return jsonify({'success': False, 'message': 'Joueur non trouvé'}), 404
+        
+        with open(filepath, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        # Extraire les infos du joueur
+        equipe = data.get('equipe', {})
+        stats = equipe.get('stats', {})
+        transferts = equipe.get('transferts', {})
+        
+        player_info = {
+            'pseudo': data.get('pseudo', ''),
+            'club': equipe.get('nom', 'Non défini'),
+            'division': equipe.get('division', ''),
+            'pays': equipe.get('pays', ''),
+            'stade': equipe.get('stade', ''),
+            'couleurs': equipe.get('couleurs', '#FFD700 / #003366'),
+            'budget': transferts.get('budget', 0),
+            'joueurs': equipe.get('joueurs', []),
+            'stats': stats,
+            'created_at': data.get('created_at', ''),
+            'last_login': data.get('last_login', ''),
+            'player_id': data.get('player_id', '')
+        }
+        
+        return jsonify({'success': True, 'player': player_info})
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
