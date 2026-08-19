@@ -150,3 +150,45 @@ def get_player_data(pseudo):
         return jsonify({'success': True, 'player': player_info})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 500
+import json
+import gzip
+
+def get_club_players(club_name):
+    """Charge uniquement les joueurs d'un club spécifique"""
+    try:
+        # Essayer d'abord le fichier compressé
+        filepath = 'data/players/all_players_complete.json.gz'
+        if os.path.exists(filepath):
+            with gzip.open(filepath, 'rt', encoding='utf-8') as f:
+                data = json.load(f)
+                return data.get(club_name, [])
+        
+        # Sinon le fichier normal
+        with open('data/players/all_players_complete.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get(club_name, [])
+    except:
+        return []
+
+def search_players(query):
+    """Recherche des joueurs sans tout charger en mémoire"""
+    results = []
+    try:
+        filepath = 'data/players/all_players_complete.json.gz'
+        if os.path.exists(filepath):
+            with gzip.open(filepath, 'rt', encoding='utf-8') as f:
+                data = json.load(f)
+                for club, joueurs in data.items():
+                    for joueur in joueurs:
+                        if query.lower() in joueur.get('nom', '').lower():
+                            results.append({
+                                'nom': joueur['nom'],
+                                'club': club,
+                                'poste': joueur.get('poste', ''),
+                                'note': joueur.get('note', 0)
+                            })
+                            if len(results) >= 20:
+                                return results
+    except:
+        pass
+    return results
