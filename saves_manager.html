@@ -2,552 +2,93 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Sauvegardes - FMTK</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:'Rajdhani',sans-serif; background:#0a1a0a; color:#fff; min-height:100vh; }
-        
-        .header {
-            background:linear-gradient(135deg,#0d2a0d,#0a1a0a);
-            border-bottom:2px solid rgba(255,215,0,0.1);
-            padding:15px 20px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            flex-wrap:wrap;
-            gap:10px;
-        }
-        .header .logo { font-family:'Orbitron',monospace; font-size:1.5rem; color:#FFD700; font-weight:900; }
-        .header .back { color:#7aaa7a; text-decoration:none; font-size:0.9rem; }
-        .header .back:hover { color:#FFD700; }
-        
-        .main { padding:20px; max-width:1200px; margin:0 auto; }
-        
-        .stats {
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
-            gap:15px;
-            margin-bottom:20px;
-        }
-        .stats .card {
-            background:rgba(10,30,10,0.85);
-            border-radius:10px;
-            padding:15px;
-            text-align:center;
-            border:1px solid rgba(255,215,0,0.05);
-        }
-        .stats .card .value { font-size:1.5rem; font-weight:700; color:#FFD700; }
-        .stats .card .label { font-size:0.7rem; color:#666; text-transform:uppercase; }
-        
-        .filters {
-            display:flex;
-            gap:10px;
-            flex-wrap:wrap;
-            margin-bottom:15px;
-        }
-        .filters input, .filters select {
-            padding:8px 12px;
-            background:rgba(255,255,255,0.05);
-            border:1px solid rgba(255,255,255,0.08);
-            border-radius:8px;
-            color:#fff;
-            font-family:'Rajdhani',sans-serif;
-            font-size:0.85rem;
-        }
-        .filters input:focus, .filters select:focus {
-            border-color:#FFD700;
-            outline:none;
-        }
-        .filters input::placeholder { color:#666; }
-        
-        .table-container {
-            background:rgba(10,30,10,0.85);
-            border-radius:12px;
-            border:1px solid rgba(255,215,0,0.05);
-            overflow-x:auto;
-            padding:10px;
-        }
-        table {
-            width:100%;
-            border-collapse:collapse;
-            font-size:0.85rem;
-        }
-        th {
-            text-align:left;
-            padding:12px 10px;
-            color:#FFD700;
-            border-bottom:2px solid rgba(255,215,0,0.1);
-            font-family:'Orbitron',monospace;
-            font-size:0.65rem;
-            text-transform:uppercase;
-            letter-spacing:1px;
-        }
-        td {
-            padding:10px;
-            border-bottom:1px solid rgba(255,255,255,0.03);
-            color:#ddd;
-        }
-        td .pseudo { color:#fff; font-weight:600; }
-        td .club { color:#7aaa7a; }
-        td .date { color:#666; font-size:0.75rem; }
-        td .status {
-            display:inline-block;
-            padding:2px 10px;
-            border-radius:10px;
-            font-size:0.65rem;
-            font-weight:700;
-        }
+        body { font-family:Arial,sans-serif; background:#0a1a0a; color:#fff; padding:20px; }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+        .logo { font-size:1.5rem; color:#FFD700; font-weight:bold; }
+        .card { background:rgba(10,30,10,0.85); border-radius:10px; padding:20px; margin-bottom:15px; border:1px solid rgba(255,215,0,0.05); }
+        table { width:100%; border-collapse:collapse; }
+        th, td { padding:10px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.05); }
+        th { color:#FFD700; }
+        .btn { padding:4px 10px; border:none; border-radius:4px; cursor:pointer; font-size:0.7rem; }
+        .btn-danger { background:#e74c3c; color:#fff; }
+        .btn-warning { background:#f39c12; color:#fff; }
+        .btn-success { background:#2ecc71; color:#fff; }
+        .btn-info { background:#3498db; color:#fff; }
+        .status { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.6rem; }
         .status-active { background:#2ecc71; color:#fff; }
         .status-locked { background:#e74c3c; color:#fff; }
-        .status-expired { background:#f39c12; color:#fff; }
-        
-        .actions {
-            display:flex;
-            gap:5px;
-            flex-wrap:wrap;
-        }
-        .actions button {
-            padding:4px 10px;
-            border:none;
-            border-radius:4px;
-            font-family:'Rajdhani',sans-serif;
-            font-size:0.7rem;
-            font-weight:600;
-            cursor:pointer;
-            transition:all 0.3s;
-        }
-        .actions button:hover { transform:scale(1.05); }
-        .btn-view { background:#3498db; color:#fff; }
-        .btn-lock { background:#f39c12; color:#fff; }
-        .btn-unlock { background:#2ecc71; color:#fff; }
-        .btn-delete { background:#e74c3c; color:#fff; }
-        .btn-download { background:#FFD700; color:#0a0a1a; }
-        
-        .no-data {
-            text-align:center;
-            padding:40px;
-            color:#666;
-        }
-        .no-data i { font-size:3rem; display:block; margin-bottom:10px; }
-        
-        .modal {
-            display:none;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background:rgba(0,0,0,0.85);
-            z-index:9999;
-            align-items:center;
-            justify-content:center;
-            padding:20px;
-        }
-        .modal.active { display:flex; }
-        .modal-content {
-            background:linear-gradient(180deg,#0d2a0d,#0a1a0a);
-            border:2px solid rgba(255,215,0,0.1);
-            border-radius:15px;
-            padding:25px;
-            max-width:500px;
-            width:100%;
-            max-height:90vh;
-            overflow-y:auto;
-        }
-        .modal-content h2 { color:#FFD700; font-family:'Orbitron',monospace; font-size:1rem; margin-bottom:15px; }
-        .modal-content .info-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.03); }
-        .modal-content .info-item .label { color:#666; }
-        .modal-content .info-item .value { color:#fff; }
-        .modal-actions { display:flex; gap:10px; margin-top:15px; flex-wrap:wrap; }
-        .modal-actions button { flex:1; padding:10px; border:none; border-radius:8px; font-weight:700; cursor:pointer; }
-        .modal-close {
-            position:absolute;
-            top:15px;
-            right:20px;
-            font-size:1.5rem;
-            color:#666;
-            cursor:pointer;
-            background:none;
-            border:none;
-        }
-        .modal-close:hover { color:#FFD700; }
-        
-        .toast {
-            position:fixed;
-            bottom:20px;
-            left:50%;
-            transform:translateX(-50%);
-            background:rgba(10,30,10,0.95);
-            border:1px solid rgba(255,215,0,0.2);
-            border-radius:10px;
-            padding:12px 20px;
-            font-size:0.8rem;
-            color:#fff;
-            z-index:9999;
-            display:none;
-            max-width:90%;
-        }
-        .toast.show { display:block; animation:slideUp 0.3s ease; }
-        .toast.success { border-color:#2ecc71; }
-        .toast.error { border-color:#e74c3c; }
-        .toast.info { border-color:#FFD700; }
-        @keyframes slideUp { from { opacity:0; transform:translateX(-50%) translateY(20px); } to { opacity:1; transform:translateX(-50%) translateY(0); } }
-        
-        @media (max-width:600px) {
-            .stats { grid-template-columns:repeat(2,1fr); }
-            table { font-size:0.7rem; }
-            th, td { padding:8px 5px; }
-            .actions button { padding:3px 6px; font-size:0.6rem; }
-        }
+        .back { color:#7aaa7a; text-decoration:none; }
+        .back:hover { color:#FFD700; }
     </style>
 </head>
 <body>
-
-<div class="header">
-    <div class="logo">📂 FMTK</div>
-    <div>
-        <a href="/dashboard" class="back"><i class="fas fa-arrow-left"></i> Retour au dashboard</a>
+    <div class="header">
+        <div class="logo">📂 Gestion des Sauvegardes</div>
+        <a href="/dashboard" class="back">← Retour</a>
     </div>
-</div>
-
-<div class="main">
-
-    <div class="stats">
-        <div class="card">
-            <div class="value" id="totalSaves">0</div>
-            <div class="label">Total sauvegardes</div>
-        </div>
-        <div class="card">
-            <div class="value" id="activeSaves">0</div>
-            <div class="label">Actives</div>
-        </div>
-        <div class="card">
-            <div class="value" id="lockedSaves">0</div>
-            <div class="label">Verrouillées</div>
-        </div>
-        <div class="card">
-            <div class="value" id="totalSize">0</div>
-            <div class="label">Taille totale</div>
-        </div>
+    
+    <div class="card">
+        <h3>📊 Statistiques</h3>
+        <div id="stats">Chargement...</div>
     </div>
-
-    <div class="filters">
-        <input type="text" id="searchInput" placeholder="🔍 Rechercher..." oninput="filterSaves()">
-        <select id="statusFilter" onchange="filterSaves()">
-            <option value="all">Tous les statuts</option>
-            <option value="active">Actives</option>
-            <option value="locked">Verrouillées</option>
-            <option value="expired">Expirées</option>
-        </select>
-        <select id="sortFilter" onchange="filterSaves()">
-            <option value="date-desc">Date (récent → ancien)</option>
-            <option value="date-asc">Date (ancien → récent)</option>
-            <option value="name">Nom (A → Z)</option>
-            <option value="club">Club (A → Z)</option>
-        </select>
-        <button onclick="refreshSaves()" style="padding:8px 16px;background:rgba(255,215,0,0.1);border:1px solid rgba(255,215,0,0.2);border-radius:8px;color:#FFD700;cursor:pointer;">
-            <i class="fas fa-sync"></i> Actualiser
-        </button>
+    
+    <div class="card">
+        <h3>📋 Liste des sauvegardes</h3>
+        <div id="list">Chargement...</div>
     </div>
-
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Pseudo</th>
-                    <th>Club</th>
-                    <th>Date</th>
-                    <th>Statut</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="savesList">
-                <tr><td colspan="5" class="no-data"><i class="fas fa-database"></i>Chargement des sauvegardes...</td></tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<!-- ===== MODAL DÉTAILS ===== -->
-<div class="modal" id="detailModal">
-    <div class="modal-content" style="position:relative;">
-        <button class="modal-close" onclick="closeModal()">✕</button>
-        <h2 id="modalTitle">Détails de la sauvegarde</h2>
-        <div id="modalBody"></div>
-        <div class="modal-actions">
-            <button class="btn-download" onclick="downloadSave()"><i class="fas fa-download"></i> Télécharger</button>
-            <button class="btn-lock" onclick="toggleLock()"><i class="fas fa-lock"></i> Verrouiller</button>
-            <button class="btn-delete" onclick="deleteSave()"><i class="fas fa-trash"></i> Supprimer</button>
-        </div>
-    </div>
-</div>
-
-<!-- ===== TOAST ===== -->
-<div class="toast" id="toast"></div>
-
-<script>
-let allSaves = [];
-let selectedSave = null;
-
-// ===== CHARGER LES SAUVEGARDES =====
-async function loadSaves() {
-    try {
-        const response = await fetch('/api/saves/list');
-        const result = await response.json();
-        if (result.success) {
-            allSaves = result.saves || [];
-            updateStats();
-            renderSaves();
-        } else {
-            showToast('❌ Erreur: ' + result.message, 'error');
+    
+    <script>
+        async function loadSaves() {
+            try {
+                const response = await fetch('/api/saves/list');
+                const data = await response.json();
+                if (data.success) {
+                    const saves = data.saves || [];
+                    document.getElementById('stats').innerHTML = `
+                        Total: ${saves.length} | 
+                        Actives: ${saves.filter(s => s.status === 'active').length} | 
+                        Verrouillées: ${saves.filter(s => s.status === 'locked').length}
+                    `;
+                    let html = '<table><tr><th>Pseudo</th><th>Club</th><th>Date</th><th>Statut</th><th>Actions</th></tr>';
+                    saves.forEach(s => {
+                        html += `<tr>
+                            <td>${s.pseudo}</td>
+                            <td>${s.club || '-'}</td>
+                            <td>${new Date(s.date).toLocaleString()}</td>
+                            <td><span class="status ${s.status === 'active' ? 'status-active' : 'status-locked'}">${s.status}</span></td>
+                            <td>
+                                <button class="btn btn-info" onclick="window.location.href='/download/${s.pseudo}'">📥</button>
+                                <button class="btn btn-warning" onclick="alert('Fonction à venir')">🔒</button>
+                                <button class="btn btn-danger" onclick="if(confirm('Supprimer ?')){deleteSave('${s.pseudo}')}">🗑️</button>
+                            </td>
+                        </tr>`;
+                    });
+                    html += '</table>';
+                    document.getElementById('list').innerHTML = html;
+                }
+            } catch(e) {
+                document.getElementById('list').innerHTML = 'Erreur de chargement';
+            }
         }
-    } catch(e) {
-        // Mode simulation si l'API n'est pas disponible
-        allSaves = generateFakeSaves();
-        updateStats();
-        renderSaves();
-        showToast('ℹ️ Mode démonstration (sauvegardes fictives)', 'info');
-    }
-}
-
-function generateFakeSaves() {
-    const pseudos = ['ronaldo', 'mbappe', 'haaland', 'salah', 'vinicius', 'pedri', 'gavi', 'bellingham'];
-    const clubs = ['Real Madrid', 'PSG', 'Manchester City', 'Liverpool', 'FC Barcelone', 'Bayern Munich'];
-    const statuses = ['active', 'active', 'locked', 'active', 'expired', 'active', 'locked', 'active'];
-    const saves = [];
-    for (let i = 0; i < 8; i++) {
-        const date = new Date();
-        date.setHours(date.getHours() - i * 3);
-        saves.push({
-            pseudo: pseudos[i],
-            club: clubs[i % clubs.length],
-            date: date.toISOString(),
-            status: statuses[i % statuses.length],
-            size: Math.floor(Math.random() * 500 + 100) + ' KB',
-            budget: Math.floor(Math.random() * 80 + 20),
-            players: Math.floor(Math.random() * 5 + 18),
-            matches: Math.floor(Math.random() * 30 + 5),
-            wins: Math.floor(Math.random() * 20),
-            player_id: 'player_' + i,
-            locked_until: statuses[i % statuses.length] === 'locked' ? new Date(date.getTime() + 3600000 * 24).toISOString() : null
-        });
-    }
-    return saves;
-}
-
-// ===== STATISTIQUES =====
-function updateStats() {
-    document.getElementById('totalSaves').textContent = allSaves.length;
-    document.getElementById('activeSaves').textContent = allSaves.filter(s => s.status === 'active').length;
-    document.getElementById('lockedSaves').textContent = allSaves.filter(s => s.status === 'locked').length;
-    const totalSize = allSaves.reduce((acc, s) => acc + parseInt(s.size), 0);
-    document.getElementById('totalSize').textContent = (totalSize / 1024).toFixed(1) + ' MB';
-}
-
-// ===== AFFICHER LES SAUVEGARDES =====
-function renderSaves() {
-    const tbody = document.getElementById('savesList');
-    const filtered = getFilteredSaves();
-    
-    if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="5" class="no-data"><i class="fas fa-database"></i>Aucune sauvegarde trouvée</td></tr>';
-        return;
-    }
-    
-    let html = '';
-    filtered.forEach(s => {
-        const statusClass = s.status === 'active' ? 'status-active' : s.status === 'locked' ? 'status-locked' : 'status-expired';
-        const statusLabel = s.status === 'active' ? '✅ Active' : s.status === 'locked' ? '🔒 Verrouillée' : '⏰ Expirée';
-        const dateStr = new Date(s.date).toLocaleString('fr-FR');
-        html += `
-            <tr>
-                <td><span class="pseudo">${s.pseudo}</span></td>
-                <td><span class="club">${s.club || 'Non défini'}</span></td>
-                <td><span class="date">${dateStr}</span></td>
-                <td><span class="status ${statusClass}">${statusLabel}</span></td>
-                <td>
-                    <div class="actions">
-                        <button class="btn-view" onclick="viewSave('${s.pseudo}')"><i class="fas fa-eye"></i></button>
-                        <button class="btn-download" onclick="downloadSave('${s.pseudo}')"><i class="fas fa-download"></i></button>
-                        ${s.status === 'locked' ? `<button class="btn-unlock" onclick="toggleLock('${s.pseudo}')"><i class="fas fa-unlock"></i></button>` :
-                                          `<button class="btn-lock" onclick="toggleLock('${s.pseudo}')"><i class="fas fa-lock"></i></button>`}
-                        <button class="btn-delete" onclick="deleteSave('${s.pseudo}')"><i class="fas fa-trash"></i></button>
-                    </div>
-                </td>
-            </tr>
-        `;
-    });
-    tbody.innerHTML = html;
-}
-
-// ===== FILTRES =====
-function getFilteredSaves() {
-    const search = document.getElementById('searchInput').value.toLowerCase();
-    const status = document.getElementById('statusFilter').value;
-    const sort = document.getElementById('sortFilter').value;
-    
-    let filtered = allSaves.filter(s => {
-        const matchSearch = s.pseudo.toLowerCase().includes(search) || 
-                           (s.club && s.club.toLowerCase().includes(search));
-        const matchStatus = status === 'all' || s.status === status;
-        return matchSearch && matchStatus;
-    });
-    
-    // Trier
-    filtered.sort((a, b) => {
-        switch(sort) {
-            case 'date-desc': return new Date(b.date) - new Date(a.date);
-            case 'date-asc': return new Date(a.date) - new Date(b.date);
-            case 'name': return a.pseudo.localeCompare(b.pseudo);
-            case 'club': return (a.club || '').localeCompare(b.club || '');
-            default: return 0;
+        
+        async function deleteSave(pseudo) {
+            try {
+                const response = await fetch(`/api/saves/delete/${pseudo}`, { method: 'DELETE' });
+                if (response.ok) {
+                    alert('✅ Sauvegarde supprimée');
+                    loadSaves();
+                }
+            } catch(e) {
+                alert('❌ Erreur');
+            }
         }
-    });
-    
-    return filtered;
-}
-
-function filterSaves() { renderSaves(); }
-
-// ===== ACTIONS =====
-async function viewSave(pseudo) {
-    const save = allSaves.find(s => s.pseudo === pseudo);
-    if (!save) return;
-    selectedSave = save;
-    
-    const modal = document.getElementById('detailModal');
-    document.getElementById('modalTitle').textContent = `📁 ${save.pseudo}`;
-    
-    const body = document.getElementById('modalBody');
-    body.innerHTML = `
-        <div class="info-item"><span class="label">Pseudo</span><span class="value">${save.pseudo}</span></div>
-        <div class="info-item"><span class="label">Club</span><span class="value">${save.club || 'Non défini'}</span></div>
-        <div class="info-item"><span class="label">Date</span><span class="value">${new Date(save.date).toLocaleString('fr-FR')}</span></div>
-        <div class="info-item"><span class="label">Statut</span><span class="value">${save.status === 'active' ? '✅ Active' : save.status === 'locked' ? '🔒 Verrouillée' : '⏰ Expirée'}</span></div>
-        <div class="info-item"><span class="label">Taille</span><span class="value">${save.size || 'Inconnue'}</span></div>
-        <div class="info-item"><span class="label">Budget</span><span class="value">${save.budget || '?'} M€</span></div>
-        <div class="info-item"><span class="label">Joueurs</span><span class="value">${save.players || '?'}</span></div>
-        <div class="info-item"><span class="label">Matchs</span><span class="value">${save.matches || '?'}</span></div>
-        <div class="info-item"><span class="label">Victoires</span><span class="value">${save.wins || '?'}</span></div>
-        ${save.locked_until ? `<div class="info-item"><span class="label">Verrouillé jusqu'au</span><span class="value">${new Date(save.locked_until).toLocaleString('fr-FR')}</span></div>` : ''}
-        <div class="info-item"><span class="label">ID Joueur</span><span class="value" style="font-size:0.7rem;color:#666;">${save.player_id || 'N/A'}</span></div>
-    `;
-    
-    modal.classList.add('active');
-}
-
-function closeModal() {
-    document.getElementById('detailModal').classList.remove('active');
-}
-
-async function downloadSave(pseudo) {
-    const save = allSaves.find(s => s.pseudo === pseudo);
-    if (!save) return;
-    
-    try {
-        const response = await fetch(`/download/${pseudo}`);
-        if (response.ok) {
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${pseudo}.FMTK`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-            showToast(`✅ Fichier ${pseudo}.FMTK téléchargé`, 'success');
-        } else {
-            showToast('❌ Erreur téléchargement', 'error');
-        }
-    } catch(e) {
-        showToast('❌ Erreur: ' + e.message, 'error');
-    }
-}
-
-async function toggleLock(pseudo) {
-    const save = allSaves.find(s => s.pseudo === pseudo);
-    if (!save) return;
-    
-    if (save.status === 'locked') {
-        // Déverrouiller
-        const hours = prompt('Déverrouiller pour combien d\'heures ? (0 pour permanent)', '0');
-        if (hours === null) return;
-        save.status = 'active';
-        save.locked_until = null;
-        showToast(`🔓 ${pseudo} déverrouillé`, 'success');
-    } else {
-        // Verrouiller
-        const hours = prompt('Verrouiller pour combien d\'heures ? (0 = permanent)', '24');
-        if (hours === null) return;
-        save.status = 'locked';
-        if (parseInt(hours) > 0) {
-            const date = new Date();
-            date.setHours(date.getHours() + parseInt(hours));
-            save.locked_until = date.toISOString();
-        } else {
-            save.locked_until = null;
-        }
-        showToast(`🔒 ${pseudo} verrouillé ${parseInt(hours) > 0 ? `pour ${hours}h` : 'permanent'}`, 'success');
-    }
-    
-    // Sauvegarder sur le serveur
-    try {
-        await fetch('/api/saves/update', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ pseudo: pseudo, data: save })
-        });
-    } catch(e) {}
-    
-    renderSaves();
-    updateStats();
-}
-
-async function deleteSave(pseudo) {
-    if (!confirm(`⚠️ Supprimer définitivement la sauvegarde de ${pseudo} ?`)) return;
-    
-    const save = allSaves.find(s => s.pseudo === pseudo);
-    if (!save) return;
-    
-    try {
-        const response = await fetch(`/api/saves/delete/${pseudo}`, { method: 'DELETE' });
-        if (response.ok) {
-            allSaves = allSaves.filter(s => s.pseudo !== pseudo);
-            renderSaves();
-            updateStats();
-            showToast(`🗑️ ${pseudo} supprimé`, 'success');
-        } else {
-            showToast('❌ Erreur suppression', 'error');
-        }
-    } catch(e) {
-        // Mode simulation
-        allSaves = allSaves.filter(s => s.pseudo !== pseudo);
-        renderSaves();
-        updateStats();
-        showToast(`🗑️ ${pseudo} supprimé (simulation)`, 'success');
-    }
-}
-
-function refreshSaves() {
-    loadSaves();
-    showToast('🔄 Sauvegardes actualisées', 'info');
-}
-
-// ===== TOAST =====
-function showToast(message, type = 'info') {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.className = 'toast ' + type + ' show';
-    clearTimeout(toast._timeout);
-    toast._timeout = setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', loadSaves);
-</script>
+        
+        loadSaves();
+    </script>
 </body>
 </html>
