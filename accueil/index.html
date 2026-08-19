@@ -855,3 +855,69 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
+<!-- ===== ENGRENAGE ADMIN (bas de page) ===== -->
+<div style="position:fixed;bottom:10px;right:10px;z-index:9999;">
+    <button onclick="openAdminPanel()" style="background:rgba(255,215,0,0.05);border:1px solid rgba(255,215,0,0.1);border-radius:50%;width:40px;height:40px;color:#666;cursor:pointer;transition:all 0.3s;font-size:1.2rem;" 
+            onmouseover="this.style.borderColor='#FFD700';this.style.color='#FFD700';" 
+            onmouseout="this.style.borderColor='rgba(255,215,0,0.1)';this.style.color='#666';">
+        <i class="fas fa-cog"></i>
+    </button>
+</div>
+
+<!-- ===== POPUP MOT DE PASSE ADMIN ===== -->
+<div class="popup-overlay" id="adminPopup">
+    <div class="popup-box" style="max-width:400px;">
+        <div class="icon info">🔐</div>
+        <h2>Accès administrateur</h2>
+        <p style="text-align:center;color:#aaa;font-size:0.85rem;">Entrez le mot de passe pour accéder à la gestion des sauvegardes</p>
+        <div style="margin:15px 0;">
+            <input type="password" id="adminPassword" placeholder="Mot de passe" style="width:100%;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1rem;text-align:center;">
+        </div>
+        <button class="btn-popup info" onclick="checkAdminPassword()" style="width:100%;padding:12px;">
+            <i class="fas fa-unlock"></i> Accéder
+        </button>
+        <button class="btn-popup" onclick="closeAdminPopup()" style="width:100%;padding:12px;background:rgba(255,255,255,0.05);color:#666;border:1px solid rgba(255,255,255,0.05);margin-top:8px;">
+            Annuler
+        </button>
+        <div id="adminError" style="color:#e74c3c;font-size:0.8rem;text-align:center;margin-top:8px;display:none;">❌ Mot de passe incorrect</div>
+    </div>
+</div>
+
+<script>
+// ===== ADMIN PANEL =====
+function openAdminPanel() {
+    document.getElementById('adminPopup').classList.add('active');
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminError').style.display = 'none';
+    document.getElementById('adminPassword').focus();
+}
+
+function closeAdminPopup() {
+    document.getElementById('adminPopup').classList.remove('active');
+}
+
+function checkAdminPassword() {
+    const password = document.getElementById('adminPassword').value;
+    if (password === 'RickRoss1994@') {
+        closeAdminPopup();
+        window.location.href = '/saves';
+    } else {
+        document.getElementById('adminError').style.display = 'block';
+        document.getElementById('adminPassword').value = '';
+        document.getElementById('adminPassword').focus();
+    }
+}
+
+// Entrée avec la touche Entrée
+document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('adminPassword');
+    if (input) {
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                checkAdminPassword();
+            }
+        });
+    }
+});
+</script>
